@@ -1,0 +1,256 @@
+LyraArticle:
+  tableName: articles
+  actAs:
+    Timestampable: ~
+    Sluggable:
+      fields: [title]
+      canUpdate: true
+      unique: true
+      indexName: article_slug
+  options:
+    collate: utf8_unicode_ci
+    charset: utf8
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    title:
+      type: string(255)
+      notnull: true
+    subtitle:
+      type: string(255)
+    summary:
+      type: clob
+    content:
+      type: clob
+    meta_title:
+      type: string(255)
+    meta_descr:
+      type: string(500)
+    meta_keys:
+      type: string(500)
+    meta_robots:
+      type: string(255)
+    is_active:
+      type: boolean
+      notnull: true
+      default: false
+    is_featured:
+      type: boolean
+      notnull: true
+      default: false
+    is_sticky:
+      type: boolean
+      notnull: true
+      default: false
+    publish_start:
+      type: timestamp
+    publish_end:
+      type: timestamp
+    status:
+      type: integer(1)
+      notnull: true
+      default: 0
+    options:
+      type: clob(65532)
+    created_by:
+      type: integer(4)
+    updated_by:
+      type: integer(4)
+    locked_by:
+      type: integer(4)
+  relations:
+    ArticleLabels:
+      class: LyraLabel
+      refClass: LyraArticleLabel
+      local: article_id
+      foreign: label_id
+      foreignAlias: LabelArticles
+
+LyraComment:
+  tableName: comments
+  actAs:
+    Timestampable: ~
+  options:
+    collate: utf8_unicode_ci
+    charset: utf8
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    article_id:
+      type: integer(4)
+    author_name:
+      type: string(255)
+      notnull: true
+    author_email:
+      type: string(255)
+    author_url:
+      type: string(255)
+    content:
+      type: clob(65532)
+      notnull: true
+    is_active:
+      type: boolean
+      notnull: true
+      default: false
+  relations:
+    CommentArticle:
+      class: LyraArticle
+      local: article_id
+      foreign: id
+      foreignAlias: ArticleComments
+      onDelete: CASCADE
+
+LyraContentType:
+   tableName: content_types
+   actAs:
+     Timestampable: ~
+   options:
+     collate: utf8_unicode_ci
+     charset: utf8
+   columns:
+     id:
+       type: integer(4)
+       primary: true
+       autoincrement: true
+     name:
+        type: string(255)
+        notnull: true
+     description:
+        type: string(4000)
+     db_name:
+        type: string(255)
+     module:
+        type: string(20)
+     is_active:
+        type: boolean
+        notnull: true
+        default: false
+   relations:
+      ContentTypeCatalogs:
+         class: LyraCatalog
+         refClass: LyraContentTypeCatalog
+         local: ctype_id
+         foreign: catalog_id
+         foreignAlias: CatalogContentTypes
+
+LyraLabel:
+   tableName: labels
+   actAs:
+     Timestampable: ~
+     Sluggable:
+        fields: [name]
+        canUpdate: true
+        unique: true
+     NestedSet:
+        hasManyRoots: true
+        rootColumnName: root_id
+   options:
+     collate: utf8_unicode_ci
+     charset: utf8
+   columns:
+     id:
+       type: integer(4)
+       primary: true
+       autoincrement: true
+     catalog_id:
+       type: integer(4)
+     name:
+       type: string(255)
+       notnull: true
+     title:
+       type: string(255)
+     description:
+       type: string(4000)
+     meta_title:
+       type: string(255)
+     meta_robots:
+       type: string(255)
+     meta_descr:
+       type: string(4000)
+     meta_keys:
+       type: string(4000)
+     is_active:
+       type: boolean
+       notnull: true
+       default: false
+     created_by:
+       type: integer(4)
+     updated_by:
+       type: integer(4)
+   relations:
+      LabelCatalog:
+         class: LyraCatalog
+         local: catalog_id
+         foreign: id
+         foreignAlias: CatalogLabels
+         onDelete: CASCADE
+
+LyraCatalog:
+   tableName: catalogs
+   actAs:
+      Timestampable: ~
+   options:
+     collate: utf8_unicode_ci
+     charset: utf8
+   columns:
+     id:
+       type: integer(4)
+       primary: true
+       autoincrement: true
+     name:
+       type: string(255)
+     description:
+       type: string(4000)
+     is_active:
+       type: boolean
+       notnull: true
+       default: false
+     locked_by:
+       type: integer(4)
+
+LyraContentTypeCatalog:
+   tableName: content_type_catalog
+   columns:
+      ctype_id:
+         type: integer(4)
+         primary: true
+      catalog_id:
+         type: integer(4)
+         primary: true
+   relations:
+      ContentType:
+        class: LyraContentType
+        local: ctype_id
+        foreign: id
+        onDelete: CASCADE
+      Catalog:
+        class: LyraCatalog
+        local: catalog_id
+        foreign: id
+        onDelete: CASCADE
+
+LyraArticleLabel:
+   tableName: article_label
+   columns:
+      article_id:
+         type: integer(4)
+         primary: true
+      label_id:
+         type: integer(4)
+         primary: true
+   relations:
+      Article:
+         class: LyraArticle
+         local: article_id
+         foreign: id
+         onDelete: CASCADE
+      Label:
+         class: LyraLabel
+         local: label_id
+         foreign: id
+         onDelete: CASCADE
+
