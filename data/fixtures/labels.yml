@@ -1,0 +1,52 @@
+LyraCatalog:
+  argomento:
+    name: Argomento
+    is_active: true
+  livello:
+    name: Livello
+    is_active: true
+
+LyraLabel:
+  Rarg:
+    name: Argomento
+    is_active: true
+    LabelCatalog: argomento
+    children:
+      Php:
+        name: PHP
+        title: Articoli su PHP
+        is_active: true
+        LabelCatalog: argomento
+      Javascript:
+        name: Javascript
+        title: Articoli su Javascript
+        is_active: true
+        LabelCatalog: argomento
+        children:
+          Mootools:
+            name: Mootools
+            title: Articoli su Mootools
+            is_active: true
+            LabelCatalog: argomento
+          jQuery:
+            name: jQuery
+            title: Articoli su jQuery
+            is_active: true
+            LabelCatalog: argomento
+  Rliv:
+    name: Livello
+    is_active: true
+    LabelCatalog: livello
+    children:
+      Elementare:
+        name: Elementare
+        is_active: true
+        LabelCatalog: livello
+      Intermedio:
+        name: Intermedio
+        is_active: true
+        LabelCatalog: livello
+      Avanzato:
+        name: Avanzato
+        is_active: true
+        LabelCatalog: livello

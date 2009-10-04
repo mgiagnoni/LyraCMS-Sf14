@@ -1,0 +1,4 @@
+LyraContentType:
+  Articolo:
+    name: Articoli
+    ContentTypeCatalogs: [argomento,livello]
