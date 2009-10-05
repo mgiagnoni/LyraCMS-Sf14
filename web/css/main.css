@@ -1,0 +1,285 @@
+html, body {
+  margin: 0px;
+  padding:0px;
+  background-image:url(../images/bg.gif);
+  color: #797B7A;
+}
+
+h1, h2, h3, h4, h5, h6, p, form {
+  margin: 0px;
+  padding:0px;
+}
+h1 {
+  font-size: 120%;
+  color: #EE8907;
+}
+h2 {
+  font-size: 110%;
+  color: #EE8907;
+}
+h3 {
+  font-size: 105%;
+  color: #EE8907;
+}
+h1 a, h2 a {
+  text-decoration: none;
+  color: #EE8907;
+}
+a {
+  text-decoration: none;
+  color: #797B7A;
+}
+a:hover{
+  text-decoration: underline;
+}
+#wrapper {
+  width:800px;
+  margin:0px auto;
+  background-color:#FFF;
+}
+
+#content {
+  width:778px;
+  margin:0px auto;
+  background-image:url(../images/bg_header_top.gif);
+  background-repeat:repeat-x;
+  background-position:top;
+}
+
+#top {
+  height:96px;
+}
+
+#logo {
+  width:258px;
+  float:left;
+}
+
+#logo h1{
+  font-family:"Trebuchet MS";
+  font-size:26px;
+  color:#F76B0C;
+  font-weight:normal;
+  text-decoration:none;
+  padding-left:40px;
+  padding-top:30px;
+}
+
+#logo h4 {
+  font-family:"Trebuchet MS";
+  font-size:11px;
+  color:#808080;
+  font-weight:normal;
+  text-decoration:none;
+  padding-left:75px;
+}
+
+#links ul {
+  float: right;
+  margin:0px;
+  padding-top:67px;
+}
+
+#links li{
+  float:left;
+  list-style-type:none;
+  width:129px;
+  height:25px;
+  text-align:center;
+  background-color:#F4A80A;
+  border-left:1px solid #FFF;
+  padding-top:4px;
+}
+
+#links a{
+  font-size:11px;
+  color:#fff;
+  font-weight:normal;
+  text-decoration:none;
+}
+
+#links a:hover{
+  font-size:11px;
+  color:#fff;
+  font-weight:normal;
+  text-decoration:underline;
+}
+
+#header {
+  background-image:url(../images/main_img.jpg);
+  background-repeat:no-repeat;
+  height:132px;
+  text-align:right;
+}
+
+#header h3 {
+  font-size:160%;
+  color:#fff;
+  font-weight:normal;
+  text-decoration:none;
+  padding:20px 40px 0px 0px;
+}
+
+#contentarea {
+  clear:both;
+  padding:25px 0px;
+}
+
+#leftbar {
+  float:left;
+  width:539px;
+  border-right:1px solid #BCBDBC;
+  padding-left: 10px;
+}
+
+#rightbar {
+  float:left;
+  width:227px;
+}
+
+#rightbar h2{
+  color:#797B7A;
+  font-weight:normal;
+  padding-left:25px;
+  padding-bottom:5px;
+}
+
+#rightbar p{
+  font-size:11px;
+  color:#797B7A;
+  font-weight:normal;
+  padding:0px 25px;
+}
+
+
+#footer {
+  clear:both;
+  height:32px;
+  padding-top:25px;
+}
+
+#footer {
+  font-size: 75%;
+  color: #fff;
+}
+#footer a {
+  color: #fff;
+  text-decoration: none;
+}
+#footer a:hover {
+  text-decoration: underline;
+}
+#lyra-powered {
+  float:left;
+  height: 27px;
+  padding-top: 5px;
+  width: 500px;
+  background-color: #9BBE00;
+}
+
+#lyra-powered a {
+  margin-left: 30px;
+}
+
+#validator {
+	float:left;
+	width:278px;
+	background-color:#9BBE00;
+	height:27px;
+	padding-top: 5px;
+    
+}
+#validator p {
+  text-align: right;
+  margin-right: 30px
+}
+
+.article-summary {
+  margin: 8px 0 20px;
+}
+.article-date {
+  font-size: 80%;
+}
+.article-readmore {
+  display: block;
+}
+.article-readmore a {
+  text-decoration: none;
+  color: #EE8907;
+}
+.article-readmore a:hover {
+  text-decoration: underline;
+}
+.article-subtitle {
+  text-align: center;
+  font-style: italic;
+}
+.article-separator {
+  border-top: 1px solid #f0f0f0;
+  width: 95%;
+  height: 12px;
+}
+#comments {
+  margin: 25px 0 10px;
+}
+.comment-author a {
+  color: #EE8907;
+  text-decoration: none;
+}
+.comment-author {
+  font-size: 80%;
+}
+.comment-content {
+  font-size: 90%;
+}
+#form-wrapper {
+  margin-top: 12px;
+}
+#form-wrapper .row {
+  margin-bottom: 6px;
+}
+#form-wrapper label {
+  padding-left: 12px;
+  font-size: 85%;
+}
+#form-wrapper .error_list {
+  margin: 0;
+  padding-left: 25px;
+}
+#form-wrapper .error_list li {
+  color: #ff0000;
+  font-size: 80%;
+}
+/* admin bar */
+#admin-bar {
+    width: 100%;
+    padding: 5px;
+    background-color: #c0c0c0;
+    opacity: 0.6;
+}
+#admin-bar .action {
+  margin-left: 12px;
+}
+#admin-bar a {
+    text-decoration: none;
+    color: #333333;
+    font-size: 85%;
+}
+#admin-bar a:hover {
+    text-decoration: underline;
+}
+ul.label-list a:hover {
+  text-decoration: underline;
+}
+li.lev1{
+
+}
+li.lev2{
+  margin-left: 10px;
+}
+li.lev3{
+  margin-left: 20px;
+}
+li.lev4{
+  margin-left: 30px;
+}
