@@ -12,9 +12,7 @@ class articleActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->lyra_article_list = Doctrine::getTable('LyraArticle')
-      ->createQuery('a')
-      ->execute();
+    $this->items = Doctrine::getTable('LyraArticle')->getFrontPageItems();
   }
 
   public function executeShow(sfWebRequest $request)

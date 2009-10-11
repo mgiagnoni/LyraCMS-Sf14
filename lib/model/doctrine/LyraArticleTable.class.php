@@ -4,5 +4,23 @@
  */
 class LyraArticleTable extends Doctrine_Table
 {
+  public function getFrontPageItems()
+  {
+    $q = $this->getActiveItemsQuery()
+      ->andWhere('a.is_featured = ?', true);
+    return $q->execute();
+  }
+  
+  public function getActiveItems()
+  {
+    $q = $this->getActiveItemsQuery();
+    return $q->execute();
+  }
 
+  public function getActiveItemsQuery()
+  {
+    return $this->createQuery('a')
+      ->where('a.is_active = ?', true)
+      ->addOrderBy('a.is_sticky DESC, a.created_at DESC');
+  }
 }

@@ -5,5 +5,10 @@
  */
 class LyraArticle extends BaseLyraArticle
 {
-
+  public function showReadmore()
+  {
+    if(trim($this->getContent())) {
+      return true;
+    }
+  }
 }
