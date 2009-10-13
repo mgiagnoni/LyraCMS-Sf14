@@ -1,5 +1,4 @@
 <?php
-
 /**
  * article actions.
  *
@@ -12,13 +11,15 @@ class articleActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->items = Doctrine::getTable('LyraArticle')->getFrontPageItems();
+    $this->items = Doctrine::getTable('LyraArticle')
+      ->getFrontPageItems();
   }
 
   public function executeShow(sfWebRequest $request)
   {
-    $this->lyra_article = Doctrine::getTable('LyraArticle')->find($request->getParameter('id'));
-    $this->forward404Unless($this->lyra_article);
+    $this->item = Doctrine::getTable('LyraArticle')
+      ->find($request->getParameter('id'));
+    $this->forward404Unless($this->item);
   }
 
   public function executeNew(sfWebRequest $request)
