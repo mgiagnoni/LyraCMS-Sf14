@@ -20,6 +20,7 @@ class articleActions extends sfActions
     $this->item = Doctrine::getTable('LyraArticle')
       ->find($request->getParameter('id'));
     $this->forward404Unless($this->item);
+    $this->item->setMetaTags($this->getResponse());
   }
 
   public function executeNew(sfWebRequest $request)

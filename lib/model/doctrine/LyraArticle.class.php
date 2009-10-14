@@ -11,4 +11,22 @@ class LyraArticle extends BaseLyraArticle
       return true;
     }
   }
+  public function setMetaTags(sfWebResponse $response)
+  {
+    $mt = $this->getMetaTitle();
+    if(!$mt) {
+      $mt = $this->getTitle();
+    }
+    $response->setTitle($mt);
+
+    if($mt = $this->getMetaDescr()) {
+        $response->addMeta('description', $mt);
+    }
+    if($mt = $this->getMetaKeys()) {
+        $response->addMeta('keywords', $mt);
+    }
+    if($mt = $this->getMetaRobots()) {
+        $response->addMeta('robots', $mt);
+    }
+  }
 }
