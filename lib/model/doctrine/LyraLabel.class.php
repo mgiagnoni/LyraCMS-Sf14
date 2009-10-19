@@ -5,5 +5,8 @@
  */
 class LyraLabel extends BaseLyraLabel
 {
-
+  function getIndentName()
+  {
+    return str_repeat('--', $this->level).$this->name;
+  }
 }

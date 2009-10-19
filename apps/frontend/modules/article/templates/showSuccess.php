@@ -1,4 +1,4 @@
-
+<?php include_partial('article/admin_bar', array('item' => $item)); //TODO: ACL check ?>
 <h1 class="article-title">
   <?php echo $item->getTitle() ?>
 </h1>

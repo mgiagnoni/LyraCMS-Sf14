@@ -255,7 +255,7 @@ a:hover{
     width: 100%;
     padding: 5px;
     background-color: #c0c0c0;
-    opacity: 0.6;
+    opacity: 0.5;
 }
 #admin-bar .action {
   margin-left: 12px;
@@ -282,4 +282,12 @@ li.lev3{
 }
 li.lev4{
   margin-left: 30px;
+}
+ul.error_list {
+  margin: 0;
+  padding: 0;
+}
+ul.error_list li {
+  list-style-type:none;
+  color: #ff0000;
 }

@@ -8,6 +8,74 @@
         <source>LINK_READMORE</source>
         <target>» Leggi tutto</target>
       </trans-unit>
+      <trans-unit id="2">
+        <source>LINK_NEW</source>
+        <target>Nuovo</target>
+      </trans-unit>
+	  <trans-unit id="3">
+        <source>LINK_EDIT</source>
+        <target>Modifica</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>LINK_LOGOUT</source>
+        <target>Esci</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>TITLE</source>
+        <target>Titolo</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>SUBTITLE</source>
+        <target>Sotto-titolo</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>SUMMARY</source>
+        <target>Sommario</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>CONTENT</source>
+        <target>Testo</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>META_TITLE</source>
+        <target>Meta-title</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>META_DESCR</source>
+        <target>Meta-description</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>META_KEYS</source>
+        <target>Meta-keywords</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>META_ROBOTS</source>
+        <target>Meta-robots</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>IS_ACTIVE</source>
+        <target>Pubblicato</target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>IS_FEATURED</source>
+        <target>Prima pagina</target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>IS_STICKY</source>
+        <target>In testa</target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>PUBLISH_START</source>
+        <target>Inizio pubblicazione</target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>PUBLISH_END</source>
+        <target>Fine pubblicazione</target>
+      </trans-unit>
+      <trans-unit id="18">
+        <source>SLUG</source>
+        <target>Slug</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
