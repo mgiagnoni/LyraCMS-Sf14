@@ -222,15 +222,22 @@ a:hover{
 #comments {
   margin: 25px 0 10px;
 }
-.comment-author a {
-  color: #EE8907;
-  text-decoration: none;
-}
-.comment-author {
+.comment-header
+{
   font-size: 80%;
 }
-.comment-content {
+.comment-header .author
+{
+  color: #EE8907;;
+}
+.comment-header a
+{
+  color: #EE8907;
+}
+.comment-content
+{
   font-size: 90%;
+  color: #222;
 }
 #form-wrapper {
   margin-top: 12px;

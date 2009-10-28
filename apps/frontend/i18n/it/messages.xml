@@ -76,6 +76,14 @@
         <source>SLUG</source>
         <target>Slug</target>
       </trans-unit>
+      <trans-unit id="19">
+        <source>HEAD_COMMENTS</source>
+        <target>Commenti</target>
+      </trans-unit>
+      <trans-unit id="20">
+        <source>COMMENT_HEADER</source>
+        <target>%name% il %date% alle %time%</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

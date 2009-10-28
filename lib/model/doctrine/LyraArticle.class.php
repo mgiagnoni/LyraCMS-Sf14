@@ -29,4 +29,18 @@ class LyraArticle extends BaseLyraArticle
         $response->addMeta('robots', $mt);
     }
   }
+  public function getActiveComments()
+  {
+    return $this->getActiveCommentsQuery()
+      ->execute();
+  }
+  protected function getActiveCommentsQuery()
+  {
+    $q = Doctrine::getTable('LyraComment')
+      ->getActiveItemsQuery();
+
+    $q->andWhere($q->getRootAlias() .'.article_id = ?', $this->getId());
+      
+    return $q;
+  }
 }

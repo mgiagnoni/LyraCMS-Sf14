@@ -4,5 +4,12 @@
  */
 class LyraCommentTable extends Doctrine_Table
 {
+  public function getActiveItemsQuery() {
+    $q = $this->createQuery('c');
 
+    $q->andWhere('c.is_active = ?', true);
+    $q->addOrderBy('c.created_at DESC');
+
+    return $q;
+  }
 }

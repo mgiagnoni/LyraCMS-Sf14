@@ -13,3 +13,8 @@
 <div class="article-content">
   <?php echo $item->getContent(ESC_RAW) ?>
 </div>
+<?php
+if(count($comments)) {
+  include_partial('article/comments', array('comments'=>$comments));
+}
+?>

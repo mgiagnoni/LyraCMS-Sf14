@@ -21,6 +21,8 @@ class articleActions extends sfActions
       ->find($request->getParameter('id'));
     $this->forward404Unless($this->item);
     $this->item->setMetaTags($this->getResponse());
+    //Gets article comments list
+    $this->comments = $this->item->getActiveComments();
   }
 
   public function executeNew(sfWebRequest $request)
