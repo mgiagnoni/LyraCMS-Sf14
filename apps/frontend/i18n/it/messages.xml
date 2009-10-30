@@ -84,6 +84,50 @@
         <source>COMMENT_HEADER</source>
         <target>%name% il %date% alle %time%</target>
       </trans-unit>
+      <trans-unit id="21">
+        <source>AUTHOR_NAME</source>
+        <target>Nome</target>
+      </trans-unit>
+      <trans-unit id="22">
+        <source>AUTHOR_NAME_REQUIRED</source>
+        <target>Inserisci il nome.</target>
+      </trans-unit>
+      <trans-unit id="23">
+        <source>AUTHOR_EMAIL</source>
+        <target>E-mail</target>
+      </trans-unit>
+      <trans-unit id="24">
+        <source>AUTHOR_EMAIL_HELP</source>
+        <target>Richiesta, ma non pubblicata.</target>
+      </trans-unit>
+      <trans-unit id="25">
+        <source>AUTHOR_EMAIL_REQUIRED</source>
+        <target>Inserisci l'indirizzo e-mail.</target>
+      </trans-unit>
+      <trans-unit id="26">
+        <source>AUTHOR_EMAIL_INVALID</source>
+        <target>Indirizzo e-mail invalido.</target>
+      </trans-unit>
+      <trans-unit id="27">
+        <source>AUTHOR_URL</source>
+        <target>Sito web</target>
+      </trans-unit>
+      <trans-unit id="28">
+        <source>AUTHOR_URL_INVALID</source>
+        <target>URL sito web invalido.</target>
+      </trans-unit>
+       <trans-unit id="29">
+        <source>CONTENT_REQUIRED</source>
+        <target>Inserisci il commento.</target>
+      </trans-unit>
+      <trans-unit id="30">
+        <source>HEAD_SUBMIT_COMMENT</source>
+        <target>Invia commento</target>
+      </trans-unit>
+      <trans-unit id="31">
+        <source>MSG_COMMENT_SAVED</source>
+        <target>Commento inviato con successo</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

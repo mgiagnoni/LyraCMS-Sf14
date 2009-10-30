@@ -17,4 +17,7 @@
 if(count($comments)) {
   include_partial('article/comments', array('comments'=>$comments));
 }
+if($form) {
+  include_partial('article/comment_form', array('form'=>$form));
+}
 ?>

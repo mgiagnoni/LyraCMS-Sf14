@@ -11,5 +11,31 @@ class LyraCommentForm extends BaseLyraCommentForm
 {
   public function configure()
   {
+    $this->removeFields();
+    $this->widgetSchema['article_id'] = new sfWidgetFormInputHidden();
+    $this->widgetSchema['author_name']->setLabel('AUTHOR_NAME');
+    $this->widgetSchema['author_email']->setLabel('AUTHOR_EMAIL');
+    $this->widgetSchema['author_url']->setLabel('AUTHOR_URL');
+    $this->widgetSchema['content']->setLabel(false);
+    $this->widgetSchema['content']->setAttribute('rows',12);
+    $this->widgetSchema['content']->setAttribute('cols',45);
+    $this->widgetSchema->setHelp('author_email','AUTHOR_EMAIL_HELP');
+
+    $this->validatorSchema['author_name']->addMessage('required','AUTHOR_NAME_REQUIRED');
+    $this->validatorSchema['content']->addMessage('required','CONTENT_REQUIRED');
+    $this->validatorSchema['author_email'] = new sfValidatorEmail(
+      array('required'=>true),
+      array('required'=>'AUTHOR_EMAIL_REQUIRED','invalid'=>'AUTHOR_EMAIL_INVALID')
+    );
+    $this->validatorSchema['author_url'] = new sfValidatorUrl(
+      array('required'=>false),
+      array('invalid'=>'AUTHOR_URL_INVALID')
+    );
+
+    $this->widgetSchema->setFormFormatterName('LyraComment');
+  }
+  protected function removeFields()
+  {
+    unset($this['created_at'], $this['updated_at'], $this['is_active']);
   }
 }

@@ -76,6 +76,58 @@
         <source>SLUG</source>
         <target>Slug</target>
       </trans-unit>
+      <trans-unit id="19">
+        <source>HEAD_COMMENTS</source>
+        <target>Comments</target>
+      </trans-unit>
+      <trans-unit id="20">
+        <source>COMMENT_HEADER</source>
+        <target>%name% on %date% at %time%</target>
+      </trans-unit>
+      <trans-unit id="21">
+        <source>AUTHOR_NAME</source>
+        <target>Name</target>
+      </trans-unit>
+      <trans-unit id="22">
+        <source>AUTHOR_NAME_REQUIRED</source>
+        <target>Enter your name.</target>
+      </trans-unit>
+      <trans-unit id="23">
+        <source>AUTHOR_EMAIL</source>
+        <target>E-mail</target>
+      </trans-unit>
+      <trans-unit id="24">
+        <source>AUTHOR_EMAIL_HELP</source>
+        <target>Required, but not published.</target>
+      </trans-unit>
+      <trans-unit id="25">
+        <source>AUTHOR_EMAIL_REQUIRED</source>
+        <target>Enter your e-mail.</target>
+      </trans-unit>
+      <trans-unit id="26">
+        <source>AUTHOR_EMAIL_INVALID</source>
+        <target>E-mail address is invalid.</target>
+      </trans-unit>
+      <trans-unit id="27">
+        <source>AUTHOR_URL</source>
+        <target>Website</target>
+      </trans-unit>
+      <trans-unit id="28">
+        <source>AUTHOR_URL_INVALID</source>
+        <target>Website URL is invalid.</target>
+      </trans-unit>
+       <trans-unit id="29">
+        <source>CONTENT_REQUIRED</source>
+        <target>Enter your comment.</target>
+      </trans-unit>
+      <trans-unit id="30">
+        <source>HEAD_SUBMIT_COMMENT</source>
+        <target>Submit a Comment</target>
+      </trans-unit>
+      <trans-unit id="31">
+        <source>MSG_COMMENT_SAVED</source>
+        <target>Comment successfully sent</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -23,6 +23,8 @@ class articleActions extends sfActions
     $this->item->setMetaTags($this->getResponse());
     //Gets article comments list
     $this->comments = $this->item->getActiveComments();
+    $this->form = new LyraCommentForm();
+    $this->form->setDefault('article_id', $this->item->getId());
   }
 
   public function executeNew(sfWebRequest $request)
@@ -67,7 +69,16 @@ class articleActions extends sfActions
 
     $this->redirect('article/index');
   }
-
+  public function executeComment(sfWebRequest $request)
+  {
+    $this->forward404Unless($request->isMethod('post'));
+    $this->item = Doctrine::getTable('LyraArticle')->find($request->getParameter('id'));
+    $this->forward404Unless($this->item);
+    $this->form = new LyraCommentForm();
+    $this->processCommentForm($request, $this->form);
+    $this->comments = $this->item->getActiveComments();
+    $this->setTemplate('show');
+  }
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
     $form->bind($request->getParameter($form->getName()));
@@ -76,6 +87,16 @@ class articleActions extends sfActions
       $lyra_article = $form->save();
 
       $this->redirect('article/edit?id='.$lyra_article->getId());
+    }
+  }
+  protected function processCommentForm(sfWebRequest $request, sfForm $form)
+  {
+    $form->bind($request->getParameter($form->getName()));
+    if ($form->isValid())
+    {
+      $comment = $form->save();
+      $this->getUser()->setFlash('notice', 'MSG_COMMENT_SAVED');
+      $this->redirect('article/show?id='.$comment->getArticleId());
     }
   }
 }

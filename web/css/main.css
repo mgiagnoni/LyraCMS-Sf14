@@ -219,7 +219,12 @@ a:hover{
   width: 95%;
   height: 12px;
 }
-#comments {
+.comment-wrapper
+{
+  margin-bottom: 12px;
+}
+#comments
+{
   margin: 25px 0 10px;
 }
 .comment-header
@@ -239,23 +244,35 @@ a:hover{
   font-size: 90%;
   color: #222;
 }
+#comment-form
+{
+  margin-top: 15px;
+}
 #form-wrapper {
   margin-top: 12px;
 }
-#form-wrapper .row {
+#form-wrapper .row
+{
   margin-bottom: 6px;
 }
-#form-wrapper label {
+#form-wrapper label
+{
   padding-left: 12px;
   font-size: 85%;
 }
-#form-wrapper .error_list {
+#form-wrapper .error_list
+{
   margin: 0;
-  padding-left: 25px;
+  padding: 0;
 }
-#form-wrapper .error_list li {
+#form-wrapper .error_list li
+{
   color: #ff0000;
   font-size: 80%;
+}
+#form-wrapper .field-help
+{
+  font-size: 75%;
 }
 /* admin bar */
 #admin-bar {
