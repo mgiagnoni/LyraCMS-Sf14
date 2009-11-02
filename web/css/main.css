@@ -74,6 +74,11 @@ a:hover{
   padding-left:75px;
 }
 
+#rightbar h4
+{
+  text-align: center;
+}
+
 #links ul {
   float: right;
   margin:0px;
@@ -292,19 +297,36 @@ a:hover{
 #admin-bar a:hover {
     text-decoration: underline;
 }
-ul.label-list a:hover {
+ul.label-list a
+{
+  color: #EE8907;
+}
+ul.label-list a:hover
+{
   text-decoration: underline;
 }
-li.lev1{
+ul.label-list li
+{
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: none;
+  padding-left: 11px;
+}
+li.lev1
+{
+  background: url(../images/arrow.png) no-repeat center left;
 
 }
-li.lev2{
+li.lev2
+{
   margin-left: 10px;
 }
-li.lev3{
+li.lev3
+{
   margin-left: 20px;
 }
-li.lev4{
+li.lev4
+{
   margin-left: 30px;
 }
 ul.error_list {

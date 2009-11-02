@@ -42,7 +42,7 @@
             <?php echo $sf_content ?>
           </div>
           <div id="rightbar">
-            <h4>Menu</h4>
+            <?php include_component('article', 'labels', array('catalog'=>'Argomento')) ?>
           </div>
         </div>
         <div id="footer">

@@ -128,6 +128,10 @@
         <source>MSG_COMMENT_SAVED</source>
         <target>Comment successfully sent</target>
       </trans-unit>
+      <trans-unit id="32">
+        <source>HEAD_LABELS</source>
+        <target>Labels</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

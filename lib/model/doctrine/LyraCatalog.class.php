@@ -5,5 +5,14 @@
  */
 class LyraCatalog extends BaseLyraCatalog
 {
+  public function getLabelTree()
+  {
+    $q = Doctrine_Query::create()
+      ->from('LyraLabel l')
+      ->where('l.catalog_id = ? and l.level = 0', $this->getId());
 
+    $root = $q->fetchOne();
+
+    return $root->getNode()->getDescendants();
+  }
 }
