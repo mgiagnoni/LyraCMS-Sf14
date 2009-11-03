@@ -24,7 +24,7 @@
           </div>
         </div>
         <div id="header">
-          <h3>Titolo pagina</h3>
+         <h3><?php include_slot('page_title'); ?></h3>
         </div>
         <div id="contentarea">
           <div id="leftbar">

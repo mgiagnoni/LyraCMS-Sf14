@@ -79,6 +79,17 @@ class articleActions extends sfActions
     $this->comments = $this->item->getActiveComments();
     $this->setTemplate('show');
   }
+  public function executeLabel(sfWebRequest $request)
+  {
+    $this->forward404Unless(
+      $this->label = Doctrine::getTable('LyraLabel')
+        ->find($request->getParameter('id'))
+    );
+    $this->pager = new sfDoctrinePager('LyraLabel', 25);
+    $this->pager->setQuery($this->label->getItemsQuery());
+    $this->pager->setPage($request->getParameter('page', 1));
+    $this->pager->init();
+  }
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
     $form->bind($request->getParameter($form->getName()));

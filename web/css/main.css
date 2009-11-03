@@ -337,3 +337,7 @@ ul.error_list li {
   list-style-type:none;
   color: #ff0000;
 }
+.pagination
+{
+  font-size: 85%;
+}
