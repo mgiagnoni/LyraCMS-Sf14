@@ -4,5 +4,19 @@
  */
 class LyraLabelTable extends Doctrine_Table
 {
+  public function getActiveItemsQuery()
+  {
+    return $this->createQuery('l')
+      ->where('l.is_active = ?', true);
+  }
+  public function findItem($params = array())
+  {
+    if(!isset($params['slug'])) {
+      return false;
+    }
+    $q = $this->getActiveItemsQuery();
+    $q->andWhere($q->getRootAlias() .'.slug = ?', $params['slug']);
 
+    return $q->fetchOne();
+  }
 }

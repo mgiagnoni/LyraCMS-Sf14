@@ -23,4 +23,14 @@ class LyraArticleTable extends Doctrine_Table
       ->where('a.is_active = ?', true)
       ->addOrderBy('a.is_sticky DESC, a.created_at DESC');
   }
+  public function findItem($params = array())
+  {
+    if(!isset($params['slug'])) {
+      return false;
+    }
+    $q = $this->getActiveItemsQuery();
+    $q->andWhere($q->getRootAlias() .'.slug = ?', $params['slug']);
+    
+    return $q->fetchOne();
+  }
 }

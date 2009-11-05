@@ -1,6 +1,6 @@
 <?php foreach ($items as $item): ?>
   <h2 class="article-title">
-    <?php echo link_to($item->getTitle(), 'article/show?id='.$item->getId())?>
+    <?php echo link_to($item->getTitle(), '@article_show?slug=' . $item->getSlug())?>
   </h2>
   <div class="article-date">
     <?php echo $item->getCreatedAt() ?>
@@ -10,7 +10,7 @@
     echo $item->getSummary(ESC_RAW);
     if($item->showReadmore()): ?>
       <span class="article-readmore">
-      <?php echo link_to(__('LINK_READMORE'), 'article/show?id='.$item->getId(), array('title'=>$item->getTitle()))?>
+      <?php echo link_to(__('LINK_READMORE'), '@article_show?slug=' . $item->getSlug(), array('title'=>$item->getTitle()))?>
       </span>
     <?php endif ?>
   </div>

@@ -4,7 +4,7 @@ include_partial('article/list', array('items'=>$pager->getResults()));
 ?>
 <?php if ($pager->haveToPaginate()): ?>
   <?php 
-    $base = 'article/label?id=' . $label->getId() . '&page=';
+    $base = '@article_label?slug=' . $label->getSlug() . '&page=';
   ?>
   <div class="pagination">
     <?php echo link_to('First', $base . '1');?>

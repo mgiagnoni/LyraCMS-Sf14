@@ -17,9 +17,10 @@ class articleActions extends sfActions
 
   public function executeShow(sfWebRequest $request)
   {
-    $this->item = Doctrine::getTable('LyraArticle')
-      ->find($request->getParameter('id'));
-    $this->forward404Unless($this->item);
+    //$this->item = Doctrine::getTable('LyraArticle')
+    //  ->find($request->getParameter('id'));
+    //$this->forward404Unless($this->item);
+    $this->item = $this->getRoute()->getObject();
     $this->item->setMetaTags($this->getResponse());
     //Gets article comments list
     $this->comments = $this->item->getActiveComments();
@@ -81,10 +82,11 @@ class articleActions extends sfActions
   }
   public function executeLabel(sfWebRequest $request)
   {
-    $this->forward404Unless(
+    /*$this->forward404Unless(
       $this->label = Doctrine::getTable('LyraLabel')
         ->find($request->getParameter('id'))
-    );
+    );*/
+    $this->label = $this->getRoute()->getObject();
     $this->pager = new sfDoctrinePager('LyraLabel', 25);
     $this->pager->setQuery($this->label->getItemsQuery());
     $this->pager->setPage($request->getParameter('page', 1));
