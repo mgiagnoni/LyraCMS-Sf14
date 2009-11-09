@@ -1,0 +1,168 @@
+body
+{
+  background: #eeeeee;
+  padding: 5px;
+  font-size: 11px;
+}
+
+#container
+{
+  width: 100%;
+  background: #eeeeee;
+}
+
+#content
+{
+  /*float: left;
+  padding: 0 25px 25px 0;
+  margin-left: 155px;*/
+  border: 1px solid #aaa;
+  background: #fff;
+  padding: 10px;
+}
+
+#menu
+{
+  width: 135px;
+  float:left;
+  border-bottom: 1px solid #aaa;
+  background-color: #eeeeee;
+}
+
+#menu ul
+{
+  margin: 0;
+  padding: 0;
+}
+
+#menu li
+{
+  padding: 10px;
+  border-right: 1px solid #aaa;
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: none;
+  display: block;
+}
+
+#menu li.active
+{
+  background-color: #fff;
+  border-width: 1px 0px 1px 1px;
+  border-style: solid;
+  border-color: #aaa;
+}
+
+#menu li a
+{
+  text-decoration: none;
+  font-size: 120%;
+  color: #464646;
+}
+
+#menu li a:hover
+{
+  text-decoration: underline;
+}
+
+#header h1
+{
+  padding: 0;
+  background: transparent;
+  margin: 0 0 20px 140px;
+  font-size: 160%;
+  color: #000;
+}
+
+td, th
+{
+  padding: 7px 3px;
+}
+
+th
+{
+  font-weight: bold;
+}
+
+#footer
+{
+  clear: both;
+  padding: 25px;
+  margin-top: 0;
+  height: auto;
+  font-family: arial,sans-serif;
+  font-size: 80%;
+  float: right;
+  color: #666;
+  background: none;
+}
+
+#footer img
+{
+  vertical-align: middle;
+}
+
+.clear {
+  clear: both;
+}
+#sf_admin_container {
+  background: #fff;
+}
+#sf_admin_container fieldset h2
+{
+  font-size: 110%;
+  font-family: arial,sans-serif;
+  font-style: italic;
+}
+
+.sf_admin_form_field_logo div div
+{
+  margin-left: 120px;
+}
+
+#sf_admin_container .sf_admin_form_field_logo div div label
+{
+  display: inline;
+  float: none;
+}
+
+#sf_admin_container ul.sf_admin_td_actions li
+{
+  font-size: 100%;
+}
+
+#sf_admin_container ul.sf_admin_actions li
+{
+  font-size: 12px;
+}
+
+#sf_admin_content
+{
+  float: left;
+  margin-left: 10px;
+}
+#sf_admin_container .notice {
+  float: left;
+  margin-left: 10px;
+  padding: 4px 8px 4px 30px;
+}
+#sf_admin_bar
+{
+  margin-left: 5px;
+}
+#sf_admin_container #sf_admin_list_th_actions
+{
+  text-align: center;
+}
+/*Article list*/
+#sf_admin_container td.sf_admin_list_td_published
+{
+  text-align: center;
+}
+#sf_admin_container td.sf_admin_list_td_front_page
+{
+  text-align: center;
+}
+#sf_admin_container th.sf_admin_list_th_created_at {
+  text-align: center;
+}

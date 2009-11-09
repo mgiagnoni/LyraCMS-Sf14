@@ -1,0 +1,32 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           LyraArticle
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          lyra_article_article
+    with_doctrine_route:     1
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        title: TITLE_ARTICLES
+        display: [=title,_comments,_published,_front_page,created_at,id]
+        fields:
+          title: {label: TH_TITLE}
+          created_at: {label: TH_CREATED_AT, date_format: dd.MM.yy hh:mm}
+          updated_at: {label: TH_UPDATED_AT, date_format: dd.MM.yy hh:mm}
+          id: {label: TH_ID}
+        batch_actions:
+          _delete: ~
+          publish: {label: PUBLISH}
+          unpublish: {label: UNPUBLISH}
+      filter:
+        display: [title,is_active]
+      form:    ~
+      edit:    ~
+      new:     ~

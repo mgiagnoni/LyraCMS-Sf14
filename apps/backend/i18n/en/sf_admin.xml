@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file source-language="EN" target-language="en" datatype="plaintext" original="sf_admin" date="2009-10-08T08:21:56Z" product-name="sf_admin">
+    <header/>
+    <body>
+      <trans-unit id="1">
+        <source>MSG_ARTICLE_PUBLISHED</source>
+        <target>Article/s was successfully published.</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>MSG_ARTICLE_UNPUBLISHED</source>
+        <target>Article/s was successfully unpublished.</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>MSG_ARTICLE_FEATURED</source>
+        <target>Article was successfully featured on front page.</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>MSG_ARTICLE_UNFEATURED</source>
+        <target>Article was successfully removed from front page</target>
+      </trans-unit>
+       <trans-unit id="5">
+        <source>PUBLISH</source>
+        <target>Publish</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>UNPUBLISH</source>
+        <target>Unpublish</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>MSG_COMMENT_PUBLISHED</source>
+        <target>Comment/s was successfully published.</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>MSG_COMMENT_UNPUBLISHED</source>
+        <target>Comment/s was successfully unpublished.</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>MSG_CATALOG_PUBLISHED</source>
+        <target>Catalog was successfully published.</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>MSG_CATALOG_UNPUBLISHED</source>
+        <target>Catalog was successfully unpublished.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

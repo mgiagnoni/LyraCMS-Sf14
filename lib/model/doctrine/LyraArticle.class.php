@@ -34,6 +34,33 @@ class LyraArticle extends BaseLyraArticle
     return $this->getActiveCommentsQuery()
       ->execute();
   }
+  public function countActiveComments()
+  {
+    return $this->getActiveCommentsQuery()
+      ->count();
+  }
+  public function countComments()
+  {
+    return $this->getCommentsQuery()
+      ->count();
+  }
+  public function publish($on = true)
+  {
+    $this->setIsActive($on);
+    $this->save();
+  }
+  public function feature($on = true)
+  {
+    $this->setIsFeatured($on);
+    $this->save();
+  }
+  protected function getCommentsQuery()
+  {
+    $q = Doctrine_Query::create()
+      -> from('LyraComment c')
+      ->andWhere('c.article_id = ?', $this->getId());
+    return $q;
+  }
   protected function getActiveCommentsQuery()
   {
     $q = Doctrine::getTable('LyraComment')

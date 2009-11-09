@@ -33,4 +33,13 @@ class LyraArticleTable extends Doctrine_Table
     
     return $q->fetchOne();
   }
+  public function publish($ids, $on = true)
+  {
+    $q = $this->createQuery('a')
+      ->whereIn('a.id', $ids);
+
+    foreach ($q->execute() as $item) {
+      $item->publish($on);
+    }
+  }
 }

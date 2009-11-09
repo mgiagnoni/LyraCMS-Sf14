@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file source-language="EN" target-language="it" datatype="plaintext" original="sf_admin" date="2009-10-08T08:21:56Z" product-name="sf_admin">
+    <header/>
+    <body>
+      <trans-unit id="1">
+        <source>MSG_ARTICLE_PUBLISHED</source>
+        <target>L'articolo è stato pubblicato</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>MSG_ARTICLE_UNPUBLISHED</source>
+        <target>L'articolo non è più pubblicato</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>MSG_ARTICLE_FEATURED</source>
+        <target>L'articolo è stato promosso in prima pagina</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>MSG_ARTICLE_UNFEATURED</source>
+        <target>L'articolo è stato rimosso dalla prima pagina</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>PUBLISH</source>
+        <target>Pubblica</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>UNPUBLISH</source>
+        <target>Non pubblicare</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>MSG_COMMENT_PUBLISHED</source>
+        <target>Il commento è stato pubblicato.</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>MSG_COMMENT_UNPUBLISHED</source>
+        <target>Il commento non è più pubblicato.</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>MSG_CATALOG_PUBLISHED</source>
+        <target>Il catalogo è stato pubblicato.</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>MSG_CATALOG_UNPUBLISHED</source>
+        <target>Il catalogo non è più pubblicato.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,20 @@
+lyra_article_article:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                LyraArticle
+    module:               article
+    prefix_path:          article
+    column:               id
+    with_wildcard_routes: true
+
+# default rules
+homepage:
+  url:   /
+  param: { module: default, action: index }
+
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*

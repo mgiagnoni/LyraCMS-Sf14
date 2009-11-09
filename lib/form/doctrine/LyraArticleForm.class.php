@@ -23,8 +23,28 @@ class LyraArticleForm extends BaseLyraArticleForm
       $this['article_labels_list']
     );
 
+    //FCKeditor
+    $this->widgetSchema['summary'] =  new sfWidgetFormTextareaFCKEditor(
+      array(
+        'width' => 380,
+        'height' => 250,
+        'tool' => 'lyra',
+        'config'=> 'myfckconfig'
+      )
+    );
+
+    $this->widgetSchema['content'] =  new sfWidgetFormTextareaFCKEditor(
+      array(
+        'width' => 380,
+        'height' => 450,
+        'tool' => 'lyra',
+        'config'=> 'myfckconfig'
+      )
+    );
+
     //change default labels
     $this->widgetSchema['title']->setLabel('TITLE');
+    $this->widgetSchema['slug']->setLabel('SLUG');
     $this->widgetSchema['subtitle']->setLabel('SUBTITLE');
     $this->widgetSchema['summary']->setLabel('SUMMARY');
     $this->widgetSchema['content']->setLabel('CONTENT');
@@ -45,25 +65,6 @@ class LyraArticleForm extends BaseLyraArticleForm
 
     $this->widgetSchema->moveField('slug', sfWidgetFormSchema::AFTER, 'title');
 
-    //FCKeditor
-    $this->widgetSchema['summary'] =  new sfWidgetFormTextareaFCKEditor(
-      array(
-        'width' => 380,
-        'height' => 250,
-        'tool' => 'lyra',
-        'config'=> 'myfckconfig'
-      )
-    );
-
-    $this->widgetSchema['content'] =  new sfWidgetFormTextareaFCKEditor(
-      array(
-        'width' => 380,
-        'height' => 450,
-        'tool' => 'lyra',
-        'config'=> 'myfckconfig'
-      )
-    );
-    
     //get content type managed by this module
     $ctype = Doctrine::getTable('LyraContentType')
       ->findOneByModule('article');
