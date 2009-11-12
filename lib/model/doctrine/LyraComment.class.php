@@ -5,5 +5,9 @@
  */
 class LyraComment extends BaseLyraComment
 {
-
+  public function publish($on = true)
+  {
+    $this->setIsActive($on);
+    $this->save();
+  }
 }

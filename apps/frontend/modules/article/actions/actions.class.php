@@ -109,7 +109,7 @@ class articleActions extends sfActions
     {
       $comment = $form->save();
       $this->getUser()->setFlash('notice', 'MSG_COMMENT_SAVED');
-      $this->redirect('article/show?id='.$comment->getArticleId());
+      $this->redirect('@article_show?slug='.$comment->getCommentArticle()->getSlug());
     }
   }
 }

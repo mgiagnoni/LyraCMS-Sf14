@@ -1,3 +1,12 @@
+lyra_comment_comment:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                LyraComment
+    module:               comment
+    prefix_path:          comment
+    column:               id
+    with_wildcard_routes: true
+
 lyra_article_article:
   class: sfDoctrineRouteCollection
   options:

@@ -12,4 +12,20 @@ class LyraCommentTable extends Doctrine_Table
 
     return $q;
   }
+  public function publish($ids, $on = true)
+  {
+    $q = $this->createQuery('c')
+      ->whereIn('c.id', $ids);
+
+    foreach ($q->execute() as $item) {
+      $item->publish($on);
+    }
+  }
+  public function getBackendItemsQuery(Doctrine_Query $q)
+  {
+    $rootAlias = $q->getRootAlias();
+    $q->leftJoin($rootAlias . '.CommentArticle a');
+
+    return $q;
+  }
 }

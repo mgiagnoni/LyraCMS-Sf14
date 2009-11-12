@@ -124,6 +124,46 @@
         <source>LINK_SHOW_COMMENTS</source>
         <target>Mostra</target>
       </trans-unit>
+      <trans-unit id="31">
+        <source>TITLE_COMMENTS</source>
+        <target>Gestione Commenti</target>
+      </trans-unit>
+      <trans-unit id="32">
+        <source>TH_ARTICLE_TITLE</source>
+        <target>Articolo</target>
+      </trans-unit>
+      <trans-unit id="33">
+        <source>TH_AUTHOR_NAME</source>
+        <target>Autore</target>
+      </trans-unit>
+      <trans-unit id="34">
+        <source>TH_AUTHOR_EMAIL</source>
+        <target>E-mail</target>
+      </trans-unit>
+      <trans-unit id="35">
+        <source>TH_AUTHOR_URL</source>
+        <target>Sito web</target>
+      </trans-unit>
+      <trans-unit id="36">
+        <source>TH_CONTENT</source>
+        <target>Commento</target>
+      </trans-unit>
+      <trans-unit id="37">
+        <source>MENU_COMMENTS</source>
+        <target>Commenti</target>
+      </trans-unit>
+      <trans-unit id="38">
+        <source>AUTHOR_NAME</source>
+        <target>Autore</target>
+      </trans-unit>
+      <trans-unit id="39">
+        <source>AUTHOR_EMAIL</source>
+        <target>E-mail</target>
+      </trans-unit>
+      <trans-unit id="40">
+        <source>AUTHOR_URL</source>
+        <target>Sito web</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

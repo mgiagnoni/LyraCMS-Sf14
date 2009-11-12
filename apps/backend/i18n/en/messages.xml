@@ -10,7 +10,7 @@
       </trans-unit>
       <trans-unit id="2">
         <source>MENU_ARTICLES</source>
-        <target>Articoles</target>
+        <target>Articles</target>
       </trans-unit>
       <trans-unit id="3">
         <source>TITLE_ARTICLES</source>
@@ -123,6 +123,46 @@
       <trans-unit id="30">
         <source>LINK_SHOW_COMMENTS</source>
         <target>Show</target>
+      </trans-unit>
+      <trans-unit id="31">
+        <source>TITLE_COMMENTS</source>
+        <target>Comment management</target>
+      </trans-unit>
+      <trans-unit id="32">
+        <source>TH_ARTICLE_TITLE</source>
+        <target>Article</target>
+      </trans-unit>
+      <trans-unit id="33">
+        <source>TH_AUTHOR_NAME</source>
+        <target>Author</target>
+      </trans-unit>
+      <trans-unit id="34">
+        <source>TH_AUTHOR_EMAIL</source>
+        <target>E-mail</target>
+      </trans-unit>
+      <trans-unit id="35">
+        <source>TH_AUTHOR_URL</source>
+        <target>Web site</target>
+      </trans-unit>
+      <trans-unit id="36">
+        <source>TH_CONTENT</source>
+        <target>Comment</target>
+      </trans-unit>
+      <trans-unit id="37">
+        <source>MENU_COMMENTS</source>
+        <target>Comments</target>
+      </trans-unit>
+      <trans-unit id="38">
+        <source>AUTHOR_NAME</source>
+        <target>Author</target>
+      </trans-unit>
+      <trans-unit id="39">
+        <source>AUTHOR_EMAIL</source>
+        <target>E-mail</target>
+      </trans-unit>
+      <trans-unit id="40">
+        <source>AUTHOR_URL</source>
+        <target>Web site</target>
       </trans-unit>
     </body>
   </file>

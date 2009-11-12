@@ -27,7 +27,7 @@
             <?php echo link_to(__('MENU_ARTICLES'), '@lyra_article_article') ?>
           </li>
           <li <?php echo ($module == 'comment' ? 'class="active"' : ''); ?>>
-            <?php //echo link_to('Comments', '@lyra_comment_comment') ?>
+            <?php echo link_to(__('MENU_COMMENTS'), '@lyra_comment_comment') ?>
           </li>
           <li <?php echo ($module == 'catalog' ? 'class="active"' : ''); ?>>
             <?php //echo link_to('Catalogs', '@lyra_catalog_catalog') ?>
