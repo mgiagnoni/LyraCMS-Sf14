@@ -30,7 +30,7 @@
             <?php echo link_to(__('MENU_COMMENTS'), '@lyra_comment_comment') ?>
           </li>
           <li <?php echo ($module == 'catalog' ? 'class="active"' : ''); ?>>
-            <?php //echo link_to('Catalogs', '@lyra_catalog_catalog') ?>
+            <?php echo link_to(__('MENU_CATALOGS'), '@lyra_catalog_catalog') ?>
           </li>
           <li <?php echo ($module == 'label' ? 'class="active"' : ''); ?>>
             <?php //echo link_to('Labels', '@lyra_label_label') ?>

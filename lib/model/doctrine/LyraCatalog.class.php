@@ -15,4 +15,23 @@ class LyraCatalog extends BaseLyraCatalog
 
     return $root->getNode()->getDescendants();
   }
+  public function publish($on = true)
+  {
+    $this->setIsActive($on);
+    $this->save();
+  }
+  public function countLabels()
+  {
+      return $this->
+          getLabelsQuery()->
+          count();
+  }
+  public function getLabelsQuery()
+  {
+      $q = Doctrine_Query::create()->
+          from('LyraLabel l')->
+          where('l.catalog_id = ?', $this->getId());
+
+      return $q;
+  }
 }

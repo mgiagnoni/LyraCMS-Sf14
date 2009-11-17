@@ -164,6 +164,42 @@
         <source>AUTHOR_URL</source>
         <target>Sito web</target>
       </trans-unit>
+      <trans-unit id="41">
+        <source>MENU_CATALOGS</source>
+        <target>Cataloghi</target>
+      </trans-unit>
+      <trans-unit id="42">
+        <source>TITLE_CATALOGS</source>
+        <target>Gestione Cataloghi</target>
+      </trans-unit>
+      <trans-unit id="43">
+        <source>TH_NAME</source>
+        <target>Nome</target>
+      </trans-unit>
+      <trans-unit id="44">
+        <source>TH_LABELS</source>
+        <target>Etichette</target>
+      </trans-unit>
+      <trans-unit id="45">
+        <source>TH_DESCRIPTION</source>
+        <target>Descrizione</target>
+      </trans-unit>
+      <trans-unit id="46">
+        <source>LINK_SHOW_LABELS</source>
+        <target>Mostra</target>
+      </trans-unit>
+      <trans-unit id="47">
+        <source>NAME</source>
+        <target>Nome</target>
+      </trans-unit>
+      <trans-unit id="48">
+        <source>DESCRIPTION</source>
+        <target>Descrizione</target>
+      </trans-unit>
+      <trans-unit id="49">
+        <source>CATALOG_CONTENT_TYPES</source>
+        <target>Tipi contenuto</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

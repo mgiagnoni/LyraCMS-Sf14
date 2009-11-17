@@ -1,0 +1,29 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           LyraCatalog
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          lyra_catalog_catalog
+    with_doctrine_route:     1
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        title: TITLE_CATALOGS
+        display: [=name,_labels,_published,created_at,id]
+        fields:
+          name: {label: TH_NAME}
+          description: {label: TH_DESCRIPTION}
+          created_at: {label: TH_CREATED_AT, date_format: dd.MM.yy hh:ss}
+          updated_at: {label: TH_UPDATED_AT, date_format: dd.MM.yy hh:ss}
+          labels: {label: TH_LABELS}
+      filter:
+        display: [name,is_active]
+      form:    ~
+      edit:    ~
+      new:     ~
