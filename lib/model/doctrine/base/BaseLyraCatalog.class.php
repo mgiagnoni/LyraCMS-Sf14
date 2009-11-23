@@ -16,6 +16,7 @@ abstract class BaseLyraCatalog extends sfDoctrineRecord
              ));
         $this->hasColumn('name', 'string', 255, array(
              'type' => 'string',
+             'notnull' => true,
              'length' => '255',
              ));
         $this->hasColumn('description', 'string', 4000, array(

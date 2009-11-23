@@ -1,6 +1,6 @@
 [?php use_helper('I18N', 'Date') ?]
 [?php include_partial('<?php echo $this->getModuleName() ?>/assets') ?]
-[?php slot('page_title',<?php echo $this->getI18NString('list.title') ?>) ?]
+[?php if(!get_slot('page_title')) { slot('page_title',<?php echo $this->getI18NString('list.title') ?>); } ?]
 <div id="sf_admin_container">
   
   [?php include_partial('<?php echo $this->getModuleName() ?>/flashes') ?]

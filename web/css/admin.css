@@ -141,9 +141,20 @@ th
   float: left;
   margin-left: 10px;
 }
-#sf_admin_container .notice {
+#sf_admin_container .notice
+{
   margin-left: 133px;
   padding: 4px 8px 4px 30px;
+}
+#sf_admin_header
+{
+  margin: 0 0 10px 133px;
+}
+.link-back a
+{
+  text-decoration: underline;
+  color: #000;
+  font-size: 110%;
 }
 #sf_admin_bar
 {
@@ -170,4 +181,13 @@ th
 #sf_admin_container td.sf_admin_list_td_content
 {
   max-width: 140px;
+}
+/* Label list */
+#sf_admin_container td.sf_admin_list_td_indent_name
+{
+  min-width: 95px;
+}
+#sf_admin_container td.sf_admin_list_td_description
+{
+  min-width: 105px;
 }

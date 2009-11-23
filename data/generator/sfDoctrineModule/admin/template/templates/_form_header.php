@@ -1,0 +1,1 @@
+<span class="link-back">[?php echo link_to(__('LINK_BACK'), '@' . $helper->getUrlForAction('list'));?]</span>

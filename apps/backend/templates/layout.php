@@ -29,10 +29,10 @@
           <li <?php echo ($module == 'comment' ? 'class="active"' : ''); ?>>
             <?php echo link_to(__('MENU_COMMENTS'), '@lyra_comment_comment') ?>
           </li>
-          <li <?php echo ($module == 'catalog' ? 'class="active"' : ''); ?>>
+          <li <?php echo ($module == 'catalog' || $module == 'label' ? 'class="active"' : ''); ?>>
             <?php echo link_to(__('MENU_CATALOGS'), '@lyra_catalog_catalog') ?>
           </li>
-          <li <?php echo ($module == 'label' ? 'class="active"' : ''); ?>>
+          <li <?php //echo ($module == 'label' ? 'class="active"' : ''); ?>>
             <?php //echo link_to('Labels', '@lyra_label_label') ?>
           </li>
           <li <?php echo ($module == 'sfGuardUser' ? 'class="active"' : ''); ?>>

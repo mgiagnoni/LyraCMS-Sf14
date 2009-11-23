@@ -1,3 +1,12 @@
+lyra_label_label:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                LyraLabel
+    module:               label
+    prefix_path:          label
+    column:               id
+    with_wildcard_routes: true
+
 lyra_catalog_catalog:
   class: sfDoctrineRouteCollection
   options:
@@ -28,7 +37,7 @@ lyra_article_article:
 # default rules
 homepage:
   url:   /
-  param: { module: default, action: index }
+  param: { module: article, action: index }
 
 default_index:
   url:   /:module

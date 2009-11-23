@@ -200,6 +200,38 @@
         <source>CATALOG_CONTENT_TYPES</source>
         <target>Tipi contenuto</target>
       </trans-unit>
+      <trans-unit id="50">
+        <source>TITLE_LABELS</source>
+        <target>Gestione etichette</target>
+      </trans-unit>
+      <trans-unit id="51">
+        <source>TITLE_CATALOG</source>
+        <target>(Catalogo %catalog%)</target>
+      </trans-unit>
+      <trans-unit id="52">
+        <source>TH_ORDER</source>
+        <target>Ordina</target>
+      </trans-unit>
+      <trans-unit id="53">
+        <source>PARENT</source>
+        <target>Padre</target>
+      </trans-unit>
+      <trans-unit id="54">
+        <source>LINK_BACK</source>
+        <target>« Indietro</target>
+      </trans-unit>
+      <trans-unit id="55">
+        <source>LINK_BACK_CATALOG</source>
+        <target>« Cataloghi</target>
+      </trans-unit>
+      <trans-unit id="56">
+        <source>LINK_T_MOVE_UP</source>
+        <target>Sposta su</target>
+      </trans-unit>
+      <trans-unit id="57">
+        <source>LINK_T_MOVE_DOWN</source>
+        <target>Sposta giù</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

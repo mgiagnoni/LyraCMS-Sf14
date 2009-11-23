@@ -24,7 +24,7 @@ class BaseLyraCatalogForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'                         => new sfValidatorDoctrineChoice(array('model' => 'LyraCatalog', 'column' => 'id', 'required' => false)),
-      'name'                       => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'name'                       => new sfValidatorString(array('max_length' => 255)),
       'description'                => new sfValidatorString(array('max_length' => 4000, 'required' => false)),
       'is_active'                  => new sfValidatorBoolean(),
       'locked_by'                  => new sfValidatorInteger(array('required' => false)),

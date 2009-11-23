@@ -15,6 +15,10 @@ class LyraLabel extends BaseLyraLabel
   }
   function getIndentName()
   {
-    return str_repeat('--', $this->level).$this->name;
+    $indent = $this->level-1;
+    if($indent < 0) {
+      $indent = 0;
+    }
+    return str_repeat('-- ', $indent).$this->name;
   }
 }

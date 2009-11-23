@@ -1,0 +1,28 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           LyraLabel
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          lyra_label_label
+    with_doctrine_route:     1
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        title: TITLE_LABELS
+        display: [=indent_name,_order,description,id]
+        fields:
+          indent_name: {label: TH_NAME}
+          description: {label: TH_DESCRIPTION, sortable: false}
+          order: {label: TH_ORDER}
+          id: {sortable: false}
+      filter:
+        class: false
+      form:    ~
+      edit:    ~
+      new:     ~

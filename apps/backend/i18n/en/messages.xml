@@ -77,48 +77,48 @@
         <target>Summary</target>
       </trans-unit>
       <trans-unit id="19">
+        <source>CONTENT</source>
+        <target>Testo</target>
+      </trans-unit>
+      <trans-unit id="20">
+        <source>META_TITLE</source>
+        <target>Meta-title</target>
+      </trans-unit>
+      <trans-unit id="21">
+        <source>META_DESCR</source>
+        <target>Meta-description</target>
+      </trans-unit>
+      <trans-unit id="22">
+        <source>META_KEYS</source>
+        <target>Meta-keywords</target>
+      </trans-unit>
+      <trans-unit id="23">
+        <source>META_ROBOTS</source>
+        <target>Meta-robots</target>
+      </trans-unit>
+      <trans-unit id="24">
         <source>IS_ACTIVE</source>
         <target>Published</target>
       </trans-unit>
-      <trans-unit id="20">
+      <trans-unit id="25">
         <source>IS_FEATURED</source>
         <target>Front Page</target>
       </trans-unit>
-      <trans-unit id="21">
+      <trans-unit id="26">
         <source>IS_STICKY</source>
         <target>Sticky</target>
       </trans-unit>
-      <trans-unit id="22">
-        <source>CREATED_AT</source>
-        <target>Created</target>
-      </trans-unit>
-      <trans-unit id="23">
-        <source>UPDATED_AT</source>
-        <target>Updated</target>
-      </trans-unit>
-      <trans-unit id="24">
-        <source>AUTHOR_NAME</source>
-        <target>Name</target>
-      </trans-unit>
-      <trans-unit id="25">
-        <source>AUTHOR_EMAIL</source>
-        <target>E-mail</target>
-      </trans-unit>
-      <trans-unit id="26">
-        <source>AUTHOR_URL</source>
-        <target>Website</target>
-      </trans-unit>
       <trans-unit id="27">
-        <source>CONTENT</source>
-        <target>Comment</target>
+        <source>PUBLISH_START</source>
+        <target>Publish start</target>
       </trans-unit>
       <trans-unit id="28">
-        <source>COMMENT_ARTICLE</source>
-        <target>Article</target>
+        <source>PUBLISH_END</source>
+        <target>Publish end</target>
       </trans-unit>
       <trans-unit id="29">
-        <source>NAME</source>
-        <target>Name</target>
+        <source>SLUG</source>
+        <target>Slug</target>
       </trans-unit>
       <trans-unit id="30">
         <source>LINK_SHOW_COMMENTS</source>
@@ -199,6 +199,38 @@
       <trans-unit id="49">
         <source>CATALOG_CONTENT_TYPES</source>
         <target>Content types</target>
+      </trans-unit>
+      <trans-unit id="50">
+        <source>TITLE_LABELS</source>
+        <target>Label Management</target>
+      </trans-unit>
+      <trans-unit id="51">
+        <source>TITLE_CATALOG</source>
+        <target>(Catalog %catalog%)</target>
+      </trans-unit>
+      <trans-unit id="52">
+        <source>TH_ORDER</source>
+        <target>Order</target>
+      </trans-unit>
+      <trans-unit id="53">
+        <source>PARENT</source>
+        <target>Parent</target>
+      </trans-unit>
+      <trans-unit id="54">
+        <source>LINK_BACK</source>
+        <target>« Go back</target>
+      </trans-unit>
+      <trans-unit id="55">
+        <source>LINK_BACK_CATALOG</source>
+        <target>« Catalogs</target>
+      </trans-unit>
+      <trans-unit id="56">
+        <source>LINK_T_MOVE_UP</source>
+        <target>Move up</target>
+      </trans-unit>
+      <trans-unit id="57">
+        <source>LINK_T_MOVE_DOWN</source>
+        <target>Move down</target>
       </trans-unit>
     </body>
   </file>

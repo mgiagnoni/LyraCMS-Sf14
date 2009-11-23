@@ -44,6 +44,10 @@
         <source>MSG_CATALOG_UNPUBLISHED</source>
         <target>Il catalogo non è più pubblicato.</target>
       </trans-unit>
+      <trans-unit id="11">
+        <source>MSG_LABEL_DELETED</source>
+        <target>L'etichetta è stata cancellata.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

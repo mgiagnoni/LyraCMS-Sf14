@@ -203,6 +203,7 @@ LyraCatalog:
        autoincrement: true
      name:
        type: string(255)
+       notnull: true
      description:
        type: string(4000)
      is_active:
