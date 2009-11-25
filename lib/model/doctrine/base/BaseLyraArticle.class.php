@@ -100,6 +100,14 @@ abstract class BaseLyraArticle extends sfDoctrineRecord
              'local' => 'article_id',
              'foreign' => 'label_id'));
 
+        $this->hasOne('sfGuardUser as ArticleCreatedBy', array(
+             'local' => 'created_by',
+             'foreign' => 'id'));
+
+        $this->hasOne('sfGuardUser as ArticleUpdatedBy', array(
+             'local' => 'updated_by',
+             'foreign' => 'id'));
+
         $this->hasMany('LyraComment as ArticleComments', array(
              'local' => 'id',
              'foreign' => 'article_id'));

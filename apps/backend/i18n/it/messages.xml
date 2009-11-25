@@ -232,6 +232,18 @@
         <source>LINK_T_MOVE_DOWN</source>
         <target>Sposta giù</target>
       </trans-unit>
+      <trans-unit id="58">
+        <source>MENU_USERS</source>
+        <target>Utenti</target>
+      </trans-unit>
+      <trans-unit id="59">
+        <source>MENU_GROUPS</source>
+        <target>Gruppi</target>
+      </trans-unit>
+      <trans-unit id="60">
+        <source>MENU_LOGOUT</source>
+        <target>Esci</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

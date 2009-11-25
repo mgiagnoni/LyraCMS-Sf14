@@ -24,6 +24,7 @@ all:
     standard_helpers: [Partial, Cache, I18N]
     i18n: on
     default_culture: it
+    enabled_modules: [default, sfGuardAuth, sfGuardUser, sfGuardGroup]
     # Form security secret (CSRF protection)
     csrf_secret:       xgt67jhbv     # Unique secret to enable CSRF protection or false to disable
 
@@ -33,7 +34,10 @@ all:
 
     # Cache settings
     lazy_cache_key:         on        # Delays creation of a cache key until after checking whether an action or partial is cacheable
-    
+
+  .actions:
+    login_module: sfGuardAuth
+    login_action: signin
 #all:
 #  .actions:
 #    error_404_module:       default   # To be called when a 404 error is raised

@@ -67,7 +67,16 @@ LyraArticle:
       local: article_id
       foreign: label_id
       foreignAlias: LabelArticles
-
+    ArticleCreatedBy:
+      class: sfGuardUser
+      local: created_by
+      foreign: id
+      foreignAlias: CreatedArticles
+    ArticleUpdatedBy:
+      class: sfGuardUser
+      local: updated_by
+      foreign: id
+      foreignAlias: UpdatedArticles
 LyraComment:
   tableName: comments
   actAs:
@@ -183,12 +192,21 @@ LyraLabel:
        type: integer(4)
    relations:
       LabelCatalog:
-         class: LyraCatalog
-         local: catalog_id
-         foreign: id
-         foreignAlias: CatalogLabels
-         onDelete: CASCADE
-
+        class: LyraCatalog
+        local: catalog_id
+        foreign: id
+        foreignAlias: CatalogLabels
+        onDelete: CASCADE
+      LabelCreatedBy:
+        class: sfGuardUser
+        local: created_by
+        foreign: id
+        foreignAlias: CreatedLabels
+      LabelUpdatedBy:
+        class: sfGuardUser
+        local: updated_by
+        foreign: id
+        foreignAlias: UpdatedLabels
 LyraCatalog:
    tableName: catalogs
    actAs:

@@ -16,7 +16,7 @@
           <?php include_slot('page_title') ?>
         </h1>
       </div>
-      <?php //if ($sf_user->isAuthenticated()):
+      <?php if ($sf_user->isAuthenticated()):
         $module = $sf_request->getParameter('module');?>
       <div id="menu">
         <ul>
@@ -32,24 +32,21 @@
           <li <?php echo ($module == 'catalog' || $module == 'label' ? 'class="active"' : ''); ?>>
             <?php echo link_to(__('MENU_CATALOGS'), '@lyra_catalog_catalog') ?>
           </li>
-          <li <?php //echo ($module == 'label' ? 'class="active"' : ''); ?>>
-            <?php //echo link_to('Labels', '@lyra_label_label') ?>
-          </li>
           <li <?php echo ($module == 'sfGuardUser' ? 'class="active"' : ''); ?>>
-            <?php //echo link_to('Users', '@sf_guard_user') ?>
+            <?php echo link_to(__('MENU_USERS'), '@sf_guard_user') ?>
           </li>
           <li <?php echo ($module == 'sfGuardGroup' ? 'class="active"' : ''); ?>>
-            <?php //echo link_to('Groups', '@sf_guard_group') ?>
+            <?php echo link_to(__('MENU_GROUPS'), '@sf_guard_group') ?>
           </li>
           <li <?php echo ($module == 'sfGuardPermission' ? 'class="active"' : ''); ?>>
             <?php //echo link_to('Permissions', '@sf_guard_permission') ?>
           </li>
           <li <?php echo ($module == '' ? 'class="active"' : ''); ?>>
-            <?php //echo link_to('Logout', '@sf_guard_signout') ?>
+            <?php echo link_to(__('MENU_LOGOUT'), '@sf_guard_signout') ?>
           </li>
         </ul>
       </div>
-      <?php //endif; ?>
+      <?php endif; ?>
       <div id="content">
         <?php echo $sf_content ?>
         <div class="clear">&nbsp;</div>

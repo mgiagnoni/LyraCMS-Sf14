@@ -8,6 +8,8 @@ LyraArticle:
     is_featured: true
     is_active: true
     ArticleLabels: [Php,Intermedio]
+    ArticleCreatedBy: admin
+    ArticleUpdatedBy: admin
   art2:
     title: Un articolo su Mootools
     summary: Sommario secondo articolo
@@ -17,3 +19,5 @@ LyraArticle:
     is_featured: true
     is_active: true
     ArticleLabels: [Mootools,Elementare]
+    ArticleUpdatedBy: admin
+    ArticleCreatedBy: admin
