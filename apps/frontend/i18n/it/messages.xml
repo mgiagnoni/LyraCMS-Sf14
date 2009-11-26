@@ -132,6 +132,14 @@
         <source>HEAD_LABELS</source>
         <target>Etichette</target>
       </trans-unit>
+      <trans-unit id="33">
+        <source>ARTICLE_WRITTEN_BY</source>
+        <target>di %author%</target>
+      </trans-unit>
+      <trans-unit id="34">
+        <source>ARTICLE_WRITTEN_ON</source>
+        <target> - %date%</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

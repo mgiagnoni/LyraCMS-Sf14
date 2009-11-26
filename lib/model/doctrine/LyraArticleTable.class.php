@@ -21,7 +21,15 @@ class LyraArticleTable extends Doctrine_Table
   {
     return $this->createQuery('a')
       ->where('a.is_active = ?', true)
+      ->leftJoin('a.ArticleCreatedBy')
       ->addOrderBy('a.is_sticky DESC, a.created_at DESC');
+  }
+  public function getBackendItemsQuery(Doctrine_Query $q)
+  {
+    $rootAlias = $q->getRootAlias();
+    $q->leftJoin($rootAlias . '.ArticleCreatedBy u');
+
+    return $q;
   }
   public function findItem($params = array())
   {

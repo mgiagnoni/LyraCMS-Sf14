@@ -92,7 +92,20 @@ class LyraArticleForm extends BaseLyraArticleForm
         $after = $k;
     }
   }
-
+  public function updateObject($values = null)
+  {
+    $item = parent::updateObject($values);
+    $user = $this->getOption('user');
+    if(isset($user)) {
+      $uid = $user->getGuardUser()->getId();
+      if($this->isNew()) {
+        $item->setCreatedBy($uid);
+        $item->setUpdatedBy($uid);
+      } elseif($item->isModified()) {
+        $item->setUpdatedBy($uid);
+      }
+    }
+  }
   protected function doSave($con = null)
   {
     parent::doSave($con);

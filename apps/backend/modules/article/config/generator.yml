@@ -15,16 +15,18 @@ generator:
       fields:  ~
       list:
         title: TITLE_ARTICLES
-        display: [=title,_comments,_published,_front_page,created_at,id]
+        display: [=title,_comments,_published,_front_page,created_at,article_created_by,id]
         fields:
           title: {label: TH_TITLE}
           created_at: {label: TH_CREATED_AT, date_format: dd.MM.yy hh:mm}
           updated_at: {label: TH_UPDATED_AT, date_format: dd.MM.yy hh:mm}
+          article_created_by: {label: TH_AUTHOR_NAME}
           id: {label: TH_ID}
         batch_actions:
           _delete: ~
           publish: {label: PUBLISH}
           unpublish: {label: UNPUBLISH}
+        table_method: getBackendItemsQuery
       filter:
         display: [title,is_active]
       form:    ~

@@ -1,4 +1,9 @@
-<?php include_partial('article/admin_bar', array('item' => $item)); //TODO: ACL check ?>
+<?php
+if($sf_user->isAuthenticated()) {
+  include_partial('article/admin_bar', array('item' => $item));
+}
+?>
+<?php use_helper('Date') ?>
 <h1 class="article-title">
   <?php echo $item->getTitle() ?>
 </h1>
@@ -7,9 +12,7 @@
     <?php echo $item->getSubtitle() ?>
   </div>
 <?php endif ?>
-<div class="article-date">
-  <?php echo $item->getCreatedAt() ?>
-</div>
+<?php include_partial('article/byline', array('item' => $item));?>
 <div class="article-content">
   <?php echo $item->getContent(ESC_RAW) ?>
 </div>

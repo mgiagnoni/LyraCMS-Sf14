@@ -1,10 +1,9 @@
+<?php use_helper('Date') ?>
 <?php foreach ($items as $item): ?>
   <h2 class="article-title">
     <?php echo link_to($item->getTitle(), '@article_show?slug=' . $item->getSlug())?>
   </h2>
-  <div class="article-date">
-    <?php echo $item->getCreatedAt() ?>
-  </div>
+  <?php include_partial('article/byline', array('item' => $item));?>
   <div class="article-summary">
     <?php
     echo $item->getSummary(ESC_RAW);

@@ -30,14 +30,14 @@ class articleActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
-    $this->form = new LyraArticleForm();
+    $this->form = new LyraArticleForm(null, array('user'=>$this->getUser()));
   }
 
   public function executeCreate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod('post'));
 
-    $this->form = new LyraArticleForm();
+    $this->form = new LyraArticleForm(null, array('user'=>$this->getUser()));
 
     $this->processForm($request, $this->form);
 
@@ -47,14 +47,14 @@ class articleActions extends sfActions
   public function executeEdit(sfWebRequest $request)
   {
     $this->forward404Unless($lyra_article = Doctrine::getTable('LyraArticle')->find($request->getParameter('id')), sprintf('Object lyra_article does not exist (%s).', $request->getParameter('id')));
-    $this->form = new LyraArticleForm($lyra_article);
+    $this->form = new LyraArticleForm($lyra_article, array('user'=>$this->getUser()));
   }
 
   public function executeUpdate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod('post') || $request->isMethod('put'));
     $this->forward404Unless($lyra_article = Doctrine::getTable('LyraArticle')->find($request->getParameter('id')), sprintf('Object lyra_article does not exist (%s).', $request->getParameter('id')));
-    $this->form = new LyraArticleForm($lyra_article);
+    $this->form = new LyraArticleForm($lyra_article, array('user'=>$this->getUser()));
 
     $this->processForm($request, $this->form);
 

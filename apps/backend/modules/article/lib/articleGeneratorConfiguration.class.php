@@ -10,4 +10,11 @@
  */
 class articleGeneratorConfiguration extends BaseArticleGeneratorConfiguration
 {
+  public function getFormOptions()
+  {
+    return array(
+      'user' => sfContext::getInstance()->getUser()
+      );
+  }
+
 }

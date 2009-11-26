@@ -132,6 +132,14 @@
         <source>HEAD_LABELS</source>
         <target>Labels</target>
       </trans-unit>
+      <trans-unit id="33">
+        <source>ARTICLE_WRITTEN_BY</source>
+        <target>by %author%</target>
+      </trans-unit>
+      <trans-unit id="34">
+        <source>ARTICLE_WRITTEN_ON</source>
+        <target> on %date%</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
