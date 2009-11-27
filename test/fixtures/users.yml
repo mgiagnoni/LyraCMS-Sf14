@@ -1,0 +1,5 @@
+sfGuardUser:
+  admin:
+    username:       admin
+    password:       admin
+    is_super_admin: true

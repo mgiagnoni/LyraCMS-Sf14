@@ -1,0 +1,16 @@
+LyraComment:
+  comm1:
+    author_name: Pippo
+    author_email: example@example.com
+    author_url: http://www.example.com
+    content: Articolo molto interessante
+    is_active: true
+    CommentArticle: art1
+  comm2:
+    author_name: Pluto
+    author_email: example@example.com
+    author_url: http://www.example.com
+    content: Bell'articolo
+    is_active: true
+    CommentArticle: art2
+

@@ -5,3 +5,10 @@ all:
       dsn: 'mysql:host=localhost;dbname=lyra'
       username: lyra
       password: pippo
+test:
+  doctrine:
+    class: sfDoctrineDatabase
+    param:
+      dsn: 'mysql:host=localhost;dbname=lyra_test'
+      username: lyra
+      password: pippo

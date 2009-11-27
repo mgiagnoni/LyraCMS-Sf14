@@ -1,0 +1,23 @@
+LyraArticle:
+  art1:
+    title: Un articolo su PHP
+    summary: Sommario primo articolo
+    content: Contenuto primo articolo
+    meta_title: Meta Title di articolo su PHP
+    meta_descr: Meta Description di articolo su PHP
+    is_featured: true
+    is_active: true
+    ArticleLabels: [Php,Intermedio]
+    ArticleCreatedBy: admin
+    ArticleUpdatedBy: admin
+  art2:
+    title: Un articolo su Mootools
+    summary: Sommario secondo articolo
+    content: Contenuto secondo articolo
+    meta_title: Meta Title di articolo su Mootools
+    meta_descr: Meta Description di articolo su Mootools
+    is_featured: true
+    is_active: true
+    ArticleLabels: [Mootools,Elementare]
+    ArticleUpdatedBy: admin
+    ArticleCreatedBy: admin
