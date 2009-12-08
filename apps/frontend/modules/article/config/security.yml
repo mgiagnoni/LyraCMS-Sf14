@@ -1,0 +1,11 @@
+all:
+  is_secure: off
+
+edit:
+  is_secure: on
+  credentials: article_edit
+new:
+  is_secure: on
+  credentials: article_create
+
+

@@ -1,68 +1,78 @@
-html, body {
+html, body
+{
   margin: 0px;
-  padding:0px;
-  background-image:url(../images/bg.gif);
-  color: #797B7A;
+  padding: 0px;
+  background-image: url(../images/bg.gif);
+  color: #333;
 }
 
-h1, h2, h3, h4, h5, h6, p, form {
+h1, h2, h3, h4, h5, h6, p, form
+{
   margin: 0px;
   padding:0px;
 }
-h1 {
+h1
+{
   font-size: 120%;
   color: #EE8907;
 }
-h2 {
+h2
+{
   font-size: 110%;
   color: #EE8907;
 }
-h3 {
+h3
+{
   font-size: 105%;
   color: #EE8907;
 }
-h1 a, h2 a {
+h1 a, h2 a
+{
   text-decoration: none;
   color: #EE8907;
 }
-a {
-  text-decoration: none;
-  color: #797B7A;
-}
-a:hover{
+a
+{
   text-decoration: underline;
+  color: #333;
 }
-#wrapper {
+
+#wrapper
+{
   width:800px;
   margin:0px auto;
   background-color:#FFF;
 }
 
-#content {
-  width:778px;
-  margin:0px auto;
-  background-image:url(../images/bg_header_top.gif);
-  background-repeat:repeat-x;
-  background-position:top;
+#content
+{
+  width: 778px;
+  margin: 0px auto;
+  background-image: url(../images/bg_header_top.gif);
+  background-repeat: repeat-x;
+  background-position: top;
 }
 
-#top {
+#top
+{
   height:96px;
 }
 
-#logo {
-  width:258px;
-  float:left;
+#logo
+{
+  width: 258px;
+  float: left;
 }
 
-#logo h1{
-  font-family:"Trebuchet MS";
-  font-size:26px;
-  color:#F76B0C;
-  font-weight:normal;
-  text-decoration:none;
-  padding-left:40px;
-  padding-top:30px;
+#logo h1
+{
+  font-family: "Trebuchet MS";
+  font-size: 26px;
+  color: #F76B0C;
+  font-weight: normal;
+  text-decoration: none;
+  padding-left: 40px;
+  padding-top: 30px;
 }
 
 #logo h4 {
@@ -76,6 +86,7 @@ a:hover{
 
 #rightbar h4
 {
+  color: #797B7A;
   text-align: center;
 }
 
@@ -103,7 +114,7 @@ a:hover{
   text-decoration:none;
 }
 
-#links a:hover{
+#links a:hover {
   font-size:11px;
   color:#fff;
   font-weight:normal;
@@ -129,7 +140,10 @@ a:hover{
   clear:both;
   padding:25px 0px;
 }
-
+#contentarea p
+{
+  margin: 0.5em 0 0.5em;
+}
 #leftbar {
   float:left;
   width:539px;
@@ -198,11 +212,15 @@ a:hover{
   text-align: right;
   margin-right: 30px
 }
-
+.article-title a:hover
+{
+  text-decoration: underline;
+}
 .article-summary {
-  margin: 8px 0 20px;
+  margin: 8px 0 4px;
 }
 .article-byline {
+  color: #797B7A;
   font-size: 80%;
 }
 .article-readmore {
@@ -248,6 +266,10 @@ a:hover{
 {
   font-size: 90%;
   color: #222;
+}
+.field-help
+{
+  color: #797B7A;
 }
 #comment-form
 {
@@ -300,6 +322,7 @@ a:hover{
 ul.label-list a
 {
   color: #EE8907;
+  text-decoration: none;
 }
 ul.label-list a:hover
 {
@@ -328,6 +351,36 @@ li.lev3
 li.lev4
 {
   margin-left: 30px;
+}
+ul.archive-list a
+{
+  color: #EE8907;
+  text-decoration: none;
+}
+ul.archive-list a:hover
+{
+  text-decoration: underline;
+}
+ul.archive-list li
+{
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: none;
+  padding-left: 11px;
+}
+li.year
+{
+  background: url(../images/arrow.png) no-repeat 0 0.35em;
+  color: #EE8907;
+}
+ul.archive-list li.month
+{
+  padding-left: 10px;
+}
+ul.months
+{
+  padding: 0;
+  margin: 0;
 }
 ul.error_list {
   margin: 0;

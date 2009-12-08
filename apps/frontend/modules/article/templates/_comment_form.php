@@ -2,6 +2,6 @@
 <div id="form-wrapper">
   <form action="<?php echo url_for('article/comment?id=' . $form['article_id']->getValue()) ?>" method="post">
     <?php echo $form ?>
-    <input type="submit" value="Submit" />
+    <div class="row"><input type="submit" value="Submit" /></div>
   </form>
 </div>
