@@ -87,8 +87,21 @@ class articleActions extends sfActions
         ->find($request->getParameter('id'))
     );*/
     $this->label = $this->getRoute()->getObject();
+    $this->label->setMetaTags($this->getResponse());
     $this->pager = new sfDoctrinePager('LyraLabel', 25);
     $this->pager->setQuery($this->label->getItemsQuery());
+    $this->pager->setPage($request->getParameter('page', 1));
+    $this->pager->init();
+  }
+  public function executeArchive(sfWebRequest $request)
+  {
+    $this->year = $request->getParameter('year');
+    $this->month = $request->getParameter('month');
+    $this->pager = new sfDoctrinePager('LyraArticle', 25);
+    $this->pager->setQuery(
+      Doctrine::getTable('LyraArticle')
+        ->getArchiveItemsQuery($this->year, $this->month)
+    );
     $this->pager->setPage($request->getParameter('page', 1));
     $this->pager->init();
   }
@@ -108,7 +121,7 @@ class articleActions extends sfActions
     if ($form->isValid())
     {
       $comment = $form->save();
-      $this->getUser()->setFlash('notice', 'MSG_COMMENT_SAVED');
+      $this->getUser()->setFlash('notice', $comment->getIsActive() ? 'MSG_COMMENT_SAVED' : 'MSG_COMMENT_APPROVAL');
       $this->redirect('@article_show?slug='.$comment->getCommentArticle()->getSlug());
     }
   }

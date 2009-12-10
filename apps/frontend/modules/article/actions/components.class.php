@@ -7,4 +7,9 @@ class articleComponents extends sfComponents
       ->findOneByName($this->catalog);
     $this->tree = $catalog->getLabelTree();
   }
+  public function executeArchive(sfWebRequest $request)
+  {
+    $this->rows = Doctrine::getTable('LyraArticle')
+      ->getArchiveDates();
+  }
 }

@@ -140,6 +140,30 @@
         <source>ARTICLE_WRITTEN_ON</source>
         <target> - %date%</target>
       </trans-unit>
+      <trans-unit id="35">
+        <source>HEAD_ARCHIVE</source>
+        <target>Archivio</target>
+      </trans-unit>
+      <trans-unit id="36">
+        <source>TITLE_ARCHIVE</source>
+        <target>%month% %year%</target>
+      </trans-unit>
+      <trans-unit id="37">
+        <source>META_TITLE_ARCHIVE</source>
+        <target>Archivio articoli di %month% %year%</target>
+      </trans-unit>
+      <trans-unit id="38">
+        <source>ERROR_COMMENT_SUBMIT</source>
+        <target>Errore nell'inserimento commento.</target>
+      </trans-unit>
+      <trans-unit id="39">
+        <source>LINK_CORRECT_COMMENT_SUBMIT</source>
+        <target>Correggi e invia di nuovo</target>
+      </trans-unit>
+      <trans-unit id="40">
+        <source>MSG_COMMENT_APPROVAL</source>
+        <target>Il commento è stato ricevuto, ma deve essere approvato da un amministratore.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

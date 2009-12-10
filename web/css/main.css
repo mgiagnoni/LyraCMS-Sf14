@@ -212,6 +212,22 @@ a
   text-align: right;
   margin-right: 30px
 }
+
+/* Flash messages */
+.flash_notice
+{
+  font-size: 90%;
+  line-height: 1.1em;
+  color: #797B7A;
+  border: 1px solid #4AC4FF;
+  background: transparent url('../images/backend/yes.png') no-repeat 5px;
+  padding: 2px 2px 2px 25px;
+  margin: 0.5em;
+}
+.label-description
+{
+  margin-bottom: 2em;
+}
 .article-title a:hover
 {
   text-decoration: underline;
@@ -241,6 +257,19 @@ a
   border-top: 1px solid #f0f0f0;
   width: 95%;
   height: 12px;
+}
+.comment-error
+{
+  font-size: 90%;
+  color: #797B7A;
+  border: 1px solid #ff0000;
+  background: transparent url('../images/backend/error.png') no-repeat 5px;
+  padding: 2px 2px 2px 25px;
+  margin: 0.5em;
+}
+.comment-error a
+{
+  color: #797B7A;
 }
 .comment-wrapper
 {

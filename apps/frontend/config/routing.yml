@@ -23,6 +23,18 @@ article_label:
     action: label
   requirements:
     sf_method: [get]
+
+article_archive:
+  url: /article/archive/:year/:month
+  class: sfDoctrineRoute
+  options:
+    type: object
+    model: LyraArticle
+  param:
+    module: article
+    action: archive
+  requirements:
+    sf_method: [get]
     
 # default rules
 homepage:

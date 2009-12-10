@@ -10,7 +10,22 @@ class LyraArticleTable extends Doctrine_Table
       ->andWhere('a.is_featured = ?', true);
     return $q->execute();
   }
-  
+  public function getArchiveDates()
+  {
+    $q = $this->createQuery('a')
+      ->select('YEAR(created_at) ay, MONTH(created_at) am, count(*) ct')
+      ->where('a.is_active = ?', true)
+      ->addGroupBy('YEAR(created_at), MONTH(created_at)')
+      ->addOrderBy('a.created_at DESC');
+    return $q->execute();
+  }
+  public function getArchiveItemsQuery($year, $month)
+  {
+    $q = $this->createQuery()
+      ->where('YEAR(created_at) = ? AND MONTH(created_at) = ? AND is_active = ?',array($year, $month, true))
+      ->addOrderBy('created_at DESC');
+    return $q;
+  }
   public function getActiveItems()
   {
     $q = $this->getActiveItemsQuery();

@@ -43,6 +43,7 @@
           </div>
           <div id="rightbar">
             <?php include_component('article', 'labels', array('catalog'=>'Argomento')) ?>
+            <?php include_component('article', 'archive') ?>
           </div>
         </div>
         <div id="footer">

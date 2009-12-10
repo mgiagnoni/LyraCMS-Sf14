@@ -1,14 +1,13 @@
-<?php 
-slot('page_title', $label->title);
-if($label->getDescription()) {
-  ?><div class="label-description"><?php echo $label->getDescription(); ?></div>
 <?php
-}
+use_helper('Date');
+$monthname = format_date("$year-$month-01", 'MMMM');
+$sf_response->setTitle(__('META_TITLE_ARCHIVE', array('%year%' => $year, '%month%' => $monthname)));
+slot('page_title', __('TITLE_ARCHIVE', array('%year%' => $year, '%month%' => $monthname)));
 include_partial('article/list', array('items'=>$pager->getResults()));
 ?>
 <?php if ($pager->haveToPaginate()): ?>
-  <?php 
-    $base = '@article_label?slug=' . $label->getSlug() . '&page=';
+  <?php
+    $base = '@article_archive?year=' . $year . '&month=' . $month . '&page=';
   ?>
   <div class="pagination">
     <?php echo link_to('First', $base . '1');?>

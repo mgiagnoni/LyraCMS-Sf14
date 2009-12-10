@@ -140,6 +140,30 @@
         <source>ARTICLE_WRITTEN_ON</source>
         <target> on %date%</target>
       </trans-unit>
+      <trans-unit id="35">
+        <source>HEAD_ARCHIVE</source>
+        <target>Archive</target>
+      </trans-unit>
+      <trans-unit id="36">
+        <source>TITLE_ARCHIVE</source>
+        <target>%month% %year%</target>
+      </trans-unit>
+      <trans-unit id="37">
+        <source>META_TITLE_ARCHIVE</source>
+        <target>Article archive of %month% %year%</target>
+      </trans-unit>
+      <trans-unit id="38">
+        <source>ERROR_COMMENT_SUBMIT</source>
+        <target>Error while submitting comment.</target>
+      </trans-unit>
+      <trans-unit id="39">
+        <source>LINK_CORRECT_COMMENT_SUBMIT</source>
+        <target>Correct and submit again</target>
+      </trans-unit>
+      <trans-unit id="40">
+        <source>MSG_COMMENT_APPROVAL</source>
+        <target>Comment received. It needs to be approved by an administrator.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

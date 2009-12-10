@@ -2,6 +2,13 @@
 if($sf_user->isAuthenticated()) {
   include_partial('article/admin_bar', array('item' => $item));
 }
+if(isset($form) && $form->isBound() && !$form->isValid()) { ?>
+  <div class="comment-error">
+  <?php echo __('ERROR_COMMENT_SUBMIT'); ?>
+    <a href="#comment-form"><?php echo __('LINK_CORRECT_COMMENT_SUBMIT'); ?></a>
+  </div>
+<?php
+}
 ?>
 <?php use_helper('Date') ?>
 <h1 class="article-title">
