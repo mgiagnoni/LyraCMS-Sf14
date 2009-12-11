@@ -34,6 +34,8 @@ article_archive:
     module: article
     action: archive
   requirements:
+    year: \d+
+    month: \d+
     sf_method: [get]
     
 # default rules

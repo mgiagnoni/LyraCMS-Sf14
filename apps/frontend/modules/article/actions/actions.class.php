@@ -97,6 +97,7 @@ class articleActions extends sfActions
   {
     $this->year = $request->getParameter('year');
     $this->month = $request->getParameter('month');
+    $this->forward404Unless(checkdate($this->month, 1, $this->year));
     $this->pager = new sfDoctrinePager('LyraArticle', 25);
     $this->pager->setQuery(
       Doctrine::getTable('LyraArticle')

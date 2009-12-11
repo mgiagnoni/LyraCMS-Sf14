@@ -1,11 +1,17 @@
 <?php 
 slot('page_title', $label->title);
-if($label->getDescription()) {
-  ?><div class="label-description"><?php echo $label->getDescription(); ?></div>
+if($label->getDescription()): ?>
+  <div class="label-description"><?php echo $label->getDescription(); ?></div>
+<?php endif; ?>
+
 <?php
-}
-include_partial('article/list', array('items'=>$pager->getResults()));
-?>
+$items = $pager->getResults();
+if(count($items)):
+  include_partial('article/list', array('items' => $items));
+else:?>
+  <div class="info-message"><?php echo __('MSG_ARTICLES_NOT_FOUND')?></div>
+<?php endif;?>
+
 <?php if ($pager->haveToPaginate()): ?>
   <?php 
     $base = '@article_label?slug=' . $label->getSlug() . '&page=';

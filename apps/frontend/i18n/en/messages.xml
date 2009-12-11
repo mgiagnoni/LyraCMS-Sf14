@@ -164,6 +164,10 @@
         <source>MSG_COMMENT_APPROVAL</source>
         <target>Comment received. It needs to be approved by an administrator.</target>
       </trans-unit>
+      <trans-unit id="41">
+        <source>MSG_ARTICLES_NOT_FOUND</source>
+        <target>There are no articles to display.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

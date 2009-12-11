@@ -3,8 +3,13 @@ use_helper('Date');
 $monthname = format_date("$year-$month-01", 'MMMM');
 $sf_response->setTitle(__('META_TITLE_ARCHIVE', array('%year%' => $year, '%month%' => $monthname)));
 slot('page_title', __('TITLE_ARCHIVE', array('%year%' => $year, '%month%' => $monthname)));
-include_partial('article/list', array('items'=>$pager->getResults()));
-?>
+$items = $pager->getResults();
+if(count($items)):
+  include_partial('article/list', array('items'=>$pager->getResults()));
+else:?>
+  <div class="info-message"><?php echo __('MSG_ARTICLES_NOT_FOUND')?></div>
+<?php endif; ?>
+  
 <?php if ($pager->haveToPaginate()): ?>
   <?php
     $base = '@article_archive?year=' . $year . '&month=' . $month . '&page=';

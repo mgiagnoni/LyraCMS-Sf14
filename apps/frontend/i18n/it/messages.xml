@@ -164,6 +164,10 @@
         <source>MSG_COMMENT_APPROVAL</source>
         <target>Il commento è stato ricevuto, ma deve essere approvato da un amministratore.</target>
       </trans-unit>
+      <trans-unit id="41">
+        <source>MSG_ARTICLES_NOT_FOUND</source>
+        <target>Non ci sono articoli da visualizzare.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

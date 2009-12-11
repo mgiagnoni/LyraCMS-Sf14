@@ -149,6 +149,7 @@ a
   width:539px;
   border-right:1px solid #BCBDBC;
   padding-left: 10px;
+  min-height: 350px;
 }
 
 #rightbar {
@@ -223,6 +224,14 @@ a
   background: transparent url('../images/backend/yes.png') no-repeat 5px;
   padding: 2px 2px 2px 25px;
   margin: 0.5em;
+}
+.info-message
+{
+  border: 1px solid #4AC4FF;
+  padding: 2px;
+  margin:auto;
+  width: 90%;
+  text-align: center;
 }
 .label-description
 {

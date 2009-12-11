@@ -21,7 +21,10 @@ if(isset($form) && $form->isBound() && !$form->isValid()) { ?>
 <?php endif ?>
 <?php include_partial('article/byline', array('item' => $item));?>
 <div class="article-content">
-  <?php echo $item->getContent(ESC_RAW) ?>
+  <?php
+  echo $item->getSummary(ESC_RAW);
+  echo $item->getContent(ESC_RAW);
+  ?>
 </div>
 <?php
 if(count($comments)) {
