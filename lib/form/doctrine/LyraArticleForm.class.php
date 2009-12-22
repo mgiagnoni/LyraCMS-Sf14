@@ -143,13 +143,13 @@ class LyraArticleForm extends BaseLyraArticleForm
     $unlink = array_diff($existing, $values);
     if (count($unlink)) {
         $this->getObject()
-          ->unlink('ArticleLabels', array_values($unlink));
+          ->unlink('ArticleLabels', array_values($unlink), true);
     }
 
     $link = array_diff($values, $existing);
     if (count($link)) {
         $this->getObject()
-          ->link('ArticleLabels', array_values($link));
+          ->link('ArticleLabels', array_values($link), true);
     }
   }
 }

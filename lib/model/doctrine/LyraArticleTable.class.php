@@ -15,7 +15,8 @@ class LyraArticleTable extends Doctrine_Table
     $q = $this->createQuery('a')
       ->select('YEAR(created_at) ay, MONTH(created_at) am, count(*) ct')
       ->where('a.is_active = ?', true)
-      ->addGroupBy('YEAR(created_at), MONTH(created_at)')
+      ->addGroupBy('YEAR(created_at)')
+      ->addGroupBy('MONTH(created_at)')
       ->addOrderBy('a.created_at DESC');
     return $q->execute();
   }

@@ -3,32 +3,35 @@
 /**
  * sfGuardGroup form base class.
  *
- * @package    form
- * @subpackage sf_guard_group
- * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
+ * @method sfGuardGroup getObject() Returns the current form's model object
+ *
+ * @package    lyra
+ * @subpackage form
+ * @author     Your name here
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BasesfGuardGroupForm extends BaseFormDoctrine
+abstract class BasesfGuardGroupForm extends BaseFormDoctrine
 {
   public function setup()
   {
     $this->setWidgets(array(
       'id'               => new sfWidgetFormInputHidden(),
-      'name'             => new sfWidgetFormInput(),
+      'name'             => new sfWidgetFormInputText(),
       'description'      => new sfWidgetFormTextarea(),
       'created_at'       => new sfWidgetFormDateTime(),
       'updated_at'       => new sfWidgetFormDateTime(),
-      'users_list'       => new sfWidgetFormDoctrineChoiceMany(array('model' => 'sfGuardUser')),
-      'permissions_list' => new sfWidgetFormDoctrineChoiceMany(array('model' => 'sfGuardPermission')),
+      'users_list'       => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser')),
+      'permissions_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission')),
     ));
 
     $this->setValidators(array(
-      'id'               => new sfValidatorDoctrineChoice(array('model' => 'sfGuardGroup', 'column' => 'id', 'required' => false)),
+      'id'               => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
       'name'             => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'description'      => new sfValidatorString(array('max_length' => 1000, 'required' => false)),
-      'created_at'       => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'       => new sfValidatorDateTime(array('required' => false)),
-      'users_list'       => new sfValidatorDoctrineChoiceMany(array('model' => 'sfGuardUser', 'required' => false)),
-      'permissions_list' => new sfValidatorDoctrineChoiceMany(array('model' => 'sfGuardPermission', 'required' => false)),
+      'created_at'       => new sfValidatorDateTime(),
+      'updated_at'       => new sfValidatorDateTime(),
+      'users_list'       => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser', 'required' => false)),
+      'permissions_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
@@ -38,6 +41,8 @@ class BasesfGuardGroupForm extends BaseFormDoctrine
     $this->widgetSchema->setNameFormat('sf_guard_group[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $this->setupInheritance();
 
     parent::setup();
   }
@@ -65,10 +70,10 @@ class BasesfGuardGroupForm extends BaseFormDoctrine
 
   protected function doSave($con = null)
   {
-    parent::doSave($con);
-
     $this->saveusersList($con);
     $this->savepermissionsList($con);
+
+    parent::doSave($con);
   }
 
   public function saveusersList($con = null)
@@ -84,7 +89,7 @@ class BasesfGuardGroupForm extends BaseFormDoctrine
       return;
     }
 
-    if (is_null($con))
+    if (null === $con)
     {
       $con = $this->getConnection();
     }
@@ -122,7 +127,7 @@ class BasesfGuardGroupForm extends BaseFormDoctrine
       return;
     }
 
-    if (is_null($con))
+    if (null === $con)
     {
       $con = $this->getConnection();
     }

@@ -3,39 +3,44 @@
 /**
  * LyraCatalog form base class.
  *
- * @package    form
- * @subpackage lyra_catalog
- * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
+ * @method LyraCatalog getObject() Returns the current form's model object
+ *
+ * @package    lyra
+ * @subpackage form
+ * @author     Your name here
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseLyraCatalogForm extends BaseFormDoctrine
+abstract class BaseLyraCatalogForm extends BaseFormDoctrine
 {
   public function setup()
   {
     $this->setWidgets(array(
       'id'                         => new sfWidgetFormInputHidden(),
-      'name'                       => new sfWidgetFormInput(),
+      'name'                       => new sfWidgetFormInputText(),
       'description'                => new sfWidgetFormTextarea(),
       'is_active'                  => new sfWidgetFormInputCheckbox(),
-      'locked_by'                  => new sfWidgetFormInput(),
+      'locked_by'                  => new sfWidgetFormInputText(),
       'created_at'                 => new sfWidgetFormDateTime(),
       'updated_at'                 => new sfWidgetFormDateTime(),
-      'catalog_content_types_list' => new sfWidgetFormDoctrineChoiceMany(array('model' => 'LyraContentType')),
+      'catalog_content_types_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'LyraContentType')),
     ));
 
     $this->setValidators(array(
-      'id'                         => new sfValidatorDoctrineChoice(array('model' => 'LyraCatalog', 'column' => 'id', 'required' => false)),
+      'id'                         => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
       'name'                       => new sfValidatorString(array('max_length' => 255)),
       'description'                => new sfValidatorString(array('max_length' => 4000, 'required' => false)),
-      'is_active'                  => new sfValidatorBoolean(),
+      'is_active'                  => new sfValidatorBoolean(array('required' => false)),
       'locked_by'                  => new sfValidatorInteger(array('required' => false)),
-      'created_at'                 => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'                 => new sfValidatorDateTime(array('required' => false)),
-      'catalog_content_types_list' => new sfValidatorDoctrineChoiceMany(array('model' => 'LyraContentType', 'required' => false)),
+      'created_at'                 => new sfValidatorDateTime(),
+      'updated_at'                 => new sfValidatorDateTime(),
+      'catalog_content_types_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'LyraContentType', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('lyra_catalog[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $this->setupInheritance();
 
     parent::setup();
   }
@@ -58,9 +63,9 @@ class BaseLyraCatalogForm extends BaseFormDoctrine
 
   protected function doSave($con = null)
   {
-    parent::doSave($con);
-
     $this->saveCatalogContentTypesList($con);
+
+    parent::doSave($con);
   }
 
   public function saveCatalogContentTypesList($con = null)
@@ -76,7 +81,7 @@ class BaseLyraCatalogForm extends BaseFormDoctrine
       return;
     }
 
-    if (is_null($con))
+    if (null === $con)
     {
       $con = $this->getConnection();
     }

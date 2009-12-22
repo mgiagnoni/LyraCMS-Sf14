@@ -3,41 +3,46 @@
 /**
  * LyraContentType form base class.
  *
- * @package    form
- * @subpackage lyra_content_type
- * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
+ * @method LyraContentType getObject() Returns the current form's model object
+ *
+ * @package    lyra
+ * @subpackage form
+ * @author     Your name here
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseLyraContentTypeForm extends BaseFormDoctrine
+abstract class BaseLyraContentTypeForm extends BaseFormDoctrine
 {
   public function setup()
   {
     $this->setWidgets(array(
       'id'                         => new sfWidgetFormInputHidden(),
-      'name'                       => new sfWidgetFormInput(),
+      'name'                       => new sfWidgetFormInputText(),
       'description'                => new sfWidgetFormTextarea(),
-      'db_name'                    => new sfWidgetFormInput(),
-      'module'                     => new sfWidgetFormInput(),
+      'db_name'                    => new sfWidgetFormInputText(),
+      'module'                     => new sfWidgetFormInputText(),
       'is_active'                  => new sfWidgetFormInputCheckbox(),
       'created_at'                 => new sfWidgetFormDateTime(),
       'updated_at'                 => new sfWidgetFormDateTime(),
-      'content_type_catalogs_list' => new sfWidgetFormDoctrineChoiceMany(array('model' => 'LyraCatalog')),
+      'content_type_catalogs_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'LyraCatalog')),
     ));
 
     $this->setValidators(array(
-      'id'                         => new sfValidatorDoctrineChoice(array('model' => 'LyraContentType', 'column' => 'id', 'required' => false)),
+      'id'                         => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
       'name'                       => new sfValidatorString(array('max_length' => 255)),
       'description'                => new sfValidatorString(array('max_length' => 4000, 'required' => false)),
       'db_name'                    => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'module'                     => new sfValidatorString(array('max_length' => 20, 'required' => false)),
-      'is_active'                  => new sfValidatorBoolean(),
-      'created_at'                 => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'                 => new sfValidatorDateTime(array('required' => false)),
-      'content_type_catalogs_list' => new sfValidatorDoctrineChoiceMany(array('model' => 'LyraCatalog', 'required' => false)),
+      'is_active'                  => new sfValidatorBoolean(array('required' => false)),
+      'created_at'                 => new sfValidatorDateTime(),
+      'updated_at'                 => new sfValidatorDateTime(),
+      'content_type_catalogs_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'LyraCatalog', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('lyra_content_type[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $this->setupInheritance();
 
     parent::setup();
   }
@@ -60,9 +65,9 @@ class BaseLyraContentTypeForm extends BaseFormDoctrine
 
   protected function doSave($con = null)
   {
-    parent::doSave($con);
-
     $this->saveContentTypeCatalogsList($con);
+
+    parent::doSave($con);
   }
 
   public function saveContentTypeCatalogsList($con = null)
@@ -78,7 +83,7 @@ class BaseLyraContentTypeForm extends BaseFormDoctrine
       return;
     }
 
-    if (is_null($con))
+    if (null === $con)
     {
       $con = $this->getConnection();
     }

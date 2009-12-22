@@ -1,15 +1,14 @@
 <?php
 
-require_once(sfConfig::get('sf_lib_dir').'/filter/doctrine/BaseFormFilterDoctrine.class.php');
-
 /**
  * LyraContentTypeCatalog filter form base class.
  *
- * @package    filters
- * @subpackage LyraContentTypeCatalog *
- * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 11675 2008-09-19 15:21:38Z fabien $
+ * @package    lyra
+ * @subpackage filter
+ * @author     Your name here
+ * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseLyraContentTypeCatalogFormFilter extends BaseFormFilterDoctrine
+abstract class BaseLyraContentTypeCatalogFormFilter extends BaseFormFilterDoctrine
 {
   public function setup()
   {
@@ -22,6 +21,8 @@ class BaseLyraContentTypeCatalogFormFilter extends BaseFormFilterDoctrine
     $this->widgetSchema->setNameFormat('lyra_content_type_catalog_filters[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $this->setupInheritance();
 
     parent::setup();
   }

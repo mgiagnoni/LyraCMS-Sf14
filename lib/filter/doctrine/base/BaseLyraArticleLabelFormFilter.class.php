@@ -1,15 +1,14 @@
 <?php
 
-require_once(sfConfig::get('sf_lib_dir').'/filter/doctrine/BaseFormFilterDoctrine.class.php');
-
 /**
  * LyraArticleLabel filter form base class.
  *
- * @package    filters
- * @subpackage LyraArticleLabel *
- * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 11675 2008-09-19 15:21:38Z fabien $
+ * @package    lyra
+ * @subpackage filter
+ * @author     Your name here
+ * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseLyraArticleLabelFormFilter extends BaseFormFilterDoctrine
+abstract class BaseLyraArticleLabelFormFilter extends BaseFormFilterDoctrine
 {
   public function setup()
   {
@@ -22,6 +21,8 @@ class BaseLyraArticleLabelFormFilter extends BaseFormFilterDoctrine
     $this->widgetSchema->setNameFormat('lyra_article_label_filters[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $this->setupInheritance();
 
     parent::setup();
   }

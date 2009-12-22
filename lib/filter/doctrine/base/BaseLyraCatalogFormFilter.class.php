@@ -1,26 +1,25 @@
 <?php
 
-require_once(sfConfig::get('sf_lib_dir').'/filter/doctrine/BaseFormFilterDoctrine.class.php');
-
 /**
  * LyraCatalog filter form base class.
  *
- * @package    filters
- * @subpackage LyraCatalog *
- * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 11675 2008-09-19 15:21:38Z fabien $
+ * @package    lyra
+ * @subpackage filter
+ * @author     Your name here
+ * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseLyraCatalogFormFilter extends BaseFormFilterDoctrine
+abstract class BaseLyraCatalogFormFilter extends BaseFormFilterDoctrine
 {
   public function setup()
   {
     $this->setWidgets(array(
-      'name'                       => new sfWidgetFormFilterInput(),
+      'name'                       => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'description'                => new sfWidgetFormFilterInput(),
       'is_active'                  => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'locked_by'                  => new sfWidgetFormFilterInput(),
-      'created_at'                 => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
-      'updated_at'                 => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
-      'catalog_content_types_list' => new sfWidgetFormDoctrineChoiceMany(array('model' => 'LyraContentType')),
+      'created_at'                 => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'updated_at'                 => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'catalog_content_types_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'LyraContentType')),
     ));
 
     $this->setValidators(array(
@@ -28,14 +27,16 @@ class BaseLyraCatalogFormFilter extends BaseFormFilterDoctrine
       'description'                => new sfValidatorPass(array('required' => false)),
       'is_active'                  => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'locked_by'                  => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'created_at'                 => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
-      'updated_at'                 => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
-      'catalog_content_types_list' => new sfValidatorDoctrineChoiceMany(array('model' => 'LyraContentType', 'required' => false)),
+      'created_at'                 => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'updated_at'                 => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'catalog_content_types_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'LyraContentType', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('lyra_catalog_filters[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $this->setupInheritance();
 
     parent::setup();
   }

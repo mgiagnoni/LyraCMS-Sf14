@@ -3,42 +3,45 @@
 /**
  * LyraArticle form base class.
  *
- * @package    form
- * @subpackage lyra_article
- * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
+ * @method LyraArticle getObject() Returns the current form's model object
+ *
+ * @package    lyra
+ * @subpackage form
+ * @author     Your name here
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseLyraArticleForm extends BaseFormDoctrine
+abstract class BaseLyraArticleForm extends BaseFormDoctrine
 {
   public function setup()
   {
     $this->setWidgets(array(
       'id'                  => new sfWidgetFormInputHidden(),
-      'title'               => new sfWidgetFormInput(),
-      'subtitle'            => new sfWidgetFormInput(),
+      'title'               => new sfWidgetFormInputText(),
+      'subtitle'            => new sfWidgetFormInputText(),
       'summary'             => new sfWidgetFormTextarea(),
       'content'             => new sfWidgetFormTextarea(),
-      'meta_title'          => new sfWidgetFormInput(),
+      'meta_title'          => new sfWidgetFormInputText(),
       'meta_descr'          => new sfWidgetFormTextarea(),
       'meta_keys'           => new sfWidgetFormTextarea(),
-      'meta_robots'         => new sfWidgetFormInput(),
+      'meta_robots'         => new sfWidgetFormInputText(),
       'is_active'           => new sfWidgetFormInputCheckbox(),
       'is_featured'         => new sfWidgetFormInputCheckbox(),
       'is_sticky'           => new sfWidgetFormInputCheckbox(),
       'publish_start'       => new sfWidgetFormDateTime(),
       'publish_end'         => new sfWidgetFormDateTime(),
-      'status'              => new sfWidgetFormInput(),
+      'status'              => new sfWidgetFormInputText(),
       'options'             => new sfWidgetFormTextarea(),
-      'created_by'          => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
-      'updated_by'          => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
-      'locked_by'           => new sfWidgetFormInput(),
+      'created_by'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('ArticleCreatedBy'), 'add_empty' => true)),
+      'updated_by'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('ArticleUpdatedBy'), 'add_empty' => true)),
+      'locked_by'           => new sfWidgetFormInputText(),
       'created_at'          => new sfWidgetFormDateTime(),
       'updated_at'          => new sfWidgetFormDateTime(),
-      'slug'                => new sfWidgetFormInput(),
-      'article_labels_list' => new sfWidgetFormDoctrineChoiceMany(array('model' => 'LyraLabel')),
+      'slug'                => new sfWidgetFormInputText(),
+      'article_labels_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'LyraLabel')),
     ));
 
     $this->setValidators(array(
-      'id'                  => new sfValidatorDoctrineChoice(array('model' => 'LyraArticle', 'column' => 'id', 'required' => false)),
+      'id'                  => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
       'title'               => new sfValidatorString(array('max_length' => 255)),
       'subtitle'            => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'summary'             => new sfValidatorString(array('required' => false)),
@@ -47,20 +50,20 @@ class BaseLyraArticleForm extends BaseFormDoctrine
       'meta_descr'          => new sfValidatorString(array('max_length' => 500, 'required' => false)),
       'meta_keys'           => new sfValidatorString(array('max_length' => 500, 'required' => false)),
       'meta_robots'         => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'is_active'           => new sfValidatorBoolean(),
-      'is_featured'         => new sfValidatorBoolean(),
-      'is_sticky'           => new sfValidatorBoolean(),
+      'is_active'           => new sfValidatorBoolean(array('required' => false)),
+      'is_featured'         => new sfValidatorBoolean(array('required' => false)),
+      'is_sticky'           => new sfValidatorBoolean(array('required' => false)),
       'publish_start'       => new sfValidatorDateTime(array('required' => false)),
       'publish_end'         => new sfValidatorDateTime(array('required' => false)),
-      'status'              => new sfValidatorInteger(),
+      'status'              => new sfValidatorInteger(array('required' => false)),
       'options'             => new sfValidatorString(array('required' => false)),
-      'created_by'          => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'required' => false)),
-      'updated_by'          => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'required' => false)),
+      'created_by'          => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('ArticleCreatedBy'), 'required' => false)),
+      'updated_by'          => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('ArticleUpdatedBy'), 'required' => false)),
       'locked_by'           => new sfValidatorInteger(array('required' => false)),
-      'created_at'          => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'          => new sfValidatorDateTime(array('required' => false)),
+      'created_at'          => new sfValidatorDateTime(),
+      'updated_at'          => new sfValidatorDateTime(),
       'slug'                => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'article_labels_list' => new sfValidatorDoctrineChoiceMany(array('model' => 'LyraLabel', 'required' => false)),
+      'article_labels_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'LyraLabel', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
@@ -70,6 +73,8 @@ class BaseLyraArticleForm extends BaseFormDoctrine
     $this->widgetSchema->setNameFormat('lyra_article[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $this->setupInheritance();
 
     parent::setup();
   }
@@ -92,9 +97,9 @@ class BaseLyraArticleForm extends BaseFormDoctrine
 
   protected function doSave($con = null)
   {
-    parent::doSave($con);
-
     $this->saveArticleLabelsList($con);
+
+    parent::doSave($con);
   }
 
   public function saveArticleLabelsList($con = null)
@@ -110,7 +115,7 @@ class BaseLyraArticleForm extends BaseFormDoctrine
       return;
     }
 
-    if (is_null($con))
+    if (null === $con)
     {
       $con = $this->getConnection();
     }

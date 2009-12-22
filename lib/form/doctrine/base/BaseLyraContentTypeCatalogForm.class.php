@@ -3,11 +3,14 @@
 /**
  * LyraContentTypeCatalog form base class.
  *
- * @package    form
- * @subpackage lyra_content_type_catalog
- * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
+ * @method LyraContentTypeCatalog getObject() Returns the current form's model object
+ *
+ * @package    lyra
+ * @subpackage form
+ * @author     Your name here
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseLyraContentTypeCatalogForm extends BaseFormDoctrine
+abstract class BaseLyraContentTypeCatalogForm extends BaseFormDoctrine
 {
   public function setup()
   {
@@ -17,13 +20,15 @@ class BaseLyraContentTypeCatalogForm extends BaseFormDoctrine
     ));
 
     $this->setValidators(array(
-      'ctype_id'   => new sfValidatorDoctrineChoice(array('model' => 'LyraContentTypeCatalog', 'column' => 'ctype_id', 'required' => false)),
-      'catalog_id' => new sfValidatorDoctrineChoice(array('model' => 'LyraContentTypeCatalog', 'column' => 'catalog_id', 'required' => false)),
+      'ctype_id'   => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'ctype_id', 'required' => false)),
+      'catalog_id' => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'catalog_id', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('lyra_content_type_catalog[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $this->setupInheritance();
 
     parent::setup();
   }

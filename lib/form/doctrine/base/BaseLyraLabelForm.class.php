@@ -3,40 +3,43 @@
 /**
  * LyraLabel form base class.
  *
- * @package    form
- * @subpackage lyra_label
- * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
+ * @method LyraLabel getObject() Returns the current form's model object
+ *
+ * @package    lyra
+ * @subpackage form
+ * @author     Your name here
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseLyraLabelForm extends BaseFormDoctrine
+abstract class BaseLyraLabelForm extends BaseFormDoctrine
 {
   public function setup()
   {
     $this->setWidgets(array(
       'id'                  => new sfWidgetFormInputHidden(),
-      'catalog_id'          => new sfWidgetFormDoctrineChoice(array('model' => 'LyraCatalog', 'add_empty' => true)),
-      'name'                => new sfWidgetFormInput(),
-      'title'               => new sfWidgetFormInput(),
+      'catalog_id'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('LabelCatalog'), 'add_empty' => true)),
+      'name'                => new sfWidgetFormInputText(),
+      'title'               => new sfWidgetFormInputText(),
       'description'         => new sfWidgetFormTextarea(),
-      'meta_title'          => new sfWidgetFormInput(),
-      'meta_robots'         => new sfWidgetFormInput(),
+      'meta_title'          => new sfWidgetFormInputText(),
+      'meta_robots'         => new sfWidgetFormInputText(),
       'meta_descr'          => new sfWidgetFormTextarea(),
       'meta_keys'           => new sfWidgetFormTextarea(),
       'is_active'           => new sfWidgetFormInputCheckbox(),
-      'created_by'          => new sfWidgetFormInput(),
-      'updated_by'          => new sfWidgetFormInput(),
+      'created_by'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('LabelCreatedBy'), 'add_empty' => true)),
+      'updated_by'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('LabelUpdatedBy'), 'add_empty' => true)),
       'created_at'          => new sfWidgetFormDateTime(),
       'updated_at'          => new sfWidgetFormDateTime(),
-      'slug'                => new sfWidgetFormInput(),
-      'root_id'             => new sfWidgetFormInput(),
-      'lft'                 => new sfWidgetFormInput(),
-      'rgt'                 => new sfWidgetFormInput(),
-      'level'               => new sfWidgetFormInput(),
-      'label_articles_list' => new sfWidgetFormDoctrineChoiceMany(array('model' => 'LyraArticle')),
+      'slug'                => new sfWidgetFormInputText(),
+      'root_id'             => new sfWidgetFormInputText(),
+      'lft'                 => new sfWidgetFormInputText(),
+      'rgt'                 => new sfWidgetFormInputText(),
+      'level'               => new sfWidgetFormInputText(),
+      'label_articles_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'LyraArticle')),
     ));
 
     $this->setValidators(array(
-      'id'                  => new sfValidatorDoctrineChoice(array('model' => 'LyraLabel', 'column' => 'id', 'required' => false)),
-      'catalog_id'          => new sfValidatorDoctrineChoice(array('model' => 'LyraCatalog', 'required' => false)),
+      'id'                  => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
+      'catalog_id'          => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('LabelCatalog'), 'required' => false)),
       'name'                => new sfValidatorString(array('max_length' => 255)),
       'title'               => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'description'         => new sfValidatorString(array('max_length' => 4000, 'required' => false)),
@@ -44,17 +47,17 @@ class BaseLyraLabelForm extends BaseFormDoctrine
       'meta_robots'         => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'meta_descr'          => new sfValidatorString(array('max_length' => 4000, 'required' => false)),
       'meta_keys'           => new sfValidatorString(array('max_length' => 4000, 'required' => false)),
-      'is_active'           => new sfValidatorBoolean(),
-      'created_by'          => new sfValidatorInteger(array('required' => false)),
-      'updated_by'          => new sfValidatorInteger(array('required' => false)),
-      'created_at'          => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'          => new sfValidatorDateTime(array('required' => false)),
+      'is_active'           => new sfValidatorBoolean(array('required' => false)),
+      'created_by'          => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('LabelCreatedBy'), 'required' => false)),
+      'updated_by'          => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('LabelUpdatedBy'), 'required' => false)),
+      'created_at'          => new sfValidatorDateTime(),
+      'updated_at'          => new sfValidatorDateTime(),
       'slug'                => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'root_id'             => new sfValidatorInteger(array('required' => false)),
       'lft'                 => new sfValidatorInteger(array('required' => false)),
       'rgt'                 => new sfValidatorInteger(array('required' => false)),
       'level'               => new sfValidatorInteger(array('required' => false)),
-      'label_articles_list' => new sfValidatorDoctrineChoiceMany(array('model' => 'LyraArticle', 'required' => false)),
+      'label_articles_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'LyraArticle', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
@@ -64,6 +67,8 @@ class BaseLyraLabelForm extends BaseFormDoctrine
     $this->widgetSchema->setNameFormat('lyra_label[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $this->setupInheritance();
 
     parent::setup();
   }
@@ -86,9 +91,9 @@ class BaseLyraLabelForm extends BaseFormDoctrine
 
   protected function doSave($con = null)
   {
-    parent::doSave($con);
-
     $this->saveLabelArticlesList($con);
+
+    parent::doSave($con);
   }
 
   public function saveLabelArticlesList($con = null)
@@ -104,7 +109,7 @@ class BaseLyraLabelForm extends BaseFormDoctrine
       return;
     }
 
-    if (is_null($con))
+    if (null === $con)
     {
       $con = $this->getConnection();
     }

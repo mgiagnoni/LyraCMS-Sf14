@@ -21,8 +21,8 @@ class LyraCommentForm extends BaseLyraCommentForm
     $this->widgetSchema['content']->setAttribute('cols',45);
     $this->widgetSchema->setHelp('author_email','AUTHOR_EMAIL_HELP');
 
-    $this->validatorSchema['author_name']->addMessage('required','AUTHOR_NAME_REQUIRED');
-    $this->validatorSchema['content']->addMessage('required','CONTENT_REQUIRED');
+    $this->validatorSchema['author_name']->setMessage('required','AUTHOR_NAME_REQUIRED');
+    $this->validatorSchema['content']->setMessage('required','CONTENT_REQUIRED');
     $this->validatorSchema['author_email'] = new sfValidatorEmail(
       array('required'=>true),
       array('required'=>'AUTHOR_EMAIL_REQUIRED','invalid'=>'AUTHOR_EMAIL_INVALID')

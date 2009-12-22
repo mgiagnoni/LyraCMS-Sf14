@@ -3,11 +3,14 @@
 /**
  * LyraArticleLabel form base class.
  *
- * @package    form
- * @subpackage lyra_article_label
- * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
+ * @method LyraArticleLabel getObject() Returns the current form's model object
+ *
+ * @package    lyra
+ * @subpackage form
+ * @author     Your name here
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseLyraArticleLabelForm extends BaseFormDoctrine
+abstract class BaseLyraArticleLabelForm extends BaseFormDoctrine
 {
   public function setup()
   {
@@ -17,13 +20,15 @@ class BaseLyraArticleLabelForm extends BaseFormDoctrine
     ));
 
     $this->setValidators(array(
-      'article_id' => new sfValidatorDoctrineChoice(array('model' => 'LyraArticleLabel', 'column' => 'article_id', 'required' => false)),
-      'label_id'   => new sfValidatorDoctrineChoice(array('model' => 'LyraArticleLabel', 'column' => 'label_id', 'required' => false)),
+      'article_id' => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'article_id', 'required' => false)),
+      'label_id'   => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'label_id', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('lyra_article_label[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $this->setupInheritance();
 
     parent::setup();
   }
