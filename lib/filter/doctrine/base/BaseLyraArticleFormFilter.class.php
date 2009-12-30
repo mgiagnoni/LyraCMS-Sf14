@@ -13,6 +13,7 @@ abstract class BaseLyraArticleFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
+      'ctype_id'            => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('ContentType'), 'add_empty' => true)),
       'title'               => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'subtitle'            => new sfWidgetFormFilterInput(),
       'summary'             => new sfWidgetFormFilterInput(),
@@ -38,6 +39,7 @@ abstract class BaseLyraArticleFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
+      'ctype_id'            => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('ContentType'), 'column' => 'id')),
       'title'               => new sfValidatorPass(array('required' => false)),
       'subtitle'            => new sfValidatorPass(array('required' => false)),
       'summary'             => new sfValidatorPass(array('required' => false)),
@@ -96,6 +98,7 @@ abstract class BaseLyraArticleFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'                  => 'Number',
+      'ctype_id'            => 'ForeignKey',
       'title'               => 'Text',
       'subtitle'            => 'Text',
       'summary'             => 'Text',

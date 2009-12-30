@@ -9,9 +9,23 @@
       [?php echo $form->renderGlobalErrors() ?]
     [?php endif; ?]
 
+    [?php if($form->getOption('break_at')): ?]
+    <div class="sf_admin_col">
+    [?php endif; ?]
+
     [?php foreach ($configuration->getFormFields($form, $form->isNew() ? 'new' : 'edit') as $fieldset => $fields): ?]
+
+      [?php if($form->getOption('break_at') == $fieldset): ?]
+      </div>
+      <div class="sf_admin_col_2">
+      [?php endif; ?]
+
       [?php include_partial('<?php echo $this->getModuleName() ?>/form_fieldset', array('<?php echo $this->getSingularName() ?>' => $<?php echo $this->getSingularName() ?>, 'form' => $form, 'fields' => $fields, 'fieldset' => $fieldset)) ?]
     [?php endforeach; ?]
+
+    [?php if($form->getOption('break_at')): ?]
+    </div>
+    [?php endif; ?]
 
     [?php include_partial('<?php echo $this->getModuleName() ?>/form_actions', array('<?php echo $this->getSingularName() ?>' => $<?php echo $this->getSingularName() ?>, 'form' => $form, 'configuration' => $configuration, 'helper' => $helper)) ?]
   </form>

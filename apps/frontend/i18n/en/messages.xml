@@ -168,6 +168,34 @@
         <source>MSG_ARTICLES_NOT_FOUND</source>
         <target>There are no articles to display.</target>
       </trans-unit>
+      <trans-unit id="42">
+        <source>PANEL_CONTENT</source>
+        <target>Content</target>
+      </trans-unit>
+      <trans-unit id="43">
+        <source>PANEL_SUMMARY</source>
+        <target>Summary</target>
+      </trans-unit>
+      <trans-unit id="44">
+        <source>PANEL_PUBLISH</source>
+        <target>Publish</target>
+      </trans-unit>
+      <trans-unit id="45">
+        <source>PANEL_LABELS</source>
+        <target>Labels</target>
+      </trans-unit>
+      <trans-unit id="46">
+        <source>PANEL_METATAGS</source>
+        <target>Metatags</target>
+      </trans-unit>
+      <trans-unit id="47">
+        <source>HEAD_EDIT_ARTICLE</source>
+        <target>Edit article</target>
+      </trans-unit>
+      <trans-unit id="48">
+        <source>HEAD_NEW_ARTICLE</source>
+        <target>New article</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

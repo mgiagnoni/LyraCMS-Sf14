@@ -144,20 +144,26 @@ a
 {
   margin: 0.5em 0 0.5em;
 }
-#leftbar {
+#leftbar
+{
   float:left;
-  width:539px;
+  width: 539px;
   border-right:1px solid #BCBDBC;
   padding-left: 10px;
   min-height: 350px;
 }
-
-#rightbar {
+#leftbar-full-width
+{
+  padding-left: 10px;
+}
+#rightbar
+{
   float:left;
   width:227px;
 }
 
-#rightbar h2{
+#rightbar h2
+{
   color:#797B7A;
   font-weight:normal;
   padding-left:25px;
@@ -267,6 +273,75 @@ a
   width: 95%;
   height: 12px;
 }
+/* Content form */
+.content-form input
+{
+  width: 225px;
+}
+.content-form input.submit
+{
+  width: 95px;
+  margin-top: 10px;
+}
+.content-form .col-left, .content-form .col-right
+{
+  float: left;
+}
+.content-form .col-left
+{
+  width: 465px;
+}
+.content-form .col-right
+{
+  margin-left: 5px;
+  width: 290px;
+}
+.content-form label
+{
+  display: block;
+}
+.content-form label.field-bool
+{
+  float: left;
+  width: 120px;
+}
+.content-form .row
+{
+  margin: 10px 0 0 5px;
+}
+.content-form .row-submit
+{
+  clear: both;
+}
+.content-form .panel
+{
+  border: 1px solid #f0f0f0;
+  margin-top: 10px;
+  padding-bottom: 5px;
+}
+.content-form .panel h2
+{
+  background: #e0e0e0;
+  color: #333;
+  font-size: 90%;
+  padding: 3px;
+}
+.content-form ul
+{
+  margin: 0;
+  padding: 0;
+}
+.content-form ul li
+{
+  list-style-type: none;
+  list-style-image: none;
+}
+.content-form select.labels
+{
+  margin-bottom: 12px;
+  width: 130px;
+}
+/* Comments */
 .comment-error
 {
   font-size: 90%;

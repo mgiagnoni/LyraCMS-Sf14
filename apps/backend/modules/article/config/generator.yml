@@ -29,6 +29,15 @@ generator:
         table_method: getBackendItemsQuery
       filter:
         display: [title,is_active]
-      form:    ~
-      edit:    ~
-      new:     ~
+      form:
+        display:
+          "NONE": [ctype_id, title, slug, subtitle]
+          PANEL_CONTENT: [content]
+          PANEL_SUMMARY: [summary]
+          PANEL_PUBLISH: [is_active, is_featured, is_sticky, publish_start, publish_end]
+          PANEL_LABELS: [labels]
+          PANEL_METATAGS: [meta_title, meta_descr, meta_keys, meta_robots]
+      edit:
+        title: TITLE_EDIT_ARTICLE
+      new:
+        title: TITLE_NEW_ARTICLE

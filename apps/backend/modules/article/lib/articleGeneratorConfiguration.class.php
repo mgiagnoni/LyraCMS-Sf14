@@ -13,8 +13,9 @@ class articleGeneratorConfiguration extends BaseArticleGeneratorConfiguration
   public function getFormOptions()
   {
     return array(
-      'user' => sfContext::getInstance()->getUser()
-      );
+      'user' => sfContext::getInstance()->getUser(),
+      'break_at' => 'PANEL_PUBLISH'
+    );
   }
 
 }

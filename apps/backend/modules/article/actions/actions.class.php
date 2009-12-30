@@ -13,6 +13,13 @@ require_once dirname(__FILE__).'/../lib/articleGeneratorHelper.class.php';
  */
 class articleActions extends autoArticleActions
 {
+  public function executeIndex(sfWebRequest $request)
+  {
+    if($request->getParameter('id')) {
+      $this->getUser()->setAttribute('lyra_ctype_id', $request->getParameter('id', 0));
+    }
+    parent::executeIndex($request);
+  }
   public function executePublish(sfwebRequest $request)
   {
     $this->lyra_article = $this->getRoute()->getObject();

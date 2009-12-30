@@ -244,6 +244,34 @@
         <source>MENU_LOGOUT</source>
         <target>Logout</target>
       </trans-unit>
+      <trans-unit id="61">
+        <source>TITLE_EDIT_ARTICLE</source>
+        <target>Edit article</target>
+      </trans-unit>
+      <trans-unit id="62">
+        <source>TITLE_NEW_ARTICLE</source>
+        <target>New article</target>
+      </trans-unit>
+      <trans-unit id="63">
+        <source>PANEL_CONTENT</source>
+        <target>Content</target>
+      </trans-unit>
+      <trans-unit id="64">
+        <source>PANEL_SUMMARY</source>
+        <target>Summary</target>
+      </trans-unit>
+      <trans-unit id="65">
+        <source>PANEL_PUBLISH</source>
+        <target>Publish</target>
+      </trans-unit>
+      <trans-unit id="66">
+        <source>PANEL_LABELS</source>
+        <target>Labels</target>
+      </trans-unit>
+      <trans-unit id="67">
+        <source>PANEL_METATAGS</source>
+        <target>Metatags</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

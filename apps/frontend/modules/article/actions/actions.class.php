@@ -30,6 +30,9 @@ class articleActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
+    if($request->getParameter('id')) {
+      $this->getUser()->setAttribute('lyra_ctype_id', $request->getParameter('id', 0));
+    }
     $this->form = new LyraArticleForm(null, array('user'=>$this->getUser()));
   }
 

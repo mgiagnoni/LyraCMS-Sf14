@@ -5,6 +5,9 @@ LyraCatalog:
   livello:
     name: Livello
     is_active: true
+  test:
+    name: test
+    is_active: true
 
 LyraLabel:
   Rarg:
@@ -50,3 +53,18 @@ LyraLabel:
         name: Avanzato
         is_active: true
         LabelCatalog: livello
+  Rtest:
+    name: label_test
+    is_active: true
+    LabelCatalog: test
+    children:
+      child_1:
+        name: child_1
+        is_active: true
+        LabelCatalog: test
+      child_2:
+        name: child_2
+        is_active: true
+        LabelCatalog: test
+
+

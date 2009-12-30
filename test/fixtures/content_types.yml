@@ -2,4 +2,4 @@ LyraContentType:
   Articolo:
     name: Articoli
     module: article
-    ContentTypeCatalogs: [argomento,livello]
+    ContentTypeCatalogs: [argomento,livello,test]

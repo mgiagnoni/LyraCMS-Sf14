@@ -191,3 +191,39 @@ th
 {
   min-width: 105px;
 }
+/* Admin form */
+.sf_admin_col_2, .sf_admin_col
+{
+  float: left;
+}
+.sf_admin_col
+{
+  width: 455px;
+}
+.sf_admin_col_2
+{
+  margin-left: 5px;
+  width: 380px;
+}
+#sf_admin_container .sf_admin_form_row .content
+{
+  padding-left: 5px;
+}
+#sf_admin_container ul.sf_admin_actions
+{
+  clear:both;
+}
+#sf_admin_container ul li
+{
+  list-style-type: none;
+  list-style-image: none;
+}
+#sf_admin_container ul label
+{
+  display: block;
+}
+#sf_admin_container select.labels
+{
+  margin-bottom: 12px;
+  width: 130px;
+}

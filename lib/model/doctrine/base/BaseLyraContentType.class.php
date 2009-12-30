@@ -12,6 +12,7 @@
  * @property string $module
  * @property boolean $is_active
  * @property Doctrine_Collection $ContentTypeCatalogs
+ * @property Doctrine_Collection $Contents
  * @property Doctrine_Collection $LyraContentTypeCatalog
  * 
  * @method integer             getId()                     Returns the current record's "id" value
@@ -21,6 +22,7 @@
  * @method string              getModule()                 Returns the current record's "module" value
  * @method boolean             getIsActive()               Returns the current record's "is_active" value
  * @method Doctrine_Collection getContentTypeCatalogs()    Returns the current record's "ContentTypeCatalogs" collection
+ * @method Doctrine_Collection getContents()               Returns the current record's "Contents" collection
  * @method Doctrine_Collection getLyraContentTypeCatalog() Returns the current record's "LyraContentTypeCatalog" collection
  * @method LyraContentType     setId()                     Sets the current record's "id" value
  * @method LyraContentType     setName()                   Sets the current record's "name" value
@@ -29,6 +31,7 @@
  * @method LyraContentType     setModule()                 Sets the current record's "module" value
  * @method LyraContentType     setIsActive()               Sets the current record's "is_active" value
  * @method LyraContentType     setContentTypeCatalogs()    Sets the current record's "ContentTypeCatalogs" collection
+ * @method LyraContentType     setContents()               Sets the current record's "Contents" collection
  * @method LyraContentType     setLyraContentTypeCatalog() Sets the current record's "LyraContentTypeCatalog" collection
  * 
  * @package    lyra
@@ -81,6 +84,10 @@ abstract class BaseLyraContentType extends sfDoctrineRecord
              'refClass' => 'LyraContentTypeCatalog',
              'local' => 'ctype_id',
              'foreign' => 'catalog_id'));
+
+        $this->hasMany('LyraArticle as Contents', array(
+             'local' => 'id',
+             'foreign' => 'ctype_id'));
 
         $this->hasMany('LyraContentTypeCatalog', array(
              'local' => 'id',

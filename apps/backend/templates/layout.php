@@ -24,7 +24,7 @@
             <?php echo link_to(__('MENU_HOME'), '@homepage') ?>
           </li>
           <li <?php echo ($module == 'article' ? 'class="active"' : ''); ?>>
-            <?php echo link_to(__('MENU_ARTICLES'), '@lyra_article_article') ?>
+            <?php echo link_to(__('MENU_ARTICLES'), '@lyra_article_article?id=1') ?>
           </li>
           <li <?php echo ($module == 'comment' ? 'class="active"' : ''); ?>>
             <?php echo link_to(__('MENU_COMMENTS'), '@lyra_comment_comment') ?>

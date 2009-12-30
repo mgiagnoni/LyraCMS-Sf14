@@ -16,6 +16,7 @@ abstract class BaseLyraArticleForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'                  => new sfWidgetFormInputHidden(),
+      'ctype_id'            => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('ContentType'), 'add_empty' => true)),
       'title'               => new sfWidgetFormInputText(),
       'subtitle'            => new sfWidgetFormInputText(),
       'summary'             => new sfWidgetFormTextarea(),
@@ -42,6 +43,7 @@ abstract class BaseLyraArticleForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'                  => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
+      'ctype_id'            => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('ContentType'), 'required' => false)),
       'title'               => new sfValidatorString(array('max_length' => 255)),
       'subtitle'            => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'summary'             => new sfValidatorString(array('required' => false)),

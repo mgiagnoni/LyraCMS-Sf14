@@ -1,7 +1,7 @@
 <?php
 include(dirname(__FILE__).'/../../bootstrap/Doctrine.php');
 
-$t = new lime_test(8, new lime_output_color());
+$t = new lime_test(11, new lime_output_color());
 
 $t->comment('->save()');
 $article = create_article();
@@ -27,6 +27,21 @@ $comment->is_active = 1;
 $comment->save();
 $t->is($article->countComments(), 1, '->countComments() = 1');
 $t->is($article->countActiveComments(), 1, '->countActiveComments() = 1');
+$t->comment('Add 2 labels');
+$label1 = Doctrine::getTable('LyraLabel')->findOneByName('child_1');
+$label2 = Doctrine::getTable('LyraLabel')->findOneByName('child_2');
+$article->link('ArticleLabels', array($label1->id, $label2->id), true);
+$id = $article->id;
+$labels = Doctrine::getTable('LyraArticleLabel')->findByArticleId($id);
+$t->is(count($labels), 2, '->save() correctly links article and labels');
+$t->comment('Remove 1 label');
+$article->unlink('ArticleLabels', array($label1->id), true);
+$labels = Doctrine::getTable('LyraArticleLabel')->findByArticleId($id);
+$t->is(count($labels), 1, '->save() correctly unlinks article and label');
+$t->comment('Delete article');
+$article->delete();
+$labels = Doctrine::getTable('LyraArticleLabel')->findByArticleId($id);
+$t->is(count($labels), 0, '->delete() correctly removes article / label links');
 
 function create_article($defaults = array())
 {

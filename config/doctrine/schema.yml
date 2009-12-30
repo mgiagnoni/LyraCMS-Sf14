@@ -15,6 +15,8 @@ LyraArticle:
       type: integer(4)
       primary: true
       autoincrement: true
+    ctype_id:
+      type: integer(4)
     title:
       type: string(255)
       notnull: true
@@ -77,6 +79,13 @@ LyraArticle:
       local: updated_by
       foreign: id
       foreignAlias: UpdatedArticles
+    ContentType:
+      class: LyraContentType
+      local: ctype_id
+      foreign: id
+      foreignAlias: Contents
+      onDelete: CASCADE
+      
 LyraComment:
   tableName: comments
   actAs:

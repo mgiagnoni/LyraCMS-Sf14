@@ -1,3 +1,7 @@
+<?php
+$action = $sf_request->getParameter('action');
+$fw = ($action == 'edit' || $action == 'new' || $action == 'update' || $action == 'create') ? '-full-width' : '';
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -27,7 +31,7 @@
          <h3><?php include_slot('page_title'); ?></h3>
         </div>
         <div id="contentarea">
-          <div id="leftbar">
+          <div id="leftbar<?php echo $fw ?>">
             <?php if ($sf_user->hasFlash('notice')): ?>
             <div class="flash_notice">
               <?php echo __($sf_user->getFlash('notice')) ?>
@@ -41,10 +45,12 @@
             <?php endif; ?>
             <?php echo $sf_content ?>
           </div>
+          <?php if(!$fw): ?>
           <div id="rightbar">
             <?php include_component('article', 'labels', array('catalog'=>'Argomento')) ?>
             <?php include_component('article', 'archive') ?>
           </div>
+          <?php endif; ?>
         </div>
         <div id="footer">
           <div id="lyra-powered">

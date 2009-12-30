@@ -16,7 +16,6 @@ class labelActions extends autoLabelActions
   public function executeIndex(sfWebRequest $request)
   {
     if($request->getParameter('id')) {
-      //$this->setFilters(array('catalog_id'=>$request->getParameter('id')));
       $this->getUser()->setAttribute('lyra_catalog_id', $request->getParameter('id', 0));
     }
 

@@ -1,23 +1,37 @@
 LyraArticle:
   art1:
-    title: Un articolo su PHP
-    summary: Sommario primo articolo
-    content: Contenuto primo articolo
-    meta_title: Meta Title di articolo su PHP
-    meta_descr: Meta Description di articolo su PHP
+    title: art1
+    summary: featured article
+    content: content
+    meta_title: Meta Title 1
+    meta_descr: Meta Description 1
     is_featured: true
     is_active: true
-    ArticleLabels: [Php,Intermedio]
+    ArticleLabels: [child_1]
     ArticleCreatedBy: admin
     ArticleUpdatedBy: admin
+    ContentType: Articolo
   art2:
-    title: Un articolo su Mootools
-    summary: Sommario secondo articolo
-    content: Contenuto secondo articolo
-    meta_title: Meta Title di articolo su Mootools
-    meta_descr: Meta Description di articolo su Mootools
-    is_featured: true
+    title: art2
+    summary: unfeatured article
+    content: content
+    meta_title: Meta Title 2
+    meta_descr: Meta Description 2
+    is_featured: false
     is_active: true
-    ArticleLabels: [Mootools,Elementare]
+    ArticleLabels: [child_2]
     ArticleUpdatedBy: admin
     ArticleCreatedBy: admin
+    ContentType: Articolo
+  art3:
+    title: art3
+    summary: featured unplished article
+    content: content
+    meta_title: Meta Title 3
+    meta_descr: Meta Description 3
+    is_featured: true
+    is_active: false
+    ArticleLabels: [child_2]
+    ArticleUpdatedBy: admin
+    ArticleCreatedBy: admin
+    ContentType: Articolo
