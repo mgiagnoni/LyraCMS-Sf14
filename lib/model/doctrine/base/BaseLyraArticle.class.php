@@ -25,6 +25,8 @@
  * @property integer $created_by
  * @property integer $updated_by
  * @property integer $locked_by
+ * @property integer $num_comments
+ * @property integer $num_active_comments
  * @property Doctrine_Collection $ArticleLabels
  * @property sfGuardUser $ArticleCreatedBy
  * @property sfGuardUser $ArticleUpdatedBy
@@ -32,58 +34,62 @@
  * @property Doctrine_Collection $ArticleComments
  * @property Doctrine_Collection $LyraArticleLabel
  * 
- * @method integer             getId()               Returns the current record's "id" value
- * @method integer             getCtypeId()          Returns the current record's "ctype_id" value
- * @method string              getTitle()            Returns the current record's "title" value
- * @method string              getSubtitle()         Returns the current record's "subtitle" value
- * @method clob                getSummary()          Returns the current record's "summary" value
- * @method clob                getContent()          Returns the current record's "content" value
- * @method string              getMetaTitle()        Returns the current record's "meta_title" value
- * @method string              getMetaDescr()        Returns the current record's "meta_descr" value
- * @method string              getMetaKeys()         Returns the current record's "meta_keys" value
- * @method string              getMetaRobots()       Returns the current record's "meta_robots" value
- * @method boolean             getIsActive()         Returns the current record's "is_active" value
- * @method boolean             getIsFeatured()       Returns the current record's "is_featured" value
- * @method boolean             getIsSticky()         Returns the current record's "is_sticky" value
- * @method timestamp           getPublishStart()     Returns the current record's "publish_start" value
- * @method timestamp           getPublishEnd()       Returns the current record's "publish_end" value
- * @method integer             getStatus()           Returns the current record's "status" value
- * @method clob                getOptions()          Returns the current record's "options" value
- * @method integer             getCreatedBy()        Returns the current record's "created_by" value
- * @method integer             getUpdatedBy()        Returns the current record's "updated_by" value
- * @method integer             getLockedBy()         Returns the current record's "locked_by" value
- * @method Doctrine_Collection getArticleLabels()    Returns the current record's "ArticleLabels" collection
- * @method sfGuardUser         getArticleCreatedBy() Returns the current record's "ArticleCreatedBy" value
- * @method sfGuardUser         getArticleUpdatedBy() Returns the current record's "ArticleUpdatedBy" value
- * @method LyraContentType     getContentType()      Returns the current record's "ContentType" value
- * @method Doctrine_Collection getArticleComments()  Returns the current record's "ArticleComments" collection
- * @method Doctrine_Collection getLyraArticleLabel() Returns the current record's "LyraArticleLabel" collection
- * @method LyraArticle         setId()               Sets the current record's "id" value
- * @method LyraArticle         setCtypeId()          Sets the current record's "ctype_id" value
- * @method LyraArticle         setTitle()            Sets the current record's "title" value
- * @method LyraArticle         setSubtitle()         Sets the current record's "subtitle" value
- * @method LyraArticle         setSummary()          Sets the current record's "summary" value
- * @method LyraArticle         setContent()          Sets the current record's "content" value
- * @method LyraArticle         setMetaTitle()        Sets the current record's "meta_title" value
- * @method LyraArticle         setMetaDescr()        Sets the current record's "meta_descr" value
- * @method LyraArticle         setMetaKeys()         Sets the current record's "meta_keys" value
- * @method LyraArticle         setMetaRobots()       Sets the current record's "meta_robots" value
- * @method LyraArticle         setIsActive()         Sets the current record's "is_active" value
- * @method LyraArticle         setIsFeatured()       Sets the current record's "is_featured" value
- * @method LyraArticle         setIsSticky()         Sets the current record's "is_sticky" value
- * @method LyraArticle         setPublishStart()     Sets the current record's "publish_start" value
- * @method LyraArticle         setPublishEnd()       Sets the current record's "publish_end" value
- * @method LyraArticle         setStatus()           Sets the current record's "status" value
- * @method LyraArticle         setOptions()          Sets the current record's "options" value
- * @method LyraArticle         setCreatedBy()        Sets the current record's "created_by" value
- * @method LyraArticle         setUpdatedBy()        Sets the current record's "updated_by" value
- * @method LyraArticle         setLockedBy()         Sets the current record's "locked_by" value
- * @method LyraArticle         setArticleLabels()    Sets the current record's "ArticleLabels" collection
- * @method LyraArticle         setArticleCreatedBy() Sets the current record's "ArticleCreatedBy" value
- * @method LyraArticle         setArticleUpdatedBy() Sets the current record's "ArticleUpdatedBy" value
- * @method LyraArticle         setContentType()      Sets the current record's "ContentType" value
- * @method LyraArticle         setArticleComments()  Sets the current record's "ArticleComments" collection
- * @method LyraArticle         setLyraArticleLabel() Sets the current record's "LyraArticleLabel" collection
+ * @method integer             getId()                  Returns the current record's "id" value
+ * @method integer             getCtypeId()             Returns the current record's "ctype_id" value
+ * @method string              getTitle()               Returns the current record's "title" value
+ * @method string              getSubtitle()            Returns the current record's "subtitle" value
+ * @method clob                getSummary()             Returns the current record's "summary" value
+ * @method clob                getContent()             Returns the current record's "content" value
+ * @method string              getMetaTitle()           Returns the current record's "meta_title" value
+ * @method string              getMetaDescr()           Returns the current record's "meta_descr" value
+ * @method string              getMetaKeys()            Returns the current record's "meta_keys" value
+ * @method string              getMetaRobots()          Returns the current record's "meta_robots" value
+ * @method boolean             getIsActive()            Returns the current record's "is_active" value
+ * @method boolean             getIsFeatured()          Returns the current record's "is_featured" value
+ * @method boolean             getIsSticky()            Returns the current record's "is_sticky" value
+ * @method timestamp           getPublishStart()        Returns the current record's "publish_start" value
+ * @method timestamp           getPublishEnd()          Returns the current record's "publish_end" value
+ * @method integer             getStatus()              Returns the current record's "status" value
+ * @method clob                getOptions()             Returns the current record's "options" value
+ * @method integer             getCreatedBy()           Returns the current record's "created_by" value
+ * @method integer             getUpdatedBy()           Returns the current record's "updated_by" value
+ * @method integer             getLockedBy()            Returns the current record's "locked_by" value
+ * @method integer             getNumComments()         Returns the current record's "num_comments" value
+ * @method integer             getNumActiveComments()   Returns the current record's "num_active_comments" value
+ * @method Doctrine_Collection getArticleLabels()       Returns the current record's "ArticleLabels" collection
+ * @method sfGuardUser         getArticleCreatedBy()    Returns the current record's "ArticleCreatedBy" value
+ * @method sfGuardUser         getArticleUpdatedBy()    Returns the current record's "ArticleUpdatedBy" value
+ * @method LyraContentType     getContentType()         Returns the current record's "ContentType" value
+ * @method Doctrine_Collection getArticleComments()     Returns the current record's "ArticleComments" collection
+ * @method Doctrine_Collection getLyraArticleLabel()    Returns the current record's "LyraArticleLabel" collection
+ * @method LyraArticle         setId()                  Sets the current record's "id" value
+ * @method LyraArticle         setCtypeId()             Sets the current record's "ctype_id" value
+ * @method LyraArticle         setTitle()               Sets the current record's "title" value
+ * @method LyraArticle         setSubtitle()            Sets the current record's "subtitle" value
+ * @method LyraArticle         setSummary()             Sets the current record's "summary" value
+ * @method LyraArticle         setContent()             Sets the current record's "content" value
+ * @method LyraArticle         setMetaTitle()           Sets the current record's "meta_title" value
+ * @method LyraArticle         setMetaDescr()           Sets the current record's "meta_descr" value
+ * @method LyraArticle         setMetaKeys()            Sets the current record's "meta_keys" value
+ * @method LyraArticle         setMetaRobots()          Sets the current record's "meta_robots" value
+ * @method LyraArticle         setIsActive()            Sets the current record's "is_active" value
+ * @method LyraArticle         setIsFeatured()          Sets the current record's "is_featured" value
+ * @method LyraArticle         setIsSticky()            Sets the current record's "is_sticky" value
+ * @method LyraArticle         setPublishStart()        Sets the current record's "publish_start" value
+ * @method LyraArticle         setPublishEnd()          Sets the current record's "publish_end" value
+ * @method LyraArticle         setStatus()              Sets the current record's "status" value
+ * @method LyraArticle         setOptions()             Sets the current record's "options" value
+ * @method LyraArticle         setCreatedBy()           Sets the current record's "created_by" value
+ * @method LyraArticle         setUpdatedBy()           Sets the current record's "updated_by" value
+ * @method LyraArticle         setLockedBy()            Sets the current record's "locked_by" value
+ * @method LyraArticle         setNumComments()         Sets the current record's "num_comments" value
+ * @method LyraArticle         setNumActiveComments()   Sets the current record's "num_active_comments" value
+ * @method LyraArticle         setArticleLabels()       Sets the current record's "ArticleLabels" collection
+ * @method LyraArticle         setArticleCreatedBy()    Sets the current record's "ArticleCreatedBy" value
+ * @method LyraArticle         setArticleUpdatedBy()    Sets the current record's "ArticleUpdatedBy" value
+ * @method LyraArticle         setContentType()         Sets the current record's "ContentType" value
+ * @method LyraArticle         setArticleComments()     Sets the current record's "ArticleComments" collection
+ * @method LyraArticle         setLyraArticleLabel()    Sets the current record's "LyraArticleLabel" collection
  * 
  * @package    lyra
  * @subpackage model
@@ -177,6 +183,18 @@ abstract class BaseLyraArticle extends sfDoctrineRecord
              ));
         $this->hasColumn('locked_by', 'integer', 4, array(
              'type' => 'integer',
+             'length' => '4',
+             ));
+        $this->hasColumn('num_comments', 'integer', 4, array(
+             'type' => 'integer',
+             'notnull' => true,
+             'default' => 0,
+             'length' => '4',
+             ));
+        $this->hasColumn('num_active_comments', 'integer', 4, array(
+             'type' => 'integer',
+             'notnull' => true,
+             'default' => 0,
              'length' => '4',
              ));
 

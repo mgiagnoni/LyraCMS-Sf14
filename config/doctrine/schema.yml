@@ -62,6 +62,14 @@ LyraArticle:
       type: integer(4)
     locked_by:
       type: integer(4)
+    num_comments:
+      type: integer(4)
+      notnull: true
+      default: 0
+    num_active_comments:
+      type: integer(4)
+      notnull: true
+      default: 0
   relations:
     ArticleLabels:
       class: LyraLabel
@@ -216,6 +224,7 @@ LyraLabel:
         local: updated_by
         foreign: id
         foreignAlias: UpdatedLabels
+
 LyraCatalog:
    tableName: catalogs
    actAs:

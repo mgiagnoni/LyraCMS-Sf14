@@ -1,5 +1,22 @@
 <?php
 
+/*
+ * This file is part of Lyra CMS. Lyra CMS is free software; you can redistribute
+ * it and/or modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of the License,
+ * or (at your option) any later version.
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, see <http://www.gnu.org/licenses>.
+ */
+
+/**
+ * articleActionsTest
+ *
+ * @package lyra
+ * @subpackage functional test
+ * @copyright Copyright (C) 2009-2010 Massimo Giagnoni. All rights reserved.
+ * @license GNU General Public License version 2 or later (see LICENSE.txt)
+ */
 include(dirname(__FILE__).'/../../bootstrap/functional.php');
 
 $browser = new LyraTestFunctional(new sfBrowser());
@@ -23,8 +40,10 @@ $browser->info('1 - The homepage')->
 $browser->setTester('doctrine', 'sfTesterDoctrine');
 $browser->signinOk(array('username'=>'admin','password'=>'admin'));
 $ctypes = Doctrine::getTable('LyraContentType')->findAll();
+$catalogs = $ctypes[0]->ContentTypeCatalogs;
+
 $browser->info('2 - Article form')->
-  info('  2.1 - Create an article')->
+  info('  2.1 - Show new article form')->
   with('user')->begin()->
     isAuthenticated(true)->
   end()->
@@ -34,7 +53,14 @@ $browser->info('2 - Article form')->
     isParameter('module', 'article')->
     isParameter('action', 'new')->
   end()->
-  
+
+  info('  2.2 - Check label selection lists');
+  foreach($catalogs as $c) {
+    $browser->with('response')->
+      checkElement('#article_labels_label_' . $c->id);
+  }
+
+  $browser->info('  2.3  - Submit form')->
   click('Save', array('article' => array(
       'title' => 'new article',
       'is_active' => true
@@ -64,13 +90,14 @@ $browser->info('2 - Article form')->
     ))->
   end()->
 
-  info('  2.2 - Submit invalid values')->
+  info('  2.4 - Show new article form')->
   get('/article/new?id=' . $ctypes[0]->id)->
   with('request')->begin()->
     isParameter('module', 'article')->
     isParameter('action', 'new')->
   end()->
 
+  info('  2.5 - Submit invalid values')->
   click('Save', array('article' => array()))->
 
   with('request')->begin()->
