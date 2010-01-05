@@ -15,7 +15,7 @@ class LyraCatalogForm extends BaseLyraCatalogForm
     $this->widgetSchema['name']->setLabel('NAME');
     $this->widgetSchema['description']->setLabel('DESCRIPTION');
     $this->widgetSchema['is_active']->setLabel('IS_ACTIVE');
-    $this->widgetSchema['catalog_content_types_list']->setLabel('CATALOG_CONTENT_TYPES');
+    $this->widgetSchema['catalog_content_types_list']->setLabel(false);
 
     $this->widgetSchema['catalog_content_types_list']->setOption('expanded', true);
   }

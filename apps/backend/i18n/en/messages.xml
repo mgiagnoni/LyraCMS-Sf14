@@ -13,264 +13,28 @@
         <target>Articles</target>
       </trans-unit>
       <trans-unit id="3">
-        <source>TITLE_ARTICLES</source>
-        <target>Article management</target>
-      </trans-unit>
-      <trans-unit id="4">
-        <source>TH_TITLE</source>
-        <target>Title</target>
-      </trans-unit>
-      <trans-unit id="5">
-        <source>TH_IS_ACTIVE</source>
-        <target>Published</target>
-      </trans-unit>
-      <trans-unit id="6">
-        <source>TH_CREATED_AT</source>
-        <target>Date</target>
-      </trans-unit>
-      <trans-unit id="7">
-        <source>TH_UPDATED_AT</source>
-        <target>Date Update</target>
-      </trans-unit>
-      <trans-unit id="8">
-        <source>TH_ID</source>
-        <target>ID</target>
-      </trans-unit>
-      <trans-unit id="9">
-        <source>Comments</source>
-        <target>Comments</target>
-      </trans-unit>
-      <trans-unit id="10">
-        <source>Published</source>
-        <target>Published</target>
-      </trans-unit>
-      <trans-unit id="11">
-        <source>LINK_T_PUBLISHED</source>
-        <target>Published</target>
-      </trans-unit>
-      <trans-unit id="12">
-        <source>LINK_T_UNPUBLISHED</source>
-        <target>Unpublished</target>
-      </trans-unit>
-      <trans-unit id="13">
-        <source>Front page</source>
-        <target>Front page</target>
-      </trans-unit>
-      <trans-unit id="14">
-        <source>LINK_T_FEATURED</source>
-        <target>On Front Page</target>
-      </trans-unit>
-      <trans-unit id="15">
-        <source>LINK_T_UNFEATURED</source>
-        <target>Not on Front Page</target>
-      </trans-unit>
-      <trans-unit id="16">
-        <source>TITLE</source>
-        <target>Title</target>
-      </trans-unit>
-      <trans-unit id="17">
-        <source>SUBTITLE</source>
-        <target>Subtitle</target>
-      </trans-unit>
-      <trans-unit id="18">
-        <source>SUMMARY</source>
-        <target>Summary</target>
-      </trans-unit>
-      <trans-unit id="19">
-        <source>CONTENT</source>
-        <target>Testo</target>
-      </trans-unit>
-      <trans-unit id="20">
-        <source>META_TITLE</source>
-        <target>Meta-title</target>
-      </trans-unit>
-      <trans-unit id="21">
-        <source>META_DESCR</source>
-        <target>Meta-description</target>
-      </trans-unit>
-      <trans-unit id="22">
-        <source>META_KEYS</source>
-        <target>Meta-keywords</target>
-      </trans-unit>
-      <trans-unit id="23">
-        <source>META_ROBOTS</source>
-        <target>Meta-robots</target>
-      </trans-unit>
-      <trans-unit id="24">
-        <source>IS_ACTIVE</source>
-        <target>Published</target>
-      </trans-unit>
-      <trans-unit id="25">
-        <source>IS_FEATURED</source>
-        <target>Front Page</target>
-      </trans-unit>
-      <trans-unit id="26">
-        <source>IS_STICKY</source>
-        <target>Sticky</target>
-      </trans-unit>
-      <trans-unit id="27">
-        <source>PUBLISH_START</source>
-        <target>Publish start</target>
-      </trans-unit>
-      <trans-unit id="28">
-        <source>PUBLISH_END</source>
-        <target>Publish end</target>
-      </trans-unit>
-      <trans-unit id="29">
-        <source>SLUG</source>
-        <target>Slug</target>
-      </trans-unit>
-      <trans-unit id="30">
-        <source>LINK_SHOW_COMMENTS</source>
-        <target>Show</target>
-      </trans-unit>
-      <trans-unit id="31">
-        <source>TITLE_COMMENTS</source>
-        <target>Comment management</target>
-      </trans-unit>
-      <trans-unit id="32">
-        <source>TH_ARTICLE_TITLE</source>
-        <target>Article</target>
-      </trans-unit>
-      <trans-unit id="33">
-        <source>TH_AUTHOR_NAME</source>
-        <target>Author</target>
-      </trans-unit>
-      <trans-unit id="34">
-        <source>TH_AUTHOR_EMAIL</source>
-        <target>E-mail</target>
-      </trans-unit>
-      <trans-unit id="35">
-        <source>TH_AUTHOR_URL</source>
-        <target>Web site</target>
-      </trans-unit>
-      <trans-unit id="36">
-        <source>TH_CONTENT</source>
-        <target>Comment</target>
-      </trans-unit>
-      <trans-unit id="37">
         <source>MENU_COMMENTS</source>
         <target>Comments</target>
       </trans-unit>
-      <trans-unit id="38">
-        <source>AUTHOR_NAME</source>
-        <target>Author</target>
-      </trans-unit>
-      <trans-unit id="39">
-        <source>AUTHOR_EMAIL</source>
-        <target>E-mail</target>
-      </trans-unit>
-      <trans-unit id="40">
-        <source>AUTHOR_URL</source>
-        <target>Web site</target>
-      </trans-unit>
-      <trans-unit id="41">
+      <trans-unit id="4">
         <source>MENU_CATALOGS</source>
         <target>Catalogs</target>
       </trans-unit>
-      <trans-unit id="42">
-        <source>TITLE_CATALOGS</source>
-        <target>Catalog Management</target>
-      </trans-unit>
-      <trans-unit id="43">
-        <source>TH_NAME</source>
-        <target>Name</target>
-      </trans-unit>
-      <trans-unit id="44">
-        <source>TH_LABELS</source>
-        <target>Labels</target>
-      </trans-unit>
-      <trans-unit id="45">
-        <source>TH_DESCRIPTION</source>
-        <target>Description</target>
-      </trans-unit>
-      <trans-unit id="46">
-        <source>LINK_SHOW_LABELS</source>
-        <target>Show</target>
-      </trans-unit>
-      <trans-unit id="47">
-        <source>NAME</source>
-        <target>Name</target>
-      </trans-unit>
-      <trans-unit id="48">
-        <source>DESCRIPTION</source>
-        <target>Description</target>
-      </trans-unit>
-      <trans-unit id="49">
-        <source>CATALOG_CONTENT_TYPES</source>
-        <target>Content types</target>
-      </trans-unit>
-      <trans-unit id="50">
-        <source>TITLE_LABELS</source>
-        <target>Label Management</target>
-      </trans-unit>
-      <trans-unit id="51">
-        <source>TITLE_CATALOG</source>
-        <target>(Catalog %catalog%)</target>
-      </trans-unit>
-      <trans-unit id="52">
-        <source>TH_ORDER</source>
-        <target>Order</target>
-      </trans-unit>
-      <trans-unit id="53">
-        <source>PARENT</source>
-        <target>Parent</target>
-      </trans-unit>
-      <trans-unit id="54">
+      <trans-unit id="5">
         <source>LINK_BACK</source>
         <target>« Go back</target>
       </trans-unit>
-      <trans-unit id="55">
-        <source>LINK_BACK_CATALOG</source>
-        <target>« Catalogs</target>
-      </trans-unit>
-      <trans-unit id="56">
-        <source>LINK_T_MOVE_UP</source>
-        <target>Move up</target>
-      </trans-unit>
-      <trans-unit id="57">
-        <source>LINK_T_MOVE_DOWN</source>
-        <target>Move down</target>
-      </trans-unit>
-      <trans-unit id="58">
+      <trans-unit id="6">
         <source>MENU_USERS</source>
         <target>Users</target>
       </trans-unit>
-      <trans-unit id="59">
+      <trans-unit id="7">
         <source>MENU_GROUPS</source>
         <target>Groups</target>
       </trans-unit>
-      <trans-unit id="60">
+      <trans-unit id="8">
         <source>MENU_LOGOUT</source>
         <target>Logout</target>
-      </trans-unit>
-      <trans-unit id="61">
-        <source>TITLE_EDIT_ARTICLE</source>
-        <target>Edit article</target>
-      </trans-unit>
-      <trans-unit id="62">
-        <source>TITLE_NEW_ARTICLE</source>
-        <target>New article</target>
-      </trans-unit>
-      <trans-unit id="63">
-        <source>PANEL_CONTENT</source>
-        <target>Content</target>
-      </trans-unit>
-      <trans-unit id="64">
-        <source>PANEL_SUMMARY</source>
-        <target>Summary</target>
-      </trans-unit>
-      <trans-unit id="65">
-        <source>PANEL_PUBLISH</source>
-        <target>Publish</target>
-      </trans-unit>
-      <trans-unit id="66">
-        <source>PANEL_LABELS</source>
-        <target>Labels</target>
-      </trans-unit>
-      <trans-unit id="67">
-        <source>PANEL_METATAGS</source>
-        <target>Metatags</target>
       </trans-unit>
     </body>
   </file>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file source-language="EN" target-language="en" datatype="plaintext" original="messages" date="2009-10-08T08:21:56Z" product-name="messages">
+    <header/>
+    <body>
+      <trans-unit id="1">
+        <source>TITLE_ARTICLES</source>
+        <target>Article management</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>TH_TITLE</source>
+        <target>Title</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>TH_IS_ACTIVE</source>
+        <target>Published</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>TH_CREATED_AT</source>
+        <target>Date</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>TH_UPDATED_AT</source>
+        <target>Date Update</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>TH_AUTHOR_NAME</source>
+        <target>Author</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>TH_ID</source>
+        <target>ID</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>TH_COMMENTS</source>
+        <target>Comments</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>TH_PUBLISHED</source>
+        <target>Published</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>LINK_T_PUBLISHED</source>
+        <target>Published</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>LINK_T_UNPUBLISHED</source>
+        <target>Unpublished</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>Front page</source>
+        <target>Front page</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>LINK_T_FEATURED</source>
+        <target>On Front Page</target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>LINK_T_UNFEATURED</source>
+        <target>Not on Front Page</target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>TITLE</source>
+        <target>Title</target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>SUBTITLE</source>
+        <target>Subtitle</target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>SUMMARY</source>
+        <target>Summary</target>
+      </trans-unit>
+      <trans-unit id="18">
+        <source>CONTENT</source>
+        <target>Testo</target>
+      </trans-unit>
+      <trans-unit id="19">
+        <source>META_TITLE</source>
+        <target>Meta-title</target>
+      </trans-unit>
+      <trans-unit id="20">
+        <source>META_DESCR</source>
+        <target>Meta-description</target>
+      </trans-unit>
+      <trans-unit id="21">
+        <source>META_KEYS</source>
+        <target>Meta-keywords</target>
+      </trans-unit>
+      <trans-unit id="22">
+        <source>META_ROBOTS</source>
+        <target>Meta-robots</target>
+      </trans-unit>
+      <trans-unit id="23">
+        <source>IS_ACTIVE</source>
+        <target>Published</target>
+      </trans-unit>
+      <trans-unit id="24">
+        <source>IS_FEATURED</source>
+        <target>Front Page</target>
+      </trans-unit>
+      <trans-unit id="25">
+        <source>IS_STICKY</source>
+        <target>Sticky</target>
+      </trans-unit>
+      <trans-unit id="26">
+        <source>PUBLISH_START</source>
+        <target>Publish start</target>
+      </trans-unit>
+      <trans-unit id="27">
+        <source>PUBLISH_END</source>
+        <target>Publish end</target>
+      </trans-unit>
+      <trans-unit id="28">
+        <source>SLUG</source>
+        <target>Slug</target>
+      </trans-unit>
+      <trans-unit id="29">
+        <source>LINK_SHOW_COMMENTS</source>
+        <target>Show</target>
+      </trans-unit>
+      <trans-unit id="30">
+        <source>TITLE_EDIT_ARTICLE</source>
+        <target>Edit article</target>
+      </trans-unit>
+      <trans-unit id="31">
+        <source>TITLE_NEW_ARTICLE</source>
+        <target>New article</target>
+      </trans-unit>
+      <trans-unit id="32">
+        <source>PANEL_CONTENT</source>
+        <target>Content</target>
+      </trans-unit>
+      <trans-unit id="33">
+        <source>PANEL_SUMMARY</source>
+        <target>Summary</target>
+      </trans-unit>
+      <trans-unit id="34">
+        <source>PANEL_PUBLISH</source>
+        <target>Publish</target>
+      </trans-unit>
+      <trans-unit id="35">
+        <source>PANEL_LABELS</source>
+        <target>Labels</target>
+      </trans-unit>
+      <trans-unit id="36">
+        <source>PANEL_METATAGS</source>
+        <target>Metatags</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

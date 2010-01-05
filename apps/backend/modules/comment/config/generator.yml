@@ -22,6 +22,7 @@ generator:
           author_email: {label: TH_AUTHOR_EMAIL}
           author_url: {label: TH_AUTHOR_URL}
           content: {label: TH_CONTENT}
+          published: {label: TH_PUBLISHED}
           created_at: {label: TH_CREATED_AT, date_format: dd.MM.yy hh:ss}
           updated_at: {label: TH_UPDATED_AT, date_format: dd.MM.yy hh:ss}
         batch_actions:

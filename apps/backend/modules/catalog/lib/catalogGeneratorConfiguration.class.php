@@ -10,4 +10,10 @@
  */
 class catalogGeneratorConfiguration extends BaseCatalogGeneratorConfiguration
 {
+  public function getFormOptions()
+  {
+    return array(
+      'break_at' => 'PANEL_CONTENT_TYPES'
+    );
+  }
 }

@@ -220,7 +220,11 @@ th
 }
 #sf_admin_container ul label
 {
-  display: block;
+ display: block;
+}
+#sf_admin_container ul.checkbox_list label
+{
+ display: inline !important;
 }
 #sf_admin_container select.labels
 {

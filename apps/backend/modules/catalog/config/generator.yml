@@ -22,8 +22,12 @@ generator:
           created_at: {label: TH_CREATED_AT, date_format: dd.MM.yy hh:ss}
           updated_at: {label: TH_UPDATED_AT, date_format: dd.MM.yy hh:ss}
           labels: {label: TH_LABELS}
+          published: {label: TH_PUBLISHED}
       filter:
         display: [name,is_active]
-      form:    ~
+      form:
+        display:
+          "NONE": [name,description,is_active]
+          PANEL_CONTENT_TYPES: [catalog_content_types_list]
       edit:    ~
       new:     ~

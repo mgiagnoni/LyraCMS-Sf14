@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file source-language="EN" target-language="it" datatype="plaintext" original="messages" date="2009-10-08T08:21:56Z" product-name="messages">
+    <header/>
+    <body>
+      <trans-unit id="1">
+        <source>TITLE_COMMENTS</source>
+        <target>Gestione Commenti</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>TH_ARTICLE_TITLE</source>
+        <target>Articolo</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>TH_AUTHOR_NAME</source>
+        <target>Autore</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>TH_AUTHOR_EMAIL</source>
+        <target>E-mail</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>TH_AUTHOR_URL</source>
+        <target>Sito web</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>TH_CONTENT</source>
+        <target>Commento</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>TH_PUBLISHED</source>
+        <target>Pubblicato</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>TH_CREATED_AT</source>
+        <target>Data</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>AUTHOR_NAME</source>
+        <target>Autore</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>AUTHOR_EMAIL</source>
+        <target>E-mail</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>AUTHOR_URL</source>
+        <target>Sito web</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>IS_ACTIVE</source>
+        <target>Pubblicato</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
