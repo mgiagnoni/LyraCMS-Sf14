@@ -226,6 +226,10 @@ th
 {
  display: inline !important;
 }
+#sf_admin_container ul.radio_list label
+{
+ display: inline !important;
+}
 #sf_admin_container select.labels
 {
   margin-bottom: 12px;

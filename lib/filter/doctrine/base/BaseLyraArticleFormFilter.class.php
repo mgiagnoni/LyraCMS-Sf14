@@ -6,75 +6,84 @@
  * @package    lyra
  * @subpackage filter
  * @author     Your name here
- * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfDoctrineFormFilterGeneratedInheritanceTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-abstract class BaseLyraArticleFormFilter extends BaseFormFilterDoctrine
+abstract class BaseLyraArticleFormFilter extends LyraContentFormFilter
 {
-  public function setup()
+  protected function setupInheritance()
   {
-    $this->setWidgets(array(
-      'ctype_id'            => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('ContentType'), 'add_empty' => true)),
-      'title'               => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'subtitle'            => new sfWidgetFormFilterInput(),
-      'summary'             => new sfWidgetFormFilterInput(),
-      'content'             => new sfWidgetFormFilterInput(),
-      'meta_title'          => new sfWidgetFormFilterInput(),
-      'meta_descr'          => new sfWidgetFormFilterInput(),
-      'meta_keys'           => new sfWidgetFormFilterInput(),
-      'meta_robots'         => new sfWidgetFormFilterInput(),
-      'is_active'           => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
-      'is_featured'         => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
-      'is_sticky'           => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
-      'publish_start'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
-      'publish_end'         => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
-      'status'              => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'options'             => new sfWidgetFormFilterInput(),
-      'created_by'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('ArticleCreatedBy'), 'add_empty' => true)),
-      'updated_by'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('ArticleUpdatedBy'), 'add_empty' => true)),
-      'locked_by'           => new sfWidgetFormFilterInput(),
-      'num_comments'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'num_active_comments' => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'created_at'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
-      'updated_at'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
-      'slug'                => new sfWidgetFormFilterInput(),
-      'article_labels_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'LyraLabel')),
-    ));
+    parent::setupInheritance();
 
-    $this->setValidators(array(
-      'ctype_id'            => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('ContentType'), 'column' => 'id')),
-      'title'               => new sfValidatorPass(array('required' => false)),
-      'subtitle'            => new sfValidatorPass(array('required' => false)),
-      'summary'             => new sfValidatorPass(array('required' => false)),
-      'content'             => new sfValidatorPass(array('required' => false)),
-      'meta_title'          => new sfValidatorPass(array('required' => false)),
-      'meta_descr'          => new sfValidatorPass(array('required' => false)),
-      'meta_keys'           => new sfValidatorPass(array('required' => false)),
-      'meta_robots'         => new sfValidatorPass(array('required' => false)),
-      'is_active'           => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
-      'is_featured'         => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
-      'is_sticky'           => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
-      'publish_start'       => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
-      'publish_end'         => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
-      'status'              => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'options'             => new sfValidatorPass(array('required' => false)),
-      'created_by'          => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('ArticleCreatedBy'), 'column' => 'id')),
-      'updated_by'          => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('ArticleUpdatedBy'), 'column' => 'id')),
-      'locked_by'           => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'num_comments'        => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'num_active_comments' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'created_at'          => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
-      'updated_at'          => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
-      'slug'                => new sfValidatorPass(array('required' => false)),
-      'article_labels_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'LyraLabel', 'required' => false)),
-    ));
+    $this->widgetSchema   ['title'] = new sfWidgetFormFilterInput(array('with_empty' => false));
+    $this->validatorSchema['title'] = new sfValidatorPass(array('required' => false));
+
+    $this->widgetSchema   ['subtitle'] = new sfWidgetFormFilterInput();
+    $this->validatorSchema['subtitle'] = new sfValidatorPass(array('required' => false));
+
+    $this->widgetSchema   ['summary'] = new sfWidgetFormFilterInput();
+    $this->validatorSchema['summary'] = new sfValidatorPass(array('required' => false));
+
+    $this->widgetSchema   ['content'] = new sfWidgetFormFilterInput();
+    $this->validatorSchema['content'] = new sfValidatorPass(array('required' => false));
+
+    $this->widgetSchema   ['meta_title'] = new sfWidgetFormFilterInput();
+    $this->validatorSchema['meta_title'] = new sfValidatorPass(array('required' => false));
+
+    $this->widgetSchema   ['meta_descr'] = new sfWidgetFormFilterInput();
+    $this->validatorSchema['meta_descr'] = new sfValidatorPass(array('required' => false));
+
+    $this->widgetSchema   ['meta_keys'] = new sfWidgetFormFilterInput();
+    $this->validatorSchema['meta_keys'] = new sfValidatorPass(array('required' => false));
+
+    $this->widgetSchema   ['meta_robots'] = new sfWidgetFormFilterInput();
+    $this->validatorSchema['meta_robots'] = new sfValidatorPass(array('required' => false));
+
+    $this->widgetSchema   ['is_active'] = new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no')));
+    $this->validatorSchema['is_active'] = new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0)));
+
+    $this->widgetSchema   ['is_featured'] = new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no')));
+    $this->validatorSchema['is_featured'] = new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0)));
+
+    $this->widgetSchema   ['is_sticky'] = new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no')));
+    $this->validatorSchema['is_sticky'] = new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0)));
+
+    $this->widgetSchema   ['publish_start'] = new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate()));
+    $this->validatorSchema['publish_start'] = new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59'))));
+
+    $this->widgetSchema   ['publish_end'] = new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate()));
+    $this->validatorSchema['publish_end'] = new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59'))));
+
+    $this->widgetSchema   ['status'] = new sfWidgetFormFilterInput(array('with_empty' => false));
+    $this->validatorSchema['status'] = new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false)));
+
+    $this->widgetSchema   ['created_by'] = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('ArticleCreatedBy'), 'add_empty' => true));
+    $this->validatorSchema['created_by'] = new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('ArticleCreatedBy'), 'column' => 'id'));
+
+    $this->widgetSchema   ['updated_by'] = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('ArticleUpdatedBy'), 'add_empty' => true));
+    $this->validatorSchema['updated_by'] = new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('ArticleUpdatedBy'), 'column' => 'id'));
+
+    $this->widgetSchema   ['locked_by'] = new sfWidgetFormFilterInput();
+    $this->validatorSchema['locked_by'] = new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false)));
+
+    $this->widgetSchema   ['num_comments'] = new sfWidgetFormFilterInput(array('with_empty' => false));
+    $this->validatorSchema['num_comments'] = new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false)));
+
+    $this->widgetSchema   ['num_active_comments'] = new sfWidgetFormFilterInput(array('with_empty' => false));
+    $this->validatorSchema['num_active_comments'] = new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false)));
+
+    $this->widgetSchema   ['created_at'] = new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false));
+    $this->validatorSchema['created_at'] = new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59'))));
+
+    $this->widgetSchema   ['updated_at'] = new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false));
+    $this->validatorSchema['updated_at'] = new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59'))));
+
+    $this->widgetSchema   ['slug'] = new sfWidgetFormFilterInput();
+    $this->validatorSchema['slug'] = new sfValidatorPass(array('required' => false));
+
+    $this->widgetSchema   ['article_labels_list'] = new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'LyraLabel'));
+    $this->validatorSchema['article_labels_list'] = new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'LyraLabel', 'required' => false));
 
     $this->widgetSchema->setNameFormat('lyra_article_filters[%s]');
-
-    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
-
-    $this->setupInheritance();
-
-    parent::setup();
   }
 
   public function addArticleLabelsListColumnQuery(Doctrine_Query $query, $field, $values)
@@ -100,33 +109,30 @@ abstract class BaseLyraArticleFormFilter extends BaseFormFilterDoctrine
 
   public function getFields()
   {
-    return array(
-      'id'                  => 'Number',
-      'ctype_id'            => 'ForeignKey',
-      'title'               => 'Text',
-      'subtitle'            => 'Text',
-      'summary'             => 'Text',
-      'content'             => 'Text',
-      'meta_title'          => 'Text',
-      'meta_descr'          => 'Text',
-      'meta_keys'           => 'Text',
-      'meta_robots'         => 'Text',
-      'is_active'           => 'Boolean',
-      'is_featured'         => 'Boolean',
-      'is_sticky'           => 'Boolean',
-      'publish_start'       => 'Date',
-      'publish_end'         => 'Date',
-      'status'              => 'Number',
-      'options'             => 'Text',
-      'created_by'          => 'ForeignKey',
-      'updated_by'          => 'ForeignKey',
-      'locked_by'           => 'Number',
-      'num_comments'        => 'Number',
+    return array_merge(parent::getFields(), array(
+      'title' => 'Text',
+      'subtitle' => 'Text',
+      'summary' => 'Text',
+      'content' => 'Text',
+      'meta_title' => 'Text',
+      'meta_descr' => 'Text',
+      'meta_keys' => 'Text',
+      'meta_robots' => 'Text',
+      'is_active' => 'Boolean',
+      'is_featured' => 'Boolean',
+      'is_sticky' => 'Boolean',
+      'publish_start' => 'Date',
+      'publish_end' => 'Date',
+      'status' => 'Number',
+      'created_by' => 'ForeignKey',
+      'updated_by' => 'ForeignKey',
+      'locked_by' => 'Number',
+      'num_comments' => 'Number',
       'num_active_comments' => 'Number',
-      'created_at'          => 'Date',
-      'updated_at'          => 'Date',
-      'slug'                => 'Text',
+      'created_at' => 'Date',
+      'updated_at' => 'Date',
+      'slug' => 'Text',
       'article_labels_list' => 'ManyKey',
-    );
+    ));
   }
 }

@@ -10,7 +10,7 @@
  */
 
 /**
- * articleActionsTest
+ * contentActionsTest
  *
  * @package lyra
  * @subpackage functional test
@@ -20,48 +20,42 @@
 include(dirname(__FILE__).'/../../bootstrap/functional.php');
 
 $browser = new LyraTestFunctional(new sfBrowser());
-//$browser->loadData();
 $browser->signinOk(array('username'=>'admin','password'=>'admin'));
 
-$ctype = Doctrine::getTable('LyraContentType')
-  ->findOneByModule('article');
-
-$browser->info('1 - Article list')->
-  get('/article?id=' . $ctype->id)->
+$browser->info('1 - Content types list')->
+  get('/content/index')->
 
   with('request')->begin()->
-    isParameter('module', 'article')->
+    isParameter('module', 'content')->
     isParameter('action', 'index')->
   end()->
 
   with('response')->begin()->
     isStatusCode(200)->
     checkElement('body', '!/This is a temporary page/')->
-  end()
-;
+  end()->
 
-$browser->info('2 - New article')->
-  get('/article/new')->
+  info('2 - Edit content type')->
+  click('td.sf_admin_list_td_name a')->
 
   with('request')->begin()->
-    isParameter('module', 'article')->
-    isParameter('action', 'new')->
+    isParameter('module', 'content')->
+    isParameter('action', 'edit')->
   end()->
 
   with('response')->begin()->
     isStatusCode(200)->
   end()->
-  
+
   info('  2.1 - Submit form')->
-  select('article_lyra_params_show_read_more_1')->
-  click('li.sf_admin_action_save input', array('article' => array(
-      'title' => 'backend test',
-      'content' => 'test'
+  select('content_type_lyra_params_show_read_more_0')->
+  click('li.sf_admin_action_save input', array('content_type' => array(
+      'description' => 'backend test'
    )))->
 
   with('request')->begin()->
-    isParameter('module', 'article')->
-    isParameter('action', 'create')->
+    isParameter('module', 'content')->
+    isParameter('action', 'update')->
   end()->
 
   with('form')->begin()->
@@ -72,13 +66,12 @@ $browser->info('2 - New article')->
 ;
 
 $browser->setTester('doctrine', 'sfTesterDoctrine');
+$q = Doctrine_Query::create()
+  ->from('LyraContentType ct')
+  ->where("ct.description = 'backend test'")
+  ->andWhere("ct.params LIKE '%s:14:\"show_read_more\";b:0%'");
 
-$browser->info('  2.2  - Check created article')->
+$browser->info('  2.2 - Check edited fields')->
   with('doctrine')->begin()->
-    check('LyraArticle', array(
-      'title' => 'backend test',
-      'ctype_id' => $ctype->id,
-      'params' => serialize(array('show_read_more' => true))
-    ))->
-  end()
-;
+    check('LyraContentType', $q)->
+  end();

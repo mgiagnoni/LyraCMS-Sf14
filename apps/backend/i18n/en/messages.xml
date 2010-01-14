@@ -36,6 +36,10 @@
         <source>MENU_LOGOUT</source>
         <target>Logout</target>
       </trans-unit>
+      <trans-unit id="9">
+        <source>MENU_CONTENT</source>
+        <target>Content Types</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

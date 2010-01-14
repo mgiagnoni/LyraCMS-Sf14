@@ -110,3 +110,13 @@ $browser->info('2 - Article form')->
     isError('title', 'required')->
   end()
   ;
+
+  $browser->info('3 - Article configuration')->
+  get('/')->
+  with('response')->begin()->
+    info('  3.1 - Readmore link shown')->
+    checkElement('.article-readmore a[title="art1"]')->
+    info('  3.2 - Readmore link hidden')->
+    checkElement('.article-readmore a[title="art4"]', false)->
+  end()
+  ;

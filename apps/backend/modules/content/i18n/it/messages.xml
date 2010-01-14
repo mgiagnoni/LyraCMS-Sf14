@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file source-language="EN" target-language="it" datatype="plaintext" original="messages" date="2009-10-08T08:21:56Z" product-name="messages">
+    <header/>
+    <body>
+      <trans-unit id="1">
+        <source>CONTENT_TITLE</source>
+        <target>Gestione tipi di contenuto</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>TH_NAME</source>
+        <target>Nome</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>TH_DESCRIPTION</source>
+        <target>Descrizione</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>TH_MODULE</source>
+        <target>Modulo</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>TH_CREATED_AT</source>
+        <target>Data</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>TH_ID</source>
+        <target>Id</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>NAME</source>
+        <target>Nome</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>DESCRIPTION</source>
+        <target>Descrizione</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>MODULE</source>
+        <target>Modulo</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>IS_ACTIVE</source>
+        <target>Pubblicato</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>PANEL_PARAMS</source>
+        <target>Opzioni</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

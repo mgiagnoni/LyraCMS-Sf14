@@ -1,30 +1,44 @@
 <?php
 
+/*
+ * This file is part of Lyra CMS. Lyra CMS is free software; you can redistribute
+ * it and/or modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of the License,
+ * or (at your option) any later version.
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, see <http://www.gnu.org/licenses>.
+ */
+
 /**
- * LyraArticle form.
+ * LyraArticleForm
  *
- * @package    form
- * @subpackage LyraArticle
- * @version    SVN: $Id: sfDoctrineFormTemplate.php 6174 2007-11-27 06:22:40Z fabien $
+ * @package lyra
+ * @subpackage form
+ * @copyright Copyright (C) 2009-2010 Massimo Giagnoni. All rights reserved.
+ * @license GNU General Public License version 2 or later (see LICENSE.txt)
  */
 class LyraArticleForm extends BaseLyraArticleForm
 {
   public
     $panels = null,
     $break_at = null;
-    
+  protected
+    $ctype_id = null;
+
   public function configure()
   {
     //remove fields that must never be displayed in form
     unset(
       $this['status'],
-      $this['options'],
+      $this['params'],
       $this['created_by'],
       $this['updated_by'],
       $this['locked_by'],
       $this['created_at'],
       $this['updated_at'],
-      $this['article_labels_list']
+      $this['article_labels_list'],
+      $this['num_comments'],
+      $this['num_active_comments']
     );
 
     //FCKeditor
@@ -81,19 +95,19 @@ class LyraArticleForm extends BaseLyraArticleForm
 
     if($this->isNew()) {
       $user = $this->getOption('user');
-      $ctype_id = $user->getAttribute('lyra_ctype_id');
-      $this->setDefault('ctype_id', $ctype_id);
+      $this->ctype_id = $user->getAttribute('lyra_ctype_id');
+      $this->setDefault('ctype_id', $this->ctype_id);
       $selected = array();
     } else {
-      $ctype_id = $this->getObject()->getCtypeId();
+      $this->ctype_id = $this->getObject()->getCtypeId();
       $selected= $this->getObject()
         ->getArticleLabels()
         ->getPrimaryKeys();
     }
     
-    $label_lists_form = new LyraLabelListsForm(array(), array('ctype_id' => $ctype_id, 'selected' => $selected));
+    //Embed form displaying label selection lists
+    $label_lists_form = new LyraLabelListsForm(array(), array('ctype_id' => $this->ctype_id, 'selected' => $selected));
     $this->embedForm('labels', $label_lists_form);
-    //$this->widgetSchema->moveField('labels', sfWidgetFormSchema::AFTER, 'subtitle');
     $this->widgetSchema['labels']->setLabel(false);
     $this->widgetSchema->setFormFormatterName('LyraContent');
     $this->widgetSchema->setNameFormat('article[%s]');
@@ -112,6 +126,7 @@ class LyraArticleForm extends BaseLyraArticleForm
         $item->setUpdatedBy($uid);
       }
     }
+    return $item;
   }
 
   protected function doSave($con = null)
@@ -140,9 +155,14 @@ class LyraArticleForm extends BaseLyraArticleForm
     $values = array();
     $lists_values = $this->getValue('labels');
 
-    foreach ($ctype->ContentTypeCatalogs as $cg) {
+    $catalogs = Doctrine_Query::create()
+      ->from('LyraContentTypeCatalog c')
+      ->where('c.ctype_id = ?')
+      ->execute(array($this->ctype_id), Doctrine::HYDRATE_ARRAY);
+
+    foreach ($catalogs as $cg) {
       //get selected values of each list
-      $v = $lists_values['label_'.$cg->getId()];
+      $v = $lists_values['label_' . $cg['catalog_id']];
       if (!is_array($v)) {
           $v = array();
       }

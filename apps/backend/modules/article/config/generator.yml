@@ -32,6 +32,7 @@ generator:
       filter:
         display: [title,is_active]
       form:
+        class: BackendLyraArticleForm
         display:
           "NONE": [ctype_id, title, slug, subtitle]
           PANEL_CONTENT: [content]
@@ -39,6 +40,7 @@ generator:
           PANEL_PUBLISH: [is_active, is_featured, is_sticky, publish_start, publish_end]
           PANEL_LABELS: [labels]
           PANEL_METATAGS: [meta_title, meta_descr, meta_keys, meta_robots]
+          PANEL_PARAMS: [lyra_params]
       edit:
         title: TITLE_EDIT_ARTICLE
       new:

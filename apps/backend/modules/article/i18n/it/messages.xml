@@ -148,6 +148,10 @@
         <source>PANEL_METATAGS</source>
         <target>Metatags</target>
       </trans-unit>
+      <trans-unit id="37">
+        <source>PANEL_PARAMS</source>
+        <target>Opzioni</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

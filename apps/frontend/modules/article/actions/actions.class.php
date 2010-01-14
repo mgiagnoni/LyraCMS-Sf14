@@ -1,11 +1,20 @@
 <?php
+/*
+ * This file is part of Lyra CMS. Lyra CMS is free software; you can redistribute
+ * it and/or modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of the License,
+ * or (at your option) any later version.
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, see <http://www.gnu.org/licenses>.
+ */
+
 /**
- * article actions.
+ * articleActions
  *
- * @package    lyra
+ * @package lyra
  * @subpackage article
- * @author     Your name here
- * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
+ * @copyright Copyright (C) 2009-2010 Massimo Giagnoni. All rights reserved.
+ * @license GNU General Public License version 2 or later (see LICENSE.txt)
  */
 class articleActions extends sfActions
 {
@@ -17,15 +26,17 @@ class articleActions extends sfActions
 
   public function executeShow(sfWebRequest $request)
   {
-    //$this->item = Doctrine::getTable('LyraArticle')
-    //  ->find($request->getParameter('id'));
-    //$this->forward404Unless($this->item);
     $this->item = $this->getRoute()->getObject();
     $this->item->setMetaTags($this->getResponse());
-    //Gets article comments list
-    $this->comments = $this->item->getActiveComments();
-    $this->form = new LyraCommentForm();
-    $this->form->setDefault('article_id', $this->item->getId());
+    $this->form = $this->comments = null;
+    if($this->item->getCfg('show_comments')) {
+      //Gets article comments list
+      $this->comments = $this->item->getActiveComments();
+    }
+    if($this->item->getCfg('allow_comments')) {
+      $this->form = new LyraCommentForm();
+      $this->form->setDefault('article_id', $this->item->getId());
+    }
   }
 
   public function executeNew(sfWebRequest $request)
@@ -76,8 +87,9 @@ class articleActions extends sfActions
   public function executeComment(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod('post'));
-    $this->item = Doctrine::getTable('LyraArticle')->find($request->getParameter('id'));
-    $this->forward404Unless($this->item);
+    $this->item = Doctrine::getTable('LyraArticle')
+      ->find($request->getParameter('id'));
+    $this->forward404Unless($this->item && $this->item->getCfg('allow_comments'));
     $this->form = new LyraCommentForm();
     $this->processCommentForm($request, $this->form);
     $this->comments = $this->item->getActiveComments();
@@ -85,10 +97,6 @@ class articleActions extends sfActions
   }
   public function executeLabel(sfWebRequest $request)
   {
-    /*$this->forward404Unless(
-      $this->label = Doctrine::getTable('LyraLabel')
-        ->find($request->getParameter('id'))
-    );*/
     $this->label = $this->getRoute()->getObject();
     $this->label->setMetaTags($this->getResponse());
     $this->pager = new sfDoctrinePager('LyraLabel', 25);

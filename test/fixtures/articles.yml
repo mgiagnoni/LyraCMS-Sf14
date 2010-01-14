@@ -35,3 +35,17 @@ LyraArticle:
     ArticleUpdatedBy: admin
     ArticleCreatedBy: admin
     ContentType: Articolo
+  art4:
+    title: art4
+    summary: test config option
+    content: no readmore
+    meta_title: Meta Title 4
+    meta_descr: Meta Description 4
+    is_featured: true
+    is_active: true
+    params: |
+      a:1:{s:14:"show_read_more";b:0;}
+    ArticleLabels: [child_2]
+    ArticleUpdatedBy: admin
+    ArticleCreatedBy: admin
+    ContentType: Articolo

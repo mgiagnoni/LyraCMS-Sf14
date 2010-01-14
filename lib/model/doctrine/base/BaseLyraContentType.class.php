@@ -11,6 +11,7 @@
  * @property string $db_name
  * @property string $module
  * @property boolean $is_active
+ * @property clob $params
  * @property Doctrine_Collection $ContentTypeCatalogs
  * @property Doctrine_Collection $Contents
  * @property Doctrine_Collection $LyraContentTypeCatalog
@@ -21,6 +22,7 @@
  * @method string              getDbName()                 Returns the current record's "db_name" value
  * @method string              getModule()                 Returns the current record's "module" value
  * @method boolean             getIsActive()               Returns the current record's "is_active" value
+ * @method clob                getParams()                 Returns the current record's "params" value
  * @method Doctrine_Collection getContentTypeCatalogs()    Returns the current record's "ContentTypeCatalogs" collection
  * @method Doctrine_Collection getContents()               Returns the current record's "Contents" collection
  * @method Doctrine_Collection getLyraContentTypeCatalog() Returns the current record's "LyraContentTypeCatalog" collection
@@ -30,6 +32,7 @@
  * @method LyraContentType     setDbName()                 Sets the current record's "db_name" value
  * @method LyraContentType     setModule()                 Sets the current record's "module" value
  * @method LyraContentType     setIsActive()               Sets the current record's "is_active" value
+ * @method LyraContentType     setParams()                 Sets the current record's "params" value
  * @method LyraContentType     setContentTypeCatalogs()    Sets the current record's "ContentTypeCatalogs" collection
  * @method LyraContentType     setContents()               Sets the current record's "Contents" collection
  * @method LyraContentType     setLyraContentTypeCatalog() Sets the current record's "LyraContentTypeCatalog" collection
@@ -71,6 +74,9 @@ abstract class BaseLyraContentType extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => true,
              'default' => false,
+             ));
+        $this->hasColumn('params', 'clob', null, array(
+             'type' => 'clob',
              ));
 
         $this->option('collate', 'utf8_unicode_ci');

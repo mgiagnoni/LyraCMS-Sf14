@@ -1,0 +1,34 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           LyraContentType
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          lyra_content_type
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        title: CONTENT_TITLE
+        display: [=name,description,module,created_at,id]
+        fields:
+          name: {label: TH_NAME}
+          description: {label: TH_DESCRIPTION}
+          module: {label: TH_MODULE}
+          created_at: {label: TH_CREATED_AT, date_format: dd.MM.yy hh:mm}
+          id: {label: TH_ID}
+        actions: {}
+      filter:
+        display: [name]
+      form:
+        display:
+          "NONE": [name,description,module,is_active]
+          PANEL_PARAMS: [lyra_params]
+      edit:    ~
+      new:     ~

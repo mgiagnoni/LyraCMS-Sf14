@@ -1,7 +1,13 @@
 <?php use_helper('Date') ?>
 <?php foreach ($items as $item): ?>
   <h2 class="article-title">
-    <?php echo link_to($item->getTitle(), '@article_show?slug=' . $item->getSlug())?>
+    <?php
+    if($item->getCfg('linked_title')) {
+      echo link_to($item->getTitle(), '@article_show?slug='. $item->getSlug());
+    } else {
+      echo $item->getTitle();
+    }
+?>
   </h2>
   <?php include_partial('article/byline', array('item' => $item));?>
   <div class="article-summary">

@@ -23,6 +23,9 @@
           <li>
             <?php echo link_to(__('MENU_HOME'), '@homepage') ?>
           </li>
+          <li <?php echo ($module == 'content' ? 'class="active"' : ''); ?>>
+            <?php echo link_to(__('MENU_CONTENT'), '@lyra_content_type') ?>
+          </li>
           <li <?php echo ($module == 'article' ? 'class="active"' : ''); ?>>
             <?php echo link_to(__('MENU_ARTICLES'), '@lyra_article_article?id=1') ?>
           </li>

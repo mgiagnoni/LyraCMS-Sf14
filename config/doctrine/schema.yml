@@ -1,5 +1,15 @@
+LyraContent:
+  columns:
+    ctype_id:
+      type: integer(4)
+    params:
+      type: clob
+
 LyraArticle:
   tableName: articles
+  inheritance:
+    extends: LyraContent
+    type: concrete
   actAs:
     Timestampable: ~
     Sluggable:
@@ -15,8 +25,6 @@ LyraArticle:
       type: integer(4)
       primary: true
       autoincrement: true
-    ctype_id:
-      type: integer(4)
     title:
       type: string(255)
       notnull: true
@@ -54,8 +62,6 @@ LyraArticle:
       type: integer(1)
       notnull: true
       default: 0
-    options:
-      type: clob(65532)
     created_by:
       type: integer(4)
     updated_by:
@@ -155,6 +161,8 @@ LyraContentType:
         type: boolean
         notnull: true
         default: false
+     params:
+        type: clob
    relations:
       ContentTypeCatalogs:
          class: LyraCatalog
