@@ -6,6 +6,7 @@ LyraComment:
     content: Articolo molto interessante
     is_active: true
     CommentArticle: art1
+    CommentCreatedBy: admin
   comm2:
     author_name: Pluto
     author_email: example@example.com
@@ -13,4 +14,5 @@ LyraComment:
     content: Bell'articolo
     is_active: true
     CommentArticle: art2
+    CommentCreatedBy: admin
 

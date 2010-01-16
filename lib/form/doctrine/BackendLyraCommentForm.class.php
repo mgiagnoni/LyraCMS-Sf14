@@ -13,7 +13,7 @@ class BackendLyraCommentForm extends LyraCommentForm
   }
   protected function removeFields()
   {
-      unset($this['created_at'], $this['updated_at']);
+      unset($this['created_at'], $this['updated_at'], $this['created_by']);
   }
 }
 

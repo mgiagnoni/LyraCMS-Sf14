@@ -34,8 +34,20 @@ class LyraCommentForm extends BaseLyraCommentForm
 
     $this->widgetSchema->setFormFormatterName('LyraComment');
   }
+  public function updateObject($values = null)
+  {
+    $item = parent::updateObject($values);
+    $user = $this->getOption('user');
+    if($user->isAuthenticated()) {
+      $uid = $user->getGuardUser()->getId();
+      if($this->isNew()) {
+        $item->setCreatedBy($uid);
+      }
+    }
+    return $item;
+  }
   protected function removeFields()
   {
-    unset($this['created_at'], $this['updated_at'], $this['is_active']);
+    unset($this['created_at'], $this['updated_at'], $this['is_active'], $this['created_by']);
   }
 }

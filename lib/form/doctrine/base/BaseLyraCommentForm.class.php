@@ -22,6 +22,7 @@ abstract class BaseLyraCommentForm extends BaseFormDoctrine
       'author_url'   => new sfWidgetFormInputText(),
       'content'      => new sfWidgetFormTextarea(),
       'is_active'    => new sfWidgetFormInputCheckbox(),
+      'created_by'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CommentCreatedBy'), 'add_empty' => true)),
       'created_at'   => new sfWidgetFormDateTime(),
       'updated_at'   => new sfWidgetFormDateTime(),
     ));
@@ -34,6 +35,7 @@ abstract class BaseLyraCommentForm extends BaseFormDoctrine
       'author_url'   => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'content'      => new sfValidatorString(),
       'is_active'    => new sfValidatorBoolean(array('required' => false)),
+      'created_by'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('CommentCreatedBy'), 'required' => false)),
       'created_at'   => new sfValidatorDateTime(),
       'updated_at'   => new sfValidatorDateTime(),
     ));

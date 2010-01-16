@@ -90,7 +90,7 @@ class articleActions extends sfActions
     $this->item = Doctrine::getTable('LyraArticle')
       ->find($request->getParameter('id'));
     $this->forward404Unless($this->item && $this->item->getCfg('allow_comments'));
-    $this->form = new LyraCommentForm();
+    $this->form = new LyraCommentForm(null, array('user'=>$this->getUser()));
     $this->processCommentForm($request, $this->form);
     $this->comments = $this->item->getActiveComments();
     $this->setTemplate('show');

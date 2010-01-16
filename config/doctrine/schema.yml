@@ -128,6 +128,8 @@ LyraComment:
       type: boolean
       notnull: true
       default: false
+    created_by:
+      type: integer(4)
   relations:
     CommentArticle:
       class: LyraArticle
@@ -135,6 +137,11 @@ LyraComment:
       foreign: id
       foreignAlias: ArticleComments
       onDelete: CASCADE
+    CommentCreatedBy:
+      class: sfGuardUser
+      local: created_by
+      foreign: id
+      foreignAlias: CreatedComments
 
 LyraContentType:
    tableName: content_types

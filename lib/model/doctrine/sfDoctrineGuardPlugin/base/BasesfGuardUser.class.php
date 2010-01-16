@@ -20,6 +20,7 @@
  * @property sfGuardRememberKey $RememberKeys
  * @property Doctrine_Collection $CreatedArticles
  * @property Doctrine_Collection $UpdatedArticles
+ * @property Doctrine_Collection $CreatedComments
  * @property Doctrine_Collection $CreatedLabels
  * @property Doctrine_Collection $UpdatedLabels
  * 
@@ -38,6 +39,7 @@
  * @method sfGuardRememberKey  getRememberKeys()          Returns the current record's "RememberKeys" value
  * @method Doctrine_Collection getCreatedArticles()       Returns the current record's "CreatedArticles" collection
  * @method Doctrine_Collection getUpdatedArticles()       Returns the current record's "UpdatedArticles" collection
+ * @method Doctrine_Collection getCreatedComments()       Returns the current record's "CreatedComments" collection
  * @method Doctrine_Collection getCreatedLabels()         Returns the current record's "CreatedLabels" collection
  * @method Doctrine_Collection getUpdatedLabels()         Returns the current record's "UpdatedLabels" collection
  * @method sfGuardUser         setId()                    Sets the current record's "id" value
@@ -55,6 +57,7 @@
  * @method sfGuardUser         setRememberKeys()          Sets the current record's "RememberKeys" value
  * @method sfGuardUser         setCreatedArticles()       Sets the current record's "CreatedArticles" collection
  * @method sfGuardUser         setUpdatedArticles()       Sets the current record's "UpdatedArticles" collection
+ * @method sfGuardUser         setCreatedComments()       Sets the current record's "CreatedComments" collection
  * @method sfGuardUser         setCreatedLabels()         Sets the current record's "CreatedLabels" collection
  * @method sfGuardUser         setUpdatedLabels()         Sets the current record's "UpdatedLabels" collection
  * 
@@ -147,6 +150,10 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
         $this->hasMany('LyraArticle as UpdatedArticles', array(
              'local' => 'id',
              'foreign' => 'updated_by'));
+
+        $this->hasMany('LyraComment as CreatedComments', array(
+             'local' => 'id',
+             'foreign' => 'created_by'));
 
         $this->hasMany('LyraLabel as CreatedLabels', array(
              'local' => 'id',

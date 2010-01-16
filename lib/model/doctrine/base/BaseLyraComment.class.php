@@ -12,24 +12,30 @@
  * @property string $author_url
  * @property clob $content
  * @property boolean $is_active
+ * @property integer $created_by
  * @property LyraArticle $CommentArticle
+ * @property sfGuardUser $CommentCreatedBy
  * 
- * @method integer     getId()             Returns the current record's "id" value
- * @method integer     getArticleId()      Returns the current record's "article_id" value
- * @method string      getAuthorName()     Returns the current record's "author_name" value
- * @method string      getAuthorEmail()    Returns the current record's "author_email" value
- * @method string      getAuthorUrl()      Returns the current record's "author_url" value
- * @method clob        getContent()        Returns the current record's "content" value
- * @method boolean     getIsActive()       Returns the current record's "is_active" value
- * @method LyraArticle getCommentArticle() Returns the current record's "CommentArticle" value
- * @method LyraComment setId()             Sets the current record's "id" value
- * @method LyraComment setArticleId()      Sets the current record's "article_id" value
- * @method LyraComment setAuthorName()     Sets the current record's "author_name" value
- * @method LyraComment setAuthorEmail()    Sets the current record's "author_email" value
- * @method LyraComment setAuthorUrl()      Sets the current record's "author_url" value
- * @method LyraComment setContent()        Sets the current record's "content" value
- * @method LyraComment setIsActive()       Sets the current record's "is_active" value
- * @method LyraComment setCommentArticle() Sets the current record's "CommentArticle" value
+ * @method integer     getId()               Returns the current record's "id" value
+ * @method integer     getArticleId()        Returns the current record's "article_id" value
+ * @method string      getAuthorName()       Returns the current record's "author_name" value
+ * @method string      getAuthorEmail()      Returns the current record's "author_email" value
+ * @method string      getAuthorUrl()        Returns the current record's "author_url" value
+ * @method clob        getContent()          Returns the current record's "content" value
+ * @method boolean     getIsActive()         Returns the current record's "is_active" value
+ * @method integer     getCreatedBy()        Returns the current record's "created_by" value
+ * @method LyraArticle getCommentArticle()   Returns the current record's "CommentArticle" value
+ * @method sfGuardUser getCommentCreatedBy() Returns the current record's "CommentCreatedBy" value
+ * @method LyraComment setId()               Sets the current record's "id" value
+ * @method LyraComment setArticleId()        Sets the current record's "article_id" value
+ * @method LyraComment setAuthorName()       Sets the current record's "author_name" value
+ * @method LyraComment setAuthorEmail()      Sets the current record's "author_email" value
+ * @method LyraComment setAuthorUrl()        Sets the current record's "author_url" value
+ * @method LyraComment setContent()          Sets the current record's "content" value
+ * @method LyraComment setIsActive()         Sets the current record's "is_active" value
+ * @method LyraComment setCreatedBy()        Sets the current record's "created_by" value
+ * @method LyraComment setCommentArticle()   Sets the current record's "CommentArticle" value
+ * @method LyraComment setCommentCreatedBy() Sets the current record's "CommentCreatedBy" value
  * 
  * @package    lyra
  * @subpackage model
@@ -74,6 +80,10 @@ abstract class BaseLyraComment extends sfDoctrineRecord
              'notnull' => true,
              'default' => false,
              ));
+        $this->hasColumn('created_by', 'integer', 4, array(
+             'type' => 'integer',
+             'length' => '4',
+             ));
 
         $this->option('collate', 'utf8_unicode_ci');
         $this->option('charset', 'utf8');
@@ -86,6 +96,10 @@ abstract class BaseLyraComment extends sfDoctrineRecord
              'local' => 'article_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
+
+        $this->hasOne('sfGuardUser as CommentCreatedBy', array(
+             'local' => 'created_by',
+             'foreign' => 'id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);
