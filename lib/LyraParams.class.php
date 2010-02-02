@@ -19,25 +19,57 @@
  */
 class LyraParams
 {
-  protected $params = null;
-  protected $values = null;
- 
-  public function __construct($ctype)
+  protected
+    $params = null,
+    $values = null,
+    $trans_catalog = null;
+
+  public function __construct($module = '', $plugin = '')
   {
-    $opt = sfYaml::load(sfConfig::get('sf_config_dir') . '/params/' . $ctype . '.yml');
-    $this->params = $opt['all'];
+
+    if($module) {
+      $params_defs = null;
+      $params_defs = sfConfig::get('sf_apps_dir') . '/backend/modules/' . $module . '/config/params.yml';
+      if(!file_exists($params_defs) && $plugin) {
+        $params_defs = sfConfig::get('sf_plugins_dir') . '/' . $plugin . '/modules/' . $module . '/config/params.yml';
+      }
+
+      if(!$params_defs || !file_exists($params_defs)) {
+          //TODO: raise exception
+      }
+
+      $defs = sfYaml::load($params_defs);
+      $this->setCatalog(sfInflector::underscore($module) . '_params');
+      $this->setParams($defs['all']);
+    }
   }
   public function getParams()
   {
     return $this->params;
   }
-  public function setObject($obj) {
-    $this->values = unserialize(html_entity_decode($obj->getParams(), ENT_QUOTES));;
+  public function setParams($params)
+  {
+    $this->params = $params;
+  }
+  public function getCatalog()
+  {
+    return $this->trans_catalog;
+  }
+  public function setCatalog($catalog)
+  {
+    $this->trans_catalog = $catalog;
+  }
+  public function setObject($obj, $key = null) {
+    $values = unserialize(html_entity_decode($obj->getParams(), ENT_QUOTES));
+    if($key) {
+      $values = $values[$key];
+    }
+    $this->values = $values;
   }
   public function getValue($key)
   {
     $v = null;
-    
+
     if(!isset($this->params[$key])) {
       //TODO: raise exception
       return;
@@ -48,12 +80,14 @@ class LyraParams
 
     return $v;
   }
-  public function serialize($values)
+  public function checkValues($values)
   {
     $params = array();
-    $out = '';
 
     foreach($this->params as $k => $v) {
+      if(!isset($values[$k])) {
+        continue;
+      }
       $val = $values[$k];
 
       switch($v['type']) {
@@ -64,15 +98,14 @@ class LyraParams
           break;
 
         case 'list':
+        case 'text':
           if(isset($val) && $val !== '') {
             $params[$k] = $val;
           }
           break;
       }
     }
-    if(count($params)) {
-      $out = serialize($params);
-    }
-    return $out;
+
+    return $params;
   }
 }

@@ -40,6 +40,22 @@
         <source>show_comments</source>
         <target>Show comments</target>
       </trans-unit>
+      <trans-unit id="10">
+        <source>moderate_comments</source>
+        <target>Moderate comments</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>moderate_all</source>
+        <target>Always</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>moderate_none</source>
+        <target>Never</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>moderate_no_auth</source>
+        <target>Anonymous only</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

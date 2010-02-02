@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+  <file source-language="EN" target-language="it" datatype="plaintext" original="messages" date="2009-10-08T08:21:56Z" product-name="messages">
+    <header/>
+    <body>
+      <trans-unit id="1">
+        <source>PANEL_GENERAL</source>
+        <target>Generali</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>PANEL_CONTENT</source>
+        <target>Contenuti</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>PANEL_COMMENTS</source>
+        <target>Commenti</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

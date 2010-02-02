@@ -120,3 +120,95 @@ $browser->info('2 - Article form')->
     checkElement('.article-readmore a[title="art4"]', false)->
   end()
   ;
+
+  $browser->info('4 - Comments')->
+  get('/')->
+  click('art1')->
+
+  with('request')->begin()->
+    isParameter('module', 'article')->
+    isParameter('action', 'show')->
+  end();
+
+  $browser->info('  4.1 - Submit comment');
+
+  $comment = array(
+      'author_name' => 'test',
+      'author_email' => 'test@example.com',
+      'author_url' => 'http://www.example.com',
+      'content' => 'test comment'
+    );
+  submit_comment($browser, $comment);
+
+  $browser->with('doctrine')->begin()->
+    check('LyraComment', array_merge($comment, array('is_active' => false)))->
+  end();
+ 
+  $browser->info('  4.2 - Submit comment (not moderated)');
+
+  LyraCfg::set('moderate_comments', 'moderate_none');
+  submit_comment($browser, $comment);
+
+  $browser->with('doctrine')->begin()->
+    check('LyraComment', array_merge($comment, array('is_active' => true)))->
+  end();
+
+  $browser->info('  4.3 - Submit comment (not moderated user auth)');
+
+  LyraCfg::set('moderate_comments', 'moderate_no_auth');
+  submit_comment($browser, $comment);
+
+  $browser->with('doctrine')->begin()->
+    check('LyraComment', array_merge($comment, array('is_active' => true)))->
+  end();
+
+  $browser->info('  4.4 - Submit comment (moderated user not auth)')->
+  get('/logout')->
+  isRedirected()->
+  followRedirect();
+
+  submit_comment($browser, $comment);
+
+  $browser->with('doctrine')->begin()->
+    check('LyraComment', array_merge($comment, array('is_active' => false)))->
+  end();
+
+  $browser->info('  4.5 - Submit comment (required fields empty)');
+  unset(
+    $comment['author_name'],
+    $comment['author_email'],
+    $comment['content']
+  );
+
+  submit_comment($browser, $comment, false);
+
+  $browser->with('form')->begin()->
+    hasErrors(3)->
+    isError('author_name', 'required')->
+    isError('author_email', 'required')->
+    isError('content', 'required')->
+  end();
+
+  function submit_comment($browser, $comment, $check_errors = true)
+  {
+    $browser->click('Submit', array('lyra_comment' => $comment))->
+
+    with('request')->begin()->
+      isParameter('module', 'article')->
+      isParameter('action', 'comment')->
+    end();
+
+    if($check_errors) {
+      $browser->with('form')->begin()->
+        hasErrors(false)->
+      end()->
+
+      isRedirected()->
+      followRedirect()->
+
+      with('request')->begin()->
+        isParameter('module', 'article')->
+        isParameter('action', 'show')->
+      end();
+    }
+  }

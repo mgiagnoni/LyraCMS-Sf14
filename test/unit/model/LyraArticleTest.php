@@ -19,7 +19,7 @@
  */
 include(dirname(__FILE__).'/../../bootstrap/Doctrine.php');
 
-$t = new lime_test(7, new lime_output_color());
+$t = new lime_test(9, new lime_output_color());
 
 $t->comment('->save()');
 $article = create_article();
@@ -49,15 +49,24 @@ $article->delete();
 $labels = Doctrine::getTable('LyraArticleLabel')->findByArticleId($id);
 $t->is(count($labels), 0, '->delete() correctly removes article / label links');
 
+$t->comment('Check configuration parameters');
+$article = Doctrine::getTable('LyraArticle')->findOneByTitle('art4');
+$t->is($article->getCfg('show_read_more'), false, 'show_read_more = false (item level)');
+$t->is($article->getCfg('linked_title'), true, 'linked_title = true (content type level)');
+
 function create_article($defaults = array())
 {
+  $ctype = Doctrine::getTable('LyraContentType')
+    ->findOneByType('article');
+    
   $article = new LyraArticle();
 
   $article->fromArray(array_merge(array(
     'title' => 'Test article',
     'summary' => 'Test summary',
     'content' => 'Test content',
-    'is_active' => true
+    'is_active' => true,
+    'ctype_id' => $ctype->id
   ), $defaults));
 
   return $article;

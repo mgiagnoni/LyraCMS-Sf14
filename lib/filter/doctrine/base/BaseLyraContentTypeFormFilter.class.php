@@ -13,10 +13,12 @@ abstract class BaseLyraContentTypeFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
+      'type'                       => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'name'                       => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'description'                => new sfWidgetFormFilterInput(),
-      'db_name'                    => new sfWidgetFormFilterInput(),
+      'model'                      => new sfWidgetFormFilterInput(),
       'module'                     => new sfWidgetFormFilterInput(),
+      'plugin'                     => new sfWidgetFormFilterInput(),
       'is_active'                  => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'params'                     => new sfWidgetFormFilterInput(),
       'created_at'                 => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
@@ -25,10 +27,12 @@ abstract class BaseLyraContentTypeFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
+      'type'                       => new sfValidatorPass(array('required' => false)),
       'name'                       => new sfValidatorPass(array('required' => false)),
       'description'                => new sfValidatorPass(array('required' => false)),
-      'db_name'                    => new sfValidatorPass(array('required' => false)),
+      'model'                      => new sfValidatorPass(array('required' => false)),
       'module'                     => new sfValidatorPass(array('required' => false)),
+      'plugin'                     => new sfValidatorPass(array('required' => false)),
       'is_active'                  => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'params'                     => new sfValidatorPass(array('required' => false)),
       'created_at'                 => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
@@ -70,10 +74,12 @@ abstract class BaseLyraContentTypeFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'                         => 'Number',
+      'type'                       => 'Text',
       'name'                       => 'Text',
       'description'                => 'Text',
-      'db_name'                    => 'Text',
+      'model'                      => 'Text',
       'module'                     => 'Text',
+      'plugin'                     => 'Text',
       'is_active'                  => 'Boolean',
       'params'                     => 'Text',
       'created_at'                 => 'Date',

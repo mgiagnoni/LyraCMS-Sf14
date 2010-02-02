@@ -1,3 +1,12 @@
+lyra_settings:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                LyraSettings
+    module:               settings
+    prefix_path:          /settings
+    column:               id
+    with_wildcard_routes: true
+
 lyra_content_type:
   class: sfDoctrineRouteCollection
   options:

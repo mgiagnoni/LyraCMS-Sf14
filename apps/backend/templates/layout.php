@@ -41,6 +41,9 @@
           <li <?php echo ($module == 'sfGuardGroup' ? 'class="active"' : ''); ?>>
             <?php echo link_to(__('MENU_GROUPS'), '@sf_guard_group') ?>
           </li>
+          <li <?php echo ($module == 'settings' ? 'class="active"' : ''); ?>>
+            <?php echo link_to(__('MENU_SETTINGS'), 'settings/edit?id=1') ?>
+          </li>
           <li <?php echo ($module == 'sfGuardPermission' ? 'class="active"' : ''); ?>>
             <?php //echo link_to('Permissions', '@sf_guard_permission') ?>
           </li>

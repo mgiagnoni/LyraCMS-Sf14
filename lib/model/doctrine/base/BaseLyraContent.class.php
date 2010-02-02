@@ -25,6 +25,7 @@ abstract class BaseLyraContent extends sfDoctrineRecord
         $this->setTableName('lyra_content');
         $this->hasColumn('ctype_id', 'integer', 4, array(
              'type' => 'integer',
+             'notnull' => true,
              'length' => '4',
              ));
         $this->hasColumn('params', 'clob', null, array(

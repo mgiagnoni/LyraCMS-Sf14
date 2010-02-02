@@ -1,0 +1,4 @@
+LyraSettings:
+  setting1:
+    params: |
+      a:2:{s:9:"site_name";s:4:"Lyra";s:17:"moderate_comments";s:12:"moderate_all";}

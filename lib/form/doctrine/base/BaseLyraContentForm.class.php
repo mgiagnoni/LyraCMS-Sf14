@@ -22,7 +22,7 @@ abstract class BaseLyraContentForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'       => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
-      'ctype_id' => new sfValidatorInteger(array('required' => false)),
+      'ctype_id' => new sfValidatorInteger(),
       'params'   => new sfValidatorString(array('required' => false)),
     ));
 

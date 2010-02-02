@@ -13,7 +13,7 @@ abstract class BaseLyraContentFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'ctype_id' => new sfWidgetFormFilterInput(),
+      'ctype_id' => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'params'   => new sfWidgetFormFilterInput(),
     ));
 

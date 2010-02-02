@@ -40,6 +40,10 @@
         <source>MENU_CONTENT</source>
         <target>Tipi di Contenuto</target>
       </trans-unit>
+      <trans-unit id="10">
+        <source>MENU_SETTINGS</source>
+        <target>Configurazione</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -1,7 +1,9 @@
 LyraContentType:
   Articolo:
-    name: article
+    name: Article
+    type: article
     module: article
+    model: LyraArticle
     params: |
       a:2:{s:12:"linked_title";b:1;s:14:"show_read_more";b:1;}
     ContentTypeCatalogs: [argomento,livello]

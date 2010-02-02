@@ -28,7 +28,7 @@
  * @property Doctrine_Collection $ArticleLabels
  * @property sfGuardUser $ArticleCreatedBy
  * @property sfGuardUser $ArticleUpdatedBy
- * @property LyraContentType $ContentType
+ * @property LyraContentType $ArticleContentType
  * @property Doctrine_Collection $ArticleComments
  * @property Doctrine_Collection $LyraArticleLabel
  * 
@@ -55,7 +55,7 @@
  * @method Doctrine_Collection getArticleLabels()       Returns the current record's "ArticleLabels" collection
  * @method sfGuardUser         getArticleCreatedBy()    Returns the current record's "ArticleCreatedBy" value
  * @method sfGuardUser         getArticleUpdatedBy()    Returns the current record's "ArticleUpdatedBy" value
- * @method LyraContentType     getContentType()         Returns the current record's "ContentType" value
+ * @method LyraContentType     getArticleContentType()  Returns the current record's "ArticleContentType" value
  * @method Doctrine_Collection getArticleComments()     Returns the current record's "ArticleComments" collection
  * @method Doctrine_Collection getLyraArticleLabel()    Returns the current record's "LyraArticleLabel" collection
  * @method LyraArticle         setId()                  Sets the current record's "id" value
@@ -81,7 +81,7 @@
  * @method LyraArticle         setArticleLabels()       Sets the current record's "ArticleLabels" collection
  * @method LyraArticle         setArticleCreatedBy()    Sets the current record's "ArticleCreatedBy" value
  * @method LyraArticle         setArticleUpdatedBy()    Sets the current record's "ArticleUpdatedBy" value
- * @method LyraArticle         setContentType()         Sets the current record's "ContentType" value
+ * @method LyraArticle         setArticleContentType()  Sets the current record's "ArticleContentType" value
  * @method LyraArticle         setArticleComments()     Sets the current record's "ArticleComments" collection
  * @method LyraArticle         setLyraArticleLabel()    Sets the current record's "LyraArticleLabel" collection
  * 
@@ -205,7 +205,7 @@ abstract class BaseLyraArticle extends LyraContent
              'local' => 'updated_by',
              'foreign' => 'id'));
 
-        $this->hasOne('LyraContentType as ContentType', array(
+        $this->hasOne('LyraContentType as ArticleContentType', array(
              'local' => 'ctype_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));

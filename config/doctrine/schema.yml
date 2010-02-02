@@ -2,6 +2,7 @@ LyraContent:
   columns:
     ctype_id:
       type: integer(4)
+      notnull: true
     params:
       type: clob
 
@@ -93,7 +94,7 @@ LyraArticle:
       local: updated_by
       foreign: id
       foreignAlias: UpdatedArticles
-    ContentType:
+    ArticleContentType:
       class: LyraContentType
       local: ctype_id
       foreign: id
@@ -155,15 +156,21 @@ LyraContentType:
        type: integer(4)
        primary: true
        autoincrement: true
+     type:
+       type: string(80)
+       notnull: true
+       unique: true
      name:
         type: string(255)
         notnull: true
      description:
         type: string(4000)
-     db_name:
+     model:
         type: string(255)
      module:
-        type: string(20)
+        type: string(255)
+     plugin:
+        type: string(255)
      is_active:
         type: boolean
         notnull: true
@@ -306,3 +313,15 @@ LyraArticleLabel:
          foreign: id
          onDelete: CASCADE
 
+LyraSettings:
+  tableName: settings
+  options:
+    collate: utf8_unicode_ci
+    charset: utf8
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    params:
+      type: clob

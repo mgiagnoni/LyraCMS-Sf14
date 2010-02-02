@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file source-language="EN" target-language="en" datatype="plaintext" original="lyra_params" date="2009-10-08T08:21:56Z" product-name="lyra_params">
+    <header/>
+    <body>
+      <trans-unit id="1">
+        <source>site_name</source>
+        <target>Site name</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>site_title</source>
+        <target>Site title</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>moderate_comments</source>
+        <target>Moderate comments</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>moderate_all</source>
+        <target>Always</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>moderate_none</source>
+        <target>Never</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>moderate_no_auth</source>
+        <target>Anonymous only</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

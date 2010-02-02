@@ -1,11 +1,21 @@
 <?php
 
+/*
+ * This file is part of Lyra CMS. Lyra CMS is free software; you can redistribute
+ * it and/or modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of the License,
+ * or (at your option) any later version.
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, see <http://www.gnu.org/licenses>.
+ */
+
 /**
- * LyraComment form.
+ * LyraCommentForm
  *
- * @package    form
- * @subpackage LyraComment
- * @version    SVN: $Id: sfDoctrineFormTemplate.php 6174 2007-11-27 06:22:40Z fabien $
+ * @package lyra
+ * @subpackage form
+ * @copyright Copyright (C) 2009-2010 Massimo Giagnoni. All rights reserved.
+ * @license GNU General Public License version 2 or later (see LICENSE.txt)
  */
 class LyraCommentForm extends BaseLyraCommentForm
 {
@@ -38,11 +48,32 @@ class LyraCommentForm extends BaseLyraCommentForm
   {
     $item = parent::updateObject($values);
     $user = $this->getOption('user');
-    if($user->isAuthenticated()) {
+    if($user_auth = $user->isAuthenticated()) {
       $uid = $user->getGuardUser()->getId();
       if($this->isNew()) {
         $item->setCreatedBy($uid);
       }
+    }
+
+    if(!isset($this['is_active'])) {
+      $article = Doctrine_query::create()
+        ->from('LyraArticle a')
+        ->where('a.id = ?', $item['article_id'])
+        ->fetchOne();
+
+      switch(LyraCfg::get('moderate_comments')) {
+        case 'moderate_none':
+          $publish = true;
+          break;
+        case 'moderate_no_auth':
+          $publish = $user_auth;
+          break;
+        case 'moderate_all':
+        default:
+          $publish = false;
+          break;
+      }
+      $item->setIsActive($publish);
     }
     return $item;
   }

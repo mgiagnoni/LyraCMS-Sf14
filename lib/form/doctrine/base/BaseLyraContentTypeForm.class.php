@@ -16,10 +16,12 @@ abstract class BaseLyraContentTypeForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'                         => new sfWidgetFormInputHidden(),
+      'type'                       => new sfWidgetFormInputText(),
       'name'                       => new sfWidgetFormInputText(),
       'description'                => new sfWidgetFormTextarea(),
-      'db_name'                    => new sfWidgetFormInputText(),
+      'model'                      => new sfWidgetFormInputText(),
       'module'                     => new sfWidgetFormInputText(),
+      'plugin'                     => new sfWidgetFormInputText(),
       'is_active'                  => new sfWidgetFormInputCheckbox(),
       'params'                     => new sfWidgetFormTextarea(),
       'created_at'                 => new sfWidgetFormDateTime(),
@@ -29,16 +31,22 @@ abstract class BaseLyraContentTypeForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'                         => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
+      'type'                       => new sfValidatorString(array('max_length' => 80)),
       'name'                       => new sfValidatorString(array('max_length' => 255)),
       'description'                => new sfValidatorString(array('max_length' => 4000, 'required' => false)),
-      'db_name'                    => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'module'                     => new sfValidatorString(array('max_length' => 20, 'required' => false)),
+      'model'                      => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'module'                     => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'plugin'                     => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'is_active'                  => new sfValidatorBoolean(array('required' => false)),
       'params'                     => new sfValidatorString(array('required' => false)),
       'created_at'                 => new sfValidatorDateTime(),
       'updated_at'                 => new sfValidatorDateTime(),
       'content_type_catalogs_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'LyraCatalog', 'required' => false)),
     ));
+
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'LyraContentType', 'column' => array('type')))
+    );
 
     $this->widgetSchema->setNameFormat('lyra_content_type[%s]');
 

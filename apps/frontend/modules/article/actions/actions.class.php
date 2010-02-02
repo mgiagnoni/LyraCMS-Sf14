@@ -44,14 +44,14 @@ class articleActions extends sfActions
     if($request->getParameter('id')) {
       $this->getUser()->setAttribute('lyra_ctype_id', $request->getParameter('id', 0));
     }
-    $this->form = new LyraArticleForm(null, array('user'=>$this->getUser()));
+    $this->form = new LyraArticleForm(null, array('user'=>$this->getUser(), 'ctype_id' => $request->getParameter('id')));
   }
 
   public function executeCreate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod('post'));
 
-    $this->form = new LyraArticleForm(null, array('user'=>$this->getUser()));
+    $this->form = new LyraArticleForm(null, array('user'=>$this->getUser(), 'ctype_id' => $this->getUser()->getAttribute('lyra_ctype_id')));
 
     $this->processForm($request, $this->form);
 

@@ -19,21 +19,11 @@
  */
 class BackendLyraArticleForm extends LyraArticleForm
 {
-  protected $config = null;
-
+  protected
+    $show_params = true;
+    
   public function configure()
   {
     parent::configure();
-    
-    //Embed form displaying configuration options
-    $ctype = Doctrine::getTable('LyraContentType')->find($this->ctype_id);
-    $ctype_name = $ctype->getName();
-    $this->config = new LyraParams($ctype_name);
-    if(!$this->isNew()) {
-      $this->config->setObject($this->getObject());
-    }
-    $params_form = new LyraParamsForm(array(), array('config' => $this->config));
-    $this->embedForm('lyra_params', $params_form);
-    $this->widgetSchema['lyra_params']->setLabel(false);
   }
 }

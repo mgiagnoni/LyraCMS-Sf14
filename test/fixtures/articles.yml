@@ -10,7 +10,7 @@ LyraArticle:
     ArticleLabels: [child_1]
     ArticleCreatedBy: admin
     ArticleUpdatedBy: admin
-    ContentType: Articolo
+    ArticleContentType: Articolo
   art2:
     title: art2
     summary: unfeatured article
@@ -22,10 +22,10 @@ LyraArticle:
     ArticleLabels: [child_2]
     ArticleUpdatedBy: admin
     ArticleCreatedBy: admin
-    ContentType: Articolo
+    ArticleContentType: Articolo
   art3:
     title: art3
-    summary: featured unplished article
+    summary: featured unpublished article
     content: content
     meta_title: Meta Title 3
     meta_descr: Meta Description 3
@@ -34,7 +34,7 @@ LyraArticle:
     ArticleLabels: [child_2]
     ArticleUpdatedBy: admin
     ArticleCreatedBy: admin
-    ContentType: Articolo
+    ArticleContentType: Articolo
   art4:
     title: art4
     summary: test config option
@@ -48,4 +48,4 @@ LyraArticle:
     ArticleLabels: [child_2]
     ArticleUpdatedBy: admin
     ArticleCreatedBy: admin
-    ContentType: Articolo
+    ArticleContentType: Articolo

@@ -1,6 +1,7 @@
 LyraContentType:
   Articolo:
     name: article
+    type: article
     module: article
     params: |
       a:2:{s:12:"linked_title";b:1;s:14:"show_read_more";b:1;}

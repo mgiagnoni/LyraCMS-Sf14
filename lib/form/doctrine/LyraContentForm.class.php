@@ -10,7 +10,7 @@
  */
 
 /**
- * LyraArticleForm
+ * LyraContentForm
  *
  * @package lyra
  * @subpackage form
@@ -19,15 +19,41 @@
  */
 class LyraContentForm extends BaseLyraContentForm
 {
+  protected
+    $ctype_id = null,
+    $config = null,
+    $show_params = true;
+
   public function configure()
   {
+    unset($this['params']);
+    $this->widgetSchema['ctype_id'] = new sfWidgetFormInputHidden();
+
+    if($this->isNew()) {
+      $this->ctype_id = $this->getOption('ctype_id');
+      $this->setDefault('ctype_id', $this->ctype_id);
+    } else {
+      $this->ctype_id = $this->getObject()->getCtypeId();
+    }
+    //Embed form displaying configuration parameters
+    $ctype = Doctrine::getTable('LyraContentType')->find($this->ctype_id);
+    
+    $this->config = new LyraParams($ctype->getModule(), $ctype->getPlugin());
+    if(!$this->isNew()) {
+      $this->config->setObject($this->getObject());
+    }
+    if($this->show_params) {
+      $params_form = new LyraParamsForm(array(), array('config' => $this->config));
+      $this->embedForm('lyra_params', $params_form);
+      $this->widgetSchema['lyra_params']->setLabel(false);
+    }
   }
   public function updateObject($values = null)
   {
     $item = parent::updateObject($values);
-    if(isset($this['lyra_params'])) {
+    if($this->show_params) {
       //Save configuration parameters
-      $item->setParams($this->config->serialize($this->getValue('lyra_params')));
+      $item->setParams(serialize($this->config->checkValues($this->getValue('lyra_params'))));
     }
     return $item;
   }

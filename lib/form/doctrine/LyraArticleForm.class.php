@@ -22,11 +22,14 @@ class LyraArticleForm extends BaseLyraArticleForm
   public
     $panels = null,
     $break_at = null;
+    
   protected
-    $ctype_id = null;
+    $show_params = false;
 
   public function configure()
   {
+    
+    parent::configure();
     //remove fields that must never be displayed in form
     unset(
       $this['status'],
@@ -94,12 +97,8 @@ class LyraArticleForm extends BaseLyraArticleForm
     $this->break_at = 'PANEL_PUBLISH';
 
     if($this->isNew()) {
-      $user = $this->getOption('user');
-      $this->ctype_id = $user->getAttribute('lyra_ctype_id');
-      $this->setDefault('ctype_id', $this->ctype_id);
       $selected = array();
     } else {
-      $this->ctype_id = $this->getObject()->getCtypeId();
       $selected= $this->getObject()
         ->getArticleLabels()
         ->getPrimaryKeys();

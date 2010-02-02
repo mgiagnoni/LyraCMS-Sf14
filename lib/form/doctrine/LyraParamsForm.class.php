@@ -22,16 +22,28 @@ class LyraParamsForm extends BaseForm
   public function configure()
   {
     $this->setParamsFields();
-    $this->widgetSchema->getFormFormatter()->setTranslationCatalogue('article_params');
+    $tcatalog = $this->getOption('translation_catalog' , $this->getOption('config')->getCatalog());
+    $this->widgetSchema->getFormFormatter()
+      ->setTranslationCatalogue($tcatalog);
   }
   
   protected function setParamsFields()
   {
 
     $config = $this->getOption('config');
-    $nd = $this->getOption('nodefault', false);
+    $level = $this->getOption('level', 'item');
+    $nd = $level !== 'item';
+    $levels = array('item', 'content_type', 'global');
 
     foreach($config->getParams() as $k => $v) {
+      if(isset($v['levels'])) {
+        if(!is_array($v['levels'])) {
+          $v['levels'] = array($v['levels']);
+        }
+        if(!in_array($level, $v['levels'])) {
+          continue;
+        }
+      }
       switch($v['type']) {
         case 'boolean':
           $choices = array(1 => 'Yes', 0 => 'No');
@@ -75,6 +87,15 @@ class LyraParamsForm extends BaseForm
               'choices' => array_keys($choices),
               'required' => false
           ));
+          break;
+
+        case 'text':
+          $this->widgetSchema[$k] = new sfWidgetFormInputText(array(
+            'label' => $k
+          ));
+          $this->setDefault($k, $config->getValue($k));
+          $size = isset($v['size']) ? (int)$v['size'] : 255;
+          $this->validatorSchema[$k] = new sfValidatorString(array('max_length' => $size, 'required' => false));
           break;
       }
     }

@@ -24,7 +24,11 @@ class LyraContentTypeForm extends BaseLyraContentTypeForm
   public function configure()
   {
     unset(
-      $this['db_name'],
+      $this['type'],
+      $this['module'],
+      $this['model'],
+      $this['plugin'],
+      $this['params_file'],
       $this['params'],
       $this['created_at'],
       $this['updated_at'],
@@ -33,13 +37,13 @@ class LyraContentTypeForm extends BaseLyraContentTypeForm
 
     $this->widgetSchema['name']->setLabel('NAME');
     $this->widgetSchema['description']->setLabel('DESCRIPTION');
-    $this->widgetSchema['module']->setLabel('MODULE');
     $this->widgetSchema['is_active']->setLabel('IS_ACTIVE');
 
     //Embed form displaying configuration options
-    $this->config = new LyraParams($this->getObject()->getName());
+    $obj = $this->getObject();
+    $this->config = new LyraParams($obj->getModule(), $obj->getPlugin());
     $this->config->setObject($this->getObject());
-    $params_form = new LyraParamsForm(array(), array('config' => $this->config, 'nodefault' => true));
+    $params_form = new LyraParamsForm(array(), array('config' => $this->config, 'level' => 'content_type'));
     $this->embedForm('lyra_params', $params_form);
     $this->widgetSchema['lyra_params']->setLabel(false);
     $this->widgetSchema->setNameFormat('content_type[%s]');
@@ -49,6 +53,6 @@ class LyraContentTypeForm extends BaseLyraContentTypeForm
   {
     $item = parent::updateObject($values);
     //Save configuration parameters
-    $item->setParams($this->config->serialize($this->getValue('lyra_params')));
+    $item->setParams(serialize($this->config->checkValues($this->getValue('lyra_params'))));
   }
 }
