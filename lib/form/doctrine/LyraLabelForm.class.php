@@ -18,7 +18,8 @@ class LyraLabelForm extends BaseLyraLabelForm
     $query = Doctrine_Query::create()->from('LyraLabel l');
 
     if($this->isNew()) {
-        $catalog_id = sfContext::getInstance()->getUser()->getAttribute('lyra_catalog_id');
+        $catalog_id = $this->getOption('catalog_id');
+
         if($catalog_id) {
           $this->setDefault('catalog_id', $catalog_id);
           $query->where('l.catalog_id = ?', $catalog_id);
@@ -43,6 +44,8 @@ class LyraLabelForm extends BaseLyraLabelForm
     $this->widgetSchema->setLabel('meta_robots','META_ROBOTS');
     $this->widgetSchema->setLabel('is_active','IS_ACTIVE');
     $this->widgetSchema->setLabel('parent_id', 'PARENT');
+
+    $this->widgetSchema->setNameFormat('label[%s]');
   }
   protected function doSave($con = null)
   {

@@ -16,13 +16,16 @@ lyra_content_type:
     column:               id
     with_wildcard_routes: true
 
-lyra_label_label:
+lyra_label:
   class: sfDoctrineRouteCollection
   options:
     model:                LyraLabel
     module:               label
-    prefix_path:          label
+    prefix_path:          /label/:catalog_id
     column:               id
+    object_actions:
+      up: get
+      down: get
     with_wildcard_routes: true
 
 lyra_catalog_catalog:
@@ -56,7 +59,7 @@ lyra_article_article:
 homepage:
   url:   /
   param: { module: article, action: index }
-
+    
 default_index:
   url:   /:module
   param: { action: index }

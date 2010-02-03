@@ -10,4 +10,10 @@
  */
 class labelGeneratorConfiguration extends BaseLabelGeneratorConfiguration
 {
+  public function getFormOptions()
+  {
+    return array(
+      'catalog_id' => sfContext::getInstance()->getRequest()->getParameter('catalog_id')
+    );
+  }
 }

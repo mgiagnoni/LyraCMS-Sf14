@@ -20,10 +20,14 @@
 include(dirname(__FILE__).'/../../bootstrap/functional.php');
 
 $browser = new LyraTestFunctional(new sfBrowser());
+$browser->loadData();
 $browser->signinOk(array('username'=>'admin','password'=>'admin'));
 
-$browser->
-  get('/label/index')->
+$catalog = Doctrine::getTable('LyraCatalog')->
+  findOneByName('test');
+
+$browser->info('1 - Label list')->
+  get('label/' . $catalog->id)->
 
   with('request')->begin()->
     isParameter('module', 'label')->
@@ -33,5 +37,123 @@ $browser->
   with('response')->begin()->
     isStatusCode(200)->
     checkElement('body', '!/This is a temporary page/')->
+    checkElement('tr.odd .sf_admin_list_td_indent_name a', 'child_1')->
+  end()->
+
+  info('  1.1 - Move label down')->
+  click('.sf_admin_list_td_order a')->
+
+  with('request')->begin()->
+    isParameter('module', 'label')->
+    isParameter('action', 'down')->
+  end()->
+
+  isRedirected()->
+  followRedirect()->
+
+  with('response')->begin()->
+    isStatusCode(200)->
+    checkElement('tr.odd .sf_admin_list_td_indent_name a', 'child_2')->
+  end()->
+
+  info('2 - New label')->
+  click('.sf_admin_action_new a')->
+
+  with('request')->begin()->
+    isParameter('module', 'label')->
+    isParameter('action', 'new')->
+  end()->
+
+  with('response')->begin()->
+    isStatusCode(200)->
+    checkElement('input[name="label[catalog_id]"][value="' . $catalog->id . '"]')->
+  end()->
+
+  info('  2.1 - Required fields empty')->
+  click('.sf_admin_action_save input')->
+
+  with('request')->begin()->
+    isParameter('module', 'label')->
+    isParameter('action', 'create')->
+  end()->
+
+  with('form')->begin()->
+    hasErrors(1)->
+    isError('name', 'required')->
+  end()->
+
+  info('  2.2 - Submission valid')->
+  click('.sf_admin_action_save input', array('label' => array('name' => 'child_3')))->
+
+  with('request')->begin()->
+    isParameter('module', 'label')->
+    isParameter('action', 'create')->
+  end()->
+
+  with('form')->begin()->
+    hasErrors(false)->
+  end()->
+
+  isRedirected()->
+  followRedirect()->
+  with('request')->begin()->
+    isParameter('module', 'label')->
+    isParameter('action', 'edit')->
   end()
 ;
+
+$browser->setTester('doctrine', 'sfTesterDoctrine');
+
+$browser->info('  2.3  - Check created label')->
+  with('doctrine')->begin()->
+    check('LyraLabel', array(
+      'name' => 'child_3',
+      'catalog_id' => $catalog->id
+    ))->
+  end()->
+
+  info('3 - Edit label')->
+  click('.link-back a')->
+
+  with('request')->begin()->
+    isParameter('module', 'label')->
+    isParameter('action', 'index')->
+    isParameter('catalog_id', $catalog->id)->
+  end()->
+
+  click('child_3')->
+
+  with('request')->begin()->
+    isParameter('module', 'label')->
+    isParameter('action', 'edit')->
+  end()->
+
+  click('.sf_admin_action_save input', array('label' => array('description' => 'test')))->
+
+  with('request')->begin()->
+    isParameter('module', 'label')->
+    isParameter('action', 'update')->
+  end()->
+
+  with('form')->begin()->
+    hasErrors(false)->
+  end()->
+
+  isRedirected()->
+  followRedirect()->
+  with('request')->begin()->
+    isParameter('module', 'label')->
+    isParameter('action', 'edit')->
+  end();
+
+$browser->setTester('doctrine', 'sfTesterDoctrine');
+
+$browser->info('  3.1  - Check edited label')->
+  with('doctrine')->begin()->
+    check('LyraLabel', array(
+      'name' => 'child_3',
+      'description' => 'test',
+      'catalog_id' => $catalog->id
+    ))->
+  end()
+  ;
