@@ -18,6 +18,7 @@ class LyraCatalogForm extends BaseLyraCatalogForm
     $this->widgetSchema['catalog_content_types_list']->setLabel(false);
 
     $this->widgetSchema['catalog_content_types_list']->setOption('expanded', true);
+    $this->widgetSchema->setNameFormat('catalog[%s]');
   }
   protected function doSave($con = null)
   {

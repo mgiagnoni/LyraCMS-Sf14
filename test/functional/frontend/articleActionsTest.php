@@ -191,7 +191,7 @@ $browser->info('2 - Article form')->
 
   function submit_comment($browser, $comment, $check_errors = true)
   {
-    $browser->click('Submit', array('lyra_comment' => $comment))->
+    $browser->click('Submit', array('comment' => $comment))->
 
     with('request')->begin()->
       isParameter('module', 'article')->

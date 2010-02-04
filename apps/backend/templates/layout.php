@@ -27,13 +27,13 @@
             <?php echo link_to(__('MENU_CONTENT'), '@lyra_content_type') ?>
           </li>
           <li <?php echo ($module == 'article' ? 'class="active"' : ''); ?>>
-            <?php echo link_to(__('MENU_ARTICLES'), '@lyra_article_article?id=1') ?>
+            <?php echo link_to(__('MENU_ARTICLES'), '@lyra_article?id=1') ?>
           </li>
           <li <?php echo ($module == 'comment' ? 'class="active"' : ''); ?>>
-            <?php echo link_to(__('MENU_COMMENTS'), '@lyra_comment_comment') ?>
+            <?php echo link_to(__('MENU_COMMENTS'), '@lyra_comment') ?>
           </li>
           <li <?php echo ($module == 'catalog' || $module == 'label' ? 'class="active"' : ''); ?>>
-            <?php echo link_to(__('MENU_CATALOGS'), '@lyra_catalog_catalog') ?>
+            <?php echo link_to(__('MENU_CATALOGS'), '@lyra_catalog') ?>
           </li>
           <li <?php echo ($module == 'sfGuardUser' ? 'class="active"' : ''); ?>>
             <?php echo link_to(__('MENU_USERS'), '@sf_guard_user') ?>

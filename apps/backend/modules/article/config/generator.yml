@@ -7,7 +7,7 @@ generator:
     with_show:             false
     singular:              ~
     plural:                ~
-    route_prefix:          lyra_article_article
+    route_prefix:          lyra_article
     with_doctrine_route:     1
 
     config:

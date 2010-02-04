@@ -43,23 +43,21 @@ class LyraCommentForm extends BaseLyraCommentForm
     );
 
     $this->widgetSchema->setFormFormatterName('LyraComment');
+    $this->widgetSchema->setNameFormat('comment[%s]');
   }
   public function updateObject($values = null)
   {
     $item = parent::updateObject($values);
-    $user = $this->getOption('user');
-    if($user_auth = $user->isAuthenticated()) {
-      $uid = $user->getGuardUser()->getId();
-      if($this->isNew()) {
-        $item->setCreatedBy($uid);
-      }
+    $user_auth = false;
+
+    if($user = $this->getOption('user')) {
+      $user_auth = $user->isAuthenticated();
+    }
+    if($user_auth && $this->isNew()) {
+      $item->setCreatedBy($user->getGuardUser()->getId());
     }
 
     if(!isset($this['is_active'])) {
-      $article = Doctrine_query::create()
-        ->from('LyraArticle a')
-        ->where('a.id = ?', $item['article_id'])
-        ->fetchOne();
 
       switch(LyraCfg::get('moderate_comments')) {
         case 'moderate_none':

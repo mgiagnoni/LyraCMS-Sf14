@@ -3,7 +3,7 @@ LyraComment:
     author_name: Pippo
     author_email: example@example.com
     author_url: http://www.example.com
-    content: Articolo molto interessante
+    content: comment1
     is_active: true
     CommentArticle: art1
     CommentCreatedBy: admin
@@ -11,7 +11,7 @@ LyraComment:
     author_name: Pluto
     author_email: example@example.com
     author_url: http://www.example.com
-    content: Bell'articolo
+    content: comment2
     is_active: true
     CommentArticle: art2
     CommentCreatedBy: admin
