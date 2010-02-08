@@ -22,12 +22,27 @@ require_once dirname(__FILE__).'/../lib/articleGeneratorHelper.class.php';
  */
 class articleActions extends autoArticleActions
 {
-  public function executeIndex(sfWebRequest $request)
+  protected $content_type = null;
+  
+  public function execute($request)
   {
-    if($request->getParameter('id')) {
-      $this->getUser()->setAttribute('lyra_ctype_id', $request->getParameter('id', 0));
+    $this->forward404Unless($ctype_id = $request->getUrlParameter('ctype_id'));
+    $this->forward404Unless($this->content_type = Doctrine::getTable('LyraContentType')
+      ->find($ctype_id));
+
+    $this->getContext()->getRouting()
+      ->setDefaultParameter('ctype_id', $ctype_id);
+
+    $result = parent::execute($request);
+
+    if (isset($this->form) &&
+        $this->form->getObject() &&
+        $this->form->getObject()->isNew())
+    {
+      $this->form->getObject()->ctype_id = $ctype_id;
     }
-    parent::executeIndex($request);
+
+    return $result;
   }
   public function executePublish(sfwebRequest $request)
   {
@@ -70,5 +85,10 @@ class articleActions extends autoArticleActions
     Doctrine::getTable('LyraArticle')->publish($ids, false);
     $this->getUser()->setFlash('notice', 'MSG_ARTICLE_UNPUBLISHED');
     $this->redirect('@lyra_article');
+  }
+  public function buildQuery()
+  {
+    $query = parent::buildQuery();
+    return $query->andWhere('ctype_id = ?', $this->content_type->getId());
   }
 }

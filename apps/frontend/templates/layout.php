@@ -22,7 +22,7 @@ $fw = ($action == 'edit' || $action == 'new' || $action == 'update' || $action =
           <div id="links">
             <ul>
               <li><?php echo link_to('Home','@homepage');?></li>
-              <li><a href="#">Articoli</a></li>
+              <li><?php echo link_to('Pagina','@page_show?slug=pagina-di-esempio');?></li>
               <li><a href="#">Contattaci</a></li>
             </ul>
           </div>

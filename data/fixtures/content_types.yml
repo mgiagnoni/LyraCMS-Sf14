@@ -7,3 +7,10 @@ LyraContentType:
     params: |
       a:2:{s:12:"linked_title";b:1;s:14:"show_read_more";b:1;}
     ContentTypeCatalogs: [argomento,livello]
+  Pagina:
+    name: Page
+    type: page
+    module: article
+    model: LyraArticle
+    params: |
+      a:6:{s:12:"linked_title";b:0;s:14:"show_read_more";b:0;s:11:"show_author";b:0;s:9:"show_date";b:0;s:14:"allow_comments";b:0;s:13:"show_comments";b:0;}

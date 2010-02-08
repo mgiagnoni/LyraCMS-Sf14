@@ -51,14 +51,19 @@ lyra_article:
   options:
     model:                LyraArticle
     module:               article
-    prefix_path:          article
+    prefix_path:          /article/:ctype_id
     column:               id
+    object_actions:
+      publish: get
+      unpublish: get
+      feature: get
+      unfeature: get
     with_wildcard_routes: true
 
 # default rules
 homepage:
   url:   /
-  param: { module: article, action: index }
+  param: { module: admpanel, action: index }
     
 default_index:
   url:   /:module

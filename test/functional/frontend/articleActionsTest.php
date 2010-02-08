@@ -189,6 +189,29 @@ $browser->info('2 - Article form')->
     isError('content', 'required')->
   end();
 
+$browser->info('5 - Pages')->
+
+  info('  5.1 - Published page')->
+  get('/test-page.html')->
+  with('request')->begin()->
+    isParameter('module', 'article')->
+    isParameter('action', 'show')->
+  end()->
+  with('response')->begin()->
+    isStatusCode(200)->
+  end()->
+
+  info('  5.2 - Unpublished page')->
+  get('/unpublished.html')->
+  with('request')->begin()->
+    isParameter('module', 'article')->
+    isParameter('action', 'show')->
+  end()->
+  with('response')->begin()->
+    isStatusCode(404)->
+  end()
+  ;
+
   function submit_comment($browser, $comment, $check_errors = true)
   {
     $browser->click('Submit', array('comment' => $comment))->

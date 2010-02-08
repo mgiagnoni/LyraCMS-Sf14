@@ -1,0 +1,19 @@
+LyraArticle:
+  pag1:
+    title: test page
+    content: example of page content type
+    meta_title: Meta Title
+    meta_descr: Meta Description
+    is_active: true
+    ArticleCreatedBy: admin
+    ArticleUpdatedBy: admin
+    ArticleContentType: Pagina
+  pag2:
+    title: unpublished
+    content: example of unpublished page
+    meta_title: Meta Title
+    meta_descr: Meta Description
+    is_active: false
+    ArticleCreatedBy: admin
+    ArticleUpdatedBy: admin
+    ArticleContentType: Pagina

@@ -20,14 +20,15 @@
 include(dirname(__FILE__).'/../../bootstrap/functional.php');
 
 $browser = new LyraTestFunctional(new sfBrowser());
-//$browser->loadData();
+$browser->loadData();
 $browser->signinOk(array('username'=>'admin','password'=>'admin'));
 
 $ctype = Doctrine::getTable('LyraContentType')
-  ->findOneByModule('article');
+  ->findOneByType('article');
 
-$browser->info('1 - Article list')->
-  get('/article?id=' . $ctype->id)->
+$browser->info('1 - Lists')->
+  info('  1.1 - Articles')->
+  get('/article/' . $ctype->id)->
 
   with('request')->begin()->
     isParameter('module', 'article')->
@@ -37,11 +38,33 @@ $browser->info('1 - Article list')->
   with('response')->begin()->
     isStatusCode(200)->
     checkElement('body', '!/This is a temporary page/')->
+    checkElement('.sf_admin_list_td_title:contains("art1")')->
+    checkElement('.sf_admin_list_td_title:contains("test page")', false)->
+  end()
+;
+
+$ctype2 = Doctrine::getTable('LyraContentType')
+  ->findOneByType('page');
+
+$browser->info('  1.2 - Pages')->
+get('/article/' . $ctype2->id)->
+
+  with('request')->begin()->
+    isParameter('module', 'article')->
+    isParameter('action', 'index')->
+  end()->
+
+  with('response')->begin()->
+    isStatusCode(200)->
+    checkElement('body', '!/This is a temporary page/')->
+    checkElement('.sf_admin_list_td_title:contains("art1")', false)->
+    checkElement('.sf_admin_list_td_title:contains("test page")')->
   end()
 ;
 
 $browser->info('2 - New article')->
-  get('/article/new')->
+  get('/article/' . $ctype->id)->
+  click('.sf_admin_action_new a')->
 
   with('request')->begin()->
     isParameter('module', 'article')->
@@ -55,7 +78,7 @@ $browser->info('2 - New article')->
   info('  2.1 - Submit form')->
   select('article_lyra_params_show_read_more_1')->
   click('li.sf_admin_action_save input', array('article' => array(
-      'title' => 'backend test',
+      'title' => 'aaa-backend test',
       'content' => 'test'
    )))->
 
@@ -68,7 +91,8 @@ $browser->info('2 - New article')->
     hasErrors(false)->
   end()->
 
-  isRedirected()
+  isRedirected()->
+  followRedirect()
 ;
 
 $browser->setTester('doctrine', 'sfTesterDoctrine');
@@ -76,9 +100,97 @@ $browser->setTester('doctrine', 'sfTesterDoctrine');
 $browser->info('  2.2  - Check created article')->
   with('doctrine')->begin()->
     check('LyraArticle', array(
-      'title' => 'backend test',
+      'title' => 'aaa-backend test',
       'ctype_id' => $ctype->id,
       'params' => serialize(array('show_read_more' => true))
+    ))->
+  end()->
+
+  info('3 - Publish / Unpublish')->
+  click('.link-back a')->
+
+   with('request')->begin()->
+    isParameter('module', 'article')->
+    isParameter('action', 'index')->
+  end()->
+
+  click('.sf_admin_list_th_title a')->
+
+  info('  3.1 - Publish article from list')->
+  click('.sf_admin_list_td_published a')->
+
+  with('request')->begin()->
+    isParameter('module', 'article')->
+    isParameter('action', 'publish')->
+  end()->
+
+  isRedirected()->
+  followRedirect()->
+
+  info('  3.2 - Is article published?')->
+  with('doctrine')->begin()->
+    check('LyraArticle', array(
+      'title' => 'aaa-backend test',
+      'is_active' => true
+    ))->
+  end()->
+
+  info('  3.3 - Unpublish article from list')->
+  click('.sf_admin_list_td_published a')->
+
+  with('request')->begin()->
+    isParameter('module', 'article')->
+    isParameter('action', 'unpublish')->
+  end()->
+
+  isRedirected()->
+  followRedirect()->
+
+  info('  3.4 - Is article unpublished?')->
+  with('doctrine')->begin()->
+    check('LyraArticle', array(
+      'title' => 'aaa-backend test',
+      'is_active' => false
+    ))->
+  end()->
+
+  info('4 - Feature / Unfeature')->
+
+  info('  4.1 - Feature article from list')->
+  click('.sf_admin_list_td_front_page a')->
+
+  with('request')->begin()->
+    isParameter('module', 'article')->
+    isParameter('action', 'feature')->
+  end()->
+
+  isRedirected()->
+  followRedirect()->
+
+  info('  4.2 - Is article featured?')->
+  with('doctrine')->begin()->
+    check('LyraArticle', array(
+      'title' => 'aaa-backend test',
+      'is_featured' => true
+    ))->
+  end()->
+
+  info('  4.3 - Unfeature article from list')->
+  click('.sf_admin_list_td_front_page a')->
+
+  with('request')->begin()->
+    isParameter('module', 'article')->
+    isParameter('action', 'unfeature')->
+  end()->
+
+  isRedirected()->
+  followRedirect()->
+
+  info('  4.4 - Is article unfeatured?')->
+  with('doctrine')->begin()->
+    check('LyraArticle', array(
+      'title' => 'aaa-backend test',
+      'is_featured' => false
     ))->
   end()
 ;

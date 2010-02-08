@@ -1,0 +1,10 @@
+LyraArticle:
+  pag1:
+    title: Pagina di esempio
+    content: Questo è un esempio del tipo di contenuto 'pagina'
+    meta_title: Meta Title
+    meta_descr: Meta Description
+    is_active: true
+    ArticleCreatedBy: admin
+    ArticleUpdatedBy: admin
+    ArticleContentType: Pagina

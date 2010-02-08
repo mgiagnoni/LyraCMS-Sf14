@@ -26,9 +26,17 @@
           <li <?php echo ($module == 'content' ? 'class="active"' : ''); ?>>
             <?php echo link_to(__('MENU_CONTENT'), '@lyra_content_type') ?>
           </li>
-          <li <?php echo ($module == 'article' ? 'class="active"' : ''); ?>>
-            <?php echo link_to(__('MENU_ARTICLES'), '@lyra_article?id=1') ?>
+          <?php
+          //TODO: hardcoded for now, this must be moved in a component
+          $ctypes = Doctrine::getTable('LyraContentType')
+            ->findAll();
+          foreach($ctypes as $ctype):
+          ?>
+          <li <?php echo ($module == $ctype->getModule() && $sf_request->getParameter('ctype_id') == $ctype->getId() ? 'class="active"' : ''); ?>>
+            <?php echo link_to(__('MENU_' . strtoupper($ctype->getType())), sfInflector::underscore($ctype->getModel()), array('ctype_id' => $ctype->getId())) ?>
           </li>
+          <?php endforeach; ?>
+          <!-- end TODO -->
           <li <?php echo ($module == 'comment' ? 'class="active"' : ''); ?>>
             <?php echo link_to(__('MENU_COMMENTS'), '@lyra_comment') ?>
           </li>

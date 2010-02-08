@@ -9,7 +9,7 @@
         <target>Home</target>
       </trans-unit>
       <trans-unit id="2">
-        <source>MENU_ARTICLES</source>
+        <source>MENU_ARTICLE</source>
         <target>Articles</target>
       </trans-unit>
       <trans-unit id="3">
@@ -43,6 +43,10 @@
       <trans-unit id="10">
         <source>MENU_SETTINGS</source>
         <target>Settings</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>MENU_PAGE</source>
+        <target>Pages</target>
       </trans-unit>
     </body>
   </file>

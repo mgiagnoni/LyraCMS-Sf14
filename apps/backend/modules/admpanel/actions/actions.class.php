@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of Lyra CMS. Lyra CMS is free software; you can redistribute
  * it and/or modify it under the terms of the GNU General Public License as
@@ -9,22 +10,17 @@
  */
 
 /**
- * articleGeneratorConfiguration
+ * admpanelActions
  *
  * @package lyra
- * @subpackage article
+ * @subpackage admpanel
  * @copyright Copyright (C) 2009-2010 Massimo Giagnoni. All rights reserved.
  * @license GNU General Public License version 2 or later (see LICENSE.txt)
  */
-class articleGeneratorConfiguration extends BaseArticleGeneratorConfiguration
+class admpanelActions extends sfActions
 {
-  public function getFormOptions()
+  public function executeIndex(sfWebRequest $request)
   {
-    return array(
-      'user' => sfContext::getInstance()->getUser(),
-      'ctype_id' => sfContext::getInstance()->getRequest()->getUrlParameter('ctype_id'),
-      'break_at' => 'PANEL_PUBLISH'
-    );
+    
   }
-
 }
