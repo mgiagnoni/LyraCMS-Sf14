@@ -35,6 +35,9 @@ lyra_catalog:
     module:               catalog
     prefix_path:          catalog
     column:               id
+    object_actions:
+      publish: get
+      unpublish: get
     with_wildcard_routes: true
 
 lyra_comment:
@@ -44,6 +47,9 @@ lyra_comment:
     module:               comment
     prefix_path:          comment
     column:               id
+    object_actions:
+      publish: get
+      unpublish: get
     with_wildcard_routes: true
 
 lyra_article:
