@@ -41,7 +41,11 @@ class LyraArticleForm extends BaseLyraArticleForm
       $this['updated_at'],
       $this['article_labels_list'],
       $this['num_comments'],
-      $this['num_active_comments']
+      $this['num_active_comments'],
+      $this['meta_title'],
+      $this['meta_descr'],
+      $this['meta_keys'],
+      $this['meta_robots']
     );
 
     //FCKeditor
@@ -71,10 +75,10 @@ class LyraArticleForm extends BaseLyraArticleForm
     $this->widgetSchema['subtitle']->setLabel('SUBTITLE');
     $this->widgetSchema['summary']->setLabel(false);
     $this->widgetSchema['content']->setLabel(false);
-    $this->widgetSchema['meta_title']->setLabel('META_TITLE');
-    $this->widgetSchema['meta_descr']->setLabel('META_DESCR');
-    $this->widgetSchema['meta_keys']->setLabel('META_KEYS');
-    $this->widgetSchema['meta_robots']->setLabel('META_ROBOTS');
+//    $this->widgetSchema['meta_title']->setLabel('META_TITLE');
+//    $this->widgetSchema['meta_descr']->setLabel('META_DESCR');
+//    $this->widgetSchema['meta_keys']->setLabel('META_KEYS');
+//    $this->widgetSchema['meta_robots']->setLabel('META_ROBOTS');
     $this->widgetSchema['is_active']->setLabel('IS_ACTIVE');
     $this->widgetSchema['is_featured']->setLabel('IS_FEATURED');
     $this->widgetSchema['is_sticky']->setLabel('IS_STICKY');
@@ -108,6 +112,10 @@ class LyraArticleForm extends BaseLyraArticleForm
     $label_lists_form = new LyraLabelListsForm(array(), array('ctype_id' => $this->ctype_id, 'selected' => $selected));
     $this->embedForm('labels', $label_lists_form);
     $this->widgetSchema['labels']->setLabel(false);
+    //Merge form to enter metatags informations
+    $metatags_form = new LyraMetatagsForm();
+    $this->mergeForm($metatags_form);
+    
     $this->widgetSchema->setFormFormatterName('LyraContent');
     $this->widgetSchema->setNameFormat('article[%s]');
   }

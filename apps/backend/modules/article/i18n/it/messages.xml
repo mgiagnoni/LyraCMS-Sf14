@@ -152,6 +152,26 @@
         <source>PANEL_PARAMS</source>
         <target>Opzioni</target>
       </trans-unit>
+      <trans-unit id="38">
+        <source>OPTION_NONE</source>
+        <target>Nessuno</target>
+      </trans-unit>
+      <trans-unit id="39">
+        <source>OPTION_INDEX_FOLLOW</source>
+        <target>Index Follow</target>
+      </trans-unit>
+      <trans-unit id="40">
+        <source>OPTION_NOINDEX_NOFOLLOW</source>
+        <target>NoIndex NoFollow</target>
+      </trans-unit>
+      <trans-unit id="41">
+        <source>OPTION_NOINDEX_FOLLOW</source>
+        <target>NoIndex Follow</target>
+      </trans-unit>
+      <trans-unit id="42">
+        <source>OPTION_INDEX_NOFOLLOW</source>
+        <target>Index NoFollow</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

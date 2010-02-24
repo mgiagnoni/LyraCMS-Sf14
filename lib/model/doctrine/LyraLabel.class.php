@@ -27,6 +27,15 @@ class LyraLabel extends BaseLyraLabel
     if(!$mt) {
       $mt = $this->getTitle();
     }
+    if($t = LyraCfg::get('page_title_pfx')) {
+      $mt = $t . ' ' . $mt;
+    }
+    if($t = LyraCfg::get('page_title_sfx')) {
+      $mt .= ' ' . $t;
+    }
+    if(!$mt) {
+      $mt = $this->getTitle();
+    }
     $response->setTitle($mt);
 
     if($mt = $this->getMetaDescr()) {

@@ -11,7 +11,21 @@ class LyraLabelForm extends BaseLyraLabelForm
 {
   public function configure()
   {
-    unset($this['created_at'], $this['updated_at'], $this['created_by'], $this['updated_by'],$this['label_articles_list'], $this['root_id'], $this['lft'], $this['rgt'], $this['level']);
+    unset(
+      $this['created_at'],
+      $this['updated_at'],
+      $this['created_by'],
+      $this['updated_by'],
+      $this['label_articles_list'],
+      $this['root_id'],
+      $this['lft'],
+      $this['rgt'],
+      $this['level'],
+      $this['meta_title'],
+      $this['meta_descr'],
+      $this['meta_keys'],
+      $this['meta_robots']
+    );
 
     $this->widgetSchema['catalog_id'] = new sfWidgetFormInputHidden();
 
@@ -38,13 +52,16 @@ class LyraLabelForm extends BaseLyraLabelForm
     $this->widgetSchema->setLabel('title', 'TITLE');
     $this->widgetSchema->setLabel('description', 'DESCRIPTION');
     $this->widgetSchema->setLabel('slug', 'SLUG');
-    $this->widgetSchema->setLabel('meta_title','META_TITLE');
-    $this->widgetSchema->setLabel('meta_descr','META_DESCR');
-    $this->widgetSchema->setLabel('meta_keys','META_KEYS');
-    $this->widgetSchema->setLabel('meta_robots','META_ROBOTS');
+//    $this->widgetSchema->setLabel('meta_title','META_TITLE');
+//    $this->widgetSchema->setLabel('meta_descr','META_DESCR');
+//    $this->widgetSchema->setLabel('meta_keys','META_KEYS');
+//    $this->widgetSchema->setLabel('meta_robots','META_ROBOTS');
     $this->widgetSchema->setLabel('is_active','IS_ACTIVE');
     $this->widgetSchema->setLabel('parent_id', 'PARENT');
 
+    //Merge form to enter metatags informations
+    $metatags_form = new LyraMetatagsForm();
+    $this->mergeForm($metatags_form);
     $this->widgetSchema->setNameFormat('label[%s]');
   }
   protected function doSave($con = null)

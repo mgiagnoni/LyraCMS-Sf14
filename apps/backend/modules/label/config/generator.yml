@@ -23,6 +23,9 @@ generator:
           id: {sortable: false}
       filter:
         class: false
-      form:    ~
+      form:
+        display:
+          "NONE": [parent_id, name, slug, title, description, is_active]
+          PANEL_METATAGS: [meta_title, meta_descr, meta_keys, meta_robots]
       edit:    ~
       new:     ~

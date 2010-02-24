@@ -1,6 +1,10 @@
 general:
   site_name:
     type: text
+  page_title_pfx:
+    type: text
+  page_title_sfx:
+    type: text
 comments:
   moderate_comments:
     type: list

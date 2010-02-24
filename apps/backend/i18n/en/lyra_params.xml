@@ -28,6 +28,14 @@
         <source>moderate_no_auth</source>
         <target>Anonymous only</target>
       </trans-unit>
+      <trans-unit id="7">
+        <source>page_title_pfx</source>
+        <target>Page title prefix</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>page_title_sfx</source>
+        <target>Page title suffix</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

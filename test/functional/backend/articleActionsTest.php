@@ -74,12 +74,28 @@ $browser->info('2 - New article')->
   with('response')->begin()->
     isStatusCode(200)->
   end()->
+  info('  2.1 - Submit invalid values')->
+  click('li.sf_admin_action_save input', array('article' => array(
+      'meta_robots' => 'invalid choice'
+   )))->
   
-  info('  2.1 - Submit form')->
+  with('request')->begin()->
+    isParameter('module', 'article')->
+    isParameter('action', 'create')->
+  end()->
+
+  with('form')->begin()->
+    hasErrors(2)->
+    isError('title', 'required')->
+    isError('meta_robots', 'invalid')->
+  end()->
+
+  info('  2.2 - Submit form')->
   select('article_lyra_params_show_read_more_1')->
   click('li.sf_admin_action_save input', array('article' => array(
       'title' => 'aaa-backend test',
-      'content' => 'test'
+      'content' => 'test',
+      'meta_title' => 'test meta'
    )))->
 
   with('request')->begin()->
@@ -101,6 +117,7 @@ $browser->info('  2.2  - Check created article')->
   with('doctrine')->begin()->
     check('LyraArticle', array(
       'title' => 'aaa-backend test',
+      'meta_title' => 'test meta',
       'ctype_id' => $ctype->id,
       'params' => serialize(array('show_read_more' => true))
     ))->
