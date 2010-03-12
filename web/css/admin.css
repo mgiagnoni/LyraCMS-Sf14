@@ -1,24 +1,37 @@
 body
 {
-  background: #eeeeee;
-  padding: 5px;
+  background-color: #fff;
   font-size: 11px;
+  margin: 0;
+  padding: 0;
 }
 
 #container
 {
   width: 100%;
-  background: #eeeeee;
+  background: #fff;
+  border-bottom: 1px solid #aaa;
 }
 
 #content
 {
-  /*float: left;
+  margin-left: 130px;
+  /* float: left;
   padding: 0 25px 25px 0;
-  margin-left: 155px;*/
-  border: 1px solid #aaa;
+  margin-left: 155px;
+  border: 1px solid #aaa;*/
   background: #fff;
-  padding: 10px;
+}
+
+#content
+{
+  margin-left: 130px;
+  /* float: left;
+  padding: 0 25px 25px 0;
+  margin-left: 155px;
+  border: 1px solid #aaa;*/
+  background: #fff;
+  /*padding: 10px;*/
 }
 
 #menu
@@ -65,11 +78,15 @@ body
   text-decoration: underline;
 }
 
+#header
+{
+  background-color: #eeeeee;
+}
 #header h1
 {
-  padding: 0;
+  padding: 10px 0 15px;
   background: transparent;
-  margin: 0 0 20px 140px;
+  margin: 0 0 0 170px;
   font-size: 160%;
   color: #000;
 }
@@ -106,6 +123,8 @@ th
   clear: both;
 }
 #sf_admin_container {
+  padding-left: 15px;
+  border-top: 1px solid #AAAAAA;
   background: #fff;
 }
 #sf_admin_container fieldset h2
@@ -138,8 +157,8 @@ th
 
 #sf_admin_content
 {
-  float: left;
-  margin-left: 10px;
+  /*float: left;
+  margin-left: 10px;*/
 }
 #sf_admin_container .notice
 {
@@ -148,7 +167,7 @@ th
 }
 #sf_admin_header
 {
-  margin: 0 0 10px 133px;
+  margin: 10px 0;
 }
 .link-back a
 {
@@ -158,7 +177,8 @@ th
 }
 #sf_admin_bar
 {
-  margin-left: 5px;
+  margin-left: 0;
+  float: none;
 }
 #sf_admin_container #sf_admin_list_th_actions
 {
@@ -214,9 +234,9 @@ th
 {
   width: 100%;
 }
-#sf_admin_container ul.sf_admin_actions
+.sf_admin_form ul.sf_admin_actions
 {
-  clear:both;
+  /*clear: both;*/
 }
 #sf_admin_container ul li
 {
