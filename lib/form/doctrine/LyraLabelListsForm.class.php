@@ -22,20 +22,37 @@ class LyraLabelListsForm extends BaseForm
   public function configure()
   {
 
-    $ctype = Doctrine::getTable('LyraContentType')
-      ->find($this->getOption('ctype_id'));
+    $catalogs = Doctrine_Query::create()
+      ->select('c.name, l.id, l.level, l.name')
+      ->from('LyraCatalog c')
+      ->innerJoin('c.CatalogContentTypes t')
+      ->innerJoin('c.CatalogLabels l')
+      ->where('t.id = ?')
+      ->andWhere('l.level > 0')
+      ->orderBy('c.id, l.root_id, l.lft')
+      ->execute(array($this->getOption('ctype_id')), Doctrine::HYDRATE_ARRAY);
 
     //create a selection list for each catalog linked to content type
-    foreach ($ctype->ContentTypeCatalogs as $cg) {
-      //query to select label records for list options
-      $query = Doctrine_Query::create()
-        ->from('LyraLabel l')
-        ->where('l.catalog_id = ? AND l.level > 0', $cg->id)
-        ->addOrderBy('l.root_id, l.lft');
-      $k = 'label_'.$cg->getId();
-      $this->widgetSchema[$k] = new sfWidgetFormDoctrineChoiceMany(array('model'=>'LyraLabel', 'query'=>$query, 'label'=>$cg->name, 'default'=>$this->getOption('selected'), 'method'=>'getIndentName'), array('class' => 'labels'));
+    foreach($catalogs as $catalog) {
+      $choices = array();
+      foreach($catalog['CatalogLabels'] as $label) {
+        //Indent label name
+        $choices[$label['id']] = str_repeat('-- ', $label['level'] -1) . $label['name'];
+      }
+      $k = 'label_'.$catalog['id'];
+      $this->widgetSchema[$k] = new sfWidgetFormChoice(array(
+        'choices' => $choices,
+        'multiple' => true
+      ),array('class' => 'labels'));
+
+      $this->widgetSchema[$k]->setLabel($catalog['name']);
       $this->setDefault($k, $this->getOption('selected'));
-      $this->validatorSchema[$k] = new sfValidatorDoctrineChoiceMany(array('model'=>'LyraLabel', 'required'=>false));
+
+      $this->validatorSchema[$k] = new sfValidatorChoice(array(
+        'choices' => array_keys($choices),
+        'multiple' => true,
+        'required' => false
+      ));
     }
     $this->widgetSchema->setFormFormatterName('list');
   }
