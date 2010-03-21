@@ -75,10 +75,6 @@ class LyraArticleForm extends BaseLyraArticleForm
     $this->widgetSchema['subtitle']->setLabel('SUBTITLE');
     $this->widgetSchema['summary']->setLabel(false);
     $this->widgetSchema['content']->setLabel(false);
-//    $this->widgetSchema['meta_title']->setLabel('META_TITLE');
-//    $this->widgetSchema['meta_descr']->setLabel('META_DESCR');
-//    $this->widgetSchema['meta_keys']->setLabel('META_KEYS');
-//    $this->widgetSchema['meta_robots']->setLabel('META_ROBOTS');
     $this->widgetSchema['is_active']->setLabel('IS_ACTIVE');
     $this->widgetSchema['is_featured']->setLabel('IS_FEATURED');
     $this->widgetSchema['is_sticky']->setLabel('IS_STICKY');
@@ -100,18 +96,6 @@ class LyraArticleForm extends BaseLyraArticleForm
     );
     $this->break_at = 'PANEL_PUBLISH';
 
-    if($this->isNew()) {
-      $selected = array();
-    } else {
-      $selected= $this->getObject()
-        ->getArticleLabels()
-        ->getPrimaryKeys();
-    }
-    
-    //Embed form displaying label selection lists
-    $label_lists_form = new LyraLabelListsForm(array(), array('ctype_id' => $this->ctype_id, 'selected' => $selected));
-    $this->embedForm('labels', $label_lists_form);
-    $this->widgetSchema['labels']->setLabel(false);
     //Merge form to enter metatags informations
     $metatags_form = new LyraMetatagsForm();
     $this->mergeForm($metatags_form);
@@ -134,58 +118,5 @@ class LyraArticleForm extends BaseLyraArticleForm
       }
     }
     return $item;
-  }
-
-  protected function doSave($con = null)
-  {
-    parent::doSave($con);
-    $this->saveLabels($con);
-  }
-
-  protected function saveLabels($con = null)
-  {
-    if (!$this->isValid()) {
-        throw $this->getErrorSchema();
-    }
-
-    if (is_null($con)) {
-        $con = $this->getConnection();
-    }
-
-    $existing = $this->getObject()
-      ->getArticleLabels()
-      ->getPrimaryKeys();
-
-    $ctype = Doctrine::getTable('LyraContentType')
-        ->find($this->getValue('ctype_id'));
-        
-    $values = array();
-    $lists_values = $this->getValue('labels');
-
-    $catalogs = Doctrine_Query::create()
-      ->from('LyraContentTypeCatalog c')
-      ->where('c.ctype_id = ?')
-      ->execute(array($this->ctype_id), Doctrine::HYDRATE_ARRAY);
-
-    foreach ($catalogs as $cg) {
-      //get selected values of each list
-      $v = $lists_values['label_' . $cg['catalog_id']];
-      if (!is_array($v)) {
-          $v = array();
-      }
-      $values = array_merge($v, $values);
-    }
-
-    $unlink = array_diff($existing, $values);
-    if (count($unlink)) {
-        $this->getObject()
-          ->unlink('ArticleLabels', array_values($unlink), true);
-    }
-
-    $link = array_diff($values, $existing);
-    if (count($link)) {
-        $this->getObject()
-          ->link('ArticleLabels', array_values($link), true);
-    }
   }
 }

@@ -47,6 +47,19 @@ class LyraContentForm extends BaseLyraContentForm
       $this->embedForm('lyra_params', $params_form);
       $this->widgetSchema['lyra_params']->setLabel(false);
     }
+
+    $selected = array();
+    if(!$this->isNew()) {
+      $selected= $this->getObject()
+        ->get($this->getLabelRelationName())
+        ->getPrimaryKeys();
+    }
+
+    //Embed form displaying label selection lists
+    $label_lists_form = new LyraLabelListsForm(array(), array('ctype_id' => $this->ctype_id, 'selected' => $selected));
+    $this->embedForm('labels', $label_lists_form);
+    $this->widgetSchema['labels']->setLabel(false);
+
   }
   public function updateObject($values = null)
   {
@@ -56,5 +69,58 @@ class LyraContentForm extends BaseLyraContentForm
       $item->setParams(serialize($this->config->checkValues($this->getValue('lyra_params'))));
     }
     return $item;
+  }
+
+  public function getLabelRelationName()
+  {
+    return str_replace('Lyra', '', $this->getModelName()) . 'Labels';
+  }
+  protected function doSave($con = null)
+  {
+    parent::doSave($con);
+    $this->saveLabels($con);
+  }
+  protected function saveLabels($con = null)
+  {
+    if (!$this->isValid()) {
+        throw $this->getErrorSchema();
+    }
+
+    if (is_null($con)) {
+        $con = $this->getConnection();
+    }
+
+    $existing = $this->getObject()
+      ->get($this->getLabelRelationName())
+      ->getPrimaryKeys();
+
+    $values = array();
+    $lists_values = $this->getValue('labels');
+
+    $catalogs = Doctrine_Query::create()
+      ->from('LyraContentTypeCatalog c')
+      ->where('c.ctype_id = ?')
+      ->execute(array($this->ctype_id), Doctrine::HYDRATE_ARRAY);
+
+    foreach ($catalogs as $cg) {
+      //get selected values of each list
+      $v = $lists_values['label_' . $cg['catalog_id']];
+      if (!is_array($v)) {
+          $v = array();
+      }
+      $values = array_merge($v, $values);
+    }
+
+    $unlink = array_diff($existing, $values);
+    if (count($unlink)) {
+        $this->getObject()
+          ->unlink($this->getLabelRelationName(), array_values($unlink), true);
+    }
+
+    $link = array_diff($values, $existing);
+    if (count($link)) {
+        $this->getObject()
+          ->link($this->getLabelRelationName(), array_values($link), true);
+    }
   }
 }
