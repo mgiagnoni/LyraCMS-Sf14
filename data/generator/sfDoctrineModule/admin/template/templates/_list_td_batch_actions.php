@@ -1,3 +1,3 @@
-<td>
+<td class="sf_admin_list_batch">
   <input type="checkbox" name="ids[]" value="[?php echo $<?php echo $this->getSingularName() ?>->getPrimaryKey() ?]" class="sf_admin_batch_checkbox" />
 </td>

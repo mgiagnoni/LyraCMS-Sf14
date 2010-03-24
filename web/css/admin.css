@@ -9,37 +9,25 @@ body
 #container
 {
   width: 100%;
-  background: #fff;
+  background: #f9f9f9;
   border-bottom: 1px solid #aaa;
+  padding: 5px;
 }
 
 #content
 {
-  margin-left: 130px;
-  /* float: left;
-  padding: 0 25px 25px 0;
   margin-left: 155px;
-  border: 1px solid #aaa;*/
-  background: #fff;
 }
-
-#content
+#side-bar
 {
-  margin-left: 130px;
-  /* float: left;
-  padding: 0 25px 25px 0;
-  margin-left: 155px;
-  border: 1px solid #aaa;*/
-  background: #fff;
-  /*padding: 10px;*/
+  width: 150px;
+  float:left;
 }
-
 #menu
 {
-  width: 135px;
-  float:left;
-  border-bottom: 1px solid #aaa;
-  background-color: #eeeeee;
+  background-color: #fff;
+  border: 1px solid #aaa;
+  padding: 2px;
 }
 
 #menu ul
@@ -50,26 +38,25 @@ body
 
 #menu li
 {
-  padding: 10px;
-  border-right: 1px solid #aaa;
+  padding: 2px;
   list-style-image: none;
   list-style-position: outside;
   list-style-type: none;
   display: block;
 }
 
-#menu li.active
+#menu li.active a
 {
-  background-color: #fff;
-  border-width: 1px 0px 1px 1px;
-  border-style: solid;
-  border-color: #aaa;
+  font-weight: bold;
 }
-
+#menu li.active a:hover
+{
+  text-decoration: none;
+}
 #menu li a
 {
   text-decoration: none;
-  font-size: 120%;
+  font-size: 110%;
   color: #464646;
 }
 
@@ -77,20 +64,6 @@ body
 {
   text-decoration: underline;
 }
-
-#header
-{
-  background-color: #eeeeee;
-}
-#header h1
-{
-  padding: 10px 0 15px;
-  background: transparent;
-  margin: 0 0 0 170px;
-  font-size: 160%;
-  color: #000;
-}
-
 td, th
 {
   padding: 7px 3px;
@@ -123,9 +96,15 @@ th
   clear: both;
 }
 #sf_admin_container {
-  padding-left: 15px;
-  border-top: 1px solid #AAAAAA;
+  margin-right: 5px;
+  padding-left: 10px;
+  border: 1px solid #AAAAAA;
   background: #fff;
+}
+#sf_admin_container h1
+{
+  margin: 10px 0 0;
+  padding: 0;
 }
 #sf_admin_container fieldset h2
 {
@@ -154,20 +133,14 @@ th
 {
   font-size: 12px;
 }
-
-#sf_admin_content
-{
-  /*float: left;
-  margin-left: 10px;*/
-}
 #sf_admin_container .notice
 {
-  margin-left: 133px;
   padding: 4px 8px 4px 30px;
+  margin-right: 5%;
 }
 #sf_admin_header
 {
-  margin: 10px 0;
+  margin: 5px 0;
 }
 .link-back a
 {
@@ -179,21 +152,92 @@ th
 {
   margin-left: 0;
   float: none;
+  width: 95%;
 }
 #sf_admin_container #sf_admin_list_th_actions
 {
   text-align: center;
 }
+
+/* Admin list */
+
+.sf_admin_list table
+{
+  background-color: #d0d0d0;
+  border-spacing: 1px;
+  border-collapse: separate;
+  width: 95%;
+}
+#sf_admin_container .sf_admin_list td,
+#sf_admin_container .sf_admin_list th
+{
+  border: 1px solid #eee;
+  vertical-align: middle;
+}
+#sf_admin_container .sf_admin_list td
+{
+  border: 1px solid #fff;
+}
+#sf_admin_container .sf_admin_list tr.even
+{
+  background-color: #f7f7f7;
+}
+#sf_admin_container .sf_admin_list tr.even:hover
+{
+  background-color: #ffe;
+}
+#sf_admin_container #sf_admin_list_batch_actions,
+#sf_admin_container .sf_admin_list_batch
+{
+  text-align: center;
+}
+
+/* Admin filters */
+
+.sf_admin_filter
+{
+  margin: 5px 0;
+  background-color: #fff;
+  border: 1px solid #aaa;
+  padding: 0;
+}
+.sf_admin_filter h3
+{
+  margin: 0 0 5px;
+  padding: 2px;
+  font-size: 125%;
+  background-color: #e7eef6;
+}
+.sf_admin_filter form
+{
+  margin-left: 3px;
+  margin-right: 3px;
+}
+.sf_admin_filter a
+{
+  color: #464646
+}
+.sf_admin_filter label
+{
+  display: block;
+  padding: 0 0 1px 0;
+}
+.sf_admin_filter .sf_admin_form_row
+{
+  margin-bottom: 5px;
+}
+.sf_admin_filter .sf_admin_buttons
+{
+  text-align: right;
+}
+
 /*Article list*/
+
 #sf_admin_container td.sf_admin_list_td_published
 {
   text-align: center;
 }
 #sf_admin_container td.sf_admin_list_td_front_page
-{
-  text-align: center;
-}
-#sf_admin_container th.sf_admin_list_th_created_at
 {
   text-align: center;
 }
@@ -223,7 +267,7 @@ th
 .sf_admin_col_2
 {
   margin-left: 5px;
-  width: 380px;
+  width: 360px;
 }
 #sf_admin_container .sf_admin_form_row .content
 {
@@ -233,10 +277,6 @@ th
 #sf_admin_container .sf_admin_form_row .content table
 {
   width: 100%;
-}
-.sf_admin_form ul.sf_admin_actions
-{
-  /*clear: both;*/
 }
 #sf_admin_container ul li
 {
@@ -259,4 +299,8 @@ th
 {
   margin-bottom: 12px;
   width: 130px;
+}
+#sf_admin_footer
+{
+  clear: both;
 }

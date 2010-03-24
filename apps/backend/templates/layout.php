@@ -11,61 +11,58 @@
   </head>
   <body>
     <div id="container">
-      <div id="header">
-        <h1>
-          <?php include_slot('page_title') ?>
-        </h1>
-      </div>
       <?php if ($sf_user->isAuthenticated()):
         $module = $sf_request->getParameter('module');?>
-      <div id="menu">
-        <ul>
-          <li>
-            <?php echo link_to(__('MENU_HOME'), '@homepage') ?>
-          </li>
-          <li <?php echo ($module == 'content' ? 'class="active"' : ''); ?>>
-            <?php echo link_to(__('MENU_CONTENT'), '@lyra_content_type') ?>
-          </li>
-          <?php
-          //TODO: hardcoded for now, this must be moved in a component
-          $ctypes = Doctrine::getTable('LyraContentType')
-            ->findAll();
-          foreach($ctypes as $ctype):
-          ?>
-          <li <?php echo ($module == $ctype->getModule() && $sf_request->getParameter('ctype_id') == $ctype->getId() ? 'class="active"' : ''); ?>>
-            <?php echo link_to(__('MENU_' . strtoupper($ctype->getType())), sfInflector::underscore($ctype->getModel()), array('ctype_id' => $ctype->getId())) ?>
-          </li>
-          <?php endforeach; ?>
-          <!-- end TODO -->
-          <li <?php echo ($module == 'comment' ? 'class="active"' : ''); ?>>
-            <?php echo link_to(__('MENU_COMMENTS'), '@lyra_comment') ?>
-          </li>
-          <li <?php echo ($module == 'catalog' || $module == 'label' ? 'class="active"' : ''); ?>>
-            <?php echo link_to(__('MENU_CATALOGS'), '@lyra_catalog') ?>
-          </li>
-          <li <?php echo ($module == 'sfGuardUser' ? 'class="active"' : ''); ?>>
-            <?php echo link_to(__('MENU_USERS'), '@sf_guard_user') ?>
-          </li>
-          <li <?php echo ($module == 'sfGuardGroup' ? 'class="active"' : ''); ?>>
-            <?php echo link_to(__('MENU_GROUPS'), '@sf_guard_group') ?>
-          </li>
-          <li <?php echo ($module == 'settings' ? 'class="active"' : ''); ?>>
-            <?php echo link_to(__('MENU_SETTINGS'), 'settings/edit?id=1') ?>
-          </li>
-          <li <?php echo ($module == 'sfGuardPermission' ? 'class="active"' : ''); ?>>
-            <?php //echo link_to('Permissions', '@sf_guard_permission') ?>
-          </li>
-          <li <?php echo ($module == '' ? 'class="active"' : ''); ?>>
-            <?php echo link_to(__('MENU_LOGOUT'), '@sf_guard_signout') ?>
-          </li>
-        </ul>
+      <div id="side-bar">
+        <div id="menu">
+          <ul>
+            <li>
+              <?php echo link_to(__('MENU_HOME'), '@homepage') ?>
+            </li>
+            <li <?php echo ($module == 'content' ? 'class="active"' : ''); ?>>
+              <?php echo link_to(__('MENU_CONTENT'), '@lyra_content_type') ?>
+            </li>
+            <?php
+            //TODO: hardcoded for now, this must be moved in a component
+            $ctypes = Doctrine::getTable('LyraContentType')
+              ->findAll();
+            foreach($ctypes as $ctype):
+            ?>
+            <li <?php echo ($module == $ctype->getModule() && $sf_request->getParameter('ctype_id') == $ctype->getId() ? 'class="active"' : ''); ?>>
+              <?php echo link_to(__('MENU_' . strtoupper($ctype->getType())), sfInflector::underscore($ctype->getModel()), array('ctype_id' => $ctype->getId())) ?>
+            </li>
+            <?php endforeach; ?>
+            <!-- end TODO -->
+            <li <?php echo ($module == 'comment' ? 'class="active"' : ''); ?>>
+              <?php echo link_to(__('MENU_COMMENTS'), '@lyra_comment') ?>
+            </li>
+            <li <?php echo ($module == 'catalog' || $module == 'label' ? 'class="active"' : ''); ?>>
+              <?php echo link_to(__('MENU_CATALOGS'), '@lyra_catalog') ?>
+            </li>
+            <li <?php echo ($module == 'sfGuardUser' ? 'class="active"' : ''); ?>>
+              <?php echo link_to(__('MENU_USERS'), '@sf_guard_user') ?>
+            </li>
+            <li <?php echo ($module == 'sfGuardGroup' ? 'class="active"' : ''); ?>>
+              <?php echo link_to(__('MENU_GROUPS'), '@sf_guard_group') ?>
+            </li>
+            <li <?php echo ($module == 'settings' ? 'class="active"' : ''); ?>>
+              <?php echo link_to(__('MENU_SETTINGS'), 'settings/edit?id=1') ?>
+            </li>
+            <li <?php echo ($module == 'sfGuardPermission' ? 'class="active"' : ''); ?>>
+              <?php //echo link_to('Permissions', '@sf_guard_permission') ?>
+            </li>
+            <li <?php echo ($module == '' ? 'class="active"' : ''); ?>>
+              <?php echo link_to(__('MENU_LOGOUT'), '@sf_guard_signout') ?>
+            </li>
+          </ul>
+        </div>
+        <?php if (has_slot('admin_filters')) { include_slot('admin_filters'); }?>
       </div>
       <?php endif; ?>
       <div id="content">
         <?php echo $sf_content ?>
         <div class="clear">&nbsp;</div>
       </div>
-      <div class="clear">&nbsp;</div>
     </div>
   </body>
 </html>

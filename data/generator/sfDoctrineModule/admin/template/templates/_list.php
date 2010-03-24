@@ -2,7 +2,7 @@
   [?php if (!$pager->getNbResults()): ?]
     <p>[?php echo __('No result', array(), 'sf_admin') ?]</p>
   [?php else: ?]
-    <table cellspacing="0">
+    <table cellspacing="1">
       <thead>
         <tr>
 <?php if ($this->configuration->getValue('list.batch_actions')): ?>

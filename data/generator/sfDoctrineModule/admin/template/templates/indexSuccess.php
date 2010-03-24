@@ -1,20 +1,16 @@
 [?php use_helper('I18N', 'Date') ?]
 [?php include_partial('<?php echo $this->getModuleName() ?>/assets') ?]
 [?php if(!get_slot('page_title')) { slot('page_title',<?php echo $this->getI18NString('list.title') ?>); } ?]
+<?php if ($this->configuration->hasFilterForm()): ?>
+  [?php slot('admin_filters'); ?]
+    [?php include_partial('<?php echo $this->getModuleName() ?>/filters', array('form' => $filters, 'configuration' => $configuration)) ?]
+  [?php end_slot(); ?]
+<?php endif; ?>
 <div id="sf_admin_container">
-  
-  [?php include_partial('<?php echo $this->getModuleName() ?>/flashes') ?]
-
   <div id="sf_admin_header">
     [?php include_partial('<?php echo $this->getModuleName() ?>/list_header', array('pager' => $pager)) ?]
   </div>
-
-<?php if ($this->configuration->hasFilterForm()): ?>
-  <div id="sf_admin_bar">
-    [?php include_partial('<?php echo $this->getModuleName() ?>/filters', array('form' => $filters, 'configuration' => $configuration)) ?]
-  </div>
-<?php endif; ?>
-
+[?php include_partial('<?php echo $this->getModuleName() ?>/flashes') ?]
   <div id="sf_admin_content">
 <?php if ($this->configuration->getValue('list.batch_actions')): ?>
     <form action="[?php echo url_for('<?php echo $this->getUrlForAction('collection') ?>', array('action' => 'batch')) ?]" method="post">
