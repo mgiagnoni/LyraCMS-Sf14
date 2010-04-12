@@ -57,9 +57,11 @@ class LyraCommentForm extends BaseLyraCommentForm
       $item->setCreatedBy($user->getGuardUser()->getId());
     }
 
-    if(!isset($this['is_active'])) {
-
-      switch(LyraCfg::get('moderate_comments')) {
+    if(!isset($this['is_active']))
+    {
+      $params = new LyraConfig('settings');
+      switch($params->get('moderate_comments', 'comments'))
+      {
         case 'moderate_none':
           $publish = true;
           break;

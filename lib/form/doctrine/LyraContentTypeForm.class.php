@@ -41,18 +41,38 @@ class LyraContentTypeForm extends BaseLyraContentTypeForm
 
     //Embed form displaying configuration options
     $obj = $this->getObject();
-    $this->config = new LyraParams($obj->getModule(), $obj->getPlugin());
-    $this->config->setObject($this->getObject());
-    $params_form = new LyraParamsForm(array(), array('config' => $this->config, 'level' => 'content_type'));
-    $this->embedForm('lyra_params', $params_form);
-    $this->widgetSchema['lyra_params']->setLabel(false);
+    $def_file = sfConfig::get('sf_apps_dir') . '/backend/modules/' . $obj->getModule() . '/config/params.yml';
+    if(!file_exists($def_file) && $obj->getPlugin()) {
+      $def_file = sfConfig::get('sf_plugins_dir') . '/' . $obj->getPlugin() . '/modules/' . $obj->getModule() . '/config/params.yml';
+    }
+    
+    $this->config = new LyraParams($obj, $def_file);
+    $this->config->setCatalog(sfInflector::underscore($obj->getModule()) . '_params');
+
+    foreach($this->config->getParamDefsSections() as $section)
+    {
+      
+      $params_form = new LyraParamsForm(array(), array(
+          'config' => $this->config,
+          'section' => $section,
+          'level' => 'content_type',
+      ));
+      $k = 'lyra_params_' . $section;
+      $this->embedForm($k, $params_form);
+      $this->widgetSchema[$k]->setLabel(false);
+    }
     $this->widgetSchema->setNameFormat('content_type[%s]');
   }
 
   public function updateObject($values = null)
   {
     $item = parent::updateObject($values);
+    $params = array();
+    foreach($this->config->getParamDefsSections() as $section)
+    {
+      $params = array_merge($params, $this->config->checkValues($this->getValue('lyra_params_' . $section), $section));
+    }
     //Save configuration parameters
-    $item->setParams(serialize($this->config->checkValues($this->getValue('lyra_params'))));
+    $item->setParams(serialize($params));
   }
 }

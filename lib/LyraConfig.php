@@ -10,7 +10,7 @@
  */
 
 /**
- * LyraCfg
+ * LyraConfig
  *
  * @package lyra
  * @subpackage lib
@@ -18,34 +18,129 @@
  * @license GNU General Public License version 2 or later (see LICENSE.txt)
  */
 
-class LyraCfg
+class LyraConfig
 {
-  protected static $global_params = null;
+  protected static
+    $ctypes_params = null;
+  protected
+    $object = null,
+    $params = null,
+    $def_file = null;
 
-  public static function get($key)
+  public function __construct($object = null)
   {
-    if(!isset(self::$global_params)) {
-      self::load();
+    if($object)
+    {
+      $this->setObject($object);
     }
-    if(!isset(self::$global_params[$key])) {
-      //TODO: raise exception
-      return false;
-    }
-    return self::$global_params[$key];
   }
-  public static function set($key, $value)
+  public function setObject($object)
   {
-    if(!isset(self::$global_params)) {
-      self::load();
-    }
-    self::$global_params[$key] = $value;
+    $this->object = $object;
   }
-  protected static function load()
+  public function get($key, $section = null)
   {
-    $settings = Doctrine_Query::create()
-      ->from('LyraSettings')
-      ->fetchOne();
-    self::$global_params = unserialize($settings->getParams());
+    if($this->object instanceof LyraContent)
+    {
+      return $this->getItemParamValue($key);
+    }
+    elseif($this->object instanceof LyraContentView)
+    {
+      return $this->getViewParamValue($key);
+    }
+    elseif($this->object == 'settings')
+    {
+      return $this->getGlobalParamValue($key, $section);
+    }
+    throw new sfException("Can't get parameter '$key'. Configuration object not set");
+  }
+  protected function getItemParamValue($key)
+  {
+    $ctype = $this->object->getContentType();
+
+    if(!isset($this->def_file))
+    {
+      $this->def_file = $this->getParamDefinitionsPath($ctype->getModule(), $ctype->getPlugin());
+    }
+
+    if(!isset($this->params))
+    {
+      $this->params = new LyraParams($this->object, $this->def_file);
+    }
+    $value = $this->params->get($key, 'item');
+
+    if(null === $value)
+    {
+      if(!isset(self::$ctypes_params[$ctype->getId()]))
+      {
+        self::$ctypes_params[$ctype->getId()] = new LyraParams($ctype, $this->def_file);
+      }
+      $value = self::$ctypes_params[$ctype->getId()]->get($key, 'item');
+    }
+
+    if(null === $value)
+    {
+      $value = $this->params->getDefault($key, 'item');
+    }
+
+    return $value;
+  }
+  protected function getViewParamValue($key)
+  {
+    $ctype = $this->object->getViewContentType();
+
+    if(!isset($this->def_file))
+    {
+      $this->def_file = $this->getParamDefinitionsPath($ctype->getModule(), $ctype->getPlugin(), $this->object->getAction());
+    }
+
+    if(!isset($this->params))
+    {
+      $this->params = new LyraParams($this->object, $this->def_file);
+    }
+    $value = $this->params->get($key);
+
+    if(null === $value)
+    {
+      if(!isset(self::$ctypes_params[$ctype->getId()]))
+      {
+        $def_file = $this->getParamDefinitionsPath($ctype->getModule(), $ctype->getPlugin());
+        self::$ctypes_params[$ctype->getId()] = new LyraParams($ctype, $def_file);
+      }
+      $value = self::$ctypes_params[$ctype->getId()]->get($key, 'views');
+    }
+
+    if(null === $value)
+    {
+      $value = $this->params->getDefault($key);
+    }
+
+    return $value;
+  }
+  protected function getGlobalParamValue($key, $section)
+  {
+    $this->initGlobalParams();
+    return $this->params->get($key, $section);
+  }
+  protected function getParamDefinitionsPath($module, $plugin, $action = '')
+  {
+    $mp = '/modules/' . $module . '/config/' . ($action ? $action . '_' : '') . 'params.yml';
+    $path = sfConfig::get('sf_apps_dir') . '/backend' . $mp;
+    if(!file_exists($path) && $plugin)
+    {
+      $path = sfConfig::get('sf_plugins_dir') . '/' . $plugin . $mp;
+    }
+    return $path;
+  }
+  protected function initGlobalParams()
+  {
+    if(!isset($this->params))
+    {
+      $settings = Doctrine_Query::create()
+        ->from('LyraSettings')
+        ->fetchOne();
+
+      $this->params = new LyraParams($settings, sfConfig::get('sf_config_dir') . '/lyra_params.yml');
+    }
   }
 }
-?>

@@ -19,7 +19,7 @@ if(isset($form) && $form->isBound() && !$form->isValid()) { ?>
     <?php echo $item->getSubtitle() ?>
   </div>
 <?php endif ?>
-<?php include_partial('article/byline', array('item' => $item));?>
+<?php include_partial('article/byline', array('item' => $item, 'params' => $params));?>
 <div class="article-content">
   <?php
   echo $item->getSummary(ESC_RAW);

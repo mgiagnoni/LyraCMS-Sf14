@@ -1,21 +1,22 @@
-all:
-  linked_title:
-    type: boolean
-    default: true
-  show_read_more:
-    type: boolean
-    default: true
-  show_author:
-    type: boolean
-    default: true
-  show_date:
-    type: boolean
-    default: true
-  allow_comments:
-    type: boolean
-    default: true
-  show_comments:
-    type: boolean
-    default: true
+params:
+  item:
+    linked_title:
+      type: boolean
+      default: true
+    show_read_more:
+      type: boolean
+      default: true
+    show_author:
+      type: boolean
+      default: true
+    show_date:
+      type: boolean
+      default: true
+    allow_comments:
+      type: boolean
+      default: true
+    show_comments:
+      type: boolean
+      default: true
 
 

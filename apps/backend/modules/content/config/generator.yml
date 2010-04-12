@@ -29,6 +29,6 @@ generator:
       form:
         display:
           "NONE": [name,description,module,is_active]
-          PANEL_PARAMS: [lyra_params]
+          PANEL_PARAMS: [lyra_params_item]
       edit:    ~
       new:     ~

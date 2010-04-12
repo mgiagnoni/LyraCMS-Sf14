@@ -27,13 +27,14 @@ class articleActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
     $this->item = $this->getRoute()->getObject();
+    $this->params = new LyraConfig($this->item);
     $this->item->setMetaTags($this->getResponse());
     $this->form = $this->comments = null;
-    if($this->item->getCfg('show_comments')) {
+    if($this->params->get('show_comments')) {
       //Gets article comments list
       $this->comments = $this->item->getActiveComments();
     }
-    if($this->item->getCfg('allow_comments')) {
+    if($this->params->get('allow_comments')) {
       $this->form = new LyraCommentForm();
       $this->form->setDefault('article_id', $this->item->getId());
     }
@@ -89,7 +90,9 @@ class articleActions extends sfActions
     $this->forward404Unless($request->isMethod('post'));
     $this->item = Doctrine::getTable('LyraArticle')
       ->find($request->getParameter('id'));
-    $this->forward404Unless($this->item && $this->item->getCfg('allow_comments'));
+    $this->forward404Unless($this->item);
+    $this->params = new LyraConfig($this->item);
+    $this->forward404Unless($this->params->get('allow_comments'));
     $this->form = new LyraCommentForm(null, array('user'=>$this->getUser()));
     $this->processCommentForm($request, $this->form);
     $this->comments = $this->item->getActiveComments();

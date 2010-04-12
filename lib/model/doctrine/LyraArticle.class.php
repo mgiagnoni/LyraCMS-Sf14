@@ -19,22 +19,17 @@
  */
 class LyraArticle extends BaseLyraArticle
 {
-  public function showReadmore()
-  {
-    if($this->getCfg('show_read_more') && trim($this->getContent())) {
-      return true;
-    }
-  }
   public function setMetaTags(sfWebResponse $response)
   {
+    $params = new LyraConfig('settings');
     $mt = $this->getMetaTitle();
     if(!$mt) {
       $mt = $this->getTitle();
     }
-    if($t = LyraCfg::get('page_title_pfx')) {
+    if($t = $params->get('page_title_pfx', 'general')) {
       $mt = $t . ' ' . $mt;
     }
-    if($t = LyraCfg::get('page_title_sfx')) {
+    if($t = $params->get('page_title_sfx', 'general')) {
       $mt .= ' ' . $t;
     }
     if(!$mt) {

@@ -51,8 +51,9 @@ $t->is(count($labels), 0, '->delete() correctly removes article / label links');
 
 $t->comment('Check configuration parameters');
 $article = Doctrine::getTable('LyraArticle')->findOneByTitle('art4');
-$t->is($article->getCfg('show_read_more'), false, 'show_read_more = false (item level)');
-$t->is($article->getCfg('linked_title'), true, 'linked_title = true (content type level)');
+$params = new LyraConfig($article);
+$t->is($params->get('show_read_more'), false, 'show_read_more = false (item level)');
+$t->is($params->get('linked_title'), true, 'linked_title = true (content type level)');
 
 function create_article($defaults = array())
 {

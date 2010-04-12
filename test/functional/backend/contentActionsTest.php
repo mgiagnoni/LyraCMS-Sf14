@@ -48,7 +48,7 @@ $browser->info('1 - Content types list')->
   end()->
 
   info('  2.1 - Submit form')->
-  select('content_type_lyra_params_show_read_more_0')->
+  select('content_type_lyra_params_item_show_read_more_0')->
   click('li.sf_admin_action_save input', array('content_type' => array(
       'description' => 'backend test'
    )))->

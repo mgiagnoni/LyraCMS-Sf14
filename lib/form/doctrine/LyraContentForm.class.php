@@ -37,13 +37,16 @@ class LyraContentForm extends BaseLyraContentForm
     }
     //Embed form displaying configuration parameters
     $ctype = Doctrine::getTable('LyraContentType')->find($this->ctype_id);
-    
-    $this->config = new LyraParams($ctype->getModule(), $ctype->getPlugin());
-    if(!$this->isNew()) {
-      $this->config->setObject($this->getObject());
+
+    $def_file = sfConfig::get('sf_apps_dir') . '/backend/modules/' . $ctype->getModule() . '/config/params.yml';
+    if(!file_exists($def_file) && $ctype->getPlugin()) {
+      $def_file = sfConfig::get('sf_plugins_dir') . '/' . $ctype->getPlugin() . '/modules/' . $ctype->getModule() . '/config/params.yml';
     }
+    $this->config = new LyraParams($this->isNew() ? null : $this->getObject(), $def_file);
+    $this->config->setCatalog(sfInflector::underscore($ctype->getModule()) . '_params');
+
     if($this->show_params) {
-      $params_form = new LyraParamsForm(array(), array('config' => $this->config));
+      $params_form = new LyraParamsForm(array(), array('config' => $this->config, 'section' => 'item'));
       $this->embedForm('lyra_params', $params_form);
       $this->widgetSchema['lyra_params']->setLabel(false);
     }
@@ -66,7 +69,7 @@ class LyraContentForm extends BaseLyraContentForm
     $item = parent::updateObject($values);
     if($this->show_params) {
       //Save configuration parameters
-      $item->setParams(serialize($this->config->checkValues($this->getValue('lyra_params'))));
+      $item->setParams(serialize($this->config->checkValues($this->getValue('lyra_params'), 'item')));
     }
     return $item;
   }

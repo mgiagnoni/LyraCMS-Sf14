@@ -24,33 +24,32 @@ class LyraSettingsForm extends BaseLyraSettingsForm
   {
     unset($this['params']);
 
-    $params_defs = sfConfig::get('sf_config_dir') . '/lyra_params.yml';
-    $defs = sfYaml::load($params_defs);
+    $def_file = sfConfig::get('sf_config_dir') . '/lyra_params.yml';
+    $config = new LyraParams($this->getObject(), $def_file);
+    $config->setCatalog('lyra_params');
 
-    foreach ($defs as $key => $params) {
-      $config = new LyraParams();
-      $config->setParams($params);
-      $config->setCatalog('lyra_params');
-      $config->setObject($this->getObject());
-
+    foreach($config->getParamDefsSections() as $section)
+    {
       $params_form = new LyraParamsForm(array(), array(
           'config' => $config,
-          'level' => 'global',
+          'section' => $section,
+          'level' => 'settings',
       ));
-      $this->embedForm($key, $params_form);
-      $this->widgetSchema[$key]->setLabel('PANEL_' . strtoupper($key));
-      $this->config[$key] = $config;
+      $this->embedForm($section, $params_form);
+      $this->widgetSchema[$section]->setLabel('PANEL_' . strtoupper($section));
     }
 
     $this->widgetSchema->setNameFormat('settings[%s]');
     $this->widgetSchema->setFormFormatterName('LyraSettings');
+    $this->config = $config;
   }
   public function updateObject($values = null)
   {
     $item = parent::updateObject($values);
     $params = array();
-    foreach($this->config as $key => $config) {
-      $params = array_merge($params, $config->checkValues($this->getValue($key)));
+    foreach($this->config->getParamDefsSections() as $section)
+    {
+      $params = array_merge($params, $this->config->checkValues($this->getValue($section), $section));
     }
     //Save configuration parameters
     $item->setParams(serialize($params));
