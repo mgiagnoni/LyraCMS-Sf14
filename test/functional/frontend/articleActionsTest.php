@@ -75,7 +75,9 @@ $browser->info('2 - Article form')->
     hasErrors(false)->
   end()->
 
-  isRedirected()->
+  with('response')->
+    isRedirected()->
+
   followRedirect()->
 
   with('request')->begin()->
@@ -175,7 +177,10 @@ $browser->info('2 - Article form')->
 
   $browser->info('  4.4 - Submit comment (moderated user not auth)')->
   get('/logout')->
-  isRedirected()->
+
+  with('response')->
+    isRedirected()->
+    
   followRedirect();
 
   submit_comment($browser, $comment);
@@ -237,7 +242,9 @@ $browser->info('5 - Pages')->
         hasErrors(false)->
       end()->
 
-      isRedirected()->
+      with('response')->
+        isRedirected()->
+
       followRedirect()->
 
       with('request')->begin()->

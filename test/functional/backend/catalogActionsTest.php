@@ -72,7 +72,9 @@ $browser->info('1 - Catalog list')->
     hasErrors(false)->
   end()->
 
-  isRedirected()->
+  with('response')->
+    isRedirected()->
+
   followRedirect()->
   with('request')->begin()->
     isParameter('module', 'catalog')->
@@ -106,7 +108,9 @@ $browser->info('  2.3 - Check created catalog')->
     isParameter('action', 'publish')->
   end()->
 
-  isRedirected()->
+  with('response')->
+    isRedirected()->
+
   followRedirect()->
 
   info('  3.2 - Is catalog published?')->
@@ -125,7 +129,9 @@ $browser->info('  2.3 - Check created catalog')->
     isParameter('action', 'unpublish')->
   end()->
 
-  isRedirected()->
+  with('response')->
+    isRedirected()->
+
   followRedirect()->
 
   info('  3.3 - Is catalog unpublished?')->
@@ -157,7 +163,9 @@ $browser->info('  2.3 - Check created catalog')->
     hasErrors(false)->
   end()->
 
-  isRedirected()->
+  with('response')->
+    isRedirected()->
+  
   followRedirect()->
   with('request')->begin()->
     isParameter('module', 'catalog')->

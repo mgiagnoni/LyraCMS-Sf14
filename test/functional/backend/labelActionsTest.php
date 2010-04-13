@@ -48,7 +48,9 @@ $browser->info('1 - Label list')->
     isParameter('action', 'down')->
   end()->
 
-  isRedirected()->
+  with('response')->
+    isRedirected()->
+
   followRedirect()->
 
   with('response')->begin()->
@@ -94,8 +96,11 @@ $browser->info('1 - Label list')->
     hasErrors(false)->
   end()->
 
-  isRedirected()->
+  with('response')->
+    isRedirected()->
+
   followRedirect()->
+
   with('request')->begin()->
     isParameter('module', 'label')->
     isParameter('action', 'edit')->
@@ -139,8 +144,11 @@ $browser->info('  2.3  - Check created label')->
     hasErrors(false)->
   end()->
 
-  isRedirected()->
+  with('response')->
+    isRedirected()->
+
   followRedirect()->
+  
   with('request')->begin()->
     isParameter('module', 'label')->
     isParameter('action', 'edit')->

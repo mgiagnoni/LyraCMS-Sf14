@@ -88,7 +88,7 @@
  * @package    lyra
  * @subpackage model
  * @author     Your name here
- * @version    SVN: $Id: Builder.php 6820 2009-11-30 17:27:49Z jwage $
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BaseLyraArticle extends LyraContent
 {
@@ -100,16 +100,16 @@ abstract class BaseLyraArticle extends LyraContent
              'type' => 'integer',
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('title', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('subtitle', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('summary', 'clob', null, array(
              'type' => 'clob',
@@ -119,19 +119,19 @@ abstract class BaseLyraArticle extends LyraContent
              ));
         $this->hasColumn('meta_title', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('meta_descr', 'string', 500, array(
              'type' => 'string',
-             'length' => '500',
+             'length' => 500,
              ));
         $this->hasColumn('meta_keys', 'string', 500, array(
              'type' => 'string',
-             'length' => '500',
+             'length' => 500,
              ));
         $this->hasColumn('meta_robots', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('is_active', 'boolean', null, array(
              'type' => 'boolean',
@@ -158,31 +158,31 @@ abstract class BaseLyraArticle extends LyraContent
              'type' => 'integer',
              'notnull' => true,
              'default' => 0,
-             'length' => '1',
+             'length' => 1,
              ));
         $this->hasColumn('created_by', 'integer', 4, array(
              'type' => 'integer',
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('updated_by', 'integer', 4, array(
              'type' => 'integer',
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('locked_by', 'integer', 4, array(
              'type' => 'integer',
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('num_comments', 'integer', 4, array(
              'type' => 'integer',
              'notnull' => true,
              'default' => 0,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('num_active_comments', 'integer', 4, array(
              'type' => 'integer',
              'notnull' => true,
              'default' => 0,
-             'length' => '4',
+             'length' => 4,
              ));
 
         $this->option('collate', 'utf8_unicode_ci');

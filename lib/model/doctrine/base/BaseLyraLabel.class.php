@@ -61,7 +61,7 @@
  * @package    lyra
  * @subpackage model
  * @author     Your name here
- * @version    SVN: $Id: Builder.php 6820 2009-11-30 17:27:49Z jwage $
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BaseLyraLabel extends sfDoctrineRecord
 {
@@ -72,40 +72,40 @@ abstract class BaseLyraLabel extends sfDoctrineRecord
              'type' => 'integer',
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('catalog_id', 'integer', 4, array(
              'type' => 'integer',
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('name', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('title', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('description', 'string', 4000, array(
              'type' => 'string',
-             'length' => '4000',
+             'length' => 4000,
              ));
         $this->hasColumn('meta_title', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('meta_robots', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('meta_descr', 'string', 4000, array(
              'type' => 'string',
-             'length' => '4000',
+             'length' => 4000,
              ));
         $this->hasColumn('meta_keys', 'string', 4000, array(
              'type' => 'string',
-             'length' => '4000',
+             'length' => 4000,
              ));
         $this->hasColumn('is_active', 'boolean', null, array(
              'type' => 'boolean',
@@ -114,11 +114,11 @@ abstract class BaseLyraLabel extends sfDoctrineRecord
              ));
         $this->hasColumn('created_by', 'integer', 4, array(
              'type' => 'integer',
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('updated_by', 'integer', 4, array(
              'type' => 'integer',
-             'length' => '4',
+             'length' => 4,
              ));
 
         $this->option('collate', 'utf8_unicode_ci');

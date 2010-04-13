@@ -107,7 +107,9 @@ $browser->info('2 - New article')->
     hasErrors(false)->
   end()->
 
-  isRedirected()->
+  with('response')->
+    isRedirected()->
+  
   followRedirect()
 ;
 
@@ -141,7 +143,9 @@ $browser->info('  2.2  - Check created article')->
     isParameter('action', 'publish')->
   end()->
 
-  isRedirected()->
+  with('response')->
+    isRedirected()->
+
   followRedirect()->
 
   info('  3.2 - Is article published?')->
@@ -160,7 +164,9 @@ $browser->info('  2.2  - Check created article')->
     isParameter('action', 'unpublish')->
   end()->
 
-  isRedirected()->
+  with('response')->
+    isRedirected()->
+
   followRedirect()->
 
   info('  3.4 - Is article unpublished?')->
@@ -181,7 +187,9 @@ $browser->info('  2.2  - Check created article')->
     isParameter('action', 'feature')->
   end()->
 
-  isRedirected()->
+  with('response')->
+    isRedirected()->
+
   followRedirect()->
 
   info('  4.2 - Is article featured?')->
@@ -200,7 +208,9 @@ $browser->info('  2.2  - Check created article')->
     isParameter('action', 'unfeature')->
   end()->
 
-  isRedirected()->
+  with('response')->
+    isRedirected()->
+  
   followRedirect()->
 
   info('  4.4 - Is article unfeatured?')->

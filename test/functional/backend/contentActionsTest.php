@@ -62,7 +62,8 @@ $browser->info('1 - Content types list')->
     hasErrors(false)->
   end()->
 
-  isRedirected()
+  with('response')->
+    isRedirected()
 ;
 
 $browser->setTester('doctrine', 'sfTesterDoctrine');

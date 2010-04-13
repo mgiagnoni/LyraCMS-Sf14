@@ -27,6 +27,7 @@ class LyraTestFunctional extends sfTestFunctional
       isParameter('action', 'signin')->
     end()->
 
-    isRedirected();
+    with('response')->
+      isRedirected();
   }
 }

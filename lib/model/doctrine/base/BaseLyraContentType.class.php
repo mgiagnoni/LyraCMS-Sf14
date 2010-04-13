@@ -46,7 +46,7 @@
  * @package    lyra
  * @subpackage model
  * @author     Your name here
- * @version    SVN: $Id: Builder.php 6820 2009-11-30 17:27:49Z jwage $
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BaseLyraContentType extends sfDoctrineRecord
 {
@@ -57,34 +57,34 @@ abstract class BaseLyraContentType extends sfDoctrineRecord
              'type' => 'integer',
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('type', 'string', 80, array(
              'type' => 'string',
              'notnull' => true,
              'unique' => true,
-             'length' => '80',
+             'length' => 80,
              ));
         $this->hasColumn('name', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('description', 'string', 4000, array(
              'type' => 'string',
-             'length' => '4000',
+             'length' => 4000,
              ));
         $this->hasColumn('model', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('module', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('plugin', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('is_active', 'boolean', null, array(
              'type' => 'boolean',

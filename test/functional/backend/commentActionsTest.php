@@ -44,7 +44,9 @@ $browser->info('1 - Comment list')->
     isParameter('action', 'unpublish')->
   end()->
 
-  isRedirected()->
+  with('response')->
+    isRedirected()->
+
   followRedirect()
 ;
 
@@ -66,7 +68,9 @@ $browser->info('  1.2 - Is comment unpublished?')->
     isParameter('action', 'publish')->
   end()->
 
-  isRedirected()->
+  with('response')->
+    isRedirected()->
+
   followRedirect()->
 
   info('  1.4 - Is comment published?')->
@@ -120,8 +124,11 @@ $browser->info('  1.2 - Is comment unpublished?')->
     hasErrors(false)->
   end()->
 
-  isRedirected()->
+  with('response')->
+    isRedirected()->
+
   followRedirect()->
+  
   with('request')->begin()->
     isParameter('module', 'comment')->
     isParameter('action', 'edit')->
