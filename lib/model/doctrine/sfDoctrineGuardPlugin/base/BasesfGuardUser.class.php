@@ -103,7 +103,7 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              ));
         $this->hasColumn('is_super_admin', 'boolean', null, array(
              'type' => 'boolean',
-             'default' => 0,
+             'default' => false,
              ));
         $this->hasColumn('last_login', 'timestamp', null, array(
              'type' => 'timestamp',

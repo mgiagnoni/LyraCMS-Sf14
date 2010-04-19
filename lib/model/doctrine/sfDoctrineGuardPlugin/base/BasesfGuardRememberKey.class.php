@@ -51,6 +51,11 @@ abstract class BasesfGuardRememberKey extends sfDoctrineRecord
              'primary' => true,
              'length' => 50,
              ));
+
+        $this->option('symfony', array(
+             'form' => false,
+             'filter' => false,
+             ));
     }
 
     public function setUp()
