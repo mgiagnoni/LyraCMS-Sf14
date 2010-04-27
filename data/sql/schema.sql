@@ -7,6 +7,7 @@ CREATE TABLE content_types (id INT AUTO_INCREMENT, type VARCHAR(80) NOT NULL UNI
 CREATE TABLE content_type_catalog (ctype_id INT, catalog_id INT, PRIMARY KEY(ctype_id, catalog_id)) ENGINE = INNODB;
 CREATE TABLE labels (id INT AUTO_INCREMENT, catalog_id INT, name VARCHAR(255) NOT NULL, title VARCHAR(255), description TEXT, meta_title VARCHAR(255), meta_robots VARCHAR(255), meta_descr TEXT, meta_keys TEXT, is_active TINYINT(1) DEFAULT '0' NOT NULL, created_by INT, updated_by INT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, slug VARCHAR(255), root_id BIGINT, lft INT, rgt INT, level SMALLINT, UNIQUE INDEX labels_sluggable_idx (slug), INDEX catalog_id_idx (catalog_id), INDEX created_by_idx (created_by), INDEX updated_by_idx (updated_by), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
 CREATE TABLE settings (id INT AUTO_INCREMENT, params LONGTEXT, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
+CREATE TABLE users (id INT AUTO_INCREMENT, user_id INT, first_name VARCHAR(80), last_name VARCHAR(80), email VARCHAR(150), INDEX user_id_idx (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
 CREATE TABLE sf_guard_group (id INT AUTO_INCREMENT, name VARCHAR(255) UNIQUE, description TEXT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_group_permission (group_id INT, permission_id INT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(group_id, permission_id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_permission (id INT AUTO_INCREMENT, name VARCHAR(255) UNIQUE, description TEXT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
@@ -26,6 +27,7 @@ ALTER TABLE content_type_catalog ADD CONSTRAINT content_type_catalog_catalog_id_
 ALTER TABLE labels ADD CONSTRAINT labels_updated_by_sf_guard_user_id FOREIGN KEY (updated_by) REFERENCES sf_guard_user(id);
 ALTER TABLE labels ADD CONSTRAINT labels_created_by_sf_guard_user_id FOREIGN KEY (created_by) REFERENCES sf_guard_user(id);
 ALTER TABLE labels ADD CONSTRAINT labels_catalog_id_catalogs_id FOREIGN KEY (catalog_id) REFERENCES catalogs(id) ON DELETE CASCADE;
+ALTER TABLE users ADD CONSTRAINT users_user_id_sf_guard_user_id FOREIGN KEY (user_id) REFERENCES sf_guard_user(id) ON DELETE CASCADE;
 ALTER TABLE sf_guard_group_permission ADD CONSTRAINT sf_guard_group_permission_permission_id_sf_guard_permission_id FOREIGN KEY (permission_id) REFERENCES sf_guard_permission(id) ON DELETE CASCADE;
 ALTER TABLE sf_guard_group_permission ADD CONSTRAINT sf_guard_group_permission_group_id_sf_guard_group_id FOREIGN KEY (group_id) REFERENCES sf_guard_group(id) ON DELETE CASCADE;
 ALTER TABLE sf_guard_remember_key ADD CONSTRAINT sf_guard_remember_key_user_id_sf_guard_user_id FOREIGN KEY (user_id) REFERENCES sf_guard_user(id) ON DELETE CASCADE;

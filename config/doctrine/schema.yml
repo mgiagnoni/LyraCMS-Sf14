@@ -325,3 +325,31 @@ LyraSettings:
       autoincrement: true
     params:
       type: clob
+
+LyraUserProfile:
+  tableName: users
+  options:
+    collate: utf8_unicode_ci
+    charset: utf8
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    user_id:
+      type: integer(4)
+    first_name:
+      type: string(80)
+    last_name:
+      type: string(80)
+    email:
+      type: string(150)
+  relations:
+    User:
+      class: sfGuardUser
+      local: user_id
+      foreign: id
+      type: one
+      foreignType: one
+      foreignAlias: Profile
+      onDelete: CASCADE

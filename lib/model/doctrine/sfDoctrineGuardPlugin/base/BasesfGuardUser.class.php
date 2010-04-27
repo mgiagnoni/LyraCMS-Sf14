@@ -23,6 +23,7 @@
  * @property Doctrine_Collection $CreatedComments
  * @property Doctrine_Collection $CreatedLabels
  * @property Doctrine_Collection $UpdatedLabels
+ * @property LyraUserProfile $Profile
  * 
  * @method integer             getId()                    Returns the current record's "id" value
  * @method string              getUsername()              Returns the current record's "username" value
@@ -42,6 +43,7 @@
  * @method Doctrine_Collection getCreatedComments()       Returns the current record's "CreatedComments" collection
  * @method Doctrine_Collection getCreatedLabels()         Returns the current record's "CreatedLabels" collection
  * @method Doctrine_Collection getUpdatedLabels()         Returns the current record's "UpdatedLabels" collection
+ * @method LyraUserProfile     getProfile()               Returns the current record's "Profile" value
  * @method sfGuardUser         setId()                    Sets the current record's "id" value
  * @method sfGuardUser         setUsername()              Sets the current record's "username" value
  * @method sfGuardUser         setAlgorithm()             Sets the current record's "algorithm" value
@@ -60,6 +62,7 @@
  * @method sfGuardUser         setCreatedComments()       Sets the current record's "CreatedComments" collection
  * @method sfGuardUser         setCreatedLabels()         Sets the current record's "CreatedLabels" collection
  * @method sfGuardUser         setUpdatedLabels()         Sets the current record's "UpdatedLabels" collection
+ * @method sfGuardUser         setProfile()               Sets the current record's "Profile" value
  * 
  * @package    lyra
  * @subpackage model
@@ -162,6 +165,10 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
         $this->hasMany('LyraLabel as UpdatedLabels', array(
              'local' => 'id',
              'foreign' => 'updated_by'));
+
+        $this->hasOne('LyraUserProfile as Profile', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable(array(
              ));

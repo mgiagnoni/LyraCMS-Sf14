@@ -3,3 +3,12 @@ sfGuardUser:
     username:       admin
     password:       admin
     is_super_admin: true
+
+#User profile
+
+LyraUserProfile:
+  p_admin:
+    first_name: Lyra
+    last_name: Administrator
+    email: lyra@localhost
+    User: admin
