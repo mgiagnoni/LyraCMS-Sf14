@@ -3,8 +3,9 @@ class sfWidgetFormSchemaFormatterLyraContent extends sfWidgetFormSchemaFormatter
 {
   protected
       $rowFormat = '<div class="row">%label%%field%%error%%help%%hidden_fields%</div>',
-      $helpFormat = '<div class="field-help">%help%</div>';
-
+      $helpFormat = '<div class="field-help">%help%</div>',
+      $decoratorFormat = '<div class="row">%content%</div>';
+      
   public function generateLabel($name, $attributes = array())
   {
     $labelName = $this->generateLabelName($name);

@@ -507,3 +507,39 @@ ul.error_list li {
 {
   font-size: 85%;
 }
+/* Registration form */
+#registration-form
+{
+  margin-top: 15px;
+}
+#registration-form ul
+{
+  margin: 0;
+  padding: 0;
+}
+#registration-form li
+{
+  list-style-type: none;
+}
+#registration-form label
+{
+  display: block;
+}
+#registration-form .row-submit
+{
+  clear: both;
+  margin-top: 15px;
+}
+#registration-form .col-left, #registration-form .col-right
+{
+  float: left;
+}
+#registration-form .col-left
+{
+  width: 210px;
+}
+#registration-form .col-right
+{
+  margin-left: 5px;
+  width: 210px;
+}

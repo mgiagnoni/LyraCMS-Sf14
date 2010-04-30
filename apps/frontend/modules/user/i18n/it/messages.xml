@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file source-language="EN" target-language="it" datatype="plaintext" original="messages" date="2009-10-12T00:30:02Z" product-name="messages">
+    <header/>
+    <body>
+      <trans-unit id="1">
+        <source>FIRST_NAME</source>
+        <target>Nome</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>LAST_NAME</source>
+        <target>Cognome</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>EMAIL</source>
+        <target>E-mail</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>USERNAME</source>
+        <target>Utente</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>PASSWORD</source>
+        <target>Password</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>PASSWORD_AGAIN</source>
+        <target>Ripeti password</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>HEAD_USER_REGISTRATION</source>
+        <target>Registrazione utente</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>ERROR_PASSWORDS_DONT_MATCH</source>
+        <target>Password e password di conferma devono essere uguali.</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>MSG_REGISTRATION_SENT</source>
+        <target>La registrazione è stata effetuata.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+
