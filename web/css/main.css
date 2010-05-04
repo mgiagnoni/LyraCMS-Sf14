@@ -543,3 +543,23 @@ ul.error_list li {
   margin-left: 5px;
   width: 210px;
 }
+/* Login form */
+#login-form-wrapper-side
+{
+  margin: 15px 0 0 25px;
+  font-size: 85%;
+}
+#login-form-wrapper-side a
+{
+  display: block;
+  margin: 10px 0 5px;
+}
+#login-form-wrapper-side .username
+{
+  color: #EE8907;
+}
+#login-form label
+{
+  display: block;
+  font-size: 85%;
+}

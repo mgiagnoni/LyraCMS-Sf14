@@ -122,5 +122,81 @@ $browser->info('  1.4  - Check created user')->
       'last_name' => 'User',
       'email' => 'test@example.com'
     ))->
-  end()
+  end()->
+
+  info('2 - User login form')->
+  get('/article/art1.html')->
+
+  with('response')->begin()->
+    checkForm('LyraUserSigninForm')->
+  end()->
+
+  info('  2.1 - Login')->
+  click('#login-form-wrapper-side .row-submit input', array('signin' => array(
+    'username' => 'admin',
+    'password' => 'admin'
+  )))->
+
+  with('request')->begin()->
+    isParameter('module', 'user')->
+    isParameter('action', 'signin')->
+  end()->
+
+  with('form')->begin()->
+    hasErrors(false)->
+  end()->
+
+  with('response')->
+    isRedirected()->
+
+  followRedirect()->
+
+  with('request')->begin()->
+    isParameter('module', 'article')->
+    isParameter('action', 'show')->
+    isParameter('slug', 'art1')->
+  end()->
+
+  with('response')->
+    checkElement('#login-form-wrapper-side .username:contains("admin")')->
+
+  info('  2.2 - Logout')->
+  click('#login-form-wrapper-side .logout')->
+
+  with('request')->begin()->
+    isParameter('module', 'user')->
+    isParameter('action', 'signout')->
+  end()->
+
+  with('response')->begin()->
+    checkElement('#login-form-wrapper-side .username', false)->
+    isRedirected()->
+  end()->
+
+  followRedirect()->
+
+  with('request')->begin()->
+    isParameter('module', 'article')->
+    isParameter('action', 'show')->
+    isParameter('slug', 'art1')->
+  end()->
+
+  info('  2.3 Failed login')->
+  click('#login-form-wrapper-side .row-submit input', array('signin' => array(
+    'username' => 'admin',
+    'password' => 'wrong'
+  )))->
+
+  with('request')->begin()->
+    isParameter('module', 'user')->
+    isParameter('action', 'signin')->
+  end()->
+
+  with('form')->begin()->
+    hasErrors(1)->
+    isError('username', 'invalid')->
+  end()->
+
+  with('response')->
+    isRedirected(false)
 ;

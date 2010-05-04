@@ -40,6 +40,10 @@
         <source>MSG_REGISTRATION_SENT</source>
         <target>La registrazione è stata effetuata.</target>
       </trans-unit>
+      <trans-unit id="10">
+        <source>ERROR_INVALID_SIGNIN</source>
+        <target>Nome utente o password non validi.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

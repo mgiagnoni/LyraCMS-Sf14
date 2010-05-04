@@ -12,6 +12,34 @@
         <source>HEAD_ARCHIVE</source>
         <target>Archive</target>
       </trans-unit>
+      <trans-unit id="3">
+        <source>HEAD_LOGIN</source>
+        <target>Login</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>HEAD_USER</source>
+        <target>User</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>USERNAME</source>
+        <target>Username</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>PASSWORD</source>
+        <target>Password</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>LINK_LOGOUT</source>
+        <target>Logout</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>LINK_REGISTER</source>
+        <target>Create account</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>SIGNEDIN_AS</source>
+        <target>Logged in as</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

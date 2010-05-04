@@ -50,6 +50,18 @@ article_archive:
     year: \d+
     month: \d+
     sf_method: [get]
+
+user_signin:
+  url: /user/login
+  param:
+    module: user
+    action: signin
+
+user_signout:
+  url: /user/logout
+  param:
+    module: user
+    action: signout
     
 # default rules
 homepage:

@@ -28,6 +28,35 @@ class userActions extends sfActions
   {
     $this->forward('default', 'module');
   }
+  public function executeSignin(sfWebRequest $request)
+  {
+    $user = $this->getUser();
+    if ($user->isAuthenticated())
+    {
+      return $this->redirect('@homepage');
+    }
+
+    $this->form = new LyraUserSigninForm();
+
+    if ($request->isMethod('post'))
+    {
+      $this->form->bind($request->getParameter('signin'));
+      if ($this->form->isValid())
+      {
+        $values = $this->form->getValues();
+        $this->getUser()->signin($values['user'], array_key_exists('remember', $values) ? $values['remember'] : false);
+
+        $referer = $request->getReferer();
+        return $this->redirect($referer ? $referer : '@homepage');
+      }
+    }
+  }
+  public function executeSignout(sfWebRequest $request)
+  {
+    $this->getUser()->signOut();
+    $referer = $request->getReferer();
+    return $this->redirect($referer ? $referer : '@homepage');
+  }
   public function executeRegister(sfWebRequest $request)
   {
     $this->form = new LyraUserRegistrationForm();
