@@ -38,11 +38,39 @@
       </trans-unit>
       <trans-unit id="9">
         <source>MSG_REGISTRATION_SENT</source>
-        <target>La registrazione è stata effetuata.</target>
+        <target>La registrazione è stata effettuata.</target>
       </trans-unit>
       <trans-unit id="10">
         <source>ERROR_INVALID_SIGNIN</source>
         <target>Nome utente o password non validi.</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>HEAD_EMAIL_VERIFY</source>
+        <target>Verifica indirizzo e-mail</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>EMAIL</source>
+        <target>E-mail</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>VTOKEN</source>
+        <target>Codice verifica</target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>MSG_EMAIL_VERIFICATION</source>
+        <target>Indirizzo e-mail verificato.</target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>ERROR_INVALID_EMAIL_VERIFICATION</source>
+        <target>E-mail e/o codice di verifica non validi.</target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>EMAIL_VERIFICATION_BODY</source>
+        <target>Per verificare il vostro indirizzo e-mail (%email%) visitare la pagina indicata di seguito ed inserire il codice di verifica: %token%.</target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>EMAIL_VERIFICATION_SUBJECT</source>
+        <target>Verifica indirizzo e-mail</target>
       </trans-unit>
     </body>
   </file>

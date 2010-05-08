@@ -36,6 +36,54 @@
         <source>page_title_sfx</source>
         <target>Suffisso titolo pagina</target>
       </trans-unit>
+      <trans-unit id="9">
+        <source>enable_registration</source>
+        <target>Abilita registrazione utenti</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>require_approval</source>
+        <target>Approva nuove registrazioni</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>email_verification</source>
+        <target>Richiedi verifica e-mail</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>system_from</source>
+        <target>E-mail di sistema</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>smtp_host</source>
+        <target>Host SMTP</target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>smtp_port</source>
+        <target>Porta SMTP</target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>smtp_encryption</source>
+        <target>Codifica SMTP</target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>smtp_username</source>
+        <target>Utente SMTP</target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>smtp_password</source>
+        <target>Password SMTP</target>
+      </trans-unit>
+      <trans-unit id="18">
+        <source>send_with</source>
+        <target>Invia e-mail con</target>
+      </trans-unit>
+      <trans-unit id="19">
+        <source>php_mail</source>
+        <target>PHP mail</target>
+      </trans-unit>
+      <trans-unit id="20">
+        <source>smtp</source>
+        <target>SMTP</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

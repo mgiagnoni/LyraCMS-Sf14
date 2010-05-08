@@ -344,6 +344,12 @@ LyraUserProfile:
       type: string(80)
     email:
       type: string(150)
+    is_verified:
+      type: boolean
+      notnull: true
+      default: false
+    vtoken:
+      type: string(255)
   relations:
     User:
       class: sfGuardUser

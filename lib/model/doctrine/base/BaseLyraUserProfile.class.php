@@ -10,20 +10,26 @@
  * @property string $first_name
  * @property string $last_name
  * @property string $email
+ * @property boolean $is_verified
+ * @property string $vtoken
  * @property sfGuardUser $User
  * 
- * @method integer         getId()         Returns the current record's "id" value
- * @method integer         getUserId()     Returns the current record's "user_id" value
- * @method string          getFirstName()  Returns the current record's "first_name" value
- * @method string          getLastName()   Returns the current record's "last_name" value
- * @method string          getEmail()      Returns the current record's "email" value
- * @method sfGuardUser     getUser()       Returns the current record's "User" value
- * @method LyraUserProfile setId()         Sets the current record's "id" value
- * @method LyraUserProfile setUserId()     Sets the current record's "user_id" value
- * @method LyraUserProfile setFirstName()  Sets the current record's "first_name" value
- * @method LyraUserProfile setLastName()   Sets the current record's "last_name" value
- * @method LyraUserProfile setEmail()      Sets the current record's "email" value
- * @method LyraUserProfile setUser()       Sets the current record's "User" value
+ * @method integer         getId()          Returns the current record's "id" value
+ * @method integer         getUserId()      Returns the current record's "user_id" value
+ * @method string          getFirstName()   Returns the current record's "first_name" value
+ * @method string          getLastName()    Returns the current record's "last_name" value
+ * @method string          getEmail()       Returns the current record's "email" value
+ * @method boolean         getIsVerified()  Returns the current record's "is_verified" value
+ * @method string          getVtoken()      Returns the current record's "vtoken" value
+ * @method sfGuardUser     getUser()        Returns the current record's "User" value
+ * @method LyraUserProfile setId()          Sets the current record's "id" value
+ * @method LyraUserProfile setUserId()      Sets the current record's "user_id" value
+ * @method LyraUserProfile setFirstName()   Sets the current record's "first_name" value
+ * @method LyraUserProfile setLastName()    Sets the current record's "last_name" value
+ * @method LyraUserProfile setEmail()       Sets the current record's "email" value
+ * @method LyraUserProfile setIsVerified()  Sets the current record's "is_verified" value
+ * @method LyraUserProfile setVtoken()      Sets the current record's "vtoken" value
+ * @method LyraUserProfile setUser()        Sets the current record's "User" value
  * 
  * @package    lyra
  * @subpackage model
@@ -56,6 +62,15 @@ abstract class BaseLyraUserProfile extends sfDoctrineRecord
         $this->hasColumn('email', 'string', 150, array(
              'type' => 'string',
              'length' => 150,
+             ));
+        $this->hasColumn('is_verified', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => true,
+             'default' => false,
+             ));
+        $this->hasColumn('vtoken', 'string', 255, array(
+             'type' => 'string',
+             'length' => 255,
              ));
 
         $this->option('collate', 'utf8_unicode_ci');

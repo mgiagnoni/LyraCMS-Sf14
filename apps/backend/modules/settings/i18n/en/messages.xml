@@ -15,6 +15,14 @@
         <source>PANEL_COMMENTS</source>
         <target>Comments</target>
       </trans-unit>
+      <trans-unit id="4">
+        <source>PANEL_MAILER</source>
+        <target>Mailer</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>PANEL_USERS</source>
+        <target>Users</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

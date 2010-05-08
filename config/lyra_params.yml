@@ -11,4 +11,31 @@ params:
       type: list
       choices: [moderate_all, moderate_no_auth, moderate_none]
       default: moderate_all
+  users:
+    enable_registration:
+      type: boolean
+      default: true
+    require_approval:
+      type: boolean
+      default: true
+    email_verification:
+      type: boolean
+      default: true
+  mailer:
+    system_from:
+      type: text
+    send_with:
+      type: list
+      choices: [php_mail, smtp]
+      default: php_mail
+    smtp_host:
+      type: text
+    smtp_port:
+      type: text
+    smtp_encryption:
+      type: text
+    smtp_username:
+      type: text
+    smtp_password:
+      type: text
 

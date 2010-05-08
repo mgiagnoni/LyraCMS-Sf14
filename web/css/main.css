@@ -561,5 +561,9 @@ ul.error_list li {
 #login-form label
 {
   display: block;
-  font-size: 85%;
+}
+/* Email verify form */
+#email-verify-form label
+{
+  display: block;
 }

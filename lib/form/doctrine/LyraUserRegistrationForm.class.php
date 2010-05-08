@@ -33,8 +33,7 @@ class LyraUserRegistrationForm extends PluginsfGuardUserForm
     $this->mergePostValidator(new sfValidatorSchemaCompare('password', sfValidatorSchemaCompare::EQUAL, 'password_again', array(), array('invalid' => 'ERROR_PASSWORDS_DONT_MATCH')));
 
     $profileForm = new LyraUserProfileForm($this->object->Profile, array('embedded_from' => 'frontend'));
-    unset($profileForm['id'], $profileForm['user_id']);
-    
+
     $this->embedForm('user_profile', $profileForm);
     $this->widgetSchema['user_profile']->setLabel(false);
     $this->widgetSchema->moveField('user_profile', sfWidgetFormSchema::FIRST);
@@ -45,6 +44,13 @@ class LyraUserRegistrationForm extends PluginsfGuardUserForm
   public function updateObject($values = null)
   {
     $user = parent::updateObject($values);
-    $user->setIsActive(false);
+    $params = new LyraConfig('settings');
+
+    $active = (false === $params->get('require_approval', 'users') && false === $params->get('email_verification', 'users'));
+    $user->setIsActive($active);
+    if(true === $params->get('email_verification', 'users'))
+    {
+      $user->Profile->setVtoken(sha1($user->getUsername() . mt_rand()));
+    }
   }
 }

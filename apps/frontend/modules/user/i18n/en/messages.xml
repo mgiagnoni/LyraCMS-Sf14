@@ -44,6 +44,34 @@
         <source>ERROR_INVALID_SIGNIN</source>
         <target>Invalid username and/or password.</target>
       </trans-unit>
+      <trans-unit id="11">
+        <source>HEAD_EMAIL_VERIFY</source>
+        <target>E-mail verification</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>EMAIL</source>
+        <target>E-mail</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>VTOKEN</source>
+        <target>Verification code</target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>MSG_EMAIL_VERIFICATION</source>
+        <target>You have successfully verified your e-mail address.</target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>ERROR_INVALID_EMAIL_VERIFICATION</source>
+        <target>Invalid e-mail and/or verification code.</target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>EMAIL_VERIFICATION_BODY</source>
+        <target>To verify your e-mail address click the link below and enter the verification code.</target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>EMAIL_VERIFICATION_SUBJECT</source>
+        <target>E-mail verification</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

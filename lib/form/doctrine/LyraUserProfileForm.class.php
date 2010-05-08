@@ -22,6 +22,7 @@ class LyraUserProfileForm extends BaseLyraUserProfileForm
 
   public function configure()
   {
+    $this->useFields(array('first_name', 'last_name', 'email'));
     $from_frontend = 'frontend' == $this->getOption('embedded_from');
     $this->widgetSchema['first_name']->setLabel('FIRST_NAME');
     $this->widgetSchema['last_name']->setLabel('LAST_NAME');

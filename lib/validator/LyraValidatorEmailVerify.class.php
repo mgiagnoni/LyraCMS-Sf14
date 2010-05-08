@@ -10,19 +10,28 @@
 */
 
 /**
- * userComponents
+ * LyraValidatorEmailVerify
  *
  * @package lyra
- * @subpackage user
+ * @subpackage validator
  * @copyright Copyright (C) 2009-2010 Massimo Giagnoni. All rights reserved.
  * @license GNU General Public License version 2 or later (see LICENSE.txt)
  */
-class userComponents extends sfComponents
+class LyraValidatorEmailVerify extends sfValidatorBase
 {
-  public function executeLogin(sfWebRequest $request)
+  public function configure($options = array(), $messages = array())
   {
-    $this->form = new LyraUserSigninForm();
-    $params = new LyraConfig('settings');
-    $this->show_registration_link = $params->get('enable_registration', 'users');
+    $this->setMessage('invalid', 'ERROR_INVALID_EMAIL_VERIFICATION');
+  }
+  protected function doClean($values)
+  {
+    if($values['email'] && $values['token'])
+    {
+      if(false === Doctrine::getTable('LyraUserProfile')
+        ->emailVerify($values['email'], $values['token']))
+      {
+        throw new sfValidatorError($this, 'invalid');
+      }
+    }
   }
 }
