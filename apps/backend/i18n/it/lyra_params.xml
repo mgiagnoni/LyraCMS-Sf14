@@ -84,6 +84,14 @@
         <source>smtp</source>
         <target>SMTP</target>
       </trans-unit>
+      <trans-unit id="21">
+        <source>Yes</source>
+        <target>Sì</target>
+      </trans-unit>
+      <trans-unit id="22">
+        <source>No</source>
+        <target>No</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

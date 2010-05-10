@@ -48,6 +48,14 @@
         <source>MENU_PAGE</source>
         <target>Pagine</target>
       </trans-unit>
+      <trans-unit id="12">
+        <source>yes</source>
+        <target>sì</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>yes or no</source>
+        <target>sì / no</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

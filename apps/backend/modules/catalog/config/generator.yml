@@ -24,6 +24,9 @@ generator:
           labels: {label: TH_LABELS}
           published: {label: TH_PUBLISHED}
       filter:
+        fields:
+          name: {label: NAME}
+          is_active: {label: IS_ACTIVE}
         display: [name,is_active]
       form:
         display:

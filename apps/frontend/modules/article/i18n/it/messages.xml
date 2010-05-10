@@ -196,6 +196,26 @@
         <source>HEAD_NEW_ARTICLE</source>
         <target>Nuovo articolo</target>
       </trans-unit>
+      <trans-unit id="49">
+        <source>OPTION_NONE</source>
+        <target>Nessuno</target>
+      </trans-unit>
+      <trans-unit id="50">
+        <source>OPTION_INDEX_FOLLOW</source>
+        <target>Index Follow</target>
+      </trans-unit>
+      <trans-unit id="51">
+        <source>OPTION_NOINDEX_NOFOLLOW</source>
+        <target>NoIndex NoFollow</target>
+      </trans-unit>
+      <trans-unit id="52">
+        <source>OPTION_NOINDEX_FOLLOW</source>
+        <target>NoIndex Follow</target>
+      </trans-unit>
+      <trans-unit id="53">
+        <source>OPTION_INDEX_NOFOLLOW</source>
+        <target>Index NoFollow</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

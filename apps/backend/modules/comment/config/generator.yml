@@ -32,6 +32,9 @@ generator:
         table_method: getBackendItemsQuery
         actions: []
       filter:
+        fields:
+          article_id: {label: TH_ARTICLE_TITLE}
+          is_active: {label: IS_ACTIVE}
         display: [article_id, is_active]
       form:
         class: BackendLyraCommentForm

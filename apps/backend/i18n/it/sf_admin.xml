@@ -48,6 +48,14 @@
         <source>MSG_LABEL_DELETED</source>
         <target>L'etichetta è stata cancellata.</target>
       </trans-unit>
+      <trans-unit id="12">
+        <source>Filters</source>
+        <target>Ricerca</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>Reset</source>
+        <target>Azzera</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

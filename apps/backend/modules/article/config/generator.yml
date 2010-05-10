@@ -30,6 +30,9 @@ generator:
           unpublish: {label: UNPUBLISH}
         table_method: getBackendItemsQuery
       filter:
+        fields:
+          title: {label: TITLE}
+          is_active: {label: IS_ACTIVE}
         display: [title,is_active]
       form:
         class: BackendLyraArticleForm

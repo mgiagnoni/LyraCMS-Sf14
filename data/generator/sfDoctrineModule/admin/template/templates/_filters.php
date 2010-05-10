@@ -2,7 +2,7 @@
 [?php use_javascripts_for_form($form) ?]
 
 <div class="sf_admin_filter">
-  <h3>Filters</h3>
+  <h3>[?php echo __('Filters', array(), 'sf_admin') ?]</h3>
   [?php if ($form->hasGlobalErrors()): ?]
     [?php echo $form->renderGlobalErrors() ?]
   [?php endif; ?]

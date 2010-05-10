@@ -25,6 +25,8 @@ generator:
           id: {label: TH_ID}
         actions: {}
       filter:
+        fields:
+          name: {label: NAME}
         display: [name]
       form:
         display:
