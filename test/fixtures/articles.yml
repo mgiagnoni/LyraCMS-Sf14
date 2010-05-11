@@ -49,3 +49,31 @@ LyraArticle:
     ArticleUpdatedBy: admin
     ArticleCreatedBy: admin
     ArticleContentType: Articolo
+  art5:
+    title: art5
+    summary: expired featured
+    is_featured: true
+    is_active: true
+    publish_end: "2000-01-01"
+    ArticleUpdatedBy: admin
+    ArticleCreatedBy: admin
+    ArticleContentType: Articolo
+  art6:
+    title: art6
+    summary: queued featured
+    is_featured: true
+    is_active: true
+    publish_start: "2050-01-01"
+    ArticleUpdatedBy: admin
+    ArticleCreatedBy: admin
+    ArticleContentType: Articolo
+  art7:
+    title: art7
+    summary: test within publish_start and publish_end
+    is_featured: true
+    is_active: true
+    publish_start: "<?php echo strftime('%Y-%m-%d', strtotime('-1 day')); ?>"
+    publish_end: "<?php echo strftime('%Y-%m-%d', strtotime('+1 day')); ?>"
+    ArticleUpdatedBy: admin
+    ArticleCreatedBy: admin
+    ArticleContentType: Articolo

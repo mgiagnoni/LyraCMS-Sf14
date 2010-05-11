@@ -69,6 +69,17 @@ class LyraArticleForm extends BaseLyraArticleForm
 
     $this->widgetSchema['ctype_id'] = new sfWidgetFormInputHidden();
 
+    $user = $this->getOption('user');
+    $this->widgetSchema['publish_start'] = new sfWidgetFormI18nDateTime(array(
+      'culture' => $user->getCulture(),
+    ));
+
+    $this->widgetSchema['publish_end'] = new sfWidgetFormI18nDateTime(array(
+      'culture' => $user->getCulture()
+    ));
+
+    $this->validatorSchema->setPostValidator(new LyraValidatorPublishDate());
+
     //change default labels
     $this->widgetSchema['title']->setLabel('TITLE');
     $this->widgetSchema['slug']->setLabel('SLUG');

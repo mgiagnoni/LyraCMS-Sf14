@@ -172,6 +172,10 @@
         <source>OPTION_INDEX_NOFOLLOW</source>
         <target>Index NoFollow</target>
       </trans-unit>
+      <trans-unit id="43">
+        <source>ERROR_PUBLISH_DATE_INVALID</source>
+        <target>Publish start date ("%publish_start%") must be before publish end date ("%publish_end%")</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

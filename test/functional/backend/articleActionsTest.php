@@ -76,7 +76,9 @@ $browser->info('2 - New article')->
   end()->
   info('  2.1 - Submit invalid values')->
   click('li.sf_admin_action_save input', array('article' => array(
-      'meta_robots' => 'invalid choice'
+      'meta_robots' => 'invalid choice',
+      'publish_start' => '2010-05-01',
+      'publish_end' => '2010-01-01'
    )))->
   
   with('request')->begin()->
@@ -85,9 +87,10 @@ $browser->info('2 - New article')->
   end()->
 
   with('form')->begin()->
-    hasErrors(2)->
+    hasErrors(3)->
     isError('title', 'required')->
     isError('meta_robots', 'invalid')->
+    isError(null, 'invalid')->
   end()->
 
   info('  2.2 - Submit form')->
@@ -95,7 +98,9 @@ $browser->info('2 - New article')->
   click('li.sf_admin_action_save input', array('article' => array(
       'title' => 'aaa-backend test',
       'content' => 'test',
-      'meta_title' => 'test meta'
+      'meta_title' => 'test meta',
+      'publish_start' => '2000-01-01',
+      'publish_end' => '2050-01-01'
    )))->
 
   with('request')->begin()->

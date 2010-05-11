@@ -34,7 +34,13 @@ $browser->info('1 - The homepage')->
     info(' 1.2 - Unfeatured articles are not listed')->
     checkElement('.article-title:contains("art2")', false)->
     info(' 1.3 - Unpublished articles are not listed')->
-     checkElement('.article-title:contains("art3")', false)->
+    checkElement('.article-title:contains("art3")', false)->
+    info(' 1.4 - Expired articles are not listed')->
+    checkElement('.article-title:contains("art5")', false)->
+    info(' 1.5 - Queued articles are not listed')->
+    checkElement('.article-title:contains("art6")', false)->
+    info(' 1.6 - Articles within publish_start and publish_end are listed')->
+    checkElement('.article-title:contains("art7")', true)->
   end()
 ;
 $browser->setTester('doctrine', 'sfTesterDoctrine');
@@ -100,7 +106,10 @@ $browser->info('2 - Article form')->
   end()->
 
   info('  2.5 - Submit invalid values')->
-  click('Save', array('article' => array()))->
+  click('Save', array('article' => array(
+    'publish_start' => '2010-05-01',
+    'publish_end' => '2010-01-01'
+  )))->
 
   with('request')->begin()->
     isParameter('module', 'article')->
@@ -108,8 +117,9 @@ $browser->info('2 - Article form')->
   end()->
 
   with('form')->begin()->
-    hasErrors(1)->
+    hasErrors(2)->
     isError('title', 'required')->
+    isError(null, 'invalid')->
   end()
   ;
 
