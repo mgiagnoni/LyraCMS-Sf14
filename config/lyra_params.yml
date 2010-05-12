@@ -11,6 +11,10 @@ params:
       type: list
       choices: [moderate_all, moderate_no_auth, moderate_none]
       default: moderate_all
+    order_comments:
+      type: list
+      choices: [date_asc, date_desc]
+      default: date_asc
   users:
     enable_registration:
       type: boolean

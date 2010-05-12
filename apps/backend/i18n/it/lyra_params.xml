@@ -92,6 +92,18 @@
         <source>No</source>
         <target>No</target>
       </trans-unit>
+      <trans-unit id="23">
+        <source>order_comments</source>
+        <target>Ordinamento commenti</target>
+      </trans-unit>
+      <trans-unit id="24">
+        <source>date_desc</source>
+        <target>Prima i più recenti</target>
+      </trans-unit>
+      <trans-unit id="25">
+        <source>date_asc</source>
+        <target>Prima i più vecchi</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

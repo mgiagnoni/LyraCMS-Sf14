@@ -5,10 +5,11 @@
 class LyraCommentTable extends Doctrine_Table
 {
   public function getActiveItemsQuery() {
-    $q = $this->createQuery('c');
+    $params = new LyraConfig('settings');
 
-    $q->andWhere('c.is_active = ?', true);
-    $q->addOrderBy('c.created_at DESC');
+    $q = $this->createQuery('c')
+      ->andWhere('c.is_active = ?', true)
+      ->addOrderBy('c.created_at' . ($params->get('order_comments', 'comments') == 'date_desc' ? ' DESC' : ''));
 
     return $q;
   }

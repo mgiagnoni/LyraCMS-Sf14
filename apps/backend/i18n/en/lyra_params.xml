@@ -72,6 +72,18 @@
         <source>smtp_password</source>
         <target>SMTP password</target>
       </trans-unit>
+      <trans-unit id="23">
+        <source>order_comments</source>
+        <target>Comments ordering</target>
+      </trans-unit>
+      <trans-unit id="24">
+        <source>date_desc</source>
+        <target>Newest first</target>
+      </trans-unit>
+      <trans-unit id="25">
+        <source>date_asc</source>
+        <target>Oldest first</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
