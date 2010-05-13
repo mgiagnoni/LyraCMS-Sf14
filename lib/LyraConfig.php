@@ -120,7 +120,13 @@ class LyraConfig
   protected function getGlobalParamValue($key, $section)
   {
     $this->initGlobalParams();
-    return $this->params->get($key, $section);
+    $value = $this->params->get($key, $section);
+
+    if(null === $value)
+    {
+      $value = $this->params->getDefault($key, $section);
+    }
+    return $value ;
   }
   protected function getParamDefinitionsPath($module, $plugin, $action = '')
   {
