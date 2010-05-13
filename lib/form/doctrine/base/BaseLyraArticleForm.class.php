@@ -49,6 +49,9 @@ abstract class BaseLyraArticleForm extends LyraContentForm
     $this->widgetSchema   ['is_sticky'] = new sfWidgetFormInputCheckbox();
     $this->validatorSchema['is_sticky'] = new sfValidatorBoolean(array('required' => false));
 
+    $this->widgetSchema   ['is_archived'] = new sfWidgetFormInputCheckbox();
+    $this->validatorSchema['is_archived'] = new sfValidatorBoolean(array('required' => false));
+
     $this->widgetSchema   ['publish_start'] = new sfWidgetFormDateTime();
     $this->validatorSchema['publish_start'] = new sfValidatorDateTime(array('required' => false));
 

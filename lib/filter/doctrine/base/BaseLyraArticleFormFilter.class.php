@@ -47,6 +47,9 @@ abstract class BaseLyraArticleFormFilter extends LyraContentFormFilter
     $this->widgetSchema   ['is_sticky'] = new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no')));
     $this->validatorSchema['is_sticky'] = new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0)));
 
+    $this->widgetSchema   ['is_archived'] = new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no')));
+    $this->validatorSchema['is_archived'] = new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0)));
+
     $this->widgetSchema   ['publish_start'] = new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate()));
     $this->validatorSchema['publish_start'] = new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59'))));
 
@@ -121,6 +124,7 @@ abstract class BaseLyraArticleFormFilter extends LyraContentFormFilter
       'is_active' => 'Boolean',
       'is_featured' => 'Boolean',
       'is_sticky' => 'Boolean',
+      'is_archived' => 'Boolean',
       'publish_start' => 'Date',
       'publish_end' => 'Date',
       'status' => 'Number',

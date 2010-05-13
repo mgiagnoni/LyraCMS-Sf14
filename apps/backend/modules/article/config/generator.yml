@@ -40,7 +40,7 @@ generator:
           "NONE": [ctype_id, title, slug, subtitle]
           PANEL_CONTENT: [content]
           PANEL_SUMMARY: [summary]
-          PANEL_PUBLISH: [is_active, is_featured, is_sticky, publish_start, publish_end]
+          PANEL_PUBLISH: [is_active, is_featured, is_sticky, is_archived, publish_start, publish_end]
           PANEL_LABELS: [labels]
           PANEL_METATAGS: [meta_title, meta_descr, meta_keys, meta_robots]
           PANEL_PARAMS: [lyra_params]

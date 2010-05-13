@@ -7,6 +7,7 @@ LyraArticle:
     meta_descr: Meta Description 1
     is_featured: true
     is_active: true
+    is_archived: true
     ArticleLabels: [child_1]
     ArticleCreatedBy: admin
     ArticleUpdatedBy: admin
@@ -19,6 +20,7 @@ LyraArticle:
     meta_descr: Meta Description 2
     is_featured: false
     is_active: true
+    is_archived: true
     ArticleLabels: [child_2]
     ArticleUpdatedBy: admin
     ArticleCreatedBy: admin
@@ -31,6 +33,7 @@ LyraArticle:
     meta_descr: Meta Description 3
     is_featured: true
     is_active: false
+    is_archived: true
     ArticleLabels: [child_2]
     ArticleUpdatedBy: admin
     ArticleCreatedBy: admin
@@ -43,6 +46,7 @@ LyraArticle:
     meta_descr: Meta Description 4
     is_featured: true
     is_active: true
+    is_archived: true
     params: |
       a:1:{s:14:"show_read_more";b:0;}
     ArticleLabels: [child_2]
@@ -54,6 +58,7 @@ LyraArticle:
     summary: expired featured
     is_featured: true
     is_active: true
+    is_archived: true
     publish_end: "2000-01-01"
     ArticleUpdatedBy: admin
     ArticleCreatedBy: admin
@@ -63,6 +68,7 @@ LyraArticle:
     summary: queued featured
     is_featured: true
     is_active: true
+    is_archived: true
     publish_start: "2050-01-01"
     ArticleUpdatedBy: admin
     ArticleCreatedBy: admin
@@ -72,6 +78,7 @@ LyraArticle:
     summary: test within publish_start and publish_end
     is_featured: true
     is_active: true
+    is_archived: true
     publish_start: "<?php echo strftime('%Y-%m-%d', strtotime('-1 day')); ?>"
     publish_end: "<?php echo strftime('%Y-%m-%d', strtotime('+1 day')); ?>"
     ArticleUpdatedBy: admin

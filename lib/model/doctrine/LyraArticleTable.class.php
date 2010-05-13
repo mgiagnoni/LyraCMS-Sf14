@@ -29,7 +29,7 @@ class LyraArticleTable extends Doctrine_Table
   {
     $q = $this->createQuery('a')
       ->select('YEAR(created_at) ay, MONTH(created_at) am, count(*) ct')
-      ->where('a.is_active = ?', true)
+      ->where('a.is_active = ? AND a.is_archived = ?', array(true, true))
       ->addGroupBy('YEAR(created_at)')
       ->addGroupBy('MONTH(created_at)')
       ->addOrderBy('a.created_at DESC');
@@ -38,7 +38,7 @@ class LyraArticleTable extends Doctrine_Table
   public function getArchiveItemsQuery($year, $month)
   {
     $q = $this->getActiveItemsQuery()
-      ->andWhere('YEAR(created_at) = ? AND MONTH(created_at) = ?',array($year, $month))
+      ->andWhere('is_archived = ? AND YEAR(created_at) = ? AND MONTH(created_at) = ?',array(true, $year, $month))
       ->orderBy('created_at DESC');
     return $q;
   }

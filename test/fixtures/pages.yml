@@ -5,6 +5,7 @@ LyraArticle:
     meta_title: Meta Title
     meta_descr: Meta Description
     is_active: true
+    is_archived: false
     ArticleCreatedBy: admin
     ArticleUpdatedBy: admin
     ArticleContentType: Pagina
@@ -14,6 +15,7 @@ LyraArticle:
     meta_title: Meta Title
     meta_descr: Meta Description
     is_active: false
+    is_archived: false
     ArticleCreatedBy: admin
     ArticleUpdatedBy: admin
     ArticleContentType: Pagina

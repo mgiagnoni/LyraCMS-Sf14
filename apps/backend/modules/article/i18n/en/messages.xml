@@ -176,6 +176,10 @@
         <source>ERROR_PUBLISH_DATE_INVALID</source>
         <target>Publish start date ("%publish_start%") must be before publish end date ("%publish_end%")</target>
       </trans-unit>
+      <trans-unit id="44">
+        <source>IS_ARCHIVED</source>
+        <target>Archived</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

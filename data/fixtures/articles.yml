@@ -7,6 +7,7 @@ LyraArticle:
     meta_descr: Meta Description di articolo su PHP
     is_featured: true
     is_active: true
+    is_archived: true
     ArticleLabels: [Php,Intermedio]
     ArticleCreatedBy: admin
     ArticleUpdatedBy: admin
@@ -19,6 +20,7 @@ LyraArticle:
     meta_descr: Meta Description di articolo su Mootools
     is_featured: true
     is_active: true
+    is_archived: true
     ArticleLabels: [Mootools,Elementare]
     ArticleUpdatedBy: admin
     ArticleCreatedBy: admin

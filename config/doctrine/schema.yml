@@ -55,6 +55,10 @@ LyraArticle:
       type: boolean
       notnull: true
       default: false
+    is_archived:
+      type: boolean
+      notnull: true
+      default: false
     publish_start:
       type: timestamp
     publish_end:

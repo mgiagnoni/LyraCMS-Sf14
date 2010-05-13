@@ -89,6 +89,7 @@ class LyraArticleForm extends BaseLyraArticleForm
     $this->widgetSchema['is_active']->setLabel('IS_ACTIVE');
     $this->widgetSchema['is_featured']->setLabel('IS_FEATURED');
     $this->widgetSchema['is_sticky']->setLabel('IS_STICKY');
+    $this->widgetSchema['is_archived']->setLabel('IS_ARCHIVED');
     $this->widgetSchema['publish_start']->setLabel('PUBLISH_START');
     $this->widgetSchema['publish_end']->setLabel('PUBLISH_END');
 
@@ -101,7 +102,7 @@ class LyraArticleForm extends BaseLyraArticleForm
       'NONE' => array('title', 'slug', 'subtitle'),
       'PANEL_CONTENT' => array('content'),
       'PANEL_SUMMARY' => array('summary'),
-      'PANEL_PUBLISH' => array('is_active', 'is_featured', 'is_sticky', 'publish_start', 'publish_end'),
+      'PANEL_PUBLISH' => array('is_active', 'is_featured', 'is_sticky', 'is_archived','publish_start', 'publish_end'),
       'PANEL_LABELS' => array('labels'),
       'PANEL_METATAGS' => array('meta_title', 'meta_descr', 'meta_keys', 'meta_robots')
     );
