@@ -12,11 +12,20 @@ params:
     show_date:
       type: boolean
       default: true
+    date_format:
+      type: text
+      default: d MMMM, yyyy
     allow_comments:
       type: boolean
       default: true
     show_comments:
       type: boolean
       default: true
+    date_comments:
+      type: text
+      default: d MMMM, yyyy
+    time_comments:
+      type: text
+      default: H:mm
 
 

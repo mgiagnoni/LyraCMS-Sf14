@@ -56,6 +56,18 @@
         <source>moderate_no_auth</source>
         <target>Anonymous only</target>
       </trans-unit>
+      <trans-unit id="14">
+        <source>date_format</source>
+        <target>Date format</target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>date_comments</source>
+        <target>Comment date format</target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>time_comments</source>
+        <target>Comment time format</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

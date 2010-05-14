@@ -11,8 +11,8 @@
   echo __('COMMENT_HEADER',
     array(
       '%name%'=>'<span class="author">' . $author . '</span>',
-      '%date%'=>'<span class="date">' . format_date($comment->getCreatedAt(),'dd MMMM yyyy') . '</span>',
-      '%time%'=>'<span class="time">' . format_date($comment->getCreatedAt(),'HH:mm') . '</span>'
+      '%date%'=>'<span class="date">' . format_date($comment->getCreatedAt(), $params->get('date_comments')) . '</span>',
+      '%time%'=>'<span class="time">' . format_date($comment->getCreatedAt(), $params->get('time_comments')) . '</span>'
     ));
   ?>
 </div>

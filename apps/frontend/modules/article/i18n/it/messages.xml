@@ -82,7 +82,7 @@
       </trans-unit>
       <trans-unit id="20">
         <source>COMMENT_HEADER</source>
-        <target>%name% il %date% alle %time%</target>
+        <target>%name% %date% alle %time%</target>
       </trans-unit>
       <trans-unit id="21">
         <source>AUTHOR_NAME</source>

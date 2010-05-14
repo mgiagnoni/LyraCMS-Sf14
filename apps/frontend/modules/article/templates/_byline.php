@@ -6,7 +6,7 @@
   <?php endif; ?>
   <?php if($params->get('show_date')): ?>
   <span class="article-date">
-    <?php echo __('ARTICLE_WRITTEN_ON', array('%date%'=>format_date($item->getCreatedAt(),'dd MMMM, yyyy'))); ?>
+    <?php echo __('ARTICLE_WRITTEN_ON', array('%date%'=>format_date($item->getCreatedAt(), $params->get('date_format')))); ?>
   </span>
   <?php endif; ?>
 </div>

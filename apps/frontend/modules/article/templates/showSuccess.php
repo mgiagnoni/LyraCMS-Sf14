@@ -28,7 +28,7 @@ if(isset($form) && $form->isBound() && !$form->isValid()) { ?>
 </div>
 <?php
 if(count($comments)) {
-  include_partial('article/comments', array('comments'=>$comments));
+  include_partial('article/comments', array('comments'=>$comments, 'params' => $params));
 }
 if($form) {
   include_partial('article/comment_form', array('form'=>$form));
