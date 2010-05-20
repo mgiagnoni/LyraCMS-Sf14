@@ -1,7 +1,7 @@
 body
 {
   background-color: #fff;
-  font-size: 11px;
+  font-size: 12px;
   margin: 0;
   padding: 0;
 }
@@ -144,9 +144,14 @@ th
 }
 .link-back a
 {
-  text-decoration: underline;
-  color: #000;
+  text-decoration: none;
+  color: #464646;
   font-size: 110%;
+}
+.link-back a:hover
+{
+  text-decoration: underline;
+  color: #000
 }
 #sf_admin_bar
 {
@@ -230,7 +235,14 @@ th
 {
   text-align: right;
 }
-
+.sf_admin_filter input[type="text"]
+{
+  width: 10.5em;
+}
+.sf_admin_filter select
+{
+  max-width: 11em;
+}
 /*Article list*/
 
 #sf_admin_container td.sf_admin_list_td_published
@@ -303,4 +315,20 @@ th
 #sf_admin_footer
 {
   clear: both;
+}
+/* Create menu item page */
+#new-menu h2
+{
+  font-size: 110%;
+  font-style: italic;
+  background-color: #ccccff;
+  color: #333;
+  margin: 5px 0;
+  padding: 3px;
+}
+
+.menu-ctype
+{
+  font-size: 110%;
+  margin-top: 10px;
 }

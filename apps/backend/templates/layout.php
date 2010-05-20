@@ -39,6 +39,9 @@
             <li <?php echo ($module == 'catalog' || $module == 'label' ? 'class="active"' : ''); ?>>
               <?php echo link_to(__('MENU_CATALOGS'), '@lyra_catalog') ?>
             </li>
+            <li <?php echo ($module == 'menu' ? 'class="active"' : ''); ?>>
+              <?php echo link_to(__('MENU_MENU'), '@lyra_menu') ?>
+            </li>
             <li <?php echo ($module == 'sfGuardUser' ? 'class="active"' : ''); ?>>
               <?php echo link_to(__('MENU_USERS'), '@sf_guard_user') ?>
             </li>

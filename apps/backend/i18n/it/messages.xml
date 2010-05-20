@@ -56,6 +56,10 @@
         <source>yes or no</source>
         <target>sì / no</target>
       </trans-unit>
+      <trans-unit id="14">
+        <source>MENU_MENU</source>
+        <target>Gestione menù</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

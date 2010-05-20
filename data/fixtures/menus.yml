@@ -1,0 +1,14 @@
+LyraMenu:
+  menu_main:
+    name: Main
+    children:
+      menu_main_1:
+        name: Home
+        type: homepage
+        MenuParent: menu_main
+      menu_main_2:
+        name: Page
+        type: object
+        MenuParent: menu_main
+        MenuContentType: Pagina
+        MenuContentItem: pag1

@@ -19,13 +19,9 @@ $fw = ($action == 'edit' || $action == 'new' || $action == 'update' || $action =
             <h1>Logo</h1>
             <h4>Slogan</h4>
           </div>
-          <div id="links">
-            <ul>
-              <li><?php echo link_to('Home','@homepage');?></li>
-              <li><?php echo link_to('Pagina','@page_show?slug=pagina-di-esempio');?></li>
-              <li><a href="#">Contattaci</a></li>
-            </ul>
-          </div>
+        </div>
+        <div id="links">
+          <?php include_component('menu', 'menu', array('menu_name' => 'Main')); ?>
         </div>
         <div id="header">
          <h3><?php include_slot('page_title'); ?></h3>

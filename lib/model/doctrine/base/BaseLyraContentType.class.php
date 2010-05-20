@@ -17,6 +17,7 @@
  * @property Doctrine_Collection $ContentTypeCatalogs
  * @property Doctrine_Collection $Contents
  * @property Doctrine_Collection $LyraContentTypeCatalog
+ * @property Doctrine_Collection $LyraMenu
  * 
  * @method integer             getId()                     Returns the current record's "id" value
  * @method string              getType()                   Returns the current record's "type" value
@@ -30,6 +31,7 @@
  * @method Doctrine_Collection getContentTypeCatalogs()    Returns the current record's "ContentTypeCatalogs" collection
  * @method Doctrine_Collection getContents()               Returns the current record's "Contents" collection
  * @method Doctrine_Collection getLyraContentTypeCatalog() Returns the current record's "LyraContentTypeCatalog" collection
+ * @method Doctrine_Collection getLyraMenu()               Returns the current record's "LyraMenu" collection
  * @method LyraContentType     setId()                     Sets the current record's "id" value
  * @method LyraContentType     setType()                   Sets the current record's "type" value
  * @method LyraContentType     setName()                   Sets the current record's "name" value
@@ -42,6 +44,7 @@
  * @method LyraContentType     setContentTypeCatalogs()    Sets the current record's "ContentTypeCatalogs" collection
  * @method LyraContentType     setContents()               Sets the current record's "Contents" collection
  * @method LyraContentType     setLyraContentTypeCatalog() Sets the current record's "LyraContentTypeCatalog" collection
+ * @method LyraContentType     setLyraMenu()               Sets the current record's "LyraMenu" collection
  * 
  * @package    lyra
  * @subpackage model
@@ -112,6 +115,10 @@ abstract class BaseLyraContentType extends sfDoctrineRecord
              'foreign' => 'ctype_id'));
 
         $this->hasMany('LyraContentTypeCatalog', array(
+             'local' => 'id',
+             'foreign' => 'ctype_id'));
+
+        $this->hasMany('LyraMenu', array(
              'local' => 'id',
              'foreign' => 'ctype_id'));
 

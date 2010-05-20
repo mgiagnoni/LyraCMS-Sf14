@@ -1,0 +1,29 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           LyraMenu
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          lyra_menu
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        display: [=indent_name,type,_order,id]
+        fields:
+          indent_name: {label: TH_NAME}
+          order: {label: TH_ORDER}
+          type: {label: TH_TYPE}
+        actions: 
+          newItem: ~
+      filter:
+        class: false
+      form:    ~
+      edit:    ~
+      new:     ~

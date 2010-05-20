@@ -363,3 +363,50 @@ LyraUserProfile:
       foreignType: one
       foreignAlias: Profile
       onDelete: CASCADE
+
+LyraMenu:
+  tableName: menus
+  actAs:
+    NestedSet:
+      hasManyRoots: true
+      rootColumnName: root_id
+  options:
+    collate: utf8_unicode_ci
+    charset: utf8
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    parent_id:
+      type: integer(4)
+    type:
+      type: string(20)
+      notnull: true
+    ctype_id:
+      type: integer(4)
+    element_id:
+      type: integer(4)
+    name:
+      type: string(255)
+      notnull: true
+    params:
+      type: clob
+  relations:
+    MenuParent:
+      class: LyraMenu
+      local: parent_id
+      foreign: id
+      type: one
+      onDelete: SET NULL
+    MenuContentType:
+      class: LyraContentType
+      local: ctype_id
+      foreign: id
+      onDelete: CASCADE
+    MenuContentItem:
+      #TODO: class will be LyraContent
+      class: LyraArticle
+      local: element_id
+      foreign: id
+      onDelete: CASCADE

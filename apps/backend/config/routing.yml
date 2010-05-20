@@ -1,3 +1,15 @@
+lyra_menu:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                LyraMenu
+    module:               menu
+    prefix_path:          /menu
+    column:               id
+    object_actions:
+      up: get
+      down: get
+    with_wildcard_routes: true
+
 lyra_settings:
   class: sfDoctrineRouteCollection
   options:

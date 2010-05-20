@@ -48,6 +48,10 @@
         <source>MENU_PAGE</source>
         <target>Pages</target>
       </trans-unit>
+      <trans-unit id="14">
+        <source>MENU_MENU</source>
+        <target>Menu manager</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

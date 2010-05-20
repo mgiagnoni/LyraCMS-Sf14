@@ -44,6 +44,14 @@
         <source>MSG_CATALOG_UNPUBLISHED</source>
         <target>Catalog was successfully unpublished.</target>
       </trans-unit>
+      <trans-unit id="11">
+        <source>MSG_LABEL_DELETED</source>
+        <target>Label was successfully deleted.</target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>MSG_MENU_DELETED</source>
+        <target>Menu item was successfully deleted.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

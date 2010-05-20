@@ -56,6 +56,10 @@
         <source>Reset</source>
         <target>Azzera</target>
       </trans-unit>
+      <trans-unit id="14">
+        <source>MSG_MENU_DELETED</source>
+        <target>La voce di menù è stata cancellata.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

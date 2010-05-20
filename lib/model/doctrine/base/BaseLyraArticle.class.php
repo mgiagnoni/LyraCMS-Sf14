@@ -32,6 +32,7 @@
  * @property LyraContentType $ArticleContentType
  * @property Doctrine_Collection $ArticleComments
  * @property Doctrine_Collection $LyraArticleLabel
+ * @property Doctrine_Collection $LyraMenu
  * 
  * @method integer             getId()                  Returns the current record's "id" value
  * @method string              getTitle()               Returns the current record's "title" value
@@ -60,6 +61,7 @@
  * @method LyraContentType     getArticleContentType()  Returns the current record's "ArticleContentType" value
  * @method Doctrine_Collection getArticleComments()     Returns the current record's "ArticleComments" collection
  * @method Doctrine_Collection getLyraArticleLabel()    Returns the current record's "LyraArticleLabel" collection
+ * @method Doctrine_Collection getLyraMenu()            Returns the current record's "LyraMenu" collection
  * @method LyraArticle         setId()                  Sets the current record's "id" value
  * @method LyraArticle         setTitle()               Sets the current record's "title" value
  * @method LyraArticle         setSubtitle()            Sets the current record's "subtitle" value
@@ -87,6 +89,7 @@
  * @method LyraArticle         setArticleContentType()  Sets the current record's "ArticleContentType" value
  * @method LyraArticle         setArticleComments()     Sets the current record's "ArticleComments" collection
  * @method LyraArticle         setLyraArticleLabel()    Sets the current record's "LyraArticleLabel" collection
+ * @method LyraArticle         setLyraMenu()            Sets the current record's "LyraMenu" collection
  * 
  * @package    lyra
  * @subpackage model
@@ -225,6 +228,10 @@ abstract class BaseLyraArticle extends LyraContent
         $this->hasMany('LyraArticleLabel', array(
              'local' => 'id',
              'foreign' => 'article_id'));
+
+        $this->hasMany('LyraMenu', array(
+             'local' => 'id',
+             'foreign' => 'element_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $sluggable0 = new Doctrine_Template_Sluggable(array(
