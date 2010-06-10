@@ -52,10 +52,6 @@ class LyraLabelForm extends BaseLyraLabelForm
     $this->widgetSchema->setLabel('title', 'TITLE');
     $this->widgetSchema->setLabel('description', 'DESCRIPTION');
     $this->widgetSchema->setLabel('slug', 'SLUG');
-//    $this->widgetSchema->setLabel('meta_title','META_TITLE');
-//    $this->widgetSchema->setLabel('meta_descr','META_DESCR');
-//    $this->widgetSchema->setLabel('meta_keys','META_KEYS');
-//    $this->widgetSchema->setLabel('meta_robots','META_ROBOTS');
     $this->widgetSchema->setLabel('is_active','IS_ACTIVE');
     $this->widgetSchema->setLabel('parent_id', 'PARENT');
 
@@ -66,16 +62,20 @@ class LyraLabelForm extends BaseLyraLabelForm
   }
   protected function doSave($con = null)
   {
-    $pparent_id = 0;
-    if(!$this->isNew()) {
-      $pparent_id = $this->getObject()->getNode()->getParent()->getId();
-    }
     parent::doSave($con);
-    if($pparent_id != $this->getValue('parent_id')) {
-      $node = $this->object->getNode();
-      $parent = $this->object->getTable()->find($this->getValue('parent_id'));
-      $method = ($node->isValidNode() ? 'move' : 'insert').'AsFirstChildOf';
-      $node->$method($parent);
+    $node = $this->getObject()->getNode();
+    $parent = $this->getObject()->getTable()
+      ->find($this->getValue('parent_id'));
+    if($parent)
+    {
+      if($this->isNew())
+      {
+        $node->insertAsFirstChildOf($parent);
+      }
+      elseif($node->getParent()->getId() != $parent->getId())
+      {
+        $node->moveAsFirstChildOf($parent);
+      }
     }
   }
 }
