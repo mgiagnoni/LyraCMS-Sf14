@@ -63,6 +63,9 @@ class LyraContentForm extends BaseLyraContentForm
     $this->embedForm('labels', $label_lists_form);
     $this->widgetSchema['labels']->setLabel(false);
 
+    $this->validatorSchema['path'] = new LyraValidatorPath(array(
+      'required' => false
+    ));
   }
   public function updateObject($values = null)
   {

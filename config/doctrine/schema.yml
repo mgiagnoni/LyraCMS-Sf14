@@ -3,6 +3,8 @@ LyraContent:
     ctype_id:
       type: integer(4)
       notnull: true
+    path:
+      type: string(255)
     params:
       type: clob
 
@@ -175,6 +177,10 @@ LyraContentType:
         type: string(255)
      plugin:
         type: string(255)
+     item_slug:
+      type: string(80)
+     format:
+      type: string(4)
      is_active:
         type: boolean
         notnull: true
@@ -408,5 +414,40 @@ LyraMenu:
       #TODO: class will be LyraContent
       class: LyraArticle
       local: element_id
+      foreign: id
+      onDelete: CASCADE
+
+LyraPath:
+  tableName: paths
+  options:
+    collate: utf8_unicode_ci
+    charset: utf8
+    symfony:
+      form: false
+      filter: false
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    content_id:
+      type: integer(4)
+    ctype_id:
+      type: integer(4)
+    path:
+      type: string(255)
+    pattern:
+      type: string(255)
+    is_active:
+      type: boolean
+      notnull: true
+      default: false
+  indexes:
+    path_index:
+      fields: [path]
+  relations:
+    PathContentType:
+      class: LyraContentType
+      local: ctype_id
       foreign: id
       onDelete: CASCADE

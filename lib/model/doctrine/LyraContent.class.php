@@ -33,4 +33,61 @@ class LyraContent extends BaseLyraContent
     }
     return self::$ctype;
   }
+  public function postInsert($event)
+  {
+    if($this->getPath()) {
+      $this->updatePathRecord();
+    }
+  }
+  public function postUpdate($event)
+  {
+    $modified = $this->getLastModified();
+    if(array_key_exists ('path', $modified) || array_key_exists ('slug', $modified)) {
+      $this->updatePathRecord();
+    }
+  }
+  protected function updatePathRecord()
+  {
+    $saved_path = trim($this->getPath(), '/');
+
+    $q = Doctrine_Query::create()
+      ->from('LyraPath p')
+      ->innerJoin('p.PathContentType c')
+      ->where('p.content_id = ?');
+
+    $path = $q->fetchOne(array(
+      $this->getId()
+    ));
+
+    if(empty($saved_path)) {
+      if($path) {
+        $path->delete();
+      }
+      return;
+    }
+
+    if(!$path)
+    {
+      $path = new LyraPath();
+      $path->content_id = $this->getId();
+      $path->ctype_id = $this->getCtypeId();
+      $ctype = Doctrine::getTable('LyraContentType')->find($path->ctype_id);
+    }
+    else
+    {
+      $ctype = $path->getPathContentType();
+    }
+
+    $path->is_active = true;
+    $slug = ltrim($ctype->item_slug, '/');
+    $format = ($ctype->format ? '.' . $ctype->format : '');
+    $path->pattern = $saved_path . '/' . $slug . $format;
+    if(preg_match_all('#([^:/\.]+)#', $slug, $matches)) {
+      foreach($matches[0] as $field) {
+        $slug = str_replace(':'. $field, $this->$field, $slug);
+      }
+    }
+    $path->path = $saved_path . '/' . $slug . $format;
+    $path->save();
+  }
 }

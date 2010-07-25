@@ -12,12 +12,15 @@
  * @property string $model
  * @property string $module
  * @property string $plugin
+ * @property string $item_slug
+ * @property string $format
  * @property boolean $is_active
  * @property clob $params
  * @property Doctrine_Collection $ContentTypeCatalogs
  * @property Doctrine_Collection $Contents
  * @property Doctrine_Collection $LyraContentTypeCatalog
  * @property Doctrine_Collection $LyraMenu
+ * @property Doctrine_Collection $LyraPath
  * 
  * @method integer             getId()                     Returns the current record's "id" value
  * @method string              getType()                   Returns the current record's "type" value
@@ -26,12 +29,15 @@
  * @method string              getModel()                  Returns the current record's "model" value
  * @method string              getModule()                 Returns the current record's "module" value
  * @method string              getPlugin()                 Returns the current record's "plugin" value
+ * @method string              getItemSlug()               Returns the current record's "item_slug" value
+ * @method string              getFormat()                 Returns the current record's "format" value
  * @method boolean             getIsActive()               Returns the current record's "is_active" value
  * @method clob                getParams()                 Returns the current record's "params" value
  * @method Doctrine_Collection getContentTypeCatalogs()    Returns the current record's "ContentTypeCatalogs" collection
  * @method Doctrine_Collection getContents()               Returns the current record's "Contents" collection
  * @method Doctrine_Collection getLyraContentTypeCatalog() Returns the current record's "LyraContentTypeCatalog" collection
  * @method Doctrine_Collection getLyraMenu()               Returns the current record's "LyraMenu" collection
+ * @method Doctrine_Collection getLyraPath()               Returns the current record's "LyraPath" collection
  * @method LyraContentType     setId()                     Sets the current record's "id" value
  * @method LyraContentType     setType()                   Sets the current record's "type" value
  * @method LyraContentType     setName()                   Sets the current record's "name" value
@@ -39,12 +45,15 @@
  * @method LyraContentType     setModel()                  Sets the current record's "model" value
  * @method LyraContentType     setModule()                 Sets the current record's "module" value
  * @method LyraContentType     setPlugin()                 Sets the current record's "plugin" value
+ * @method LyraContentType     setItemSlug()               Sets the current record's "item_slug" value
+ * @method LyraContentType     setFormat()                 Sets the current record's "format" value
  * @method LyraContentType     setIsActive()               Sets the current record's "is_active" value
  * @method LyraContentType     setParams()                 Sets the current record's "params" value
  * @method LyraContentType     setContentTypeCatalogs()    Sets the current record's "ContentTypeCatalogs" collection
  * @method LyraContentType     setContents()               Sets the current record's "Contents" collection
  * @method LyraContentType     setLyraContentTypeCatalog() Sets the current record's "LyraContentTypeCatalog" collection
  * @method LyraContentType     setLyraMenu()               Sets the current record's "LyraMenu" collection
+ * @method LyraContentType     setLyraPath()               Sets the current record's "LyraPath" collection
  * 
  * @package    lyra
  * @subpackage model
@@ -89,6 +98,14 @@ abstract class BaseLyraContentType extends sfDoctrineRecord
              'type' => 'string',
              'length' => 255,
              ));
+        $this->hasColumn('item_slug', 'string', 80, array(
+             'type' => 'string',
+             'length' => 80,
+             ));
+        $this->hasColumn('format', 'string', 4, array(
+             'type' => 'string',
+             'length' => 4,
+             ));
         $this->hasColumn('is_active', 'boolean', null, array(
              'type' => 'boolean',
              'notnull' => true,
@@ -119,6 +136,10 @@ abstract class BaseLyraContentType extends sfDoctrineRecord
              'foreign' => 'ctype_id'));
 
         $this->hasMany('LyraMenu', array(
+             'local' => 'id',
+             'foreign' => 'ctype_id'));
+
+        $this->hasMany('LyraPath', array(
              'local' => 'id',
              'foreign' => 'ctype_id'));
 

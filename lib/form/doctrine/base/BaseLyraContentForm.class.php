@@ -17,12 +17,14 @@ abstract class BaseLyraContentForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'       => new sfWidgetFormInputHidden(),
       'ctype_id' => new sfWidgetFormInputText(),
+      'path'     => new sfWidgetFormInputText(),
       'params'   => new sfWidgetFormTextarea(),
     ));
 
     $this->setValidators(array(
       'id'       => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
       'ctype_id' => new sfValidatorInteger(),
+      'path'     => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'params'   => new sfValidatorString(array('required' => false)),
     ));
 
