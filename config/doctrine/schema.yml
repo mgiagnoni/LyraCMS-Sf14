@@ -15,10 +15,11 @@ LyraArticle:
     type: concrete
   actAs:
     Timestampable: ~
-    Sluggable:
+    lySluggable:
       fields: [title]
       canUpdate: true
       unique: true
+      uniqueBy: [path]
       indexName: article_slug
   options:
     collate: utf8_unicode_ci

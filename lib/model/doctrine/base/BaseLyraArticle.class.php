@@ -234,16 +234,20 @@ abstract class BaseLyraArticle extends LyraContent
              'foreign' => 'element_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
-        $sluggable0 = new Doctrine_Template_Sluggable(array(
+        $lysluggable0 = new Doctrine_Template_lySluggable(array(
              'fields' => 
              array(
               0 => 'title',
              ),
              'canUpdate' => true,
              'unique' => true,
+             'uniqueBy' => 
+             array(
+              0 => 'path',
+             ),
              'indexName' => 'article_slug',
              ));
         $this->actAs($timestampable0);
-        $this->actAs($sluggable0);
+        $this->actAs($lysluggable0);
     }
 }
