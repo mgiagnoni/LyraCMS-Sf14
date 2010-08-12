@@ -27,10 +27,37 @@ class LyraMenu extends BaseLyraMenu
   {
     $q = Doctrine_Query::create()
       ->from('LyraMenu m')
-      ->where('m.root_id = ?', $this->getId());
+      ->leftJoin('m.MenuContentType c')
+      ->where('m.root_id = ? AND m.lft > ? AND m.rgt < ?')
+      ->orderBy('m.lft asc');
 
-    $root = $q->fetchOne();
+    $items = $q->execute(array($this->getId(), $this->getLft(), $this->getRgt()), Doctrine::HYDRATE_ARRAY);
+    if($ct = count($items))
+    {
+      for($i = 0; $i < $ct; $i++)
+      {
+        $item = $items[$i];
 
-    return $root->getNode()->getDescendants();
+        if($item['params'])
+        {
+          $items[$i]['params'] = unserialize($item['params']);
+        }
+
+        if($item['type'] == 'object')
+        {
+          $obj = Doctrine::getTable($item['MenuContentType']['model'])
+          ->find($item['element_id']);
+          $params = array();
+          if(preg_match_all('#([^:/\.]+)#', $item['MenuContentType']['item_slug'], $matches)) {
+            foreach($matches[0] as $field) {
+              $params[$field] = $obj->$field;
+            }
+          }
+          $params['path'] = $obj->getPath();
+          $items[$i]['obj_params'] = $params;
+        }
+      }
+    }
+    return $items;
   }
 }

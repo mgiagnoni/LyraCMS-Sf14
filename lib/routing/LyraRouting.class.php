@@ -21,18 +21,31 @@ class LyraRouting extends sfPatternRouting
 {
   public function generate($name, $params = array(), $absolute = false)
   {
+    $path = null;
     if(isset($params['sf_subject']) && $params['sf_subject']->offsetExists('path') && $params['sf_subject']->path)
     {
-      $ctype = $params['sf_subject']->getContentType();
-      $route = new sfDoctrineRoute($params['sf_subject']->path . '/' . $ctype->getItemSlug() . ($ctype->getFormat() ? '.' . $ctype->getFormat() : ''),
+      $path = $params['sf_subject']->path;
+      $ctype = $params['sf_subject']->getContentType()->toArray();
+    }
+    else if(isset($params['path']))
+    {
+      $path = $params['path'];
+      $ctype = $params['ctype'];
+    }
+
+    unset($params['path'], $params['ctype']);
+
+    if($path)
+    {
+      $route = new sfDoctrineRoute($path . '/' . $ctype['item_slug'] . ($ctype['format'] ? '.' . $ctype['format'] : ''),
         array(
-          'module' => $ctype->getModule(),
+          'module' => $ctype['module'],
           'action' => 'show'
         ),
         array(),
         array(
           'type' => 'object',
-          'model' => $ctype->getModel()
+          'model' => $ctype['model']
         )
       );
       $url = $route->generate($params, $this->options['context'], $absolute);

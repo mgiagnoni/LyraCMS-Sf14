@@ -6,9 +6,13 @@ LyraContentType:
     model: LyraArticle
     params: |
       a:2:{s:12:"linked_title";b:1;s:14:"show_read_more";b:1;}
+    item_slug: ':slug'
+    format: html
     ContentTypeCatalogs: [argomento,livello,test]
   Pagina:
     name: Page
     type: page
     module: article
     model: LyraArticle
+    item_slug: ':slug'
+    format: html

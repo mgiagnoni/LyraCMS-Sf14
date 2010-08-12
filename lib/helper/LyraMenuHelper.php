@@ -17,17 +17,15 @@
  * @copyright Copyright (C) 2009-2010 Massimo Giagnoni. All rights reserved.
  * @license GNU General Public License version 2 or later (see LICENSE.txt)
  */
-function menu_tree($menu)
+function menu_tree($items)
 {
-  $tree = $menu->getMenuTree();
-  
   $prevLevel = -1;
   $curLevel = -1;
   $html = '';
 
-  foreach($tree as $item)
+  foreach($items as $item)
   {
-    $curLevel = $item->getLevel();
+    $curLevel = $item['level'];
     if($curLevel > $prevLevel)
     {
       $html .= ($html ? '<ul>' : '<ul class="menu">') . '<li>';
@@ -55,26 +53,18 @@ function menu_tree($menu)
 }
 function generate_menu_link($item)
 {
-  $ctype = $item->getMenuContentType();
+  $ctype = $item['MenuContentType'];
 
-  if($params = $item->getRaw('params'))
-  {
-    $params = unserialize($params);
-  }
-
-  switch($item->getType())
+  switch($item['type'])
   {
     case 'object':
-      $obj = Doctrine::getTable($ctype->getModel())
-        ->find($item->getElementId());
-
-      $html = link_to($item->getName(), $ctype->getType() . '_show', $obj);
+      $html = link_to($item['name'], $ctype['type'] . '_show', array_merge($item->getRaw('obj_params'), array('ctype' => $ctype)));
       break;
     case 'homepage':
-      $html =  link_to($item->getName(), 'homepage');
+      $html =  link_to($item['name'], 'homepage');
       break;
     case 'external':
-      $html =  link_to($item->getName(), $params['url']);
+      $html =  link_to($item['name'], $item['params']['url']);
       break;
     case 'placeholder':
       break;

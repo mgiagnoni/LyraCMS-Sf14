@@ -23,6 +23,35 @@ class LyraMenuTable extends Doctrine_Table
     
     public static function getInstance()
     {
-        return Doctrine_Core::getTable('LyraMenu');
+      return Doctrine_Core::getTable('LyraMenu');
+    }
+    public function getMenuTree($menu_name)
+    {
+      //TODO: make menu caching configurable. For now menu cache is active only in prod environment.
+      $cache = null;
+      if(sfConfig::get('sf_environment') == 'prod')
+      {
+        $cache = sfConfig::get('sf_cache_dir') . DIRECTORY_SEPARATOR . sfConfig::get('sf_app') . DIRECTORY_SEPARATOR . sfConfig::get('sf_environment') . DIRECTORY_SEPARATOR . 'lyra_menu_'. $menu_name . '.cache.php';
+
+        if(file_exists($cache))
+        {
+          $data = file_get_contents($cache);
+          return unserialize($data);
+        }
+      }
+
+      $menu = $this->findOneByName($menu_name);
+      if(!$menu)
+      {
+        throw new sfException("Menu '$menu_name' not found");
+      }
+      if($data = $menu->getMenuTree())
+      {
+        if($cache)
+        {
+          file_put_contents($cache, serialize($data));
+        }
+      }
+      return $data;
     }
 }

@@ -1,2 +1,2 @@
 <?php use_helper('LyraMenu') ?>
-<?php if($menu) { echo menu_tree($menu); } ?>
+<?php if($items) { echo menu_tree($items); } ?>
