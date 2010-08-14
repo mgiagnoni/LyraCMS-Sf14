@@ -42,7 +42,6 @@ class LyraMenuForm extends BaseLyraMenuForm
     if($this->isNew())
     {
       $ctype_id = $this->getOption('ctype_id');
-      $view_id = $this->getOption('view_id');
       $type = $this->getOption('type');
       $this->setDefault('ctype_id', $ctype_id);
       $this->setDefault('type', $type);
@@ -54,10 +53,6 @@ class LyraMenuForm extends BaseLyraMenuForm
       if($params = $this->getObject()->getParams())
       {
         $params = unserialize($params);
-      }
-      if($type == 'list')
-      {
-        $view_id = $this->getObject()->getElementId();
       }
     }
 
@@ -97,12 +92,6 @@ class LyraMenuForm extends BaseLyraMenuForm
 
     $ctype = Doctrine::getTable('LyraContentType')
       ->find($ctype_id);
-
-    if($type == 'view')
-    {
-      $view = Doctrine::getTable('LyraContentView')
-        ->find($view_id);
-    }
 
     switch($type)
     {

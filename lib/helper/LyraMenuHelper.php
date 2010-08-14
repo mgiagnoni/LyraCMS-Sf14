@@ -60,6 +60,9 @@ function generate_menu_link($item)
     case 'object':
       $html = link_to($item['name'], $ctype['type'] . '_show', array_merge($item->getRaw('obj_params'), array('ctype' => $ctype)));
       break;
+    case 'list':
+      $html = link_to($item['name'], $ctype['type'] . '_index');
+      break;
     case 'homepage':
       $html =  link_to($item['name'], 'homepage');
       break;

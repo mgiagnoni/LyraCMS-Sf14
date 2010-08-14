@@ -42,9 +42,13 @@ class LyraArticleTable extends Doctrine_Table
       ->orderBy('created_at DESC');
     return $q;
   }
-  public function getActiveItems()
+  public function getActiveItems($ctype = null)
   {
     $q = $this->getActiveItemsQuery();
+    if($ctype)
+    {
+      $q->innerJoin($q->getRootAlias() . '.ArticleContentType ct WITH ct.type = ?', $ctype);
+    }
     return $q->execute();
   }
 

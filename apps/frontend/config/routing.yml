@@ -10,7 +10,14 @@ page_show:
     action: show
   requirements:
     sf_method: [get]
-    
+
+page_index:
+  url:   /pages
+  param:
+    module: article
+    action: index
+    ctype: page
+
 article_show:
   url: /article/:slug.html
   class: sfDoctrineRoute
@@ -23,6 +30,13 @@ article_show:
     action: show
   requirements:
     sf_method: [get]
+
+article_index:
+  url:   /articles
+  param:
+    module: article
+    action: index
+    ctype: article
 
 article_label:
   url: /article/label/:slug
@@ -66,7 +80,9 @@ user_signout:
 # default rules
 homepage:
   url:   /
-  param: { module: article, action: index }
+  param:
+    module: article
+    action: front
 
 default_index:
   url:   /:module

@@ -16,7 +16,12 @@
           <?php echo $ct->getName(); ?>
         </div>
         <div class="item-type">
+          <?php echo __('ITEM_TYPE_OBJECT'); ?>&nbsp;
           <?php echo link_to(__('LINK_CREATE_ITEM'), '@lyra_menu_new?ctype_id=' . $ct->getId() . '&type=object'); ?>
+        </div>
+        <div class="item-type">
+          <?php echo __('ITEM_TYPE_LIST'); ?>&nbsp;
+          <?php echo link_to(__('LINK_CREATE_ITEM'), '@lyra_menu_new?ctype_id=' . $ct->getId() . '&type=list'); ?>
         </div>
         <?php endforeach; ?>
       </div>

@@ -29,14 +29,11 @@ class menuGeneratorConfiguration extends BaseMenuGeneratorConfiguration
       if($type == 'list' || $type == 'object')
       {
         $ctype_id = $values['ctype_id'];
-        $view_id = $values['element_id'];
-        $type = $values['type'];
       }
     } 
     else
     {
       $ctype_id = $request->getParameter('ctype_id');
-      $view_id = $request->getParameter('view_id');
       $type = $request->getParameter('type');
     }
     return array(

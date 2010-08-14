@@ -18,12 +18,17 @@
  */
 class articleActions extends sfActions
 {
-  public function executeIndex(sfWebRequest $request)
+  public function executeFront(sfWebRequest $request)
   {
     $this->items = Doctrine::getTable('LyraArticle')
       ->getFrontPageItems();
+    $this->setTemplate('index');
   }
-
+  public function executeIndex(sfWebRequest $request)
+  {
+    $this->items = Doctrine::getTable('LyraArticle')
+      ->getActiveItems($request->getParameter('ctype'));
+  }
   public function executeShow(sfWebRequest $request)
   {
     $this->item = $this->getRoute()->getObject();

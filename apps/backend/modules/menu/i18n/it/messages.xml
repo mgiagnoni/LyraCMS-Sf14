@@ -48,6 +48,14 @@
         <source>ELEMENT</source>
         <target>Contenuto</target>
       </trans-unit>
+      <trans-unit id="12">
+        <source>ITEM_TYPE_OBJECT</source>
+        <target>Contenuto singolo</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>ITEM_TYPE_LIST</source>
+        <target>Lista contenuti</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

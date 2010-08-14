@@ -26,7 +26,7 @@ $browser->info('1 - The homepage')->
   get('/')->
   with('request')->begin()->
     isParameter('module', 'article')->
-    isParameter('action', 'index')->
+    isParameter('action', 'front')->
   end();
   $browser->with('response')->begin()->
     info(' 1.1 - Featured articles are listed')->
