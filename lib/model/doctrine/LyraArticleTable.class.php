@@ -74,8 +74,21 @@ class LyraArticleTable extends Doctrine_Table
       return false;
     }
     $q = $this->getActiveItemsQuery();
-    $q->andWhere($q->getRootAlias() .'.slug = ?', $params['slug']);
-    
+    $alias = $q->getRootAlias();
+
+    $q->andWhere($alias .'.slug = ?', $params['slug']);
+    if(isset($params['year']))
+    {
+      $q->andWhere('YEAR(' .$alias .'.created_at) = ?', $params['year']);
+    }
+    if(isset($params['month']))
+    {
+      $q->andWhere('MONTH(' .$alias .'.created_at) = ?', $params['month']);
+    }
+    if(isset($params['day']))
+    {
+      $q->andWhere('DAY(' .$alias .'.created_at) = ?', $params['day']);
+    }
     return $q->fetchOne();
   }
   public function publish($ids, $on = true)

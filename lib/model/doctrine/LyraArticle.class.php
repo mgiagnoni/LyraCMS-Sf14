@@ -88,4 +88,16 @@ class LyraArticle extends BaseLyraArticle
       
     return $q;
   }
+  public function getDay()
+  {
+    return strftime('%d',strtotime($this->getCreatedAt()));
+  }
+  public function getMonth()
+  {
+    return strftime('%m',strtotime($this->getCreatedAt()));
+  }
+  public function getYear()
+  {
+    return strftime('%Y',strtotime($this->getCreatedAt()));
+  }
 }

@@ -19,6 +19,12 @@ page_index:
     ctype: page
 
 article_show:
+# url: /article/:slug.html
+# www.example.com/article/my-article.html
+
+# url: /article/:year/:month/:day/:slug.html
+# www.example.com/article/2010/08/18/my-article.html
+  
   url: /article/:slug.html
   class: sfDoctrineRoute
   options:
