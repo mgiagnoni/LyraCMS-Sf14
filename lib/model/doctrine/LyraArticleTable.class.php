@@ -44,22 +44,33 @@ class LyraArticleTable extends Doctrine_Table
   }
   public function getActiveItems($ctype = null)
   {
-    $q = $this->getActiveItemsQuery();
-    if($ctype)
-    {
-      $q->innerJoin($q->getRootAlias() . '.ArticleContentType ct WITH ct.type = ?', $ctype);
-    }
+    $q = $this->getActiveItemsQuery($ctype);
+    
     return $q->execute();
   }
-
-  public function getActiveItemsQuery()
+  public function getFeedItems($ctype = null)
   {
-    return $this->createQuery('a')
+    $q = $this->getActiveItemsQuery($ctype);
+    
+    $q->andWhere('is_feeded = ?', true)
+      ->orderBy($q->getRootAlias() . '.created_at DESC');
+    
+    return $q->execute();
+  }
+  public function getActiveItemsQuery($ctype = null)
+  {
+    $q = $this->createQuery('a')
       ->where('a.is_active = ?', true)
       ->andWhere('(a.publish_start IS NULL OR a.publish_start <= NOW())')
       ->andWhere('(a.publish_end IS NULL OR a.publish_end >= NOW())')
       ->leftJoin('a.ArticleCreatedBy')
-      ->addOrderBy('a.is_sticky DESC, a.created_at DESC');
+      ->orderBy('a.is_sticky DESC, a.created_at DESC');
+
+    if($ctype)
+    {
+      $q->innerJoin('a.ArticleContentType ct WITH ct.type = ?', $ctype);
+    }
+    return $q;
   }
   public function getBackendItemsQuery(Doctrine_Query $q)
   {

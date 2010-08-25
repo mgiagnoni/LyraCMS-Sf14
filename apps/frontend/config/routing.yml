@@ -44,6 +44,16 @@ article_index:
     action: index
     ctype: article
 
+article_feed:
+  url:   /articles/feed
+  param:
+    module: article
+    action: feed
+    ctype: article
+    sf_format: xml
+  requirements:
+    sf_format: xml
+
 article_label:
   url: /article/label/:slug
   class: sfDoctrineRoute

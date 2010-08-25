@@ -10,6 +10,8 @@ $fw = ($action == 'edit' || $action == 'new' || $action == 'update' || $action =
     <?php include_metas() ?>
     <?php include_title() ?>
     <?php use_stylesheet('main.css') ?>
+    <link rel="alternate" type="application/rss+xml" title="Latest Articles"
+  href="<?php echo url_for('article_feed', array('sf_format' => 'xml'), true) ?>" />
   </head>
   <body>
     <div id="wrapper">

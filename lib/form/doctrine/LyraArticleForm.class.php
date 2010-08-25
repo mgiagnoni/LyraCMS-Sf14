@@ -90,6 +90,7 @@ class LyraArticleForm extends BaseLyraArticleForm
     $this->widgetSchema['is_featured']->setLabel('IS_FEATURED');
     $this->widgetSchema['is_sticky']->setLabel('IS_STICKY');
     $this->widgetSchema['is_archived']->setLabel('IS_ARCHIVED');
+    $this->widgetSchema['is_feeded']->setLabel('IS_FEEDED');
     $this->widgetSchema['publish_start']->setLabel('PUBLISH_START');
     $this->widgetSchema['publish_end']->setLabel('PUBLISH_END');
 

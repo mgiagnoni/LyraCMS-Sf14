@@ -29,6 +29,12 @@ class articleActions extends sfActions
     $this->items = Doctrine::getTable('LyraArticle')
       ->getActiveItems($request->getParameter('ctype'));
   }
+  public function executeFeed(sfWebRequest $request)
+  {
+    $this->items = Doctrine::getTable('LyraArticle')
+      ->getFeedItems($request->getParameter('ctype'));
+    $this->base = $request->getUriPrefix();
+  }
   public function executeShow(sfWebRequest $request)
   {
     $this->item = $this->getRoute()->getObject();
