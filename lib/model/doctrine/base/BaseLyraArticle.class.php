@@ -18,6 +18,7 @@
  * @property boolean $is_featured
  * @property boolean $is_sticky
  * @property boolean $is_archived
+ * @property boolean $is_feeded
  * @property timestamp $publish_start
  * @property timestamp $publish_end
  * @property integer $status
@@ -47,6 +48,7 @@
  * @method boolean             getIsFeatured()          Returns the current record's "is_featured" value
  * @method boolean             getIsSticky()            Returns the current record's "is_sticky" value
  * @method boolean             getIsArchived()          Returns the current record's "is_archived" value
+ * @method boolean             getIsFeeded()            Returns the current record's "is_feeded" value
  * @method timestamp           getPublishStart()        Returns the current record's "publish_start" value
  * @method timestamp           getPublishEnd()          Returns the current record's "publish_end" value
  * @method integer             getStatus()              Returns the current record's "status" value
@@ -75,6 +77,7 @@
  * @method LyraArticle         setIsFeatured()          Sets the current record's "is_featured" value
  * @method LyraArticle         setIsSticky()            Sets the current record's "is_sticky" value
  * @method LyraArticle         setIsArchived()          Sets the current record's "is_archived" value
+ * @method LyraArticle         setIsFeeded()            Sets the current record's "is_feeded" value
  * @method LyraArticle         setPublishStart()        Sets the current record's "publish_start" value
  * @method LyraArticle         setPublishEnd()          Sets the current record's "publish_end" value
  * @method LyraArticle         setStatus()              Sets the current record's "status" value
@@ -155,6 +158,11 @@ abstract class BaseLyraArticle extends LyraContent
              'default' => false,
              ));
         $this->hasColumn('is_archived', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => true,
+             'default' => false,
+             ));
+        $this->hasColumn('is_feeded', 'boolean', null, array(
              'type' => 'boolean',
              'notnull' => true,
              'default' => false,
