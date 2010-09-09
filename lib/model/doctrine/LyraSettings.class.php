@@ -19,4 +19,12 @@
  */
 class LyraSettings extends BaseLyraSettings
 {
+  public function postUpdate($event)
+  {
+    $cache = sfConfig::get('sf_cache_dir') . DIRECTORY_SEPARATOR . 'frontend' . DIRECTORY_SEPARATOR . sfConfig::get('sf_environment') . DIRECTORY_SEPARATOR . 'lyra_settings.cache.php';
+    if(file_exists($cache))
+    {
+      @unlink($cache);
+    }
+  }
 }

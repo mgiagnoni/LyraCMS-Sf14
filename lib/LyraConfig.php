@@ -142,11 +142,24 @@ class LyraConfig
   {
     if(!isset($this->params))
     {
+      $cache = sfConfig::get('sf_cache_dir') . DIRECTORY_SEPARATOR . 'frontend' . DIRECTORY_SEPARATOR . sfConfig::get('sf_environment') . DIRECTORY_SEPARATOR . 'lyra_settings.cache.php';
+      if(file_exists($cache))
+      {
+        require $cache;
+        $this->params = new LyraParams($data, sfConfig::get('sf_config_dir') . '/lyra_params.yml');
+        return;
+      }
       $settings = Doctrine_Query::create()
         ->from('LyraSettings')
         ->fetchOne();
 
       $this->params = new LyraParams($settings, sfConfig::get('sf_config_dir') . '/lyra_params.yml');
+
+      if($cache)
+      {
+        $c = new LyraCache($cache);
+        $c->save($this->params->getParamValues());
+      }
     }
   }
 }

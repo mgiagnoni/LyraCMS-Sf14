@@ -57,6 +57,10 @@ class LyraParams
     {
       $this->setObject($object);
     }
+    else if(is_array($object))
+    {
+      $this->setParamValues($object);
+    }
     if(!file_exists($defs_file))
     {
       throw new sfException('Parameters definitions file not found.');
@@ -88,6 +92,10 @@ class LyraParams
   public function getParamDefsSections()
   {
     return array_keys($this->getParamDefs());
+  }
+  public function getParamValues()
+  {
+    return $this->param_values;
   }
   public function setParamValues($values)
   {
