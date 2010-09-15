@@ -56,6 +56,10 @@
         <source>ITEM_TYPE_LIST</source>
         <target>Lista contenuti</target>
       </trans-unit>
+      <trans-unit id="14">
+        <source>ITEM_TYPE_ROUTE</source>
+        <target>Collegamento a rotta</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -98,6 +98,14 @@ class LyraMenuForm extends BaseLyraMenuForm
       case 'object':
         $this->selectItem($ctype_id);
         break;
+      case 'route':
+        $this->widgetSchema['route_name'] = new sfWidgetFormInputText();
+        $this->validatorSchema['route_name'] = new sfValidatorString();
+        if(isset($params['route_name']))
+        {
+          $this->setDefault('route_name', $params['route_name']);
+        }
+        break;
       case 'external':
         $this->widgetSchema['url'] = new sfWidgetFormInputText();
         $this->validatorSchema['url'] = new sfValidatorUrl();
@@ -140,6 +148,9 @@ class LyraMenuForm extends BaseLyraMenuForm
     $type = $item->getType();
     switch($type)
     {
+      case 'route':
+        $item->setParams(serialize(array('route_name' => $this->getValue('route_name'))));
+        break;
       case 'external':
         $item->setParams(serialize(array('url' => $this->getValue('url'))));
         break;

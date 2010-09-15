@@ -56,6 +56,10 @@
         <source>ITEM_TYPE_LIST</source>
         <target>Content list</target>
       </trans-unit>
+      <trans-unit id="14">
+        <source>ITEM_TYPE_ROUTE</source>
+        <target>Link to route</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

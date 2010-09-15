@@ -63,8 +63,8 @@ function generate_menu_link($item)
     case 'list':
       $html = link_to($item['name'], $ctype['type'] . '_index');
       break;
-    case 'homepage':
-      $html =  link_to($item['name'], 'homepage');
+    case 'route':
+      $html =  link_to($item['name'], $item['params']['route_name']);
       break;
     case 'external':
       $html =  link_to($item['name'], $item['params']['url']);

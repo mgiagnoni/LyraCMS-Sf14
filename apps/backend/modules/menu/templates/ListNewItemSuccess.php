@@ -28,6 +28,10 @@
       <div class="sf_admin_col_2">
         <h2><?php echo __('MENU_TYPE_OTHER') ?></h2>
         <div class="item-type">
+          <?php echo __('ITEM_TYPE_ROUTE'); ?>
+           (<?php echo link_to(__('LINK_CREATE_ITEM'), '@lyra_menu_new?type=route'); ?>)
+        </div>
+        <div class="item-type">
           <?php echo __('ITEM_TYPE_EXTERNAL'); ?>
            (<?php echo link_to(__('LINK_CREATE_ITEM'), '@lyra_menu_new?type=external'); ?>)
         </div>
