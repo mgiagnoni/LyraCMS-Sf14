@@ -40,6 +40,14 @@
         <source>SIGNEDIN_AS</source>
         <target>Hai accesso come</target>
       </trans-unit>
+      <trans-unit id="10">
+        <source>HEAD_LATEST</source>
+        <target>Articoli recenti</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>LINK_SUBSCRIBE_FEED</source>
+        <target>Iscriviti al feed</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

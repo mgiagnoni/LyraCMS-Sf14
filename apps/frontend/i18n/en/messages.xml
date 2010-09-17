@@ -40,6 +40,14 @@
         <source>SIGNEDIN_AS</source>
         <target>Logged in as</target>
       </trans-unit>
+      <trans-unit id="10">
+        <source>HEAD_LATEST</source>
+        <target>Latest news</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>LINK_SUBSCRIBE_FEED</source>
+        <target>Subscribe to feed</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

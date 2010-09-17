@@ -12,4 +12,9 @@ class articleComponents extends sfComponents
     $this->rows = Doctrine::getTable('LyraArticle')
       ->getArchiveDates();
   }
+  public function executeLatest(sfWebRequest $request)
+  {
+    $this->items = Doctrine::getTable('LyraArticle')
+      ->getLatestItems($this->ctype, $this->max);
+  }
 }

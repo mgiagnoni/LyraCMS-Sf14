@@ -57,6 +57,15 @@ class LyraArticleTable extends Doctrine_Table
     
     return $q->execute();
   }
+  public function getLatestItems($ctype = null, $max = 5)
+  {
+    $q = $this->getActiveItemsQuery($ctype);
+
+    $q->limit($max)
+      ->orderBy($q->getRootAlias() . '.created_at DESC');
+    
+    return $q->execute();
+  }
   public function getActiveItemsQuery($ctype = null)
   {
     $q = $this->createQuery('a')
