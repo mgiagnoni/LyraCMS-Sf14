@@ -6,7 +6,7 @@
  * @package    lyra
  * @subpackage filter
  * @author     Your name here
- * @version    SVN: $Id: sfDoctrineFormFilterGeneratedInheritanceTemplate.php 24171 2009-11-19 16:37:50Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfDoctrineFormFilterGeneratedInheritanceTemplate.php 29570 2010-05-21 14:49:47Z Kris.Wallsmith $
  */
 abstract class BaseLyraArticleFormFilter extends LyraContentFormFilter
 {
@@ -104,8 +104,10 @@ abstract class BaseLyraArticleFormFilter extends LyraContentFormFilter
       return;
     }
 
-    $query->leftJoin('r.LyraArticleLabel LyraArticleLabel')
-          ->andWhereIn('LyraArticleLabel.label_id', $values);
+    $query
+      ->leftJoin($query->getRootAlias().'.LyraArticleLabel LyraArticleLabel')
+      ->andWhereIn('LyraArticleLabel.label_id', $values)
+    ;
   }
 
   public function getModelName()

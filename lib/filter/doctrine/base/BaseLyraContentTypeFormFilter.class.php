@@ -6,7 +6,7 @@
  * @package    lyra
  * @subpackage filter
  * @author     Your name here
- * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 24171 2009-11-19 16:37:50Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 29570 2010-05-21 14:49:47Z Kris.Wallsmith $
  */
 abstract class BaseLyraContentTypeFormFilter extends BaseFormFilterDoctrine
 {
@@ -65,8 +65,10 @@ abstract class BaseLyraContentTypeFormFilter extends BaseFormFilterDoctrine
       return;
     }
 
-    $query->leftJoin('r.LyraContentTypeCatalog LyraContentTypeCatalog')
-          ->andWhereIn('LyraContentTypeCatalog.catalog_id', $values);
+    $query
+      ->leftJoin($query->getRootAlias().'.LyraContentTypeCatalog LyraContentTypeCatalog')
+      ->andWhereIn('LyraContentTypeCatalog.catalog_id', $values)
+    ;
   }
 
   public function getModelName()
