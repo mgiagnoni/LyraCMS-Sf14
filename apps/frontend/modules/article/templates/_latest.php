@@ -8,4 +8,6 @@
   </li>
 <?php endforeach; ?>
 </ul>
+<?php if(isset($feed)): ?>
 <div class="feed-subscribe"><?php echo link_to(__('LINK_SUBSCRIBE_FEED'), $feed); ?></div>
+<?php endif; ?>
