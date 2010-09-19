@@ -45,7 +45,7 @@ function menu_tree($items)
     $html .= generate_menu_link($item);
     $prevLevel = $curLevel;
   }
-  for($tmp = $curLevel; $tmp >= 0; $tmp--)
+  for($tmp = $curLevel; $tmp > 0; $tmp--)
   {
     $html .= '</li></ul>';
   }
