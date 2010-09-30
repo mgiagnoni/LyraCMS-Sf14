@@ -29,8 +29,8 @@ $storage = new sfSessionTestStorage(array('session_path' => $sessionPath));
 
 $user = new sfGuardSecurityUser($dispatcher, $storage);
 
-$admin = Doctrine::getTable('sfGuarduser')
-    ->findOneByUsername('admin');
+$admin = Doctrine_Core::getTable('sfGuarduser')
+  ->findOneByUsername('admin');
 
 $user->signIn($admin);
 $t->is($user->isAuthenticated(), true, '->isAuthenticated()');

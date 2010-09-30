@@ -4,6 +4,10 @@
  */
 class LyraLabelTable extends Doctrine_Table
 {
+  public static function getInstance()
+  {
+    return Doctrine_Core::getTable('LyraLabel');
+  }
   public function getActiveItemsQuery()
   {
     return $this->createQuery('l')

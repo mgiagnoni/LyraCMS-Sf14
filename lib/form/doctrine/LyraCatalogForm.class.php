@@ -31,7 +31,7 @@ class LyraCatalogForm extends BaseLyraCatalogForm
 
       $label->setCatalogId($this->object->getId());
       $label->save();
-      $treeObject = Doctrine::getTable('LyraLabel')->getTree();
+      $treeObject = LyraLabelTable::getInstance()->getTree();
       $treeObject->createRoot($label);
     }
   }

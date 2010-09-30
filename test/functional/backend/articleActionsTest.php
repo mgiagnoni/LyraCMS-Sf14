@@ -23,7 +23,7 @@ $browser = new LyraTestFunctional(new sfBrowser());
 $browser->loadData();
 $browser->signinOk(array('username'=>'admin','password'=>'admin'));
 
-$ctype = Doctrine::getTable('LyraContentType')
+$ctype = LyraContentTypeTable::getInstance()
   ->findOneByType('article');
 
 $browser->info('1 - Lists')->
@@ -43,7 +43,7 @@ $browser->info('1 - Lists')->
   end()
 ;
 
-$ctype2 = Doctrine::getTable('LyraContentType')
+$ctype2 = LyraContentTypeTable::getInstance()
   ->findOneByType('page');
 
 $browser->info('  1.2 - Pages')->

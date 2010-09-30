@@ -81,7 +81,7 @@ class LyraArticle extends BaseLyraArticle
   }
   protected function getActiveCommentsQuery()
   {
-    $q = Doctrine::getTable('LyraComment')
+    $q = LyraCommentTable::getInstance()
       ->getActiveItemsQuery();
 
     $q->andWhere($q->getRootAlias() .'.article_id = ?', $this->getId());

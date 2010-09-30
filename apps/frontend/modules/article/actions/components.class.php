@@ -3,18 +3,18 @@ class articleComponents extends sfComponents
 {
   public function executeLabels(sfWebRequest $request)
   {
-    $catalog = Doctrine::getTable('LyraCatalog')
+    $catalog = LyraCatalogTable::getInstance()
       ->findOneByName($this->catalog);
     $this->tree = $catalog->getLabelTree();
   }
   public function executeArchive(sfWebRequest $request)
   {
-    $this->rows = Doctrine::getTable('LyraArticle')
+    $this->rows = LyraArticleTable::getInstance()
       ->getArchiveDates();
   }
   public function executeLatest(sfWebRequest $request)
   {
-    $this->items = Doctrine::getTable('LyraArticle')
+    $this->items = LyraArticleTable::getInstance()
       ->getLatestItems($this->ctype, $this->max);
   }
 }

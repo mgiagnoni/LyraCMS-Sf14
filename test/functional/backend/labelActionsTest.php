@@ -23,7 +23,7 @@ $browser = new LyraTestFunctional(new sfBrowser());
 $browser->loadData();
 $browser->signinOk(array('username'=>'admin','password'=>'admin'));
 
-$catalog = Doctrine::getTable('LyraCatalog')->
+$catalog = LyraCatalogTable::getInstance()->
   findOneByName('test');
 
 $browser->info('1 - Label list')->

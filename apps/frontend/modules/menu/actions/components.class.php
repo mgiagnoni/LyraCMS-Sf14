@@ -21,7 +21,7 @@ class menuComponents extends sfComponents
 {
   public function executeMenu(sfWebRequest $request)
   {
-    $this->items = Doctrine::getTable('LyraMenu')
+    $this->items = LyraMenuTable::getInstance()
       ->getMenuTree($this->menu_name);
   }
 }

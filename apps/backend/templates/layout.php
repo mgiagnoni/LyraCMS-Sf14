@@ -24,7 +24,7 @@
             </li>
             <?php
             //TODO: hardcoded for now, this must be moved in a component
-            $ctypes = Doctrine::getTable('LyraContentType')
+            $ctypes = LyraContentTypeTable::getInstance()
               ->findAll();
             foreach($ctypes as $ctype):
             ?>

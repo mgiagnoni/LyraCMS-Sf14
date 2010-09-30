@@ -25,7 +25,7 @@ class LyraComment extends BaseLyraComment
   }
   public function postInsert($event)
   {
-    $q = Doctrine::getTable('LyraArticle')
+    $q = LyraArticleTable::getInstance()
       ->createQuery()
       ->update()
       ->set('num_comments', 'num_comments + 1')
@@ -42,7 +42,7 @@ class LyraComment extends BaseLyraComment
     $modified = $this->getLastModified();
     if(isset($modified['is_active'])) {
       $inc = $modified['is_active'] ? ' + 1' : ' - 1';
-      Doctrine::getTable('LyraArticle')
+      LyraArticleTable::getInstance()
         ->createQuery()
         ->update()
         ->set('num_active_comments', 'num_active_comments' . $inc)
@@ -52,7 +52,7 @@ class LyraComment extends BaseLyraComment
   }
   public function postDelete($event)
   {
-    $q = Doctrine::getTable('LyraArticle')
+    $q = LyraArticleTable::getInstance()
       ->createQuery()
       ->update()
       ->set('num_comments', 'num_comments - 1')

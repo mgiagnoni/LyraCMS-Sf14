@@ -27,7 +27,7 @@ class LyraValidatorEmailVerify extends sfValidatorBase
   {
     if($values['email'] && $values['token'])
     {
-      if(false === Doctrine::getTable('LyraUserProfile')
+      if(false === LyraUserProfileTable::getInstance()
         ->emailVerify($values['email'], $values['token']))
       {
         throw new sfValidatorError($this, 'invalid');

@@ -56,6 +56,6 @@ $t->is($article->getNumActiveComments(), 0, '$article->countActiveComments() = 0
 
 function getArticle($title)
 {
-  return Doctrine::getTable('LyraArticle')
+  return LyraArticleTable::getInstance()
     ->findOneByTitle($title);
 }

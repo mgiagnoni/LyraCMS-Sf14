@@ -28,7 +28,7 @@ class labelActions extends autoLabelActions
   public function execute($request)
   {
     $this->forward404Unless($catalog_id = $request->getUrlParameter('catalog_id'));
-    $this->forward404Unless($this->catalog = Doctrine::getTable('LyraCatalog')
+    $this->forward404Unless($this->catalog = LyraCatalogTable::getInstance()
       ->find($catalog_id));
 
     $this->getContext()->getRouting()

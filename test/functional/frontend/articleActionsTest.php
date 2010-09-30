@@ -45,7 +45,7 @@ $browser->info('1 - The homepage')->
 ;
 $browser->setTester('doctrine', 'sfTesterDoctrine');
 $browser->signinOk(array('username'=>'admin','password'=>'admin'));
-$ctypes = Doctrine::getTable('LyraContentType')->findAll();
+$ctypes = LyraContentTypeTable::getInstance()->findAll();
 $catalogs = $ctypes[0]->ContentTypeCatalogs;
 
 $browser->info('2 - Article form')->

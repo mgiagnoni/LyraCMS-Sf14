@@ -36,7 +36,7 @@ class LyraContentForm extends BaseLyraContentForm
       $this->ctype_id = $this->getObject()->getCtypeId();
     }
     //Embed form displaying configuration parameters
-    $ctype = Doctrine::getTable('LyraContentType')->find($this->ctype_id);
+    $ctype = LyraContentTypeTable::getInstance()->find($this->ctype_id);
 
     $def_file = sfConfig::get('sf_apps_dir') . '/backend/modules/' . $ctype->getModule() . '/config/params.yml';
     if(!file_exists($def_file) && $ctype->getPlugin()) {

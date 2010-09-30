@@ -27,7 +27,7 @@ class articleActions extends autoArticleActions
   public function execute($request)
   {
     $this->forward404Unless($ctype_id = $request->getUrlParameter('ctype_id'));
-    $this->forward404Unless($this->content_type = Doctrine::getTable('LyraContentType')
+    $this->forward404Unless($this->content_type = LyraContentTypeTable::getInstance()
       ->find($ctype_id));
 
     $this->getContext()->getRouting()
@@ -75,14 +75,14 @@ class articleActions extends autoArticleActions
   public function executeBatchPublish(sfWebRequest $request)
   {
     $ids = $request->getParameter('ids');
-    Doctrine::getTable('LyraArticle')->publish($ids);
+    LyraArticleTable::getInstance()->publish($ids);
     $this->getUser()->setFlash('notice', 'MSG_ARTICLE_PUBLISHED');
     $this->redirect('@lyra_article');
   }
   public function executeBatchUnpublish(sfWebRequest $request)
   {
     $ids = $request->getParameter('ids');
-    Doctrine::getTable('LyraArticle')->publish($ids, false);
+    LyraArticleTable::getInstance()->publish($ids, false);
     $this->getUser()->setFlash('notice', 'MSG_ARTICLE_UNPUBLISHED');
     $this->redirect('@lyra_article');
   }

@@ -27,7 +27,7 @@ class LyraContent extends BaseLyraContent
   {
     $ctype_id = $this->getCtypeId();
     if($ctype_id !== self::$prev_id) {
-      self::$ctype = Doctrine::getTable('LyraContentType')
+      self::$ctype = LyraContentTypeTable::getInstance()
         ->find($ctype_id);
       self::$prev_id = $ctype_id;
     }
@@ -71,7 +71,7 @@ class LyraContent extends BaseLyraContent
       $path = new LyraPath();
       $path->content_id = $this->getId();
       $path->ctype_id = $this->getCtypeId();
-      $ctype = Doctrine::getTable('LyraContentType')->find($path->ctype_id);
+      $ctype = LyraContentTypeTable::getInstance()->find($path->ctype_id);
     }
     else
     {

@@ -39,14 +39,14 @@ class commentActions extends autoCommentActions
   public function executeBatchPublish(sfWebRequest $request)
   {
     $ids = $request->getParameter('ids');
-    Doctrine::getTable('LyraComment')->publish($ids);
+    LyraCommentTable::getInstance()->publish($ids);
     $this->getUser()->setFlash('notice', 'MSG_COMMENT_PUBLISHED');
     $this->redirect('@lyra_comment');
   }
   public function executeBatchUnpublish(sfWebRequest $request)
   {
     $ids = $request->getParameter('ids');
-    Doctrine::getTable('LyraComment')->publish($ids, false);
+    LyraCommentTable::getInstance()->publish($ids, false);
     $this->getUser()->setFlash('notice', 'MSG_COMMENT_UNPUBLISHED');
     $this->redirect('@lyra_comment');
   }

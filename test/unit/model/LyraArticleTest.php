@@ -34,30 +34,30 @@ $article->save();
 $t->isnt($article->created_at, $article->updated_at ,'->save() updated article created_at not equal updated_at');
 
 $t->comment('Add 2 labels');
-$label1 = Doctrine::getTable('LyraLabel')->findOneByName('child_1');
-$label2 = Doctrine::getTable('LyraLabel')->findOneByName('child_2');
+$label1 = LyraLabelTable::getInstance()->findOneByName('child_1');
+$label2 = LyraLabelTable::getInstance()->findOneByName('child_2');
 $article->link('ArticleLabels', array($label1->id, $label2->id), true);
 $id = $article->id;
-$labels = Doctrine::getTable('LyraArticleLabel')->findByArticleId($id);
+$labels = LyraArticleLabelTable::getInstance()->findByArticleId($id);
 $t->is(count($labels), 2, '->save() correctly links article and labels');
 $t->comment('Remove 1 label');
 $article->unlink('ArticleLabels', array($label1->id), true);
-$labels = Doctrine::getTable('LyraArticleLabel')->findByArticleId($id);
+$labels = LyraArticleLabelTable::getInstance()->findByArticleId($id);
 $t->is(count($labels), 1, '->save() correctly unlinks article and label');
 $t->comment('Delete article');
 $article->delete();
-$labels = Doctrine::getTable('LyraArticleLabel')->findByArticleId($id);
+$labels = LyraArticleLabelTable::getInstance()->findByArticleId($id);
 $t->is(count($labels), 0, '->delete() correctly removes article / label links');
 
 $t->comment('Check configuration parameters');
-$article = Doctrine::getTable('LyraArticle')->findOneByTitle('art4');
+$article = LyraArticleTable::getInstance()->findOneByTitle('art4');
 $params = new LyraConfig($article);
 $t->is($params->get('show_read_more'), false, 'show_read_more = false (item level)');
 $t->is($params->get('linked_title'), true, 'linked_title = true (content type level)');
 
 function create_article($defaults = array())
 {
-  $ctype = Doctrine::getTable('LyraContentType')
+  $ctype = LyraContentTypeTable::getInstance()
     ->findOneByType('article');
     
   $article = new LyraArticle();

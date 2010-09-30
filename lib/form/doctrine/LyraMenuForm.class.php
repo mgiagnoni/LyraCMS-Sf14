@@ -90,7 +90,7 @@ class LyraMenuForm extends BaseLyraMenuForm
       'max_length' => 255
     ));
 
-    $ctype = Doctrine::getTable('LyraContentType')
+    $ctype = LyraContentTypeTable::getInstance()
       ->find($ctype_id);
 
     switch($type)
@@ -121,8 +121,8 @@ class LyraMenuForm extends BaseLyraMenuForm
 
   protected function selectItem($ctype_id)
   {
-    $ctype = Doctrine::getTable('LyraContentType')
-          ->find($ctype_id);
+    $ctype = LyraContentTypeTable::getInstance()
+      ->find($ctype_id);
 
     $query = Doctrine_Query::create()
       ->from($ctype->getModel() . ' c')

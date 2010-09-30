@@ -45,7 +45,7 @@ class LyraMenu extends BaseLyraMenu
 
         if($item['type'] == 'object')
         {
-          $obj = Doctrine::getTable($item['MenuContentType']['model'])
+          $obj = Doctrine_Core::getTable($item['MenuContentType']['model'])
           ->find($item['element_id']);
           $params = array();
           if(preg_match_all('#([^:/\.]+)#', $item['MenuContentType']['item_slug'], $matches)) {

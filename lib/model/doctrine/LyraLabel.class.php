@@ -19,7 +19,7 @@
 class LyraLabel extends BaseLyraLabel
 {
   public function getItemsQuery() {
-    $q = Doctrine::getTable('LyraArticle')
+    $q = LyraArticleTable::getInstance()
       ->getActiveItemsQuery();
 
     $q->innerJoin($q->getRootAlias().'.ArticleLabels l')

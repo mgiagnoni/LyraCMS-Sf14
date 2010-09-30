@@ -28,7 +28,7 @@ $t->is($params->get('enable_registration', 'users'), true, '->get() global param
 $t->is($params->get('moderate_comments', 'comments'), 'moderate_all', '->get() global param (list)');
 $t->is($params->get('order_comments', 'comments'), 'date_asc', '->get() global param (default)');
 
-$article = Doctrine::getTable('LyraArticle')
+$article = LyraArticleTable::getInstance()
   ->findOneByTitle('art4');
 
 $params = new LyraConfig($article);

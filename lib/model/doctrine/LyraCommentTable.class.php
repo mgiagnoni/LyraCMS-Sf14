@@ -4,6 +4,10 @@
  */
 class LyraCommentTable extends Doctrine_Table
 {
+  public static function getInstance()
+  {
+    return Doctrine_Core::getTable('LyraComment');
+  }
   public function getActiveItemsQuery() {
     $params = new LyraConfig('settings');
 

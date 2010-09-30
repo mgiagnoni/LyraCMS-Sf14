@@ -21,7 +21,7 @@ include(dirname(__FILE__).'/../../bootstrap/functional.php');
 
 $browser = new LyraTestFunctional(new sfBrowser());
 $browser->signinOk(array('username'=>'admin','password'=>'admin'));
-$settings = Doctrine::getTable('LyraSettings')
+$settings = LyraSettingsTable::getInstance()
   ->findAll();
 
 $browser->

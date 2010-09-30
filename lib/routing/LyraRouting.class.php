@@ -103,7 +103,7 @@ class LyraRouting extends sfPatternRouting
         ->fetchOne(array(ltrim($url,'/')))
       )
     {
-      $ctype = Doctrine::getTable('LyraContentType')
+      $ctype = LyraContentTypeTable::getInstance()
         ->find($path->ctype_id);
 
       if($ctype)

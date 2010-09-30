@@ -20,18 +20,18 @@ class articleActions extends sfActions
 {
   public function executeFront(sfWebRequest $request)
   {
-    $this->items = Doctrine::getTable('LyraArticle')
+    $this->items = LyraArticleTable::getInstance()
       ->getFrontPageItems();
     $this->setTemplate('index');
   }
   public function executeIndex(sfWebRequest $request)
   {
-    $this->items = Doctrine::getTable('LyraArticle')
+    $this->items = LyraArticleTable::getInstance()
       ->getActiveItems($request->getParameter('ctype'));
   }
   public function executeFeed(sfWebRequest $request)
   {
-    $this->items = Doctrine::getTable('LyraArticle')
+    $this->items = LyraArticleTable::getInstance()
       ->getFeedItems($request->getParameter('ctype'));
     $this->base = $request->getUriPrefix();
   }
@@ -72,14 +72,14 @@ class articleActions extends sfActions
 
   public function executeEdit(sfWebRequest $request)
   {
-    $this->forward404Unless($lyra_article = Doctrine::getTable('LyraArticle')->find($request->getParameter('id')), sprintf('Object lyra_article does not exist (%s).', $request->getParameter('id')));
+    $this->forward404Unless($lyra_article = LyraArticleTable::getInstance()->find($request->getParameter('id')), sprintf('Object lyra_article does not exist (%s).', $request->getParameter('id')));
     $this->form = new LyraArticleForm($lyra_article, array('user'=>$this->getUser()));
   }
 
   public function executeUpdate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod('post') || $request->isMethod('put'));
-    $this->forward404Unless($lyra_article = Doctrine::getTable('LyraArticle')->find($request->getParameter('id')), sprintf('Object lyra_article does not exist (%s).', $request->getParameter('id')));
+    $this->forward404Unless($lyra_article = LyraArticleTable::getInstance()->find($request->getParameter('id')), sprintf('Object lyra_article does not exist (%s).', $request->getParameter('id')));
     $this->form = new LyraArticleForm($lyra_article, array('user'=>$this->getUser()));
 
     $this->processForm($request, $this->form);
@@ -91,7 +91,7 @@ class articleActions extends sfActions
   {
     $request->checkCSRFProtection();
 
-    $this->forward404Unless($lyra_article = Doctrine::getTable('LyraArticle')->find($request->getParameter('id')), sprintf('Object lyra_article does not exist (%s).', $request->getParameter('id')));
+    $this->forward404Unless($lyra_article = LyraArticleTable::getInstance()->find($request->getParameter('id')), sprintf('Object lyra_article does not exist (%s).', $request->getParameter('id')));
     $lyra_article->delete();
 
     $this->redirect('article/index');
@@ -99,7 +99,7 @@ class articleActions extends sfActions
   public function executeComment(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod('post'));
-    $this->item = Doctrine::getTable('LyraArticle')
+    $this->item = LyraArticleTable::getInstance()
       ->find($request->getParameter('id'));
     $this->forward404Unless($this->item);
     $this->params = new LyraConfig($this->item);
@@ -125,7 +125,7 @@ class articleActions extends sfActions
     $this->forward404Unless(checkdate($this->month, 1, $this->year));
     $this->pager = new sfDoctrinePager('LyraArticle', 25);
     $this->pager->setQuery(
-      Doctrine::getTable('LyraArticle')
+      LyraArticleTable::getInstance()
         ->getArchiveItemsQuery($this->year, $this->month)
     );
     $this->pager->setPage($request->getParameter('page', 1));
