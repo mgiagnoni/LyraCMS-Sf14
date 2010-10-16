@@ -110,15 +110,20 @@ class LyraRouting extends sfPatternRouting
       {
         $this->ensureDefaultParametersAreSet();
         $name = 'lyra_custom_' . $ctype->type . '_show';
-        $route = new sfDoctrineRoute('/' . $path->pattern,
+        $pattern = explode(':', $path->pattern);
+        $lpath = array_shift($pattern);
+        $pattern = ':path/:' . implode(':', $pattern);
+        $route = new sfDoctrineRoute('/' . $pattern,
           array(
             'module' => $ctype->getModule(),
-            'action' => 'show'
+            'action' => 'show',
+            'path' => $lpath
           ),
-          array(),
+          array('path' => '.*?'),
           array(
             'type' => 'object',
-            'model' => $ctype->getModel()
+            'model' => $ctype->getModel(),
+            'method' => 'findItem'
           )
         );
         $this->prependRoute($name, $route);

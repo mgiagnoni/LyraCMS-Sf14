@@ -99,8 +99,12 @@ class LyraArticleTable extends Doctrine_Table
     }
     $q = $this->getActiveItemsQuery();
     $alias = $q->getRootAlias();
-
+    
     $q->andWhere($alias .'.slug = ?', $params['slug']);
+    if(isset($params['path']))
+    {
+      $q->andWhere($alias .'.path = ?', $params['path']);
+    }
     if(isset($params['year']))
     {
       $q->andWhere('YEAR(' .$alias .'.created_at) = ?', $params['year']);
