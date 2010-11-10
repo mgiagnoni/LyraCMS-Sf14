@@ -18,9 +18,13 @@
  */
 class LyraLabel extends BaseLyraLabel
 {
-  public function getItemsQuery() {
+  public function getItemsQuery($params)
+  {
     $q = LyraArticleTable::getInstance()
-      ->getActiveItemsQuery();
+      ->getActiveItemsQuery(array(
+        'sort' => $params->get('sort_field'),
+        'order' => $params->get('sort_order')
+        ));
 
     $q->innerJoin($q->getRootAlias().'.ArticleLabels l')
       ->andWhere('l.id = ?', $this->getId());

@@ -52,6 +52,10 @@
         <source>MENU_MENU</source>
         <target>Menu manager</target>
       </trans-unit>
+      <trans-unit id="15">
+        <source>MENU_ROUTES</source>
+        <target>Routes</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

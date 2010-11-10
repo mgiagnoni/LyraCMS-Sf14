@@ -46,15 +46,15 @@ class LyraArticleTable extends Doctrine_Table
       ->orderBy('created_at DESC');
     return $q;
   }
-  public function getActiveItems($ctype = null)
+  public function getActiveItems($params = array())
   {
-    $q = $this->getActiveItemsQuery($ctype);
+    $q = $this->getActiveItemsQuery($params);
     
     return $q->execute();
   }
-  public function getFeedItems($ctype = null)
+  public function getFeedItems($params = array())
   {
-    $q = $this->getActiveItemsQuery($ctype);
+    $q = $this->getActiveItemsQuery($params);
     
     $q->andWhere('is_feeded = ?', true)
       ->orderBy($q->getRootAlias() . '.created_at DESC');
@@ -63,25 +63,33 @@ class LyraArticleTable extends Doctrine_Table
   }
   public function getLatestItems($ctype = null, $max = 5)
   {
-    $q = $this->getActiveItemsQuery($ctype);
+    $q = $this->getActiveItemsQuery(array('ctype' => $ctype));
 
     $q->limit($max)
       ->orderBy($q->getRootAlias() . '.created_at DESC');
     
     return $q->execute();
   }
-  public function getActiveItemsQuery($ctype = null)
+  public function getActiveItemsQuery($params = array())
   {
     $q = $this->createQuery('a')
       ->where('a.is_active = ?', true)
       ->andWhere('(a.publish_start IS NULL OR a.publish_start <= NOW())')
       ->andWhere('(a.publish_end IS NULL OR a.publish_end >= NOW())')
       ->leftJoin('a.ArticleCreatedBy')
-      ->orderBy('a.is_sticky DESC, a.created_at DESC');
+      ->orderBy(
+        'a.is_sticky DESC, a.' .
+        (isset($params['sort']) ? $params['sort'] : 'created_at') .
+        (isset($params['order']) ? ' ' . $params['order'] : ' DESC')
+      );
 
-    if($ctype)
+    if(isset($params['ctype']))
     {
-      $q->innerJoin('a.ArticleContentType ct WITH ct.type = ?', $ctype);
+      $q->innerJoin('a.ArticleContentType ct WITH ct.type = ?', $params['ctype']);
+    }
+    if(isset($params['limit']) && (int)$params['limit'] > 0)
+    {
+      $q->limit($params['limit']);
     }
     return $q;
   }

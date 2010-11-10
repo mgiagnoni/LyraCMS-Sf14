@@ -17,6 +17,7 @@
  * @property boolean $is_active
  * @property clob $params
  * @property Doctrine_Collection $ContentTypeCatalogs
+ * @property Doctrine_Collection $ContentTypeRoutes
  * @property Doctrine_Collection $Contents
  * @property Doctrine_Collection $LyraContentTypeCatalog
  * @property Doctrine_Collection $LyraMenu
@@ -34,6 +35,7 @@
  * @method boolean             getIsActive()               Returns the current record's "is_active" value
  * @method clob                getParams()                 Returns the current record's "params" value
  * @method Doctrine_Collection getContentTypeCatalogs()    Returns the current record's "ContentTypeCatalogs" collection
+ * @method Doctrine_Collection getContentTypeRoutes()      Returns the current record's "ContentTypeRoutes" collection
  * @method Doctrine_Collection getContents()               Returns the current record's "Contents" collection
  * @method Doctrine_Collection getLyraContentTypeCatalog() Returns the current record's "LyraContentTypeCatalog" collection
  * @method Doctrine_Collection getLyraMenu()               Returns the current record's "LyraMenu" collection
@@ -50,6 +52,7 @@
  * @method LyraContentType     setIsActive()               Sets the current record's "is_active" value
  * @method LyraContentType     setParams()                 Sets the current record's "params" value
  * @method LyraContentType     setContentTypeCatalogs()    Sets the current record's "ContentTypeCatalogs" collection
+ * @method LyraContentType     setContentTypeRoutes()      Sets the current record's "ContentTypeRoutes" collection
  * @method LyraContentType     setContents()               Sets the current record's "Contents" collection
  * @method LyraContentType     setLyraContentTypeCatalog() Sets the current record's "LyraContentTypeCatalog" collection
  * @method LyraContentType     setLyraMenu()               Sets the current record's "LyraMenu" collection
@@ -126,6 +129,10 @@ abstract class BaseLyraContentType extends sfDoctrineRecord
              'refClass' => 'LyraContentTypeCatalog',
              'local' => 'ctype_id',
              'foreign' => 'catalog_id'));
+
+        $this->hasMany('LyraRoute as ContentTypeRoutes', array(
+             'local' => 'id',
+             'foreign' => 'ctype_id'));
 
         $this->hasMany('LyraArticle as Contents', array(
              'local' => 'id',

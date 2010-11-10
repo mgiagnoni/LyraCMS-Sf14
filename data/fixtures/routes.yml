@@ -1,0 +1,15 @@
+LyraRoute:
+  route1:
+    name: Article index
+    action: index
+    RouteContentType: Articolo
+    params: a:2:{s:10:"sort_field";s:10:"created_at";s:10:"sort_order";s:4:"desc";}
+  route2:
+    name: Article label page
+    action: label
+    params: a:2:{s:10:"sort_field";s:10:"created_at";s:10:"sort_order";s:4:"desc";}
+    RouteContentType: Articolo
+  route3:
+    name: Article archive page
+    action: archive
+    RouteContentType: Articolo

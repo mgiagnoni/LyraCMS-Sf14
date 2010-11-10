@@ -44,9 +44,9 @@ class LyraConfig
     {
       return $this->getItemParamValue($key);
     }
-    elseif($this->object instanceof LyraContentView)
+    elseif($this->object instanceof LyraRoute)
     {
-      return $this->getViewParamValue($key);
+      return $this->getRouteParamValue($key);
     }
     elseif($this->object == 'settings')
     {
@@ -85,9 +85,9 @@ class LyraConfig
 
     return $value;
   }
-  protected function getViewParamValue($key)
+  protected function getRouteParamValue($key)
   {
-    $ctype = $this->object->getViewContentType();
+    $ctype = $this->object->getRouteContentType();
 
     if(!isset($this->def_file))
     {
@@ -107,12 +107,12 @@ class LyraConfig
         $def_file = $this->getParamDefinitionsPath($ctype->getModule(), $ctype->getPlugin());
         self::$ctypes_params[$ctype->getId()] = new LyraParams($ctype, $def_file);
       }
-      $value = self::$ctypes_params[$ctype->getId()]->get($key, 'views');
+      $value = self::$ctypes_params[$ctype->getId()]->get($key, 'routes');
     }
 
     if(null === $value)
     {
-      $value = $this->params->getDefault($key);
+      $value = self::$ctypes_params[$ctype->getId()]->getDefault($key, 'routes');
     }
 
     return $value;

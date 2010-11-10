@@ -18,6 +18,31 @@
  */
 class articleActions extends sfActions
 {
+  public function execute($request)
+  {
+    if($request->isMethod('GET'))
+    {
+      $parts = explode ('_', $this->getContext()->getRouting()->getCurrentRouteName());
+      if('default' != $parts[0] && 'homepage' != $parts[0] && 'show' != $parts[1])
+      {
+        $route = Doctrine_Query::create()
+          ->from('LyraRoute r')
+          ->innerJoin('r.RouteContentType t')
+          ->where('r.action = ?')
+          ->andWhere('t.type = ?')
+          ->fetchOne(array(
+            $parts[1],
+            $parts[0]
+          ));
+        if($route)
+        {
+          $this->route = $route;
+          $this->params = new LyraConfig($route);
+        }
+      }
+    }
+    parent::execute($request);
+  }
   public function executeFront(sfWebRequest $request)
   {
     $this->items = LyraArticleTable::getInstance()
@@ -26,13 +51,19 @@ class articleActions extends sfActions
   }
   public function executeIndex(sfWebRequest $request)
   {
+    //TODO paging
     $this->items = LyraArticleTable::getInstance()
-      ->getActiveItems($request->getParameter('ctype'));
+      ->getActiveItems(array(
+        'ctype' => $request->getParameter('ctype'),
+        'sort' => $this->params->get('sort_field'),
+        'order' => $this->params->get('sort_order'),
+        'limit' => $this->params->get('max_items')
+    ));
   }
   public function executeFeed(sfWebRequest $request)
   {
     $this->items = LyraArticleTable::getInstance()
-      ->getFeedItems($request->getParameter('ctype'));
+      ->getFeedItems(array('ctype' => $request->getParameter('ctype')));
     $this->base = $request->getUriPrefix();
   }
   public function executeShow(sfWebRequest $request)
@@ -113,8 +144,8 @@ class articleActions extends sfActions
   {
     $this->label = $this->getRoute()->getObject();
     $this->label->setMetaTags($this->getResponse());
-    $this->pager = new sfDoctrinePager('LyraLabel', 25);
-    $this->pager->setQuery($this->label->getItemsQuery());
+    $this->pager = new sfDoctrinePager('LyraLabel', $this->params->get('max_items'));
+    $this->pager->setQuery($this->label->getItemsQuery($this->params));
     $this->pager->setPage($request->getParameter('page', 1));
     $this->pager->init();
   }
@@ -123,7 +154,7 @@ class articleActions extends sfActions
     $this->year = $request->getParameter('year');
     $this->month = $request->getParameter('month');
     $this->forward404Unless(checkdate($this->month, 1, $this->year));
-    $this->pager = new sfDoctrinePager('LyraArticle', 25);
+    $this->pager = new sfDoctrinePager('LyraArticle', $this->params->get('max_items'));
     $this->pager->setQuery(
       LyraArticleTable::getInstance()
         ->getArchiveItemsQuery($this->year, $this->month)

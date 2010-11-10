@@ -1,0 +1,24 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           LyraRoute
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          lyra_route
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        display: [=name, action, id]
+        actions: {}
+      filter:
+        class: false
+      form:    ~
+      edit:    ~
+      new:     ~

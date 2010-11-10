@@ -60,6 +60,10 @@
         <source>MENU_MENU</source>
         <target>Gestione menù</target>
       </trans-unit>
+      <trans-unit id="15">
+        <source>MENU_ROUTES</source>
+        <target>Rotte</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

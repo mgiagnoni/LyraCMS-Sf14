@@ -32,5 +32,6 @@ generator:
         display:
           "NONE": [name,description,module,is_active]
           PANEL_PARAMS: [lyra_params_item]
+          PANEL_PARAMS_ROUTES: [lyra_params_routes]
       edit:    ~
       new:     ~

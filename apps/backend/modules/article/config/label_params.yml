@@ -1,0 +1,12 @@
+params:
+  max_items:
+    type: text
+    #default: 25
+  sort_field:
+    type: list
+    choices: [title, updated_at, created_at]
+    #default: created_at
+  sort_order:
+    type: list
+    choices: [asc, desc]
+    #default: desc

@@ -33,6 +33,9 @@
             </li>
             <?php endforeach; ?>
             <!-- end TODO -->
+            <li <?php echo ($module == 'route' ? 'class="active"' : ''); ?>>
+            <?php echo link_to(__('MENU_ROUTES'), 'lyra_route') ?>
+            </li>
             <li <?php echo ($module == 'comment' ? 'class="active"' : ''); ?>>
               <?php echo link_to(__('MENU_COMMENTS'), '@lyra_comment') ?>
             </li>
