@@ -12,21 +12,24 @@
  * @property string $meta_descr
  * @property string $meta_keys
  * @property string $meta_robots
+ * @property LyraContentType $ContentType
  * 
- * @method integer     getCtypeId()     Returns the current record's "ctype_id" value
- * @method string      getPath()        Returns the current record's "path" value
- * @method clob        getParams()      Returns the current record's "params" value
- * @method string      getMetaTitle()   Returns the current record's "meta_title" value
- * @method string      getMetaDescr()   Returns the current record's "meta_descr" value
- * @method string      getMetaKeys()    Returns the current record's "meta_keys" value
- * @method string      getMetaRobots()  Returns the current record's "meta_robots" value
- * @method LyraContent setCtypeId()     Sets the current record's "ctype_id" value
- * @method LyraContent setPath()        Sets the current record's "path" value
- * @method LyraContent setParams()      Sets the current record's "params" value
- * @method LyraContent setMetaTitle()   Sets the current record's "meta_title" value
- * @method LyraContent setMetaDescr()   Sets the current record's "meta_descr" value
- * @method LyraContent setMetaKeys()    Sets the current record's "meta_keys" value
- * @method LyraContent setMetaRobots()  Sets the current record's "meta_robots" value
+ * @method integer         getCtypeId()     Returns the current record's "ctype_id" value
+ * @method string          getPath()        Returns the current record's "path" value
+ * @method clob            getParams()      Returns the current record's "params" value
+ * @method string          getMetaTitle()   Returns the current record's "meta_title" value
+ * @method string          getMetaDescr()   Returns the current record's "meta_descr" value
+ * @method string          getMetaKeys()    Returns the current record's "meta_keys" value
+ * @method string          getMetaRobots()  Returns the current record's "meta_robots" value
+ * @method LyraContentType getContentType() Returns the current record's "ContentType" value
+ * @method LyraContent     setCtypeId()     Sets the current record's "ctype_id" value
+ * @method LyraContent     setPath()        Sets the current record's "path" value
+ * @method LyraContent     setParams()      Sets the current record's "params" value
+ * @method LyraContent     setMetaTitle()   Sets the current record's "meta_title" value
+ * @method LyraContent     setMetaDescr()   Sets the current record's "meta_descr" value
+ * @method LyraContent     setMetaKeys()    Sets the current record's "meta_keys" value
+ * @method LyraContent     setMetaRobots()  Sets the current record's "meta_robots" value
+ * @method LyraContent     setContentType() Sets the current record's "ContentType" value
  * 
  * @package    lyra
  * @subpackage model
@@ -71,6 +74,9 @@ abstract class BaseLyraContent extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        
+        $this->hasOne('LyraContentType as ContentType', array(
+             'local' => 'ctype_id',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
     }
 }

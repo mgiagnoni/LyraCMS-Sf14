@@ -8,4 +8,4 @@ LyraArticle:
     is_archived: false
     ArticleCreatedBy: admin
     ArticleUpdatedBy: admin
-    ArticleContentType: Pagina
+    ContentType: Pagina

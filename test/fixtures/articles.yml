@@ -11,7 +11,7 @@ LyraArticle:
     ArticleLabels: [child_1]
     ArticleCreatedBy: admin
     ArticleUpdatedBy: admin
-    ArticleContentType: Articolo
+    ContentType: Articolo
   art2:
     title: art2
     summary: unfeatured article
@@ -24,7 +24,7 @@ LyraArticle:
     ArticleLabels: [child_2]
     ArticleUpdatedBy: admin
     ArticleCreatedBy: admin
-    ArticleContentType: Articolo
+    ContentType: Articolo
   art3:
     title: art3
     summary: featured unpublished article
@@ -37,7 +37,7 @@ LyraArticle:
     ArticleLabels: [child_2]
     ArticleUpdatedBy: admin
     ArticleCreatedBy: admin
-    ArticleContentType: Articolo
+    ContentType: Articolo
   art4:
     title: art4
     summary: test config option
@@ -52,7 +52,7 @@ LyraArticle:
     ArticleLabels: [child_2]
     ArticleUpdatedBy: admin
     ArticleCreatedBy: admin
-    ArticleContentType: Articolo
+    ContentType: Articolo
   art5:
     title: art5
     summary: expired featured
@@ -62,7 +62,7 @@ LyraArticle:
     publish_end: "2000-01-01"
     ArticleUpdatedBy: admin
     ArticleCreatedBy: admin
-    ArticleContentType: Articolo
+    ContentType: Articolo
   art6:
     title: art6
     summary: queued featured
@@ -72,7 +72,7 @@ LyraArticle:
     publish_start: "2050-01-01"
     ArticleUpdatedBy: admin
     ArticleCreatedBy: admin
-    ArticleContentType: Articolo
+    ContentType: Articolo
   art7:
     title: art7
     summary: test within publish_start and publish_end
@@ -83,4 +83,4 @@ LyraArticle:
     publish_end: "<?php echo strftime('%Y-%m-%d', strtotime('+1 day')); ?>"
     ArticleUpdatedBy: admin
     ArticleCreatedBy: admin
-    ArticleContentType: Articolo
+    ContentType: Articolo

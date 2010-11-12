@@ -8,7 +8,7 @@ LyraArticle:
     is_archived: false
     ArticleCreatedBy: admin
     ArticleUpdatedBy: admin
-    ArticleContentType: Pagina
+    ContentType: Pagina
   pag2:
     title: unpublished
     content: example of unpublished page
@@ -18,4 +18,4 @@ LyraArticle:
     is_archived: false
     ArticleCreatedBy: admin
     ArticleUpdatedBy: admin
-    ArticleContentType: Pagina
+    ContentType: Pagina

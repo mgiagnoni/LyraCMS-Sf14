@@ -26,7 +26,6 @@
  * @property Doctrine_Collection $ArticleLabels
  * @property sfGuardUser $ArticleCreatedBy
  * @property sfGuardUser $ArticleUpdatedBy
- * @property LyraContentType $ArticleContentType
  * @property Doctrine_Collection $ArticleComments
  * @property Doctrine_Collection $LyraArticleLabel
  * @property Doctrine_Collection $LyraMenu
@@ -52,7 +51,6 @@
  * @method Doctrine_Collection getArticleLabels()       Returns the current record's "ArticleLabels" collection
  * @method sfGuardUser         getArticleCreatedBy()    Returns the current record's "ArticleCreatedBy" value
  * @method sfGuardUser         getArticleUpdatedBy()    Returns the current record's "ArticleUpdatedBy" value
- * @method LyraContentType     getArticleContentType()  Returns the current record's "ArticleContentType" value
  * @method Doctrine_Collection getArticleComments()     Returns the current record's "ArticleComments" collection
  * @method Doctrine_Collection getLyraArticleLabel()    Returns the current record's "LyraArticleLabel" collection
  * @method Doctrine_Collection getLyraMenu()            Returns the current record's "LyraMenu" collection
@@ -77,7 +75,6 @@
  * @method LyraArticle         setArticleLabels()       Sets the current record's "ArticleLabels" collection
  * @method LyraArticle         setArticleCreatedBy()    Sets the current record's "ArticleCreatedBy" value
  * @method LyraArticle         setArticleUpdatedBy()    Sets the current record's "ArticleUpdatedBy" value
- * @method LyraArticle         setArticleContentType()  Sets the current record's "ArticleContentType" value
  * @method LyraArticle         setArticleComments()     Sets the current record's "ArticleComments" collection
  * @method LyraArticle         setLyraArticleLabel()    Sets the current record's "LyraArticleLabel" collection
  * @method LyraArticle         setLyraMenu()            Sets the current record's "LyraMenu" collection
@@ -195,11 +192,6 @@ abstract class BaseLyraArticle extends LyraContent
         $this->hasOne('sfGuardUser as ArticleUpdatedBy', array(
              'local' => 'updated_by',
              'foreign' => 'id'));
-
-        $this->hasOne('LyraContentType as ArticleContentType', array(
-             'local' => 'ctype_id',
-             'foreign' => 'id',
-             'onDelete' => 'CASCADE'));
 
         $this->hasMany('LyraComment as ArticleComments', array(
              'local' => 'id',

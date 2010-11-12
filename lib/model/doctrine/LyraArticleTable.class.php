@@ -85,7 +85,7 @@ class LyraArticleTable extends Doctrine_Table
 
     if(isset($params['ctype']))
     {
-      $q->innerJoin('a.ArticleContentType ct WITH ct.type = ?', $params['ctype']);
+      $q->innerJoin('a.ContentType ct WITH ct.type = ?', $params['ctype']);
     }
     if(isset($params['limit']) && (int)$params['limit'] > 0)
     {

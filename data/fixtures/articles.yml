@@ -11,7 +11,7 @@ LyraArticle:
     ArticleLabels: [Php,Intermedio]
     ArticleCreatedBy: admin
     ArticleUpdatedBy: admin
-    ArticleContentType: Articolo
+    ContentType: Articolo
   art2:
     title: Un articolo su Mootools
     summary: Sommario secondo articolo
@@ -24,4 +24,4 @@ LyraArticle:
     ArticleLabels: [Mootools,Elementare]
     ArticleUpdatedBy: admin
     ArticleCreatedBy: admin
-    ArticleContentType: Articolo
+    ContentType: Articolo

@@ -15,6 +15,13 @@ LyraContent:
       type: string(500)
     meta_robots:
       type: string(255)
+  relations:
+    ContentType:
+      class: LyraContentType
+      local: ctype_id
+      foreign: id
+      foreignAlias: Contents
+      onDelete: CASCADE
 
 LyraRoute:
   tableName: routes
@@ -132,12 +139,6 @@ LyraArticle:
       local: updated_by
       foreign: id
       foreignAlias: UpdatedArticles
-    ArticleContentType:
-      class: LyraContentType
-      local: ctype_id
-      foreign: id
-      foreignAlias: Contents
-      onDelete: CASCADE
       
 LyraComment:
   tableName: comments
