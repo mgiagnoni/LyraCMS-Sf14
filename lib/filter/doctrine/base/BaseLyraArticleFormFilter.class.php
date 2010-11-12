@@ -26,18 +26,6 @@ abstract class BaseLyraArticleFormFilter extends LyraContentFormFilter
     $this->widgetSchema   ['content'] = new sfWidgetFormFilterInput();
     $this->validatorSchema['content'] = new sfValidatorPass(array('required' => false));
 
-    $this->widgetSchema   ['meta_title'] = new sfWidgetFormFilterInput();
-    $this->validatorSchema['meta_title'] = new sfValidatorPass(array('required' => false));
-
-    $this->widgetSchema   ['meta_descr'] = new sfWidgetFormFilterInput();
-    $this->validatorSchema['meta_descr'] = new sfValidatorPass(array('required' => false));
-
-    $this->widgetSchema   ['meta_keys'] = new sfWidgetFormFilterInput();
-    $this->validatorSchema['meta_keys'] = new sfValidatorPass(array('required' => false));
-
-    $this->widgetSchema   ['meta_robots'] = new sfWidgetFormFilterInput();
-    $this->validatorSchema['meta_robots'] = new sfValidatorPass(array('required' => false));
-
     $this->widgetSchema   ['is_active'] = new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no')));
     $this->validatorSchema['is_active'] = new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0)));
 
@@ -122,10 +110,6 @@ abstract class BaseLyraArticleFormFilter extends LyraContentFormFilter
       'subtitle' => 'Text',
       'summary' => 'Text',
       'content' => 'Text',
-      'meta_title' => 'Text',
-      'meta_descr' => 'Text',
-      'meta_keys' => 'Text',
-      'meta_robots' => 'Text',
       'is_active' => 'Boolean',
       'is_featured' => 'Boolean',
       'is_sticky' => 'Boolean',

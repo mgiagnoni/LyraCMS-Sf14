@@ -51,6 +51,10 @@ class LyraContentForm extends BaseLyraContentForm
       $this->widgetSchema['lyra_params']->setLabel(false);
     }
 
+    //Merge form to enter metatags informations
+    $metatags_form = new LyraMetatagsForm();
+    $this->mergeForm($metatags_form);
+    
     $selected = array();
     if(!$this->isNew()) {
       $selected= $this->getObject()

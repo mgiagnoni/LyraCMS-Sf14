@@ -8,13 +8,25 @@
  * @property integer $ctype_id
  * @property string $path
  * @property clob $params
+ * @property string $meta_title
+ * @property string $meta_descr
+ * @property string $meta_keys
+ * @property string $meta_robots
  * 
- * @method integer     getCtypeId()  Returns the current record's "ctype_id" value
- * @method string      getPath()     Returns the current record's "path" value
- * @method clob        getParams()   Returns the current record's "params" value
- * @method LyraContent setCtypeId()  Sets the current record's "ctype_id" value
- * @method LyraContent setPath()     Sets the current record's "path" value
- * @method LyraContent setParams()   Sets the current record's "params" value
+ * @method integer     getCtypeId()     Returns the current record's "ctype_id" value
+ * @method string      getPath()        Returns the current record's "path" value
+ * @method clob        getParams()      Returns the current record's "params" value
+ * @method string      getMetaTitle()   Returns the current record's "meta_title" value
+ * @method string      getMetaDescr()   Returns the current record's "meta_descr" value
+ * @method string      getMetaKeys()    Returns the current record's "meta_keys" value
+ * @method string      getMetaRobots()  Returns the current record's "meta_robots" value
+ * @method LyraContent setCtypeId()     Sets the current record's "ctype_id" value
+ * @method LyraContent setPath()        Sets the current record's "path" value
+ * @method LyraContent setParams()      Sets the current record's "params" value
+ * @method LyraContent setMetaTitle()   Sets the current record's "meta_title" value
+ * @method LyraContent setMetaDescr()   Sets the current record's "meta_descr" value
+ * @method LyraContent setMetaKeys()    Sets the current record's "meta_keys" value
+ * @method LyraContent setMetaRobots()  Sets the current record's "meta_robots" value
  * 
  * @package    lyra
  * @subpackage model
@@ -37,6 +49,22 @@ abstract class BaseLyraContent extends sfDoctrineRecord
              ));
         $this->hasColumn('params', 'clob', null, array(
              'type' => 'clob',
+             ));
+        $this->hasColumn('meta_title', 'string', 255, array(
+             'type' => 'string',
+             'length' => 255,
+             ));
+        $this->hasColumn('meta_descr', 'string', 500, array(
+             'type' => 'string',
+             'length' => 500,
+             ));
+        $this->hasColumn('meta_keys', 'string', 500, array(
+             'type' => 'string',
+             'length' => 500,
+             ));
+        $this->hasColumn('meta_robots', 'string', 255, array(
+             'type' => 'string',
+             'length' => 255,
              ));
     }
 

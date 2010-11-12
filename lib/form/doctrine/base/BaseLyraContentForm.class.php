@@ -15,17 +15,25 @@ abstract class BaseLyraContentForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'       => new sfWidgetFormInputHidden(),
-      'ctype_id' => new sfWidgetFormInputText(),
-      'path'     => new sfWidgetFormInputText(),
-      'params'   => new sfWidgetFormTextarea(),
+      'id'          => new sfWidgetFormInputHidden(),
+      'ctype_id'    => new sfWidgetFormInputText(),
+      'path'        => new sfWidgetFormInputText(),
+      'params'      => new sfWidgetFormTextarea(),
+      'meta_title'  => new sfWidgetFormInputText(),
+      'meta_descr'  => new sfWidgetFormTextarea(),
+      'meta_keys'   => new sfWidgetFormTextarea(),
+      'meta_robots' => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
-      'id'       => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'ctype_id' => new sfValidatorInteger(),
-      'path'     => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'params'   => new sfValidatorString(array('required' => false)),
+      'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'ctype_id'    => new sfValidatorInteger(),
+      'path'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'params'      => new sfValidatorString(array('required' => false)),
+      'meta_title'  => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'meta_descr'  => new sfValidatorString(array('max_length' => 500, 'required' => false)),
+      'meta_keys'   => new sfValidatorString(array('max_length' => 500, 'required' => false)),
+      'meta_robots' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('lyra_content[%s]');

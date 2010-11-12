@@ -28,18 +28,6 @@ abstract class BaseLyraArticleForm extends LyraContentForm
     $this->widgetSchema   ['content'] = new sfWidgetFormTextarea();
     $this->validatorSchema['content'] = new sfValidatorString(array('required' => false));
 
-    $this->widgetSchema   ['meta_title'] = new sfWidgetFormInputText();
-    $this->validatorSchema['meta_title'] = new sfValidatorString(array('max_length' => 255, 'required' => false));
-
-    $this->widgetSchema   ['meta_descr'] = new sfWidgetFormTextarea();
-    $this->validatorSchema['meta_descr'] = new sfValidatorString(array('max_length' => 500, 'required' => false));
-
-    $this->widgetSchema   ['meta_keys'] = new sfWidgetFormTextarea();
-    $this->validatorSchema['meta_keys'] = new sfValidatorString(array('max_length' => 500, 'required' => false));
-
-    $this->widgetSchema   ['meta_robots'] = new sfWidgetFormInputText();
-    $this->validatorSchema['meta_robots'] = new sfValidatorString(array('max_length' => 255, 'required' => false));
-
     $this->widgetSchema   ['is_active'] = new sfWidgetFormInputCheckbox();
     $this->validatorSchema['is_active'] = new sfValidatorBoolean(array('required' => false));
 

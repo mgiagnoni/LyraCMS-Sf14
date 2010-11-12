@@ -41,11 +41,7 @@ class LyraArticleForm extends BaseLyraArticleForm
       $this['updated_at'],
       $this['article_labels_list'],
       $this['num_comments'],
-      $this['num_active_comments'],
-      $this['meta_title'],
-      $this['meta_descr'],
-      $this['meta_keys'],
-      $this['meta_robots']
+      $this['num_active_comments']
     );
 
     //FCKeditor
@@ -109,10 +105,6 @@ class LyraArticleForm extends BaseLyraArticleForm
     );
     $this->break_at = 'PANEL_PUBLISH';
 
-    //Merge form to enter metatags informations
-    $metatags_form = new LyraMetatagsForm();
-    $this->mergeForm($metatags_form);
-    
     $this->widgetSchema->setFormFormatterName('LyraContent');
     $this->widgetSchema->setNameFormat('article[%s]');
   }

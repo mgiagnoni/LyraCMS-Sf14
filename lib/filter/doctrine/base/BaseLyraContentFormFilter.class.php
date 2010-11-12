@@ -13,15 +13,23 @@ abstract class BaseLyraContentFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'ctype_id' => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'path'     => new sfWidgetFormFilterInput(),
-      'params'   => new sfWidgetFormFilterInput(),
+      'ctype_id'    => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'path'        => new sfWidgetFormFilterInput(),
+      'params'      => new sfWidgetFormFilterInput(),
+      'meta_title'  => new sfWidgetFormFilterInput(),
+      'meta_descr'  => new sfWidgetFormFilterInput(),
+      'meta_keys'   => new sfWidgetFormFilterInput(),
+      'meta_robots' => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
-      'ctype_id' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'path'     => new sfValidatorPass(array('required' => false)),
-      'params'   => new sfValidatorPass(array('required' => false)),
+      'ctype_id'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'path'        => new sfValidatorPass(array('required' => false)),
+      'params'      => new sfValidatorPass(array('required' => false)),
+      'meta_title'  => new sfValidatorPass(array('required' => false)),
+      'meta_descr'  => new sfValidatorPass(array('required' => false)),
+      'meta_keys'   => new sfValidatorPass(array('required' => false)),
+      'meta_robots' => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('lyra_content_filters[%s]');
@@ -41,10 +49,14 @@ abstract class BaseLyraContentFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'id'       => 'Number',
-      'ctype_id' => 'Number',
-      'path'     => 'Text',
-      'params'   => 'Text',
+      'id'          => 'Number',
+      'ctype_id'    => 'Number',
+      'path'        => 'Text',
+      'params'      => 'Text',
+      'meta_title'  => 'Text',
+      'meta_descr'  => 'Text',
+      'meta_keys'   => 'Text',
+      'meta_robots' => 'Text',
     );
   }
 }

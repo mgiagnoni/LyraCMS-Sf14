@@ -7,6 +7,14 @@ LyraContent:
       type: string(255)
     params:
       type: clob
+    meta_title:
+      type: string(255)
+    meta_descr:
+      type: string(500)
+    meta_keys:
+      type: string(500)
+    meta_robots:
+      type: string(255)
 
 LyraRoute:
   tableName: routes
@@ -65,14 +73,6 @@ LyraArticle:
       type: clob
     content:
       type: clob
-    meta_title:
-      type: string(255)
-    meta_descr:
-      type: string(500)
-    meta_keys:
-      type: string(500)
-    meta_robots:
-      type: string(255)
     is_active:
       type: boolean
       notnull: true

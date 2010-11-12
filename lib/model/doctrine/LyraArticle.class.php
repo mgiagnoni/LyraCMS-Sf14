@@ -19,34 +19,7 @@
  */
 class LyraArticle extends BaseLyraArticle
 {
-  public function setMetaTags(sfWebResponse $response)
-  {
-    $params = new LyraConfig('settings');
-    $mt = $this->getMetaTitle();
-    if(!$mt) {
-      $mt = $this->getTitle();
-    }
-    if($t = $params->get('page_title_pfx', 'general')) {
-      $mt = $t . ' ' . $mt;
-    }
-    if($t = $params->get('page_title_sfx', 'general')) {
-      $mt .= ' ' . $t;
-    }
-    if(!$mt) {
-      $mt = $this->getTitle();
-    }
-    $response->setTitle($mt);
-
-    if($mt = $this->getMetaDescr()) {
-        $response->addMeta('description', $mt);
-    }
-    if($mt = $this->getMetaKeys()) {
-        $response->addMeta('keywords', $mt);
-    }
-    if($mt = $this->getMetaRobots()) {
-        $response->addMeta('robots', $mt);
-    }
-  }
+  
   public function getActiveComments()
   {
     return $this->getActiveCommentsQuery()

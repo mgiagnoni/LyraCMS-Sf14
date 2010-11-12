@@ -10,10 +10,6 @@
  * @property string $subtitle
  * @property clob $summary
  * @property clob $content
- * @property string $meta_title
- * @property string $meta_descr
- * @property string $meta_keys
- * @property string $meta_robots
  * @property boolean $is_active
  * @property boolean $is_featured
  * @property boolean $is_sticky
@@ -40,10 +36,6 @@
  * @method string              getSubtitle()            Returns the current record's "subtitle" value
  * @method clob                getSummary()             Returns the current record's "summary" value
  * @method clob                getContent()             Returns the current record's "content" value
- * @method string              getMetaTitle()           Returns the current record's "meta_title" value
- * @method string              getMetaDescr()           Returns the current record's "meta_descr" value
- * @method string              getMetaKeys()            Returns the current record's "meta_keys" value
- * @method string              getMetaRobots()          Returns the current record's "meta_robots" value
  * @method boolean             getIsActive()            Returns the current record's "is_active" value
  * @method boolean             getIsFeatured()          Returns the current record's "is_featured" value
  * @method boolean             getIsSticky()            Returns the current record's "is_sticky" value
@@ -69,10 +61,6 @@
  * @method LyraArticle         setSubtitle()            Sets the current record's "subtitle" value
  * @method LyraArticle         setSummary()             Sets the current record's "summary" value
  * @method LyraArticle         setContent()             Sets the current record's "content" value
- * @method LyraArticle         setMetaTitle()           Sets the current record's "meta_title" value
- * @method LyraArticle         setMetaDescr()           Sets the current record's "meta_descr" value
- * @method LyraArticle         setMetaKeys()            Sets the current record's "meta_keys" value
- * @method LyraArticle         setMetaRobots()          Sets the current record's "meta_robots" value
  * @method LyraArticle         setIsActive()            Sets the current record's "is_active" value
  * @method LyraArticle         setIsFeatured()          Sets the current record's "is_featured" value
  * @method LyraArticle         setIsSticky()            Sets the current record's "is_sticky" value
@@ -125,22 +113,6 @@ abstract class BaseLyraArticle extends LyraContent
              ));
         $this->hasColumn('content', 'clob', null, array(
              'type' => 'clob',
-             ));
-        $this->hasColumn('meta_title', 'string', 255, array(
-             'type' => 'string',
-             'length' => 255,
-             ));
-        $this->hasColumn('meta_descr', 'string', 500, array(
-             'type' => 'string',
-             'length' => 500,
-             ));
-        $this->hasColumn('meta_keys', 'string', 500, array(
-             'type' => 'string',
-             'length' => 500,
-             ));
-        $this->hasColumn('meta_robots', 'string', 255, array(
-             'type' => 'string',
-             'length' => 255,
              ));
         $this->hasColumn('is_active', 'boolean', null, array(
              'type' => 'boolean',
