@@ -29,22 +29,15 @@ class LyraArticleTable extends Doctrine_Table
       ->andWhere('a.is_featured = ?', true);
     return $q->execute();
   }
-  public function getArchiveDates()
+  public function createArchiveItemsQuery($query)
   {
-    $q = $this->createQuery('a')
-      ->select('YEAR(created_at) ay, MONTH(created_at) am, count(*) ct')
-      ->where('a.is_active = ? AND a.is_archived = ?', array(true, true))
-      ->addGroupBy('YEAR(created_at)')
-      ->addGroupBy('MONTH(created_at)')
-      ->addOrderBy('a.created_at DESC');
-    return $q->execute();
-  }
-  public function getArchiveItemsQuery($year, $month)
-  {
-    $q = $this->getActiveItemsQuery()
-      ->andWhere('is_archived = ? AND YEAR(created_at) = ? AND MONTH(created_at) = ?',array(true, $year, $month))
-      ->orderBy('created_at DESC');
-    return $q;
+    
+    $a = $query->getRootAlias();
+    $query = $this->getActiveItemsQueryWhere($query);
+    $query
+      ->andWhere("$a.is_archived = ?", true);
+
+    return $query;
   }
   public function getActiveItems($params = array())
   {
@@ -72,11 +65,9 @@ class LyraArticleTable extends Doctrine_Table
   }
   public function getActiveItemsQuery($params = array())
   {
-    $q = $this->createQuery('a')
-      ->where('a.is_active = ?', true)
-      ->andWhere('(a.publish_start IS NULL OR a.publish_start <= NOW())')
-      ->andWhere('(a.publish_end IS NULL OR a.publish_end >= NOW())')
-      ->leftJoin('a.ArticleCreatedBy')
+    $q = $this->createQuery('a');
+    $q = $this->getActiveItemsQueryWhere($q);
+    $q->leftJoin('a.ArticleCreatedBy')
       ->orderBy(
         'a.is_sticky DESC, a.' .
         (isset($params['sort']) ? $params['sort'] : 'created_at') .
@@ -93,6 +84,18 @@ class LyraArticleTable extends Doctrine_Table
     }
     return $q;
   }
+
+  public function getActiveItemsQueryWhere($query)
+  {
+    $a = $query->getRootAlias();
+    $query
+      ->andWhere("$a.is_active = ?", true)
+      ->andWhere("($a.publish_start IS NULL OR $a.publish_start <= NOW())")
+      ->andWhere("($a.publish_end IS NULL OR $a.publish_end >= NOW())");
+
+    return $query;
+  }
+
   public function getBackendItemsQuery(Doctrine_Query $q)
   {
     $rootAlias = $q->getRootAlias();
