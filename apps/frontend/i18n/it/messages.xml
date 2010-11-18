@@ -48,6 +48,18 @@
         <source>LINK_SUBSCRIBE_FEED</source>
         <target>Iscriviti al feed</target>
       </trans-unit>
+      <trans-unit id="12">
+        <source>LINK_READMORE</source>
+        <target>» Leggi tutto</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>ARTICLE_WRITTEN_BY</source>
+        <target>di %author%</target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>ARTICLE_WRITTEN_ON</source>
+        <target> - %date%</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

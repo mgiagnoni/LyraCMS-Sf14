@@ -149,19 +149,6 @@ class articleActions extends sfActions
     $this->pager->setPage($request->getParameter('page', 1));
     $this->pager->init();
   }
-  public function executeArchive(sfWebRequest $request)
-  {
-    $this->year = $request->getParameter('year');
-    $this->month = $request->getParameter('month');
-    $this->forward404Unless(checkdate($this->month, 1, $this->year));
-    $this->pager = new sfDoctrinePager('LyraArticle', $this->params->get('max_items'));
-    $this->pager->setQuery(
-      LyraArticleTable::getInstance()
-        ->getArchiveItemsQuery($this->year, $this->month)
-    );
-    $this->pager->setPage($request->getParameter('page', 1));
-    $this->pager->init();
-  }
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
     $form->bind($request->getParameter($form->getName()));

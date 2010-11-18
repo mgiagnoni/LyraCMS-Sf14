@@ -74,7 +74,7 @@ article_archive:
     type: object
     model: LyraArticle
   param:
-    module: article
+    module: sfContentArchive
     action: archive
   requirements:
     year: \d+

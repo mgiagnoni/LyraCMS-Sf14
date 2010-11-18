@@ -47,7 +47,7 @@ $fw = ($action == 'edit' || $action == 'new' || $action == 'update' || $action =
           <div id="rightbar">
             <?php include_component('article', 'latest', array('ctype'=>'article', 'max' => 5, 'feed' => 'article_feed')) ?>
             <?php include_component('article', 'labels', array('catalog'=>'Argomento')) ?>
-            <?php include_component('article', 'archive') ?>
+            <?php include_component('sfContentArchive', 'archive') ?>
             <?php include_component('user', 'login') ?>
           </div>
           <?php endif; ?>

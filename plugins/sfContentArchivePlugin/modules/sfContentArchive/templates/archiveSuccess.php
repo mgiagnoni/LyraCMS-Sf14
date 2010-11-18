@@ -1,18 +1,27 @@
 <?php
 use_helper('Date');
 $monthname = format_date("$year-$month-01", 'MMMM');
-$sf_response->setTitle(__('META_TITLE_ARCHIVE', array('%year%' => $year, '%month%' => $monthname)));
-slot('page_title', __('TITLE_ARCHIVE', array('%year%' => $year, '%month%' => $monthname)));
+
+if($options['page_meta_title'])
+{
+  $sf_response->setTitle(__($options['page_meta_title'], array('%year%' => $year, '%month%' => $monthname)));
+}
+?>
+<?php if($options['page_title']): ?>
+<h1><?php echo __($options['page_title']) ?></h1>
+<?php endif; ?>
+
+<?php
 $items = $pager->getResults();
 if(count($items)):
-  include_partial('article/list', array('items'=>$pager->getResults()));
+  include_partial($options['list_template'], array('items'=>$items, 'options' => $options));
 else:?>
-  <div class="info-message"><?php echo __('MSG_ARTICLES_NOT_FOUND')?></div>
+  <div class="info-message"><?php echo __('No results')?></div>
 <?php endif; ?>
   
 <?php if ($pager->haveToPaginate()): ?>
   <?php
-    $base = '@article_archive?year=' . $year . '&month=' . $month . '&page=';
+    $base = '@'. $options['route'] .'?year=' . $year . '&month=' . $month . '&page=';
   ?>
   <div class="pagination">
     <?php echo link_to('First', $base . '1');?>

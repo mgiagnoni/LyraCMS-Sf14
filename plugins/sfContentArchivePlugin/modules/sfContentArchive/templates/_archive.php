@@ -7,8 +7,10 @@
     $year = $row->ay;
     $month = format_date($year . '-' . $row->am . '-01', 'MMMM');
 
-    if($year != $cy) {
-      if($cy) {
+    if($year != $cy)
+    {
+      if($cy)
+      {
         echo '</ul></li>';
       }
       echo '<li class="year">' . $year;
@@ -16,7 +18,7 @@
       $cy = $year;
     }
 ?>
-<li class="month"><?php echo link_to($month, '@article_archive?year=' . $year .'&month=' . $row->am); ?></li>
+<li class="month"><?php echo link_to($month, $options['route'], array('year' => $year, 'month' => $row->am)); ?></li>
 <?php endforeach ?>
 </ul></li>
 </ul>
