@@ -46,16 +46,22 @@ class sfContentArchiveManager
       throw new sfException('Model option not found in plugin configuration');
     }
 
-    $query = Doctrine_Core::getTable($this->options['model'])
-      ->createQuery('a');
+    $table = Doctrine_Core::getTable($this->options['model']);
+    $query = $table->createQuery();
 
-    $datef = 'a.' . $this->options['date_field'];
+    $datef = $this->options['date_field'];
 
     $query
       ->addSelect("YEAR($datef) ay, MONTH($datef) am, count(*) ct")
       ->addGroupBy("YEAR($datef)")
       ->addGroupBy("MONTH($datef)")
       ->addOrderBy("$datef DESC");
+
+    if(is_callable(array($table, 'createArchiveDatesQuery')))
+    {
+      //Allows model table class customize query
+      $query = $table->createArchiveDatesQuery($query);
+    }
 
     return $query;
   }

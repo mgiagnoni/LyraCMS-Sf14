@@ -23,53 +23,113 @@ class LyraArticleTable extends Doctrine_Table
   {
     return Doctrine_Core::getTable('LyraArticle');
   }
+
+  /**
+   * Retrieves articles to be featured on front page.
+   *
+   * @return Doctrine_Collection
+   */
   public function getFrontPageItems()
   {
     $q = $this->getActiveItemsQuery()
-      ->andWhere('a.is_featured = ?', true);
+      ->andWhere('is_featured = ?', true);
+
     return $q->execute();
   }
+
+  /**
+   * Called by sfContentArchivePlugin to allow customization of the query that
+   * retrieves articles to be shown on archive pages.
+   *
+   * @param Doctrine_Query $query
+   * @return Doctrine_Query
+   */
   public function createArchiveItemsQuery($query)
   {
-    
     $a = $query->getRootAlias();
     $query = $this->getActiveItemsQueryWhere($query);
     $query
-      ->andWhere("$a.is_archived = ?", true);
+      ->andWhere("is_archived = ?", true)
+      ->leftJoin("$a.ArticleCreatedBy");
+    
+    return $query;
+  }
+
+  /**
+   * Called by sfContentArchivePlugin to allow customization of the query used
+   * by archive component.
+   *
+   * @param Doctrine_Query $query
+   * @return Doctrine_Query
+   */
+  public function createArchiveDatesQuery($query)
+  {
+    $query = $this->getActiveItemsQueryWhere($query);
+    $query
+      ->andWhere("is_archived = ?", true);
 
     return $query;
   }
+
+  /**
+   * Retrieves active articles.
+   *
+   * @param array $params
+   * @return Doctrine_Collection
+   */
   public function getActiveItems($params = array())
   {
     $q = $this->getActiveItemsQuery($params);
     
     return $q->execute();
   }
+
+  /**
+   * Retrieves articles to be included in feed.
+   *
+   * @param array $params
+   * @return Doctrine_Collection
+   */
   public function getFeedItems($params = array())
   {
     $q = $this->getActiveItemsQuery($params);
     
     $q->andWhere('is_feeded = ?', true)
-      ->orderBy($q->getRootAlias() . '.created_at DESC');
+      ->orderBy('created_at DESC');
     
     return $q->execute();
   }
+
+  /**
+   * Retrieves latest $max articles.
+   *
+   * @param integer $ctype
+   * @param integer $max
+   * @return Doctrine_Collection
+   */
   public function getLatestItems($ctype = null, $max = 5)
   {
     $q = $this->getActiveItemsQuery(array('ctype' => $ctype));
 
     $q->limit($max)
-      ->orderBy($q->getRootAlias() . '.created_at DESC');
+      ->orderBy('created_at DESC');
     
     return $q->execute();
   }
+
+  /**
+   * Generates query to retrieve active (published) articles.
+   *
+   * @param array $params
+   * @return Doctrine_Query
+   */
   public function getActiveItemsQuery($params = array())
   {
     $q = $this->createQuery('a');
     $q = $this->getActiveItemsQueryWhere($q);
     $q->leftJoin('a.ArticleCreatedBy')
       ->orderBy(
-        'a.is_sticky DESC, a.' .
+        'is_sticky DESC, ' .
         (isset($params['sort']) ? $params['sort'] : 'created_at') .
         (isset($params['order']) ? ' ' . $params['order'] : ' DESC')
       );
@@ -85,17 +145,28 @@ class LyraArticleTable extends Doctrine_Table
     return $q;
   }
 
+  /**
+   * Adds default criteria to select active articles.
+   *
+   * @param Doctrine_Query $query
+   * @return Doctrine_Query
+   */
   public function getActiveItemsQueryWhere($query)
   {
-    $a = $query->getRootAlias();
     $query
-      ->andWhere("$a.is_active = ?", true)
-      ->andWhere("($a.publish_start IS NULL OR $a.publish_start <= NOW())")
-      ->andWhere("($a.publish_end IS NULL OR $a.publish_end >= NOW())");
+      ->andWhere("is_active = ?", true)
+      ->andWhere("(publish_start IS NULL OR publish_start <= NOW())")
+      ->andWhere("(publish_end IS NULL OR publish_end >= NOW())");
 
     return $query;
   }
 
+  /**
+   * Customizes query to select article for backend list.
+   *
+   * @param Doctrine_Query $q
+   * @return Doctrine_Query
+   */
   public function getBackendItemsQuery(Doctrine_Query $q)
   {
     $rootAlias = $q->getRootAlias();
@@ -103,37 +174,50 @@ class LyraArticleTable extends Doctrine_Table
 
     return $q;
   }
+
+  /**
+   * Finds an article (used by routing).
+   *
+   * @param array $params
+   * @return mixed
+   */
   public function findItem($params = array())
   {
     if(!isset($params['slug'])) {
       return false;
     }
     $q = $this->getActiveItemsQuery();
-    $alias = $q->getRootAlias();
     
-    $q->andWhere($alias .'.slug = ?', $params['slug']);
+    $q->andWhere('slug = ?', $params['slug']);
     if(isset($params['path']))
     {
-      $q->andWhere($alias .'.path = ?', $params['path']);
+      $q->andWhere('path = ?', $params['path']);
     }
     if(isset($params['year']))
     {
-      $q->andWhere('YEAR(' .$alias .'.created_at) = ?', $params['year']);
+      $q->andWhere('YEAR(created_at) = ?', $params['year']);
     }
     if(isset($params['month']))
     {
-      $q->andWhere('MONTH(' .$alias .'.created_at) = ?', $params['month']);
+      $q->andWhere('MONTH(created_at) = ?', $params['month']);
     }
     if(isset($params['day']))
     {
-      $q->andWhere('DAY(' .$alias .'.created_at) = ?', $params['day']);
+      $q->andWhere('DAY(created_at) = ?', $params['day']);
     }
     return $q->fetchOne();
   }
+
+  /**
+   * Publishes / unpublishes multiple articles.
+   *
+   * @param array $ids articles IDs
+   * @param boolean $on true = publish, false = unpublish
+   */
   public function publish($ids, $on = true)
   {
-    $q = $this->createQuery('a')
-      ->whereIn('a.id', $ids);
+    $q = $this->createQuery()
+      ->whereIn('id', $ids);
 
     foreach ($q->execute() as $item) {
       $item->publish($on);
