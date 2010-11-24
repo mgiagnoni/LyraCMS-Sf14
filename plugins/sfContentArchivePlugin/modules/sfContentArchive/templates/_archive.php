@@ -1,5 +1,4 @@
-<?php use_helper('Date') ?>
-<h4><?php echo __('HEAD_ARCHIVE')?></h4>
+<?php use_helper('Date','I18N') ?>
 <ul class="archive-list">
 <?php
   $cy = null;
@@ -18,7 +17,10 @@
       $cy = $year;
     }
 ?>
-<li class="month"><?php echo link_to($month, $options['route'], array('year' => $year, 'month' => $row->am)); ?></li>
+<li class="month">
+    <?php echo link_to($month, $options['route'], array('year' => $year, 'month' => $row->am)); ?>
+    <span class="counter">(<?php echo $row->ct ?>)</span>
+</li>
 <?php endforeach ?>
 </ul></li>
 </ul>

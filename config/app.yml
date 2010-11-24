@@ -5,6 +5,6 @@ all:
       route: article_archive
       item_route: article_show
       date_field: created_at
-      list_template: 'article/list'
+      item_template: 'article/list'
       page_max_items: 25
       

@@ -1,5 +1,5 @@
 <?php
-use_helper('Date');
+use_helper('Date','I18N');
 $monthname = format_date("$year-$month-01", 'MMMM');
 
 if($options['page_meta_title'])
@@ -14,7 +14,7 @@ if($options['page_meta_title'])
 <?php
 $items = $pager->getResults();
 if(count($items)):
-  include_partial($options['list_template'], array('items'=>$items, 'options' => $options));
+  include_partial($options['item_template'], array('items'=>$items, 'options' => $options));
 else:?>
   <div class="info-message"><?php echo __('No results')?></div>
 <?php endif; ?>

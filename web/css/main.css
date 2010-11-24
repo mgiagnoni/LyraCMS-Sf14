@@ -517,6 +517,11 @@ ul.archive-list li.month
 {
   padding-left: 10px;
 }
+ul.archive-list .counter
+{
+  color: #797b7a;
+  font-size: 90%;
+}
 ul.months
 {
   padding: 0;

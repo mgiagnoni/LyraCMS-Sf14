@@ -1,0 +1,246 @@
+# sfContentArchivePlugin
+
+## About
+
+A simple plugin to easily generate a 'blog-style' content archive in your symfony application.
+
+## Installation
+
+    php symfony plugin:install sfContentArchivePlugin --stability=beta
+
+`stability` option is needed as plugin is currently a beta release.
+
+Plugin module must be enabled in `settings.yml`.
+
+    # %project_dir%/apps/%app_dir%/config/settings.yml
+
+    all:
+      .settings:
+        # Add to the list of existing modules
+        enabled_modules: [default, sfContentArchive]
+
+`%app_dir%` will likely be `frontend`.
+
+## Example
+
+Let's assume the following schema
+
+    # %project_dir%/config/doctrine/schema.yml
+
+    BlogPost:
+      actAs:
+        Timestampable: ~
+        Sluggable:
+          fields: [title]
+          unique: true
+      columns:
+        title:
+          type: string(255)
+          notnull: true
+        intro_text:
+          type: clob
+        content:
+          type: clob
+        is_published:
+          type: boolean
+
+and a route to show a blog post
+
+    # %project_dir%/apps/%app_dir%/config/routing.yml
+
+    blog_show:
+      url: /blog/:slug.html
+      class: sfDoctrineRoute
+      options:
+        type: object
+        model: BlogPost
+      param:
+        module: blog
+        action: show
+      requirements:
+        sf_method: [get]
+
+Here is how to display archive pages for your `BlogPost` content items.
+
+### Configuring plugin
+
+    # %project_dir%/config/app.yml
+
+    all:
+      sfContentArchive:
+        default:
+          # model for which to generate archive
+          model: BlogPost
+          # route to archive pages
+          route: blog_archive
+          # route to show a single BlogPost item
+          item_route: blog_show
+          # date on which archive is based
+          date_field: created_at
+          # template used to display a single item on its archive page
+          item_template: 'blog/archive_item'
+          # maximum number of items on an archive page
+          page_max_items: 25
+          # on page title for archive pages
+          page_title: 'Blog Archive'
+          # meta title for archive pages
+          page_meta_title: 'Blog archive %month% %year%'
+
+### Creating archive route
+
+You need to define a route for archive pages. Route name must match `route` parameter in plugin configuration.
+
+    # %project_dir%/apps/%app_dir%/config/routing.yml
+
+    blog_archive:
+      url: /archive/:year/:month
+      class: sfDoctrineRoute
+      options:
+        type: list
+        model: BlogPost
+      param:
+        module: sfContentArchive
+        action: archive
+      requirements:
+        year: \d+
+        month: \d+
+        sf_method: [get]
+
+### Customizing archive list template
+
+To determine how each item (blog post) will be dispalyed on archive pages you will need to create a template. You can use `_list.php` included by plugin module `sfContentArchive` as example, but some customizations will be needed. Do not directly edit this or any other template in plugin folder or you will lose your changes when you perform a plugin upgrade.
+
+Assuming that you have a `blog` module in your application, copy
+
+%project_dir%/plugins/sfContentArchivePlugin/modules/sfContentArchive/templates/_archive_item.php
+
+to
+
+%project_dir%/apps/%app_dir%/modules/blog/templates
+
+Then you can customize the template to match your model column names and site layout, for example
+
+    <?php use_helper('Date') ?>
+    <?php foreach ($items as $item): ?>
+      <h2 class="item-title">
+        <?php echo link_to($item->getTitle(), $options['item_route'], $item);?>
+      </h2>
+      <span class="item-date"><?php echo format_date($item->getCreatedAt(),'d MMMM, yyyy') ?></span>
+      <div class="item-summary">
+        <?php echo $item->getRaw('intro_text');?>
+        <span class="item-readmore">
+          <?php echo link_to(__('Read more'), $options['item_route'], $item, array('title'=>$item->getTitle()))?>
+        </span>
+      </div>
+      <div class="item-separator"></div>
+    <?php endforeach; ?>
+
+### Including plugin component
+
+Finally you need to include a component in `layout.php` file where you want to display the links to monthly archive pages.
+
+    // %project_dir%/apps/%app_dir%/templates/layout.php
+    ...
+    <h3>Archive</h3>
+    <?php include_component('sfContentArchive', 'archive') ?>
+    ...
+
+### Customizing queries
+
+Once completed all the above steps and cleared cache, the archive will include **all** `BlogPost` items. To include only published items you can simply create the following methods in `BlogPost` table class.
+
+    // %project_dir%/lib/model/doctrine/BlogPostTable.class.php
+
+    class BlogPostTable extends Doctrine_Table
+    {
+      public function createArchiveItemsQuery($query)
+      {
+        $query->andWhere('is_published = ?', true);
+
+        return $query;
+      }
+
+      public function createArchiveDatesQuery($query)
+      {
+        $query->andWhere('is_published = ?', true);
+
+        return $query;
+      }
+    ...
+    }
+
+The above methods are called by plugin respectively to generate links to archive pages and to select items to be included on archive pages. Both receive the default query created by plugin as argument to allow an easy customization of item selection criteria and other query parts in model class code.
+
+## Archives for multiple models
+
+Let's say that in your sample blog an additional model class `BlogMedia` is used to keep track of images, videos or other media included into posts.
+
+    # %project_dir%/config/doctrine/schema.yml
+
+    ...
+    BlogMedia:
+     actAs:
+       Timestampable: ~
+     columns:
+       title:
+         type: string(255)
+       filename:
+         type: string(255)
+
+If you want to create separate archive pages for media, modify plugin configuration.
+
+    # %project_dir%/config/app.yml
+
+    all:
+      sfContentArchive:
+        default:
+          ...
+        media:
+          model: BlogMedia
+          route: media_archive
+          item_route: media_show
+          date_field: created_at
+          item_template: 'blog/media_item'
+          page_title: 'Media Archive'
+          page_meta_title: 'Media archive %month% %year%'
+
+Then create an additional route for this second archive.
+
+    # %project_dir%/apps/%app_dir%/config/routing.yml
+
+    media_archive:
+      url: /archive/media/:year/:month
+      class: sfDoctrineRoute
+      options:
+        type: list
+        model: BlogMedia
+      param:
+        module: sfContentArchive
+        action: archive
+        # options key in plugin configuration
+        archive: media
+      requirements:
+        year: \d+
+        month: \d+
+        sf_method: [get]
+
+Note that `archive` parameter is the key for media archive options in plugin configuration. When this parameter is omitted as in `blog_archive` route, `default` is assumed.
+
+Include in `layout.php` another call to plugin component to display media archive links, for example
+
+    // %project_dir%/apps/%app_dir%/templates/layout.php
+    ...
+    <h3>Archive</h3>
+    <?php include_component('sfContentArchive', 'archive') ?>
+    <h3>Media Archive</h3>
+    <?php include_component('sfContentArchive', 'archive', array('archive' => 'media')) ?>
+    ...
+
+Note that in the second `include_component` statement a parameter `archive` is set, even in this case it identifies the key of archive options in plugin configuration.
+
+Finally you will need to create a template `media_item` to display a single media on archive pages.
+
+## TODO
+
+* More archive formats: weekly, bi-weekly.
+* Tests

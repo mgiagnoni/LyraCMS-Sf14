@@ -21,7 +21,7 @@ class sfContentArchiveManager
     'page_title' => '',
     'page_meta_title' => 'Archive %month% %year%',
     'page_max_items' => 25,
-    'list_template' => 'sfContentArchive/list'
+    'item_template' => 'sfContentArchive/archive_item'
   );
 
   public function __construct($archive = null)
@@ -57,7 +57,7 @@ class sfContentArchiveManager
       ->addGroupBy("MONTH($datef)")
       ->addOrderBy("$datef DESC");
 
-    if(is_callable(array($table, 'createArchiveDatesQuery')))
+    if(method_exists($table, 'createArchiveDatesQuery'))
     {
       //Allows model table class customize query
       $query = $table->createArchiveDatesQuery($query);
@@ -86,7 +86,7 @@ class sfContentArchiveManager
       ->andWhere("YEAR($datef) = ? AND MONTH($datef) = ?",array($year, $month))
       ->orderBy("$datef DESC");
 
-    if(is_callable(array($table, 'createArchiveItemsQuery')))
+    if(method_exists($table, 'createArchiveItemsQuery'))
     {
       //Allows model table class customize query
       $query = $table->createArchiveItemsQuery($query);
