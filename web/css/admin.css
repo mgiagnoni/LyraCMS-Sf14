@@ -187,9 +187,14 @@ th
 {
   background-color: #f7f7f7;
 }
-#sf_admin_container .sf_admin_list tr.even:hover
+#sf_admin_container .sf_admin_list tr.even:hover,
+#sf_admin_container .sf_admin_list tr.menu_root:hover
 {
   background-color: #ffe;
+}
+#sf_admin_container .sf_admin_list tr.menu_root
+{
+  background-color: #e5e5e5;
 }
 #sf_admin_container #sf_admin_list_batch_actions,
 #sf_admin_container .sf_admin_list_batch

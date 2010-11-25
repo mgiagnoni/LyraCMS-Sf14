@@ -5,8 +5,8 @@
     <header/>
     <body>
       <trans-unit id="1">
-        <source>MENU_TYPE_CONTENT</source>
-        <target>Content menu items</target>
+        <source>MENU_TYPE_ITEM</source>
+        <target>Add menu item</target>
       </trans-unit>
       <trans-unit id="2">
         <source>MENU_TYPE_OTHER</source>
@@ -59,6 +59,14 @@
       <trans-unit id="14">
         <source>ITEM_TYPE_ROUTE</source>
         <target>Link to route</target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>MENU_TYPE_ROOT</source>
+        <target>New menu</target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>ITEM_TYPE_ROOT</source>
+        <target>Create menu tree</target>
       </trans-unit>
     </body>
   </file>

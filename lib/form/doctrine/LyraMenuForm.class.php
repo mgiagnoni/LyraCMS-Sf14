@@ -56,31 +56,38 @@ class LyraMenuForm extends BaseLyraMenuForm
       }
     }
 
-    $query = Doctrine_Query::create()
-      ->from('LyraMenu m');
-
-    if(!$this->isNew())
+    if($type == 'root')
     {
-      $query->where('m.lft < ? OR m.rgt > ?', array(
-        $this->getObject()->getLft(),
-        $this->getObject()->getRgt()
-      ));
+       $this->widgetSchema['parent_id'] = new sfWidgetFormInputHidden();
+       $this->validatorSchema['parent_id'] = new sfValidatorChoice(array('choices' => array(null), 'empty_value' => null, 'required' => false));
     }
-    
-    $this->widgetSchema['parent_id'] = new sfWidgetFormDoctrineChoice(array(
-      'model' => 'LyraMenu',
-      'order_by' => array('root_id, lft', ''),
-      'method' => 'getIndentName',
-      'add_empty' => 'Root',
-      'query' => $query
-    ));
+    else
+    {
+      $query = Doctrine_Query::create()
+        ->from('LyraMenu m');
 
-    $this->validatorSchema['parent_id'] = new sfValidatorDoctrineChoice(array(
-      'required' => false,
-      'model' => 'LyraMenu'
-    ));
+      if(!$this->isNew())
+      {
+        $query->where('m.lft < ? OR m.rgt > ?', array(
+          $this->getObject()->getLft(),
+          $this->getObject()->getRgt()
+        ));
+      }
 
-    $this->widgetSchema['parent_id']->setLabel('PARENT');
+      $this->widgetSchema['parent_id'] = new sfWidgetFormDoctrineChoice(array(
+        'model' => 'LyraMenu',
+        'order_by' => array('root_id, lft', ''),
+        'method' => 'getIndentName',
+        'query' => $query
+      ));
+
+      $this->validatorSchema['parent_id'] = new sfValidatorDoctrineChoice(array(
+        'required' => true,
+        'model' => 'LyraMenu'
+      ));
+
+      $this->widgetSchema['parent_id']->setLabel('PARENT');
+    }
 
     $this->widgetSchema['name'] = new sfWidgetFormInputText();
     $this->widgetSchema['name']->setLabel('NAME');

@@ -10,7 +10,11 @@
   <div id="sf_admin_content">
     <div id="new-menu">
       <div class="sf_admin_col">
-        <h2><?php echo __('MENU_TYPE_CONTENT') ?></h2>
+        <h2><?php echo __('MENU_TYPE_ROOT') ?></h2>
+        <div class="item-type">
+           <?php echo link_to(__('ITEM_TYPE_ROOT'), '@lyra_menu_new?type=root'); ?>
+        </div>
+        <h2><?php echo __('MENU_TYPE_ITEM') ?></h2>
         <?php foreach($content_types as $ct):?>
         <div class="menu-ctype">
           <?php echo $ct->getName(); ?>

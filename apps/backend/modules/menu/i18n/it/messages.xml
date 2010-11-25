@@ -5,8 +5,8 @@
     <header/>
     <body>
       <trans-unit id="1">
-        <source>MENU_TYPE_CONTENT</source>
-        <target>Menù contenuti</target>
+        <source>MENU_TYPE_ITEM</source>
+        <target>Nuova voce menù</target>
       </trans-unit>
       <trans-unit id="2">
         <source>MENU_TYPE_OTHER</source>
@@ -59,6 +59,14 @@
       <trans-unit id="14">
         <source>ITEM_TYPE_ROUTE</source>
         <target>Collegamento a rotta</target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>MENU_TYPE_ROOT</source>
+        <target>Nuovo menù</target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>ITEM_TYPE_ROOT</source>
+        <target>Crea nuovo menù</target>
       </trans-unit>
     </body>
   </file>
