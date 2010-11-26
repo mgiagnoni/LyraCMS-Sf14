@@ -61,7 +61,7 @@ function generate_menu_link($item)
       $html = link_to($item['name'], $ctype['type'] . '_show', array_merge($item->getRaw('obj_params'), array('ctype' => $ctype)));
       break;
     case 'list':
-      $html = link_to($item['name'], $ctype['type'] . '_index');
+      $html = link_to($item['name'], $ctype['type'] . '_' . $item['route_action'], $item->getRaw('params'));
       break;
     case 'route':
       $html =  link_to($item['name'], $item['params']['route_name']);

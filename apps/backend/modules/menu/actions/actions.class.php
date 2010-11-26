@@ -26,6 +26,7 @@ class menuActions extends autoMenuActions
   {
     $this->content_types = Doctrine_Query::create()
       ->from('LyraContentType t')
+      ->leftJoin('t.ContentTypeRoutes r')
       ->orderBy('t.type')
       ->execute();
   }

@@ -32,11 +32,16 @@ class LyraParamsForm extends BaseForm
 
     $config = $this->getOption('config');
     $section = $this->getOption('section');
+    $defs = $config->getParamDefs($section);
+    if(null === $defs)
+    {
+      return;
+    }
     $level = $this->getOption('level', 'item');
     $nd = $level !== 'item';
     $levels = array('item', 'content_type', 'global');
 
-    foreach($config->getParamDefs($section) as $k => $v) {
+    foreach($defs as $k => $v) {
       if(isset($v['levels'])) {
         if(!is_array($v['levels'])) {
           $v['levels'] = array($v['levels']);

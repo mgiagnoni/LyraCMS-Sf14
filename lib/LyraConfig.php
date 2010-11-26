@@ -98,7 +98,7 @@ class LyraConfig
     {
       $this->params = new LyraParams($this->object, $this->def_file);
     }
-    $value = $this->params->get($key);
+    $value = $this->params->get($key, 'other');
 
     if(null === $value)
     {

@@ -43,18 +43,26 @@ class LyraMenu extends BaseLyraMenu
           $items[$i]['params'] = unserialize($item['params']);
         }
 
-        if($item['type'] == 'object')
+        switch($item['type'])
         {
-          $obj = Doctrine_Core::getTable($item['MenuContentType']['model'])
-          ->find($item['element_id']);
-          $params = array();
-          if(preg_match_all('#([^:/\.]+)#', $item['MenuContentType']['item_slug'], $matches)) {
-            foreach($matches[0] as $field) {
-              $params[$field] = $obj->$field;
+          case 'object':
+            $obj = Doctrine_Core::getTable($item['MenuContentType']['model'])
+            ->find($item['element_id']);
+            $params = array();
+            if(preg_match_all('#([^:/\.]+)#', $item['MenuContentType']['item_slug'], $matches)) {
+              foreach($matches[0] as $field) {
+                $params[$field] = $obj->$field;
+              }
             }
-          }
-          $params['path'] = $obj->getPath();
-          $items[$i]['obj_params'] = $params;
+            $params['path'] = $obj->getPath();
+            $items[$i]['obj_params'] = $params;
+            break;
+          case 'list':
+            $route = LyraRouteTable::getInstance()
+              ->find($item['element_id']);
+
+            $items[$i]['route_action'] = $route->getAction();
+            break;
         }
       }
     }

@@ -19,6 +19,8 @@
  */
 class LyraMenuForm extends BaseLyraMenuForm
 {
+  protected $config = null;
+
   public function configure()
   {
     unset(
@@ -35,6 +37,11 @@ class LyraMenuForm extends BaseLyraMenuForm
       'required' => false
     ));
 
+//    $this->widgetSchema['route_id'] = new sfWidgetFormInputHidden();
+//    $this->validatorSchema['route_id'] = new sfValidatorInteger(array(
+//      'required' => false
+//    ));
+
     $this->widgetSchema['type'] = new sfWidgetFormInputHidden();
     $this->validatorSchema['type'] = new sfValidatorString();
     $params = null;
@@ -42,6 +49,7 @@ class LyraMenuForm extends BaseLyraMenuForm
     if($this->isNew())
     {
       $ctype_id = $this->getOption('ctype_id');
+      $route_id = $this->getOption('route_id');
       $type = $this->getOption('type');
       $this->setDefault('ctype_id', $ctype_id);
       $this->setDefault('type', $type);
@@ -49,6 +57,7 @@ class LyraMenuForm extends BaseLyraMenuForm
     else
     {
       $ctype_id = $this->getObject()->getCtypeId();
+      $route_id = $this->getObject()->getElementId();
       $type = $this->getObject()->getType();
       if($params = $this->getObject()->getParams())
       {
@@ -105,6 +114,9 @@ class LyraMenuForm extends BaseLyraMenuForm
       case 'object':
         $this->selectItem($ctype_id);
         break;
+      case 'list':
+        $this->configRouteItem($route_id);
+        break;
       case 'route':
         $this->widgetSchema['route_name'] = new sfWidgetFormInputText();
         $this->validatorSchema['route_name'] = new sfValidatorString();
@@ -148,6 +160,34 @@ class LyraMenuForm extends BaseLyraMenuForm
       'model' => $ctype->getModel()
     ));
   }
+
+  protected function configRouteItem($route_id)
+  {
+    $route = LyraRouteTable::getInstance()
+      ->find($route_id);
+
+    $ctype = LyraContentTypeTable::getInstance()
+      ->find($route->getCtypeId());
+
+    $this->widgetSchema['element_id'] = new sfWidgetFormInputHidden();
+    $this->validatorSchema['element_id'] = new sfValidatorInteger(array(
+      'required' => false
+    ));
+    
+    $this->setDefault('ctype_id', $ctype->getId());
+    $this->setDefault('element_id', $route->getId());
+
+    $def_file = sfConfig::get('sf_apps_dir') . '/backend/modules/' . $ctype->getModule() . '/config/' . $route->getAction() . '_params.yml';
+    if(!file_exists($def_file) && $ctype->getPlugin()) {
+      $def_file = sfConfig::get('sf_plugins_dir') . '/' . $ctype->getPlugin() . '/modules/' . $ctype->getModule() . '/config/' . $route->getAction() . '_params.yml';
+    }
+    $this->config = new LyraParams($this->isNew() ? null : $this->getObject(), $def_file);
+    $this->config->setCatalog(sfInflector::underscore($ctype->getModule()) . '_params');
+
+    $params_form = new LyraParamsForm(array(), array('config' => $this->config, 'section' => 'route'));
+    $this->embedForm('lyra_params', $params_form);
+    $this->widgetSchema['lyra_params']->setLabel(false);
+  }
   
   public function updateObject($values = null)
   {
@@ -155,6 +195,9 @@ class LyraMenuForm extends BaseLyraMenuForm
     $type = $item->getType();
     switch($type)
     {
+      case 'list':
+        $item->setParams(serialize($this->config->checkValues($this->getValue('lyra_params'), 'route')));
+        break;
       case 'route':
         $item->setParams(serialize(array('route_name' => $this->getValue('route_name'))));
         break;

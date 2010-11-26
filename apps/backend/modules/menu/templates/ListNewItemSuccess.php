@@ -16,17 +16,19 @@
         </div>
         <h2><?php echo __('MENU_TYPE_ITEM') ?></h2>
         <?php foreach($content_types as $ct):?>
-        <div class="menu-ctype">
-          <?php echo $ct->getName(); ?>
-        </div>
-        <div class="item-type">
-          <?php echo __('ITEM_TYPE_OBJECT'); ?>&nbsp;
-          <?php echo link_to(__('LINK_CREATE_ITEM'), '@lyra_menu_new?ctype_id=' . $ct->getId() . '&type=object'); ?>
-        </div>
-        <div class="item-type">
-          <?php echo __('ITEM_TYPE_LIST'); ?>&nbsp;
-          <?php echo link_to(__('LINK_CREATE_ITEM'), '@lyra_menu_new?ctype_id=' . $ct->getId() . '&type=list'); ?>
-        </div>
+          <div class="menu-ctype">
+            <?php echo $ct->getName(); ?>
+          </div>
+          <div class="item-type">
+            <?php echo __('ITEM_TYPE_OBJECT'); ?>&nbsp;
+            <?php echo link_to(__('LINK_CREATE_ITEM'), '@lyra_menu_new?ctype_id=' . $ct->getId() . '&type=object'); ?>
+          </div>
+          <?php foreach($ct->ContentTypeRoutes as $r):?>
+          <div class="item-type">
+          <?php echo $r->getName(); ?>&nbsp;
+          <?php echo link_to(__('LINK_CREATE_ITEM'), '@lyra_menu_new?route_id=' . $r->getId() . '&type=list'); ?>
+          </div>
+          <?php endforeach; ?>
         <?php endforeach; ?>
       </div>
       <div class="sf_admin_col_2">

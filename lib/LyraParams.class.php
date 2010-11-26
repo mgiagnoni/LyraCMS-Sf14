@@ -151,34 +151,35 @@ class LyraParams
   public function checkValues($values, $section = null)
   {
     $params = array();
-
-    foreach($this->getParamDefs($section) as $k => $v)
+    if($defs = $this->getParamDefs($section))
     {
-      if(!isset($values[$k]))
+      foreach($defs as $k => $v)
       {
-        continue;
-      }
-      $val = $values[$k];
+        if(!isset($values[$k]))
+        {
+          continue;
+        }
+        $val = $values[$k];
 
-      switch($v['type'])
-      {
-        case 'boolean':
-          if(isset($val) && $val !== '')
-          {
-            $params[$k] = (boolean)$val;
-          }
-          break;
+        switch($v['type'])
+        {
+          case 'boolean':
+            if(isset($val) && $val !== '')
+            {
+              $params[$k] = (boolean)$val;
+            }
+            break;
 
-        case 'list':
-        case 'text':
-          if(isset($val) && $val !== '')
-          {
-            $params[$k] = $val;
-          }
-          break;
+          case 'list':
+          case 'text':
+            if(isset($val) && $val !== '')
+            {
+              $params[$k] = $val;
+            }
+            break;
+        }
       }
     }
-
     return $params;
   }
 }

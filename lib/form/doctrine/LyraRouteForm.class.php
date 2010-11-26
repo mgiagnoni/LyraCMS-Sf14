@@ -31,7 +31,7 @@ class LyraRouteForm extends BaseLyraRouteForm
     }
     $this->config = new LyraParams($obj, $def_file);
     $this->config->setCatalog(sfInflector::underscore($ctype->getModule()) . '_' . $obj->getAction() . '_params');
-    $params_form = new LyraParamsForm(array(), array('config' => $this->config));
+    $params_form = new LyraParamsForm(array(), array('config' => $this->config, 'section' => 'other'));
     $this->embedForm('lyra_params', $params_form);
     $this->widgetSchema['lyra_params']->setLabel(false);
     $this->widgetSchema->setNameFormat('content_view[%s]');
@@ -41,7 +41,7 @@ class LyraRouteForm extends BaseLyraRouteForm
   {
     $item = parent::updateObject($values);
     //Save configuration parameters
-    $item->setParams(serialize($this->config->checkValues($this->getValue('lyra_params'))));
+    $item->setParams(serialize($this->config->checkValues($this->getValue('lyra_params'), 'other')));
   }
   
 }
