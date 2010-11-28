@@ -56,6 +56,14 @@
         <source>MENU_ROUTES</source>
         <target>Routes</target>
       </trans-unit>
+      <trans-unit id="16">
+        <source>MENU_ITEMS</source>
+        <target>Items</target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>MENU_LISTS</source>
+        <target>Lists</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

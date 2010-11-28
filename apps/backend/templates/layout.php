@@ -25,17 +25,25 @@
             <?php
             //TODO: hardcoded for now, this must be moved in a component
             $ctypes = LyraContentTypeTable::getInstance()
-              ->findAll();
-            foreach($ctypes as $ctype):
-            ?>
-            <li <?php echo ($module == $ctype->getModule() && $sf_request->getParameter('ctype_id') == $ctype->getId() ? 'class="active"' : ''); ?>>
-              <?php echo link_to(__('MENU_' . strtoupper($ctype->getType())), sfInflector::underscore($ctype->getModel()), array('ctype_id' => $ctype->getId())) ?>
+              ->findAll();?>
+            <li>
+              <ul class="content-types">
+              <?php foreach($ctypes as $ctype):?>
+                <li><?php echo $ctype->getName();?></li>
+                <li>
+                  <ul class="content-items">
+                    <li <?php echo ($module == $ctype->getModule() && $sf_request->getParameter('ctype_id') == $ctype->getId() ? 'class="active"' : ''); ?>>
+                      <?php echo link_to(__('MENU_ITEMS'), sfInflector::underscore($ctype->getModel()),array('ctype_id' => $ctype->getId())) ?>
+                    </li>
+                    <li <?php echo ($module == 'route' && $sf_request->getParameter('ctype_id') == $ctype->getId() ? 'class="active"' : ''); ?>>
+                      <?php echo link_to(__('MENU_LISTS'), 'lyra_route',array('ctype_id' => $ctype->getId())) ?>
+                    </li>
+                  </ul>
+                </li>
+              <?php endforeach; ?>
+              </ul>
             </li>
-            <?php endforeach; ?>
             <!-- end TODO -->
-            <li <?php echo ($module == 'route' ? 'class="active"' : ''); ?>>
-            <?php echo link_to(__('MENU_ROUTES'), 'lyra_route') ?>
-            </li>
             <li <?php echo ($module == 'comment' ? 'class="active"' : ''); ?>>
               <?php echo link_to(__('MENU_COMMENTS'), '@lyra_comment') ?>
             </li>

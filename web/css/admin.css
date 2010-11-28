@@ -337,3 +337,19 @@ th
   font-size: 110%;
   margin-top: 10px;
 }
+/* Content types side menu */
+#menu ul.content-types
+{
+  padding-left: 12px;
+}
+#menu ul.content-types li
+{
+  margin: 0;
+  padding: 0;
+}
+#menu ul.content-items li
+{
+  margin: 0;
+  padding: 0 0 0 12px;
+  font-size: 80%;
+}

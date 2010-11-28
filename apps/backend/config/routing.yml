@@ -3,7 +3,7 @@ lyra_route:
   options:
     model:                LyraRoute
     module:               route
-    prefix_path:          /route
+    prefix_path:          /route/:ctype_id
     column:               id
     with_wildcard_routes: true
 
