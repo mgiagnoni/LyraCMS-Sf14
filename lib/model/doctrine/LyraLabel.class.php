@@ -66,4 +66,15 @@ class LyraLabel extends BaseLyraLabel
         $response->addMeta('robots', $mt);
     }
   }
+  public function deleteAsNode()
+  {
+    if($this->getNode()->isValidNode())
+    {
+      $this->getNode()->delete();
+    }
+    else
+    {
+      $this->delete();
+    }
+  }
 }

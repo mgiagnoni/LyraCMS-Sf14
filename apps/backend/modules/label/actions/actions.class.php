@@ -62,11 +62,7 @@ class labelActions extends autoLabelActions
     $this->dispatcher->notify(new sfEvent($this, 'admin.delete_object', array('object' => $this->getRoute()->getObject())));
 
     $object = $this->getRoute()->getObject();
-    if ($object->getNode()->isValidNode()) {
-      $object->getNode()->delete();
-    } else {
-      $object->delete();
-    }
+    $object->deleteAsNode();
 
     $this->getUser()->setFlash('notice', 'MSG_LABEL_DELETED');
 
@@ -99,5 +95,23 @@ class labelActions extends autoLabelActions
     $alias = $query->getRootAlias();
     $query->andWhere($alias . '.catalog_id = ? AND ' .$alias .'.level > 0', $this->getRequest()->getParameter('catalog_id',0));
     $query->addOrderBy('root_id, lft');
+  }
+
+  protected function executeBatchDelete(sfWebRequest $request)
+  {
+    $ids = $request->getParameter('ids');
+
+    $records = Doctrine_Query::create()
+      ->from('LyraLabel')
+      ->whereIn('id', $ids)
+      ->execute();
+
+    foreach ($records as $record)
+    {
+      $record->deleteAsNode();
+    }
+
+    $this->getUser()->setFlash('notice', 'The selected items have been deleted successfully.');
+    $this->redirect('@lyra_label');
   }
 }
