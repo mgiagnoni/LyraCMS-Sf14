@@ -316,6 +316,10 @@ LyraCatalog:
 
 LyraContentTypeCatalog:
    tableName: content_type_catalog
+   options:
+    symfony:
+      form: false
+      filter: false
    columns:
       ctype_id:
          type: integer(4)
@@ -337,6 +341,10 @@ LyraContentTypeCatalog:
 
 LyraArticleLabel:
    tableName: article_label
+   options:
+     symfony:
+       form: false
+       filter: false
    columns:
       article_id:
          type: integer(4)
