@@ -152,16 +152,43 @@ $browser->info('  2.3  - Check created label')->
   with('request')->begin()->
     isParameter('module', 'label')->
     isParameter('action', 'edit')->
-  end();
+  end()->
 
-$browser->setTester('doctrine', 'sfTesterDoctrine');
-
-$browser->info('  3.1  - Check edited label')->
+info('  3.1  - Check edited label')->
   with('doctrine')->begin()->
     check('LyraLabel', array(
       'name' => 'child_3',
       'description' => 'test',
       'catalog_id' => $catalog->id
     ))->
+  end()->
+
+  info('4 - Delete label')->
+  click('.link-back a')->
+  click('li.sf_admin_action_delete a', array(), array('method' => 'delete', '_with_csrf' => true, 'position' => 2))->
+
+  with('request')->begin()->
+    isParameter('module', 'label')->
+    isParameter('action', 'delete')->
+  end()->
+
+  with('response')->
+    isRedirected()->
+
+  followRedirect()->
+
+  // Check if label and its descendant are deleted
+  with('doctrine')->begin()->
+    check('LyraLabel', array(
+      'name' => 'child_2',
+      'catalog_id' => $catalog->id
+    ),false)->
+  end()->
+
+  with('doctrine')->begin()->
+    check('LyraLabel', array(
+      'name' => 'child_2_1',
+      'catalog_id' => $catalog->id
+    ),false)->
   end()
   ;

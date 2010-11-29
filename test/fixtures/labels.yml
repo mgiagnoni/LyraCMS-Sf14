@@ -50,5 +50,10 @@ LyraLabel:
         name: child_2
         is_active: true
         LabelCatalog: test
+        children:
+          child_2_1:
+            name: child_2_1
+            is_active: true
+            LabelCatalog: test
 
 
