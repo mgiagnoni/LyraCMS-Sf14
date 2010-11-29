@@ -11,14 +11,14 @@ LyraMenu:
         name: Page
         type: object
         MenuParent: menu_main
-        MenuContentType: Pagina
+        MenuContentType: page
         MenuContentItem: pag1
         children:
           menu_main_2_1:
             name: SubItem
             type: object
             MenuParent: menu_main_2
-            MenuContentType: Articolo
+            MenuContentType: article
             MenuContentItem: art1
       menu_main_3:
         name: External

@@ -1,5 +1,5 @@
 LyraContentType:
-  Articolo:
+  article:
     name: article
     type: article
     module: article
@@ -8,8 +8,8 @@ LyraContentType:
       a:2:{s:12:"linked_title";b:1;s:14:"show_read_more";b:1;}
     item_slug: ':slug'
     format: html
-    ContentTypeCatalogs: [argomento,livello,test]
-  Pagina:
+    ContentTypeCatalogs: [catalog1,test]
+  page:
     name: Page
     type: page
     module: article

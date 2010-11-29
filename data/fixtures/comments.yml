@@ -1,17 +1,17 @@
 LyraComment:
   comm1:
-    author_name: Pippo
+    author_name: Comment author 1
     author_email: example@example.com
     author_url: http://www.example.com
-    content: Articolo molto interessante
+    content: That's an interesting post
     is_active: true
     CommentArticle: art1
     CommentCreatedBy: admin
   comm2:
-    author_name: Pluto
+    author_name: Comment author 2
     author_email: example@example.com
     author_url: http://www.example.com
-    content: Bell'articolo
+    content: That's a nice post
     is_active: true
     CommentArticle: art2
     CommentCreatedBy: admin

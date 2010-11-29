@@ -1,11 +1,11 @@
 LyraArticle:
   pag1:
-    title: Pagina di esempio
-    content: Questo è un esempio del tipo di contenuto 'pagina'
+    title: Example page
+    content: This is an example of the content type 'page'
     meta_title: Meta Title
     meta_descr: Meta Description
     is_active: true
     is_archived: false
     ArticleCreatedBy: admin
     ArticleUpdatedBy: admin
-    ContentType: Pagina
+    ContentType: page
