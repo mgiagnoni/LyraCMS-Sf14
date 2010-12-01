@@ -14,6 +14,7 @@
       <?php if ($sf_user->isAuthenticated()):
         $module = $sf_request->getParameter('module');?>
       <div id="side-bar">
+        
         <div id="menu">
           <ul>
             <li>
@@ -71,6 +72,15 @@
           </ul>
         </div>
         <?php if (has_slot('admin_filters')) { include_slot('admin_filters'); }?>
+        <div class="user-info">
+          <h3>User</h3>
+            <span class="username">
+              <?php echo $sf_user->getGuardUser()->getProfile()->getFirstName(); ?>
+              <?php echo $sf_user->getGuardUser()->getProfile()->getLastName(); ?>
+              (<?php echo $sf_user->getGuardUser()->getUsername(); ?>)
+            </span>
+            <span class="logout-link"><?php echo link_to(__('MENU_LOGOUT'), '@sf_guard_signout') ?></span>
+        </div>
       </div>
       <?php endif; ?>
       <div id="content">

@@ -91,7 +91,42 @@ th
 {
   vertical-align: middle;
 }
-
+.user-info
+{
+  background-color:#FFFFFF;
+  border:1px solid #AAAAAA;
+  margin: 5px 0 5px 0;
+  padding: 0 0 3px 0;
+}
+.user-info h3
+{
+  background-color:#E7EEF6;
+  font-size:125%;
+  margin:0 0 5px;
+  padding:2px;
+}
+.user-info .username
+{
+  margin-left: 3px;
+  display: block;
+}
+.user-info a
+{
+  color: #464646;
+  text-decoration: none;
+}
+.user-info a:hover
+{
+  color: #000;
+  text-decoration: underline;
+}
+.user-info .logout-link
+{
+  display: block;
+  margin: 4px 3px 0 0;
+  text-align: right;
+  font-size: 110%;
+}
 .clear {
   clear: both;
 }
