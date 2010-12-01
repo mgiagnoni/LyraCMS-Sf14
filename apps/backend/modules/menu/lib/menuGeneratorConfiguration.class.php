@@ -21,7 +21,7 @@ class menuGeneratorConfiguration extends BaseMenuGeneratorConfiguration
 {
   public function getFormOptions()
   {
-    $ctype_id = $route_id = null;
+    $ctype_id = $list_id = null;
     $request = sfContext::getInstance()->getRequest();
     if($request->isMethod('POST')) {
       $values = $request->getParameter('menu_item');
@@ -30,21 +30,21 @@ class menuGeneratorConfiguration extends BaseMenuGeneratorConfiguration
       {
         $ctype_id = $values['ctype_id'];
       }
-      if($type == 'list' && isset($values['element_id']))
+      if($type == 'list' && isset($values['list_id']))
       {
-        $route_id = $values['element_id'];
+        $list_id = $values['list_id'];
       }
     } 
     else
     {
       $ctype_id = $request->getParameter('ctype_id');
-      $route_id = $request->getParameter('route_id');
+      $list_id = $request->getParameter('list_id');
       $type = $request->getParameter('type');
     }
     return array(
       'user' => sfContext::getInstance()->getUser(),
       'ctype_id' => $ctype_id,
-      'route_id' => $route_id,
+      'list_id' => $list_id,
       'type' => $type
     );
   }

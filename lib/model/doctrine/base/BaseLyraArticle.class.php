@@ -203,7 +203,7 @@ abstract class BaseLyraArticle extends LyraContent
 
         $this->hasMany('LyraMenu', array(
              'local' => 'id',
-             'foreign' => 'element_id'));
+             'foreign' => 'object_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $lysluggable0 = new Doctrine_Template_lySluggable(array(

@@ -432,7 +432,9 @@ LyraMenu:
       notnull: true
     ctype_id:
       type: integer(4)
-    element_id:
+    object_id:
+      type: integer(4)
+    list_id:
       type: integer(4)
     name:
       type: string(255)
@@ -451,10 +453,15 @@ LyraMenu:
       local: ctype_id
       foreign: id
       onDelete: CASCADE
-    MenuContentItem:
+    MenuItemObject:
       #TODO: class will be LyraContent
       class: LyraArticle
-      local: element_id
+      local: object_id
+      foreign: id
+      onDelete: CASCADE
+    MenuItemList:
+      class: LyraRoute
+      local: list_id
       foreign: id
       onDelete: CASCADE
 

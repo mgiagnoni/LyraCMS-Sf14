@@ -9,35 +9,41 @@
  * @property integer $parent_id
  * @property string $type
  * @property integer $ctype_id
- * @property integer $element_id
+ * @property integer $object_id
+ * @property integer $list_id
  * @property string $name
  * @property clob $params
  * @property LyraMenu $MenuParent
  * @property LyraContentType $MenuContentType
- * @property LyraArticle $MenuContentItem
+ * @property LyraArticle $MenuItemObject
+ * @property LyraRoute $MenuItemList
  * @property Doctrine_Collection $LyraMenu
  * 
  * @method integer             getId()              Returns the current record's "id" value
  * @method integer             getParentId()        Returns the current record's "parent_id" value
  * @method string              getType()            Returns the current record's "type" value
  * @method integer             getCtypeId()         Returns the current record's "ctype_id" value
- * @method integer             getElementId()       Returns the current record's "element_id" value
+ * @method integer             getObjectId()        Returns the current record's "object_id" value
+ * @method integer             getListId()          Returns the current record's "list_id" value
  * @method string              getName()            Returns the current record's "name" value
  * @method clob                getParams()          Returns the current record's "params" value
  * @method LyraMenu            getMenuParent()      Returns the current record's "MenuParent" value
  * @method LyraContentType     getMenuContentType() Returns the current record's "MenuContentType" value
- * @method LyraArticle         getMenuContentItem() Returns the current record's "MenuContentItem" value
+ * @method LyraArticle         getMenuItemObject()  Returns the current record's "MenuItemObject" value
+ * @method LyraRoute           getMenuItemList()    Returns the current record's "MenuItemList" value
  * @method Doctrine_Collection getLyraMenu()        Returns the current record's "LyraMenu" collection
  * @method LyraMenu            setId()              Sets the current record's "id" value
  * @method LyraMenu            setParentId()        Sets the current record's "parent_id" value
  * @method LyraMenu            setType()            Sets the current record's "type" value
  * @method LyraMenu            setCtypeId()         Sets the current record's "ctype_id" value
- * @method LyraMenu            setElementId()       Sets the current record's "element_id" value
+ * @method LyraMenu            setObjectId()        Sets the current record's "object_id" value
+ * @method LyraMenu            setListId()          Sets the current record's "list_id" value
  * @method LyraMenu            setName()            Sets the current record's "name" value
  * @method LyraMenu            setParams()          Sets the current record's "params" value
  * @method LyraMenu            setMenuParent()      Sets the current record's "MenuParent" value
  * @method LyraMenu            setMenuContentType() Sets the current record's "MenuContentType" value
- * @method LyraMenu            setMenuContentItem() Sets the current record's "MenuContentItem" value
+ * @method LyraMenu            setMenuItemObject()  Sets the current record's "MenuItemObject" value
+ * @method LyraMenu            setMenuItemList()    Sets the current record's "MenuItemList" value
  * @method LyraMenu            setLyraMenu()        Sets the current record's "LyraMenu" collection
  * 
  * @package    lyra
@@ -69,7 +75,11 @@ abstract class BaseLyraMenu extends sfDoctrineRecord
              'type' => 'integer',
              'length' => 4,
              ));
-        $this->hasColumn('element_id', 'integer', 4, array(
+        $this->hasColumn('object_id', 'integer', 4, array(
+             'type' => 'integer',
+             'length' => 4,
+             ));
+        $this->hasColumn('list_id', 'integer', 4, array(
              'type' => 'integer',
              'length' => 4,
              ));
@@ -99,8 +109,13 @@ abstract class BaseLyraMenu extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
-        $this->hasOne('LyraArticle as MenuContentItem', array(
-             'local' => 'element_id',
+        $this->hasOne('LyraArticle as MenuItemObject', array(
+             'local' => 'object_id',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
+
+        $this->hasOne('LyraRoute as MenuItemList', array(
+             'local' => 'list_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 

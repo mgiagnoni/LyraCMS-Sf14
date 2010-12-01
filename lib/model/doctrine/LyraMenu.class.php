@@ -47,7 +47,7 @@ class LyraMenu extends BaseLyraMenu
         {
           case 'object':
             $obj = Doctrine_Core::getTable($item['MenuContentType']['model'])
-            ->find($item['element_id']);
+            ->find($item['object_id']);
             $params = array();
             if(preg_match_all('#([^:/\.]+)#', $item['MenuContentType']['item_slug'], $matches)) {
               foreach($matches[0] as $field) {
@@ -59,7 +59,7 @@ class LyraMenu extends BaseLyraMenu
             break;
           case 'list':
             $route = LyraRouteTable::getInstance()
-              ->find($item['element_id']);
+              ->find($item['list_id']);
 
             $items[$i]['route_action'] = $route->getAction();
             break;

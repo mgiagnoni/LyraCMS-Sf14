@@ -12,4 +12,4 @@ LyraMenu:
         type: object
         MenuParent: menu_main
         MenuContentType: page
-        MenuContentItem: pag1
+        MenuItemObject: pag1

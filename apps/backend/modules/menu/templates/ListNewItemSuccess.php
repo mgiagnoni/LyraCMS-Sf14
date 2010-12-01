@@ -26,7 +26,7 @@
           <?php foreach($ct->ContentTypeRoutes as $r):?>
           <div class="item-type">
           <?php echo $r->getName(); ?>&nbsp;
-          <?php echo link_to(__('LINK_CREATE_ITEM'), '@lyra_menu_new?route_id=' . $r->getId() . '&type=list'); ?>
+          <?php echo link_to(__('LINK_CREATE_ITEM'), '@lyra_menu_new?list_id=' . $r->getId() . '&type=list'); ?>
           </div>
           <?php endforeach; ?>
         <?php endforeach; ?>
