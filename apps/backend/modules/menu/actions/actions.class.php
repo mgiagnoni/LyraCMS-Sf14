@@ -37,11 +37,7 @@ class menuActions extends autoMenuActions
     $this->dispatcher->notify(new sfEvent($this, 'admin.delete_object', array('object' => $this->getRoute()->getObject())));
 
     $object = $this->getRoute()->getObject();
-    if ($object->getNode()->isValidNode()) {
-      $object->getNode()->delete();
-    } else {
-      $object->delete();
-    }
+    $object->deleteAsNode();
 
     $this->getUser()->setFlash('notice', 'MSG_MENU_DELETED');
 
@@ -72,5 +68,22 @@ class menuActions extends autoMenuActions
   protected function addSortQuery($query)
   {
     $query->addOrderBy('root_id, lft');
+  }
+  protected function executeBatchDelete(sfWebRequest $request)
+  {
+    $ids = $request->getParameter('ids');
+
+    $records = Doctrine_Query::create()
+      ->from('LyraMenu')
+      ->whereIn('id', $ids)
+      ->execute();
+
+    foreach ($records as $record)
+    {
+      $record->deleteAsNode();
+    }
+
+    $this->getUser()->setFlash('notice', 'The selected items have been deleted successfully.');
+    $this->redirect('@lyra_menu');
   }
 }

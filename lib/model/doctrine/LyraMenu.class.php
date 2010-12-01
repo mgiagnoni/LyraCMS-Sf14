@@ -68,4 +68,15 @@ class LyraMenu extends BaseLyraMenu
     }
     return $items;
   }
+  public function deleteAsNode()
+  {
+    if($this->getNode()->isValidNode())
+    {
+      $this->getNode()->delete();
+    }
+    else
+    {
+      $this->delete();
+    }
+  }
 }

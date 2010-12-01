@@ -1,4 +1,16 @@
 LyraMenu:
+  menu_test:
+    name: menu_test
+    children:
+      child_1:
+        name: child_1
+        type: external
+        MenuParent: menu_main
+        children:
+          child_1_1:
+            name: child_1_1
+            type: external
+            MenuParent: child_1
   menu_main:
     name: Main
     children:
