@@ -33,3 +33,8 @@ LyraLabel:
             title: Sub label 2
             is_active: true
             LabelCatalog: catalog1
+  Rcatalog2:
+    name: Catalog2
+    is_active: true
+    LabelCatalog: catalog2
+    children: []
