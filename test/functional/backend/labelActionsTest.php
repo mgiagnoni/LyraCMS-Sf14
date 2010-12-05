@@ -165,7 +165,7 @@ info('  3.1  - Check edited label')->
 
   info('4 - Delete label')->
   click('.link-back a')->
-  click('li.sf_admin_action_delete a', array(), array('method' => 'delete', '_with_csrf' => true, 'position' => 2))->
+  click('li.sf_admin_action_delete a', array(), array('method' => 'delete', '_with_csrf' => true, 'position' => 1))->
 
   with('request')->begin()->
     isParameter('module', 'label')->

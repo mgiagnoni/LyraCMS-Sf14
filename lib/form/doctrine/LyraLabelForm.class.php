@@ -44,7 +44,18 @@ class LyraLabelForm extends BaseLyraLabelForm
 
     $this->widgetSchema['parent_id'] = new sfWidgetFormDoctrineChoice(array('model'=>'LyraLabel', 'order_by'=>array('root_id, lft', ''), 'method'=>'getIndentName', 'query'=>$query));
     $this->validatorSchema['parent_id'] = new sfValidatorDoctrineChoice(array('required'=>false, 'model'=>'LyraLabel'));
-    if(!$this->isNew()) {
+    if($this->isNew()) 
+    {
+      $defaults = $this->getOption('user')->getAttribute('default_data', array(), 'LyraLabelForm');
+      if(isset($defaults['parent_id']))
+      {
+        $this->setDefault('parent_id', $defaults['parent_id']);
+      }
+      $this->getOption('user')->setAttribute('default_data', array(), 'LyraLabelForm');
+
+    }
+    else
+    {
       $parent = $this->object->getNode()->getParent();
       $this->setDefault('parent_id', $parent->getId());
     }
@@ -70,11 +81,11 @@ class LyraLabelForm extends BaseLyraLabelForm
     {
       if($this->isNew())
       {
-        $node->insertAsFirstChildOf($parent);
+        $node->insertAsLastChildOf($parent);
       }
       elseif($node->getParent()->getId() != $parent->getId())
       {
-        $node->moveAsFirstChildOf($parent);
+        $node->moveAsLastChildOf($parent);
       }
     }
   }

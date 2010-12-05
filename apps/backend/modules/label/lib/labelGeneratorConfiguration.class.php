@@ -13,6 +13,7 @@ class labelGeneratorConfiguration extends BaseLabelGeneratorConfiguration
   public function getFormOptions()
   {
     return array(
+      'user' => sfContext::getInstance()->getUser(),
       'catalog_id' => sfContext::getInstance()->getRequest()->getParameter('catalog_id'),
       'break_at' => 'PANEL_METATAGS'
     );
