@@ -23,29 +23,32 @@ class menuGeneratorConfiguration extends BaseMenuGeneratorConfiguration
   {
     $ctype_id = $list_id = null;
     $request = sfContext::getInstance()->getRequest();
-    if($request->isMethod('POST')) {
-      $values = $request->getParameter('menu_item');
-      $type = $values['type'];
-      if(isset($values['ctype_id']))
-      {
-        $ctype_id = $values['ctype_id'];
-      }
-      if($type == 'list' && isset($values['list_id']))
-      {
-        $list_id = $values['list_id'];
-      }
-    } 
-    else
+    $user = sfContext::getInstance()->getUser();
+
+    if($request->isMethod('GET'))
     {
-      $ctype_id = $request->getParameter('ctype_id');
-      $list_id = $request->getParameter('list_id');
-      $type = $request->getParameter('type');
+      $defaults = array();
+      if($request->hasParameter('ctype_id'))
+      {
+        $ctype_id = $request->getParameter('ctype_id');
+        $defaults['ctype_id'] = $ctype_id;
+      }
+      if($request->hasParameter('list_id'))
+      {
+        $list_id = $request->getParameter('list_id');
+        $defaults['list_id'] = $list_id;
+      }
+      if($request->hasParameter('type'))
+      {
+        $type = $request->getParameter('type');
+        $defaults['type'] = $type;
+      }
+      if(count($defaults) > 0)
+      {
+        $user->setAttribute('default_data', $defaults, 'LyraMenuForm');
+      }
     }
-    return array(
-      'user' => sfContext::getInstance()->getUser(),
-      'ctype_id' => $ctype_id,
-      'list_id' => $list_id,
-      'type' => $type
-    );
+ 
+    return array('user' => $user);
   }
 }

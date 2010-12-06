@@ -40,15 +40,27 @@ class LyraMenuForm extends BaseLyraMenuForm
 
     $this->widgetSchema['type'] = new sfWidgetFormInputHidden();
     $this->validatorSchema['type'] = new sfValidatorString();
+
+    $user = $this->getOption('user');
     $params = null;
+    $defaults = $user->getAttribute('default_data', array(), 'LyraMenuForm');
 
     if($this->isNew())
     {
-      $ctype_id = $this->getOption('ctype_id');
-      $list_id = $this->getOption('list_id');
-      $type = $this->getOption('type');
-      $this->setDefault('ctype_id', $ctype_id);
-      $this->setDefault('type', $type);
+      if(isset($defaults['list_id']))
+      {
+        $list_id = $defaults['list_id'];
+      }
+      if(isset($defaults['ctype_id']))
+      {
+        $ctype_id = $defaults['ctype_id'];
+        $this->setDefault('ctype_id', $ctype_id);
+      }
+      if(isset($defaults['type']))
+      {
+        $type = $defaults['type'];
+        $this->setDefault('type', $type);
+      }
     }
     else
     {
@@ -90,7 +102,10 @@ class LyraMenuForm extends BaseLyraMenuForm
         'required' => true,
         'model' => 'LyraMenu'
       ));
-
+      if($this->isNew() && isset($defaults['parent_id']))
+      {
+        $this->setDefault('parent_id', $defaults['parent_id']);
+      }
       $this->widgetSchema['parent_id']->setLabel('PARENT');
     }
 
@@ -101,9 +116,6 @@ class LyraMenuForm extends BaseLyraMenuForm
       'required' => true,
       'max_length' => 255
     ));
-
-    $ctype = LyraContentTypeTable::getInstance()
-      ->find($ctype_id);
 
     switch($type)
     {
