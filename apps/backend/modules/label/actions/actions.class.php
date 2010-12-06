@@ -100,15 +100,15 @@ class labelActions extends autoLabelActions
   protected function executeBatchDelete(sfWebRequest $request)
   {
     $ids = $request->getParameter('ids');
+    $table = LyraLabelTable::getInstance();
 
-    $records = Doctrine_Query::create()
-      ->from('LyraLabel')
-      ->whereIn('id', $ids)
-      ->execute();
-
-    foreach ($records as $record)
+    foreach ($ids as $id)
     {
-      $record->deleteAsNode();
+      $record = $table->find($id);
+      if($record)
+      {
+        $record->deleteAsNode();
+      }
     }
 
     $this->getUser()->setFlash('notice', 'The selected items have been deleted successfully.');
