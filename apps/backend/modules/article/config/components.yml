@@ -1,0 +1,12 @@
+params:
+  latest:
+    max:
+      type: text
+    feed:
+      type: text
+  labels:
+    catalog:
+      type: text
+  archive:
+    max_years:
+      type: text
