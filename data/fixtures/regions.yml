@@ -1,0 +1,21 @@
+LyraRegion:
+  reg1:
+    name: right
+    RegionComponents: [comp1, comp2]
+  reg2:
+    name: top_menu
+    RegionComponents: [comp4]
+
+LyraComponent:
+  comp1:
+    action: latest
+    ComponentContentType: article
+  comp2:
+    action: labels
+    ComponentContentType: article
+  comp3:
+    action: archive
+    ComponentContentType: article
+  comp4:
+    action: menu
+    module: menu
