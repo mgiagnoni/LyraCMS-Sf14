@@ -22,6 +22,7 @@
  * @property Doctrine_Collection $LyraContentTypeCatalog
  * @property Doctrine_Collection $LyraMenu
  * @property Doctrine_Collection $LyraPath
+ * @property Doctrine_Collection $Components
  * 
  * @method integer             getId()                     Returns the current record's "id" value
  * @method string              getType()                   Returns the current record's "type" value
@@ -40,6 +41,7 @@
  * @method Doctrine_Collection getLyraContentTypeCatalog() Returns the current record's "LyraContentTypeCatalog" collection
  * @method Doctrine_Collection getLyraMenu()               Returns the current record's "LyraMenu" collection
  * @method Doctrine_Collection getLyraPath()               Returns the current record's "LyraPath" collection
+ * @method Doctrine_Collection getComponents()             Returns the current record's "Components" collection
  * @method LyraContentType     setId()                     Sets the current record's "id" value
  * @method LyraContentType     setType()                   Sets the current record's "type" value
  * @method LyraContentType     setName()                   Sets the current record's "name" value
@@ -57,6 +59,7 @@
  * @method LyraContentType     setLyraContentTypeCatalog() Sets the current record's "LyraContentTypeCatalog" collection
  * @method LyraContentType     setLyraMenu()               Sets the current record's "LyraMenu" collection
  * @method LyraContentType     setLyraPath()               Sets the current record's "LyraPath" collection
+ * @method LyraContentType     setComponents()             Sets the current record's "Components" collection
  * 
  * @package    lyra
  * @subpackage model
@@ -147,6 +150,10 @@ abstract class BaseLyraContentType extends sfDoctrineRecord
              'foreign' => 'ctype_id'));
 
         $this->hasMany('LyraPath', array(
+             'local' => 'id',
+             'foreign' => 'ctype_id'));
+
+        $this->hasMany('LyraComponent as Components', array(
              'local' => 'id',
              'foreign' => 'ctype_id'));
 
