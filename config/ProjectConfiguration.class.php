@@ -11,7 +11,8 @@ class ProjectConfiguration extends sfProjectConfiguration
       'sfDoctrinePlugin',
       'sfDoctrineGuardPlugin',
       'lySluggablePlugin',
-      'sfContentArchivePlugin'
+      'sfContentArchivePlugin',
+      'csDoctrineActAsSortablePlugin'
     ));
   }
 }
