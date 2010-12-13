@@ -64,6 +64,10 @@
         <source>MENU_LISTS</source>
         <target>Lists</target>
       </trans-unit>
+      <trans-unit id="18">
+        <source>MENU_REGIONS</source>
+        <target>Regions</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

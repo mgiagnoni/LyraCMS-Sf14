@@ -72,6 +72,10 @@
         <source>MENU_LISTS</source>
         <target>Liste</target>
       </trans-unit>
+      <trans-unit id="18">
+        <source>MENU_REGIONS</source>
+        <target>Regioni</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

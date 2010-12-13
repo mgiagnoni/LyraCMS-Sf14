@@ -54,6 +54,9 @@
             <li <?php echo ($module == 'menu' ? 'class="active"' : ''); ?>>
               <?php echo link_to(__('MENU_MENU'), '@lyra_menu') ?>
             </li>
+            <li <?php echo ($module == 'region' ? 'class="active"' : ''); ?>>
+              <?php echo link_to(__('MENU_REGIONS'), '@lyra_region') ?>
+            </li>
             <li <?php echo ($module == 'sfGuardUser' ? 'class="active"' : ''); ?>>
               <?php echo link_to(__('MENU_USERS'), '@sf_guard_user') ?>
             </li>
