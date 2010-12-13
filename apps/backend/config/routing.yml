@@ -1,3 +1,52 @@
+lyra_component_edit_params:
+  url: /component/:region_id/:id/params
+  class: sfDoctrineRoute
+  options:
+    type: object
+    model: LyraRegionComponent
+    method: findItem
+  param:
+    module: component
+    action: params
+  requirements:
+    sf_method: [get]
+
+lyra_component_update_params:
+  url: /component/:region_id/:id/params
+  class: sfDoctrineRoute
+  options:
+    type: object
+    model: LyraRegionComponent
+    method: findItem
+  param:
+    module: component
+    action: Updateparams
+  requirements:
+    sf_method: [post]
+
+lyra_component_move:
+  url: /component/:region_id/:id/:dir
+  class: sfDoctrineRoute
+  options:
+    type: object
+    model: LyraRegionComponent
+    method: findItem
+  param:
+    module: component
+    action: move
+  requirements:
+    sf_method: [get]
+    dir: 'up|down'
+
+lyra_region:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                LyraRegion
+    module:               region
+    prefix_path:          /region
+    column:               id
+    with_wildcard_routes: true
+
 lyra_route:
   class: sfDoctrineRouteCollection
   options:

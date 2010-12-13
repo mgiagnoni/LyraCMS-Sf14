@@ -1,0 +1,4 @@
+params:
+  menu:
+    name:
+      type: text

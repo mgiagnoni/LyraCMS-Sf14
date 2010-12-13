@@ -32,5 +32,24 @@ class LyraBackendListener
         $event->getSubject()->getUser()->setAttribute('default_data', array(), 'LyraMenuForm');
       }
     }
+    if($event['object'] instanceof LyraRegion)
+    {
+      $rows = Doctrine_Query::create()
+      ->from('LyraRegionComponent')
+      ->where('region_id = ?', array($event['object']->getId()))
+      ->orderBy('position')
+      ->execute();
+      
+      $p = 1;
+      foreach($rows as $row)
+      {
+        if($row->getPosition() != $p)
+        {
+          $row->position = $p;
+          $row->save();
+        }
+        $p++;
+      }
+    }
   }
 }

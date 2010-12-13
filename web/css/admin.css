@@ -231,6 +231,10 @@ th
 {
   background-color: #e5e5e5;
 }
+#sf_admin_container .sf_admin_list tr.region
+{
+  background-color: #e5e5e5;
+}
 #sf_admin_container #sf_admin_list_batch_actions,
 #sf_admin_container .sf_admin_list_batch
 {
