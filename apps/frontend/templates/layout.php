@@ -1,4 +1,5 @@
 <?php
+use_helper('LyraRegion');
 $action = $sf_request->getParameter('action');
 $fw = ($action == 'edit' || $action == 'new' || $action == 'update' || $action == 'create') ? '-full-width' : '';
 ?>
@@ -45,8 +46,8 @@ $fw = ($action == 'edit' || $action == 'new' || $action == 'update' || $action =
           </div>
           <?php if(!$fw): ?>
           <div id="rightbar">
-            <?php include_component('article', 'latest', array('ctype'=>'article', 'max' => 5, 'feed' => 'article_feed')) ?>
-            <?php include_component('article', 'labels', array('catalog'=>'catalog1')) ?>
+            <?php include_region('right');?>
+            <!-- TODO: add archive and user components to region -->
             <h4><?php echo __('HEAD_ARCHIVE');?></h4>
             <?php include_component('sfContentArchive', 'archive') ?>
             <?php include_component('user', 'login') ?>
