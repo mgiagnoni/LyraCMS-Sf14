@@ -105,6 +105,10 @@ class LyraParams
       {
         $values = unserialize(html_entity_decode($values, ENT_QUOTES));
       }
+      if(empty($values))
+      {
+        $values = array();
+      }
       $this->param_values = $values;
     }
   }
