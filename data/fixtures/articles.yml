@@ -1,8 +1,8 @@
 LyraArticle:
   art1:
     title: First article
-    summary: First article summary
-    content: First article content
+    summary: <p>First article summary</p>
+    content: <p>First article content</p>
     meta_title: Meta Title 1
     meta_descr: Meta Description 1
     is_featured: true
@@ -14,8 +14,8 @@ LyraArticle:
     ContentType: article
   art2:
     title: Second article
-    summary: Second article summary
-    content: Second article content
+    summary: <p>Second article summary</p>
+    content: <p>Second article content</p>
     meta_title: Meta Title 2
     meta_descr: Meta Description 2
     is_featured: true
