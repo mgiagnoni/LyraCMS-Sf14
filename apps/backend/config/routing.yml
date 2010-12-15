@@ -1,3 +1,12 @@
+lyra_user:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                sfGuardUser
+    module:               user
+    prefix_path:          /user
+    column:               id
+    with_wildcard_routes: true
+
 lyra_component_edit_params:
   url: /component/:region_id/:id/params
   class: sfDoctrineRoute

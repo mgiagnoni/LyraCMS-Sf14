@@ -25,10 +25,10 @@ $browser->loadData();
 $browser->signinOk(array('username'=>'admin','password'=>'admin'));
 
 $browser->info('1 - User list')->
-  get('/sf_guard_user')->
+  get('/user')->
 
   with('request')->begin()->
-    isParameter('module', 'sfGuardUser')->
+    isParameter('module', 'user')->
     isParameter('action', 'index')->
   end()->
 
@@ -36,21 +36,12 @@ $browser->info('1 - User list')->
     isStatusCode(200)->
     checkElement('body', '!/This is a temporary page/')->
   end()->
-
-//  info(' 2 - Edit user')->
-//  click('.sf_admin_list_td_username a')->
-//
-//  with('request')->begin()->
-//   isParameter('module', 'sfGuardUser')->
-//   isParameter('action', 'edit')->
-//  end()
-
   
   info(' 2 - New user')->
   click('.sf_admin_action_new a')->
 
   with('request')->begin()->
-    isParameter('module', 'sfGuardUser')->
+    isParameter('module', 'user')->
     isParameter('action', 'new')->
   end()->
 
@@ -62,7 +53,7 @@ $browser->info('1 - User list')->
   )))->
 
   with('request')->begin()->
-    isParameter('module', 'sfGuardUser')->
+    isParameter('module', 'user')->
     isParameter('action', 'create')->
   end()->
 
@@ -83,7 +74,7 @@ $browser->info('1 - User list')->
   )))->
 
   with('request')->begin()->
-    isParameter('module', 'sfGuardUser')->
+    isParameter('module', 'user')->
     isParameter('action', 'create')->
   end()->
 
@@ -97,7 +88,7 @@ $browser->info('1 - User list')->
   followRedirect()->
 
   with('request')->begin()->
-    isParameter('module', 'sfGuardUser')->
+    isParameter('module', 'user')->
     isParameter('action', 'edit')->
   end()
   ;

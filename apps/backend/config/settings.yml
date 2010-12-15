@@ -24,7 +24,7 @@ all:
     standard_helpers: [Partial, Cache, I18N]
     i18n: true
     default_culture: en
-    enabled_modules: [default, sfGuardAuth, sfGuardUser, sfGuardGroup]
+    enabled_modules: [default, sfGuardAuth, sfGuardGroup]
     # Form security secret (CSRF protection)
     csrf_secret:       xgt67jhbv     # Unique secret to enable CSRF protection or false to disable
 
