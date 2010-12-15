@@ -47,10 +47,6 @@ $fw = ($action == 'edit' || $action == 'new' || $action == 'update' || $action =
           <?php if(!$fw): ?>
           <div id="rightbar">
             <?php include_region('right');?>
-            <!-- TODO: add archive and user components to region -->
-            <h4><?php echo __('HEAD_ARCHIVE');?></h4>
-            <?php include_component('sfContentArchive', 'archive') ?>
-            <?php include_component('user', 'login') ?>
           </div>
           <?php endif; ?>
         </div>

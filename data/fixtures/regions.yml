@@ -13,10 +13,14 @@ LyraComponent:
     ComponentContentType: article
   comp3:
     action: archive
+    module: sfContentArchive
     ComponentContentType: article
   comp4:
     action: menu
     module: menu
+  comp5:
+    action: login
+    module: user
 
 LyraRegionComponent:
   r1:

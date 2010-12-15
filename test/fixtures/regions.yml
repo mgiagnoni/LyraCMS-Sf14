@@ -17,6 +17,9 @@ LyraComponent:
   comp4:
     action: menu
     module: menu
+  comp5:
+    action: login
+    module: user
 
 LyraRegionComponent:
   r1:
@@ -29,3 +32,6 @@ LyraRegionComponent:
     Component: comp2
     params: |
       a:1:{s:7:"catalog";s:8:"catalog1";}
+  r3:
+    Region: reg1
+    Component: comp5

@@ -20,19 +20,20 @@ class LyraRegionComponentForm extends BaseLyraRegionComponentForm
     //Embed form displaying configuration parameters
     $obj = $this->getObject();
     $component = $obj->getComponent();
-
-    $ctype = $component->getComponentContentType();
-    if($component->getModule())
+    $ctype = null;
+    
+    if($component->getCtypeId())
     {
-      $module = $component->getModule();
+      $ctype = $component->getComponentContentType();
+      $module = $ctype->getModule();
     }
     else
     {
-      $module = $ctype->getModule();
+      $module = $component->getModule();
     }
     $def_file = sfConfig::get('sf_apps_dir') . '/backend/modules/' . $module . '/config/components.yml';
     
-    if(!file_exists($def_file) && $ctype->getPlugin())
+    if(!file_exists($def_file) && isset($ctype) && $ctype->getPlugin())
     {
       $def_file = sfConfig::get('sf_plugins_dir') . '/' . $ctype->getPlugin() . '/modules/' . $ctype->getModule() . '/config/components.yml';
     }
