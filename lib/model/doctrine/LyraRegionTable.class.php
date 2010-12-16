@@ -19,8 +19,8 @@ class LyraRegionTable extends Doctrine_Table
     public function getBackendItemsQuery(Doctrine_Query $q)
     {
       $rootAlias = $q->getRootAlias();
-      $q->innerJoin($rootAlias. '.RefComponents rc')
-        ->innerJoin('rc.Component co')
+      $q->leftJoin($rootAlias. '.RefComponents rc')
+        ->leftJoin('rc.Component co')
         ->orderBy($rootAlias . '.id', 'rc.position');
       return $q;
     }
