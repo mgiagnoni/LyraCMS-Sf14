@@ -38,18 +38,19 @@ function include_region($region_name)
       $params = unserialize($record->getParams());
     }
     $component = $record->getComponent();
-    $ctype = $component->getComponentContentType();
-    if($ctype)
+    
+    $config = new LyraParams(null, $component->getParamDefinitionsPath());
+    $params = array_merge($config->getDefaultValues($component->getAction()), $params);
+
+    if($component->getCtypeId())
     {
-      $params['ctype'] = $ctype;
+      $params['ctype'] = $component->getComponentContentType();
+      $module = $params['ctype']->getModule();
     }
+
     if($component->getModule())
     {
       $module = $component->getModule();
-    }
-    else
-    {
-      $module = $ctype->getModule();
     }
     
     include_component($module, $component->getAction(), $params);

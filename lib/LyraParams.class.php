@@ -186,4 +186,19 @@ class LyraParams
     }
     return $params;
   }
+  public function getDefaultValues($section = null)
+  {
+    $defaults = array();
+    if($defs = $this->getParamDefs($section))
+    {
+      foreach($defs as $k => $v)
+      {
+        if(isset($v['default']))
+        {
+          $defaults[$k] = $v['default'];
+        }
+      }
+    }
+    return $defaults;
+  }
 }

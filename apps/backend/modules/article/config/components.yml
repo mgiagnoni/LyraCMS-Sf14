@@ -2,6 +2,7 @@ params:
   latest:
     max:
       type: text
+      default: 5
     feed:
       type: text
   labels:
