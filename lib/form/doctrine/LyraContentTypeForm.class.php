@@ -41,12 +41,8 @@ class LyraContentTypeForm extends BaseLyraContentTypeForm
 
     //Embed form displaying configuration options
     $obj = $this->getObject();
-    $def_file = sfConfig::get('sf_apps_dir') . '/backend/modules/' . $obj->getModule() . '/config/params.yml';
-    if(!file_exists($def_file) && $obj->getPlugin()) {
-      $def_file = sfConfig::get('sf_plugins_dir') . '/' . $obj->getPlugin() . '/modules/' . $obj->getModule() . '/config/params.yml';
-    }
     
-    $this->config = new LyraParams($obj, $def_file);
+    $this->config = new LyraParams($obj, $obj->getParamDefinitionsPath());
     $this->config->setCatalog(sfInflector::underscore($obj->getModule()) . '_params');
 
     foreach($this->config->getParamDefsSections() as $section)

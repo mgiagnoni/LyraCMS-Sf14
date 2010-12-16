@@ -5,5 +5,12 @@
  */
 class LyraContentType extends BaseLyraContentType
 {
-
+  public function getParamDefinitionsPath()
+  {
+    $def_file = sfConfig::get('sf_apps_dir') . '/backend/modules/' . $this->getModule() . '/config/params.yml';
+    if(!file_exists($def_file) && $this->getPlugin()) {
+      $def_file = sfConfig::get('sf_plugins_dir') . '/' . $this->getPlugin() . '/modules/' . $this->getModule() . '/config/params.yml';
+    }
+    return $def_file;
+  }
 }

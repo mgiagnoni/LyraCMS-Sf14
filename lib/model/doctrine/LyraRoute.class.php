@@ -12,4 +12,15 @@
  */
 class LyraRoute extends BaseLyraRoute
 {
+  public function getParamDefinitionsPath()
+  {
+    $ctype = $this->getRouteContentType();
+    
+    $def_file = sfConfig::get('sf_apps_dir') . '/backend/modules/' . $ctype->getModule() . '/config/' . $this->getAction() . '_params.yml';
+    if(!file_exists($def_file) && $ctype->getPlugin()) {
+      $def_file = sfConfig::get('sf_plugins_dir') . '/' . $ctype->getPlugin() . '/modules/' . $ctype->getModule() . '/config/' . $this->getAction() . '_params.yml';
+    }
+
+    return $def_file;
+  }
 }

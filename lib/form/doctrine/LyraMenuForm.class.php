@@ -185,11 +185,7 @@ class LyraMenuForm extends BaseLyraMenuForm
     $this->setDefault('ctype_id', $ctype->getId());
     $this->setDefault('list_id', $route->getId());
 
-    $def_file = sfConfig::get('sf_apps_dir') . '/backend/modules/' . $ctype->getModule() . '/config/' . $route->getAction() . '_params.yml';
-    if(!file_exists($def_file) && $ctype->getPlugin()) {
-      $def_file = sfConfig::get('sf_plugins_dir') . '/' . $ctype->getPlugin() . '/modules/' . $ctype->getModule() . '/config/' . $route->getAction() . '_params.yml';
-    }
-    $this->config = new LyraParams($this->isNew() ? null : $this->getObject(), $def_file);
+    $this->config = new LyraParams($this->isNew() ? null : $this->getObject(), $route->getParamDefinitionsPath());
     $this->config->setCatalog(sfInflector::underscore($ctype->getModule()) . '_params');
 
     $params_form = new LyraParamsForm(array(), array('config' => $this->config, 'section' => 'route'));

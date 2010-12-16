@@ -20,25 +20,9 @@ class LyraRegionComponentForm extends BaseLyraRegionComponentForm
     //Embed form displaying configuration parameters
     $obj = $this->getObject();
     $component = $obj->getComponent();
-    $ctype = null;
-    
-    if($component->getCtypeId())
-    {
-      $ctype = $component->getComponentContentType();
-      $module = $ctype->getModule();
-    }
-    else
-    {
-      $module = $component->getModule();
-    }
-    $def_file = sfConfig::get('sf_apps_dir') . '/backend/modules/' . $module . '/config/components.yml';
-    
-    if(!file_exists($def_file) && isset($ctype) && $ctype->getPlugin())
-    {
-      $def_file = sfConfig::get('sf_plugins_dir') . '/' . $ctype->getPlugin() . '/modules/' . $ctype->getModule() . '/config/components.yml';
-    }
-    $this->config = new LyraParams($obj, $def_file);
-    $this->config->setCatalog(sfInflector::underscore($module) . '_' . $component->getAction());
+
+    $this->config = new LyraParams($obj, $component->getParamDefinitionsPath());
+    $this->config->setCatalog(sfInflector::underscore($component->getModuleName()) . '_' . $component->getAction());
     $params_form = new LyraParamsForm(array(), array('config' => $this->config, 'section' => $component->getAction()));
     $this->embedForm('lyra_params', $params_form);
     $this->widgetSchema['lyra_params']->setLabel(false);

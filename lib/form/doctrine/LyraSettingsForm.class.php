@@ -24,8 +24,7 @@ class LyraSettingsForm extends BaseLyraSettingsForm
   {
     unset($this['params']);
 
-    $def_file = sfConfig::get('sf_config_dir') . '/lyra_params.yml';
-    $config = new LyraParams($this->getObject(), $def_file);
+    $config = new LyraParams($this->getObject(), sfConfig::get('sf_config_dir') . '/lyra_params.yml');
     $config->setCatalog('lyra_params');
 
     foreach($config->getParamDefsSections() as $section)

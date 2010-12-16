@@ -24,12 +24,7 @@ class LyraRouteForm extends BaseLyraRouteForm
     $obj = $this->getObject();
     $ctype = $obj->getRouteContentType();
 
-    $def_file = sfConfig::get('sf_apps_dir') . '/backend/modules/' . $ctype->getModule() . '/config/' . $obj->getAction() . '_params.yml';
-    if(!file_exists($def_file) && $ctype->getPlugin())
-    {
-      $def_file = sfConfig::get('sf_plugins_dir') . '/' . $ctype->getPlugin() . '/modules/' . $ctype->getModule() . '/config/'. $obj->getAction() . '_params.yml';
-    }
-    $this->config = new LyraParams($obj, $def_file);
+    $this->config = new LyraParams($obj, $obj->getParamDefinitionsPath());
     $this->config->setCatalog(sfInflector::underscore($ctype->getModule()) . '_' . $obj->getAction() . '_params');
     $params_form = new LyraParamsForm(array(), array('config' => $this->config, 'section' => 'other'));
     $this->embedForm('lyra_params', $params_form);
