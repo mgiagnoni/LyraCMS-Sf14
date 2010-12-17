@@ -69,12 +69,28 @@
         <target>« Cataloghi</target>
       </trans-unit>
       <trans-unit id="17">
-        <source>LINK_T_MOVE_UP</source>
-        <target>Sposta su</target>
+        <source>PANEL_METATAGS</source>
+        <target>Metatags</target>
       </trans-unit>
       <trans-unit id="18">
-        <source>LINK_T_MOVE_DOWN</source>
-        <target>Sposta giù</target>
+        <source>OPTION_NONE</source>
+        <target>Nessuno</target>
+      </trans-unit>
+      <trans-unit id="19">
+        <source>OPTION_INDEX_FOLLOW</source>
+        <target>Index Follow</target>
+      </trans-unit>
+      <trans-unit id="20">
+        <source>OPTION_NOINDEX_NOFOLLOW</source>
+        <target>NoIndex NoFollow</target>
+      </trans-unit>
+      <trans-unit id="21">
+        <source>OPTION_NOINDEX_FOLLOW</source>
+        <target>NoIndex Follow</target>
+      </trans-unit>
+      <trans-unit id="22">
+        <source>OPTION_INDEX_NOFOLLOW</source>
+        <target>Index NoFollow</target>
       </trans-unit>
     </body>
   </file>

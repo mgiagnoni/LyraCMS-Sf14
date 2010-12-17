@@ -68,6 +68,14 @@
         <source>MENU_REGIONS</source>
         <target>Regions</target>
       </trans-unit>
+      <trans-unit id="19">
+        <source>LINK_T_MOVE_UP</source>
+        <target>Move up</target>
+      </trans-unit>
+      <trans-unit id="20">
+        <source>LINK_T_MOVE_DOWN</source>
+        <target>Move down</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

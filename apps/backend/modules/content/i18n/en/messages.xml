@@ -46,7 +46,11 @@
       </trans-unit>
       <trans-unit id="11">
         <source>PANEL_PARAMS</source>
-        <target>Options</target>
+        <target>Default items options</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>PANEL_PARAMS_ROUTES</source>
+        <target>Default lists options</target>
       </trans-unit>
     </body>
   </file>

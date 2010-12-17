@@ -180,6 +180,10 @@
         <source>IS_ARCHIVED</source>
         <target>Archived</target>
       </trans-unit>
+      <trans-unit id="45">
+        <source>IS_FEEDED</source>
+        <target>In feed</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

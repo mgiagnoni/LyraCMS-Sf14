@@ -76,6 +76,14 @@
         <source>MENU_REGIONS</source>
         <target>Regioni</target>
       </trans-unit>
+      <trans-unit id="18">
+        <source>LINK_T_MOVE_UP</source>
+        <target>Sposta su</target>
+      </trans-unit>
+      <trans-unit id="19">
+        <source>LINK_T_MOVE_DOWN</source>
+        <target>Sposta giù</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

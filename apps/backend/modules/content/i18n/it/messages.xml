@@ -46,7 +46,11 @@
       </trans-unit>
       <trans-unit id="11">
         <source>PANEL_PARAMS</source>
-        <target>Opzioni</target>
+        <target>Opzioni predefinite contenuti</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>PANEL_PARAMS_ROUTES</source>
+        <target>Opzioni predefinite liste contenuti</target>
       </trans-unit>
     </body>
   </file>

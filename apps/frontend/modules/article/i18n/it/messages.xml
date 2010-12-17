@@ -208,6 +208,10 @@
         <source>OPTION_INDEX_NOFOLLOW</source>
         <target>Index NoFollow</target>
       </trans-unit>
+      <trans-unit id="54">
+        <source>IS_ARCHIVED</source>
+        <target>Archiviato</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
