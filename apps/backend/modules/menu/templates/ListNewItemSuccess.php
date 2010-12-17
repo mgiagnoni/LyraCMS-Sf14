@@ -1,3 +1,4 @@
+<?php include_partial('menu/assets') ?>
 <?php if(!get_slot('page_title')) { slot('page_title',__('Menu List', array(), 'messages')); } ?>
 <div id="sf_admin_container">
 
