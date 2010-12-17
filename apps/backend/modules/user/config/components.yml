@@ -1,2 +1,6 @@
 params:
-  login: []
+  login:
+    user_info:
+      type: list
+      choices: [username, first_name, first_last]
+      default: username
