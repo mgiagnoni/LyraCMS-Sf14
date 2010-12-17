@@ -23,4 +23,12 @@ class LyraRoute extends BaseLyraRoute
 
     return $def_file;
   }
+  public function getParameterLevels()
+  {
+    return array(
+      array('type' => 'object', 'def_section' => 'other'),
+      array('type' => 'content_type', 'def_section' => 'routes'),
+
+    );
+  }
 }

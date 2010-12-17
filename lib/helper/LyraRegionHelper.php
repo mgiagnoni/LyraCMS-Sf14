@@ -39,13 +39,12 @@ function include_region($region_name)
     }
     $component = $record->getComponent();
     
-    $config = new LyraParams(null, $component->getParamDefinitionsPath());
-    $params = array_merge($config->getDefaultValues($component->getAction()), $params);
-
+    $params = new LyraConfig($record);
+    $ctype = null;
     if($component->getCtypeId())
     {
-      $params['ctype'] = $component->getComponentContentType();
-      $module = $params['ctype']->getModule();
+      $ctype = $component->getComponentContentType();
+      $module = $ctype->getModule();
     }
 
     if($component->getModule())
@@ -53,6 +52,6 @@ function include_region($region_name)
       $module = $component->getModule();
     }
     
-    include_component($module, $component->getAction(), $params);
+    include_component($module, $component->getAction(), array('ctype' => $ctype, 'params' => $params));
   }
 }

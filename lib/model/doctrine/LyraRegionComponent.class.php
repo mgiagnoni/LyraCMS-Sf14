@@ -12,4 +12,14 @@
  */
 class LyraRegionComponent extends BaseLyraRegionComponent
 {
+  public function getParamDefinitionsPath()
+  {
+    return $this->getComponent()->getParamDefinitionsPath();
+  }
+  public function getParameterLevels()
+  {
+    return array(
+      array('type' => 'object', 'def_section' => $this->getComponent()->getAction()),
+    );
+  }
 }

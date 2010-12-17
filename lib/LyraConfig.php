@@ -20,8 +20,6 @@
 
 class LyraConfig
 {
-  protected static
-    $ctypes_params = null;
   protected
     $object = null,
     $params = null,
@@ -40,126 +38,70 @@ class LyraConfig
   }
   public function get($key, $section = null)
   {
-    if($this->object instanceof LyraContent)
-    {
-      return $this->getItemParamValue($key);
-    }
-    elseif($this->object instanceof LyraRoute)
-    {
-      return $this->getRouteParamValue($key);
-    }
-    elseif($this->object == 'settings')
-    {
-      return $this->getGlobalParamValue($key, $section);
-    }
-    throw new sfException("Can't get parameter '$key'. Configuration object not set");
-  }
-  protected function getItemParamValue($key)
-  {
-    $ctype = $this->object->getContentType();
-
-    if(!isset($this->def_file))
-    {
-      $this->def_file = $this->getParamDefinitionsPath($ctype->getModule(), $ctype->getPlugin());
-    }
-
-    if(!isset($this->params))
-    {
-      $this->params = new LyraParams($this->object, $this->def_file);
-    }
-    $value = $this->params->get($key, 'item');
-
-    if(null === $value)
-    {
-      if(!isset(self::$ctypes_params[$ctype->getId()]))
+      $value = null;
+      $levels = is_object($this->object) ? $this->object->getParameterLevels() : array(array('type' => 'global', 'def_section' => null));
+      
+      foreach($levels as $i => $level)
       {
-        self::$ctypes_params[$ctype->getId()] = new LyraParams($ctype, $this->def_file);
+        if(!isset($this->params[$i]))
+        {
+          switch($level['type'])
+          {
+            case 'object':
+              $def_file = $this->object->getParamDefinitionsPath();
+              $this->params[$i] = new LyraParams($this->object, $def_file);
+              break;
+            case 'content_type':
+              //TODO: *ugly*, relation names must be made consistent.
+              if($this->object instanceof LyraContent)
+              {
+                $ctype = $this->object->getContentType();
+              }
+              elseif($this->object instanceof LyraRoute)
+              {
+                $ctype = $this->object->getRouteContentType();
+              }
+              $def_file = $ctype->getParamDefinitionsPath();
+              $this->params[$i] = new LyraParams($ctype, $def_file);
+              break;
+            case 'global':
+              $this->params[$i] = $this->initGlobalParams();
+              break;
+          }
+        }
+        $value = $this->params[$i]->get($key, isset($section) ? $section : $level['def_section']);
+        if(null !== $value)
+        {
+          break;
+        }
+        
       }
-      $value = self::$ctypes_params[$ctype->getId()]->get($key, 'item');
-    }
-
-    if(null === $value)
-    {
-      $value = $this->params->getDefault($key, 'item');
-    }
-
-    return $value;
-  }
-  protected function getRouteParamValue($key)
-  {
-    $ctype = $this->object->getRouteContentType();
-
-    if(!isset($this->def_file))
-    {
-      $this->def_file = $this->getParamDefinitionsPath($ctype->getModule(), $ctype->getPlugin(), $this->object->getAction());
-    }
-
-    if(!isset($this->params))
-    {
-      $this->params = new LyraParams($this->object, $this->def_file);
-    }
-    $value = $this->params->get($key, 'other');
-
-    if(null === $value)
-    {
-      if(!isset(self::$ctypes_params[$ctype->getId()]))
+      if(null === $value)
       {
-        $def_file = $this->getParamDefinitionsPath($ctype->getModule(), $ctype->getPlugin());
-        self::$ctypes_params[$ctype->getId()] = new LyraParams($ctype, $def_file);
+        $value = $this->params[$i]->getDefault($key, isset($section) ? $section : $level['def_section']);
       }
-      $value = self::$ctypes_params[$ctype->getId()]->get($key, 'routes');
-    }
-
-    if(null === $value)
-    {
-      $value = self::$ctypes_params[$ctype->getId()]->getDefault($key, 'routes');
-    }
-
-    return $value;
-  }
-  protected function getGlobalParamValue($key, $section)
-  {
-    $this->initGlobalParams();
-    $value = $this->params->get($key, $section);
-
-    if(null === $value)
-    {
-      $value = $this->params->getDefault($key, $section);
-    }
-    return $value ;
-  }
-  protected function getParamDefinitionsPath($module, $plugin, $action = '')
-  {
-    $mp = '/modules/' . $module . '/config/' . ($action ? $action . '_' : '') . 'params.yml';
-    $path = sfConfig::get('sf_apps_dir') . '/backend' . $mp;
-    if(!file_exists($path) && $plugin)
-    {
-      $path = sfConfig::get('sf_plugins_dir') . '/' . $plugin . $mp;
-    }
-    return $path;
+      return $value;
   }
   protected function initGlobalParams()
   {
-    if(!isset($this->params))
+    $cache = sfConfig::get('sf_cache_dir') . DIRECTORY_SEPARATOR . 'frontend' . DIRECTORY_SEPARATOR . sfConfig::get('sf_environment') . DIRECTORY_SEPARATOR . 'lyra_settings.cache.php';
+    if(file_exists($cache))
     {
-      $cache = sfConfig::get('sf_cache_dir') . DIRECTORY_SEPARATOR . 'frontend' . DIRECTORY_SEPARATOR . sfConfig::get('sf_environment') . DIRECTORY_SEPARATOR . 'lyra_settings.cache.php';
-      if(file_exists($cache))
-      {
-        require $cache;
-        $this->params = new LyraParams($data, sfConfig::get('sf_config_dir') . '/lyra_params.yml');
-        return;
-      }
-      $settings = Doctrine_Query::create()
-        ->from('LyraSettings')
-        ->fetchOne();
-
-      $this->params = new LyraParams($settings, sfConfig::get('sf_config_dir') . '/lyra_params.yml');
-
-      if($cache)
-      {
-        $c = new LyraCache($cache);
-        $c->save($this->params->getParamValues());
-      }
+      require $cache;
+      return new LyraParams($data, sfConfig::get('sf_config_dir') . '/lyra_params.yml');
     }
+    $settings = Doctrine_Query::create()
+      ->from('LyraSettings')
+      ->fetchOne();
+
+    $params = new LyraParams($settings, sfConfig::get('sf_config_dir') . '/lyra_params.yml');
+
+    if($cache)
+    {
+      $c = new LyraCache($cache);
+      $c->save($params->getParamValues());
+    }
+
+    return $params;
   }
 }

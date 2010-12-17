@@ -126,4 +126,16 @@ class LyraContent extends BaseLyraContent
     $path->path = $saved_path . '/' . $slug . $format;
     $path->save();
   }
+  public function getParamDefinitionsPath()
+  {
+    return $this->getContentType()->getParamDefinitionsPath();
+  }
+  public function getParameterLevels()
+  {
+    return array(
+      array('type' => 'object', 'def_section' => 'item'),
+      array('type' => 'content_type', 'def_section' => 'item'),
+      
+    );
+  }
 }
