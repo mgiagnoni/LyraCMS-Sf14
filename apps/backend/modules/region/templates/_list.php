@@ -26,13 +26,14 @@
               <?php include_partial('region/list_td_actions', array('lyra_region' => $lyra_region, 'helper' => $helper)) ?>
             </td>
           </tr>
-            <?php foreach($lyra_region->getRefComponents() as $rc): ?>
+            <?php $rcomps = $lyra_region->getRefComponents();
+            foreach($rcomps as $nrow => $rc): ?>
             <tr class="sf_admin_row">
               <td>
                 <?php echo $rc->getComponent()->getAction()?>
               </td>
               <td>
-                <?php include_partial('region/order', array('lyra_component' => $rc->getComponent(), 'lyra_region' => $lyra_region));?>
+                <?php include_partial('region/order', array('lyra_component' => $rc->getComponent(), 'lyra_region' => $lyra_region, 'show_up' => $nrow > 0, 'show_down' => $nrow < count($rcomps)-1));?>
               </td>
               <?php include_partial('region/component_td_actions', array('lyra_component' => $rc->getComponent(), 'lyra_region' => $lyra_region)); ?>
             </tr>
