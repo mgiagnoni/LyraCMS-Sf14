@@ -2,11 +2,17 @@ params:
   route:
     year:
       type: text
+      size: 4
+      max_length: 4
     month:
       type: text
+      size: 2
+      max_length: 3
   other:
     max_items:
       type: text
+      size: 2
+      max_length: 3
     sort_field:
       type: list
       choices: [title, updated_at, created_at]

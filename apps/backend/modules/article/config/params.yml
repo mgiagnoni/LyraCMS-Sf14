@@ -14,6 +14,7 @@ params:
       default: true
     date_format:
       type: text
+      size: 15
       default: d MMMM, yyyy
     allow_comments:
       type: boolean
@@ -23,9 +24,11 @@ params:
       default: true
     date_comments:
       type: text
+      size: 15
       default: d MMMM, yyyy
     time_comments:
       type: text
+      size: 6
       default: H:mm
   routes:
     max_items:

@@ -41,7 +41,8 @@ class LyraParamsForm extends BaseForm
     $nd = $level !== 'item';
     $levels = array('item', 'content_type', 'global');
 
-    foreach($defs as $k => $v) {
+    foreach($defs as $k => $v)
+    {
       if(isset($v['levels'])) {
         if(!is_array($v['levels'])) {
           $v['levels'] = array($v['levels']);
@@ -50,10 +51,13 @@ class LyraParamsForm extends BaseForm
           continue;
         }
       }
-      switch($v['type']) {
+      $attrs = array();
+      switch($v['type'])
+      {
         case 'boolean':
           $choices = array(1 => 'Yes', 0 => 'No');
-          if(!$nd) {
+          if(!$nd)
+          {
             $choices = array('' => 'Default') + $choices;
           }
           $this->widgetSchema[$k] = new sfWidgetFormChoice(array(
@@ -63,7 +67,8 @@ class LyraParamsForm extends BaseForm
               'multiple' => false
           ));
           $def = $config->get($k, $section);
-          if($nd && $def === null && isset($v['default'])) {
+          if($nd && $def === null && isset($v['default']))
+          {
             $def = $v['default'];
           }
           $this->setDefault($k, $def);
@@ -74,10 +79,12 @@ class LyraParamsForm extends BaseForm
           break;
         case 'list':
           $choices = array();
-          if(!$nd) {
+          if(!$nd)
+          {
             $choices = array('' => 'Default');
           }
-          foreach($v['choices'] as $c) {
+          foreach($v['choices'] as $c)
+          {
             $choices[$c] = $c;
           }
           $this->widgetSchema[$k] = new sfWidgetFormChoice(array(
@@ -85,7 +92,8 @@ class LyraParamsForm extends BaseForm
             'label' => $k
           ));
           $def = $config->get($k, $section);
-          if($nd && $def === null && isset($v['default'])) {
+          if($nd && $def === null && isset($v['default']))
+          {
             $def = $v['default'];
           }
           $this->setDefault($k, $def);
@@ -96,12 +104,19 @@ class LyraParamsForm extends BaseForm
           break;
 
         case 'text':
+          if(isset($v['size']) && (int)$v['size'] > 0)
+          {
+            $attrs['maxlength'] = $attrs['size'] = (int)$v['size'];
+          }
+          if(isset($v['max_length']) && (int)$v['max_length'] > 0)
+          {
+            $attrs['maxlength'] = (int)$v['max_length'];
+          }
           $this->widgetSchema[$k] = new sfWidgetFormInputText(array(
             'label' => $k
-          ));
+          ), $attrs);
           $this->setDefault($k, $config->get($k, $section));
-          $size = isset($v['size']) ? (int)$v['size'] : 255;
-          $this->validatorSchema[$k] = new sfValidatorString(array('max_length' => $size, 'required' => false));
+          $this->validatorSchema[$k] = new sfValidatorString(array('max_length' => isset($attrs['maxlength']) ? $attrs['maxlength'] : 255, 'required' => false));
           break;
       }
     }
