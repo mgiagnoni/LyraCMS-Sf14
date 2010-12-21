@@ -52,6 +52,7 @@ class LyraParamsForm extends BaseForm
         }
       }
       $attrs = array();
+      $v['required'] = isset($v['required']) ? (boolean)$v['required'] : false;
       switch($v['type'])
       {
         case 'boolean':
@@ -116,7 +117,10 @@ class LyraParamsForm extends BaseForm
             'label' => $k
           ), $attrs);
           $this->setDefault($k, $config->get($k, $section));
-          $this->validatorSchema[$k] = new sfValidatorString(array('max_length' => isset($attrs['maxlength']) ? $attrs['maxlength'] : 255, 'required' => false));
+          $this->validatorSchema[$k] = new sfValidatorString(array(
+            'max_length' => isset($attrs['maxlength']) ? $attrs['maxlength'] : 255,
+            'required' => $v['required']
+          ));
           break;
       }
     }
