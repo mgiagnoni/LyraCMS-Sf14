@@ -19,7 +19,9 @@
 ?>
 <li class="month">
     <?php echo link_to($month, $options['route'], array('year' => $year, 'month' => $row->am)); ?>
-    <span class="counter">(<?php echo $row->ct ?>)</span>
+    <?php if($options['show_counters']):?>
+      <span class="counter">(<?php echo $row->ct ?>)</span>
+    <?php endif; ?>
 </li>
 <?php endforeach ?>
 </ul></li>

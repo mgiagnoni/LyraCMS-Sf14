@@ -45,29 +45,7 @@ class LyraConfig
       {
         if(!isset($this->params[$i]))
         {
-          switch($level['type'])
-          {
-            case 'object':
-              $def_file = $this->object->getParamDefinitionsPath();
-              $this->params[$i] = new LyraParams($this->object, $def_file);
-              break;
-            case 'content_type':
-              //TODO: *ugly*, relation names must be made consistent.
-              if($this->object instanceof LyraContent)
-              {
-                $ctype = $this->object->getContentType();
-              }
-              elseif($this->object instanceof LyraRoute)
-              {
-                $ctype = $this->object->getRouteContentType();
-              }
-              $def_file = $ctype->getParamDefinitionsPath();
-              $this->params[$i] = new LyraParams($ctype, $def_file);
-              break;
-            case 'global':
-              $this->params[$i] = $this->initGlobalParams();
-              break;
-          }
+          $this->initParams($level['type'], $i);
         }
         $value = $this->params[$i]->get($key, isset($section) ? $section : $level['def_section']);
         if(null !== $value)
@@ -81,6 +59,36 @@ class LyraConfig
         $value = $this->params[$i]->getDefault($key, isset($section) ? $section : $level['def_section']);
       }
       return $value;
+  }
+  public function keyExists($key, $section = null)
+  {
+    $levels = is_object($this->object) ? $this->object->getParameterLevels() : array(array('type' => 'global', 'def_section' => null));
+
+    foreach($levels as $i => $level)
+    {
+      if(!isset($this->params[$i]))
+      {
+        $this->initParams($level['type'], $i);
+      }
+      if($this->params[$i]->keyExists($key, isset($section) ? $section : $level['def_section']))
+      {
+        return true;
+      }
+    }
+
+    return false;
+  }
+  public function mergeConfig($config, $section = null)
+  {
+    foreach($config as $k => $v)
+    {
+      if($this->keyExists($k, $section))
+      {
+        $config[$k] = $this->get($k, $section);
+      }
+    }
+
+    return $config;
   }
   protected function initGlobalParams()
   {
@@ -103,5 +111,31 @@ class LyraConfig
     }
 
     return $params;
+  }
+  protected function initParams($holder, $idx)
+  {
+    switch($holder)
+    {
+      case 'object':
+        $def_file = $this->object->getParamDefinitionsPath();
+        $this->params[$idx] = new LyraParams($this->object, $def_file);
+        break;
+      case 'content_type':
+        //TODO: *ugly*, relation names must be made consistent.
+        if($this->object instanceof LyraContent)
+        {
+          $ctype = $this->object->getContentType();
+        }
+        elseif($this->object instanceof LyraRoute)
+        {
+          $ctype = $this->object->getRouteContentType();
+        }
+        $def_file = $ctype->getParamDefinitionsPath();
+        $this->params[$idx] = new LyraParams($ctype, $def_file);
+        break;
+      case 'global':
+        $this->params[$idx] = $this->initGlobalParams();
+        break;
+    }
   }
 }

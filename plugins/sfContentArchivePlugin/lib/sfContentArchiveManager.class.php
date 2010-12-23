@@ -21,7 +21,8 @@ class sfContentArchiveManager
     'page_title' => '',
     'page_meta_title' => 'Archive %month% %year%',
     'page_max_items' => 25,
-    'item_template' => 'sfContentArchive/archive_item'
+    'item_template' => 'sfContentArchive/archive_item',
+    'show_counters' => true
   );
 
   public function __construct($archive = null)

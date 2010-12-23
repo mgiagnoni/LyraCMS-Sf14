@@ -7,4 +7,5 @@ all:
       date_field: created_at
       item_template: 'article/list'
       page_max_items: 25
+      show_counters: true
       

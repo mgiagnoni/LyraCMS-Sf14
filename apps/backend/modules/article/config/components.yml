@@ -15,3 +15,6 @@ params:
       type: text
       size: 2
       max_length: 3
+    show_counters:
+      type: boolean
+      default: true

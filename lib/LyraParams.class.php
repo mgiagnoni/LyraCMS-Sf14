@@ -201,4 +201,9 @@ class LyraParams
     }
     return $defaults;
   }
+  public function keyExists($key, $section = null)
+  {
+    $param_defs = $this->getParamDefs($section);
+    return isset($param_defs[$key]);
+  }
 }
