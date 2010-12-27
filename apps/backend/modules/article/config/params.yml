@@ -30,6 +30,10 @@ params:
       type: text
       size: 6
       default: H:mm
+    author_url_comments:
+      type: boolean
+      default: true
+      levels: [content_type]
   routes:
     max_items:
       type: text

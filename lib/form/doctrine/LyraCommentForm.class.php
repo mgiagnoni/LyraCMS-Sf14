@@ -25,7 +25,6 @@ class LyraCommentForm extends BaseLyraCommentForm
     $this->widgetSchema['article_id'] = new sfWidgetFormInputHidden();
     $this->widgetSchema['author_name']->setLabel('AUTHOR_NAME');
     $this->widgetSchema['author_email']->setLabel('AUTHOR_EMAIL');
-    $this->widgetSchema['author_url']->setLabel('AUTHOR_URL');
     $this->widgetSchema['content']->setLabel(false);
     $this->widgetSchema['content']->setAttribute('rows',12);
     $this->widgetSchema['content']->setAttribute('cols',45);
@@ -37,11 +36,14 @@ class LyraCommentForm extends BaseLyraCommentForm
       array('required'=>true),
       array('required'=>'AUTHOR_EMAIL_REQUIRED','invalid'=>'AUTHOR_EMAIL_INVALID')
     );
-    $this->validatorSchema['author_url'] = new sfValidatorUrl(
-      array('required'=>false),
-      array('invalid'=>'AUTHOR_URL_INVALID')
-    );
-
+    if(isset($this['author_url']))
+    {
+      $this->widgetSchema['author_url']->setLabel('AUTHOR_URL');
+      $this->validatorSchema['author_url'] = new sfValidatorUrl(
+        array('required'=>false),
+        array('invalid'=>'AUTHOR_URL_INVALID')
+      );
+    }
     $this->widgetSchema->setFormFormatterName('LyraComment');
     $this->widgetSchema->setNameFormat('comment[%s]');
   }
@@ -80,5 +82,10 @@ class LyraCommentForm extends BaseLyraCommentForm
   protected function removeFields()
   {
     unset($this['created_at'], $this['updated_at'], $this['is_active'], $this['created_by']);
+    $params = $this->getOption('params');
+    if(false === $params->get('author_url_comments'))
+    {
+      unset($this['author_url']);
+    }
   }
 }

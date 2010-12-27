@@ -68,6 +68,10 @@
         <source>time_comments</source>
         <target>Comment time format</target>
       </trans-unit>
+      <trans-unit id="17">
+        <source>author_url_comments</source>
+        <target>Comment form: url field</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -68,6 +68,10 @@
         <source>time_comments</source>
         <target>Formato ora commenti</target>
       </trans-unit>
+      <trans-unit id="17">
+        <source>author_url_comments</source>
+        <target>Modulo commenti: campo url</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

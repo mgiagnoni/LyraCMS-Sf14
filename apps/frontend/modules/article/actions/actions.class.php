@@ -77,7 +77,7 @@ class articleActions extends sfActions
       $this->comments = $this->item->getActiveComments();
     }
     if($this->params->get('allow_comments')) {
-      $this->form = new LyraCommentForm();
+      $this->form = new LyraCommentForm(null, array('params' => $this->params));
       $this->form->setDefault('article_id', $this->item->getId());
     }
   }
@@ -135,7 +135,7 @@ class articleActions extends sfActions
     $this->forward404Unless($this->item);
     $this->params = new LyraConfig($this->item);
     $this->forward404Unless($this->params->get('allow_comments'));
-    $this->form = new LyraCommentForm(null, array('user'=>$this->getUser()));
+    $this->form = new LyraCommentForm(null, array('user'=>$this->getUser(), 'params' => $this->params));
     $this->processCommentForm($request, $this->form);
     $this->comments = $this->item->getActiveComments();
     $this->setTemplate('show');
