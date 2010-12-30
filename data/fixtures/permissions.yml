@@ -1,0 +1,3 @@
+sfGuardPermission:
+  access_backend:
+    name: access_backend

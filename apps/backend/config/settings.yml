@@ -38,6 +38,9 @@ all:
   .actions:
     login_module: sfGuardAuth
     login_action: signin
+    secure_module: sfGuardAuth
+    secure_action: secure
+
 #all:
 #  .actions:
 #    error_404_module:       default   # To be called when a 404 error is raised

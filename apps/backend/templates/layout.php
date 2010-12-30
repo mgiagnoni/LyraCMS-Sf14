@@ -11,7 +11,7 @@
   </head>
   <body>
     <div id="container">
-      <?php if ($sf_user->isAuthenticated()):
+      <?php if ($sf_user->isAuthenticated() && $sf_user->hasCredential('access_backend')):
         $module = $sf_request->getParameter('module');?>
       <div id="side-bar">
         

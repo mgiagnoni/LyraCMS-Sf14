@@ -3,6 +3,9 @@ sfGuardUser:
     username:       admin
     password:       admin
     is_super_admin: true
+  demo:
+    username: demo
+    password: demo
 
 #User profile
 
@@ -12,3 +15,8 @@ LyraUserProfile:
     last_name: Administrator
     email: lyra@localhost
     User: admin
+  p_demo:
+    first_name: Demo
+    last_name: User
+    email: demo@example.com
+    User: demo
