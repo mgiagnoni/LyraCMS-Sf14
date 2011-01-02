@@ -1,2 +1,2 @@
-# default values
-#all:
+all:
+  sf_guard_plugin_success_signin_url: '@homepage'
