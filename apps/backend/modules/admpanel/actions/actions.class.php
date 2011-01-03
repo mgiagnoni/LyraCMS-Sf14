@@ -21,6 +21,7 @@ class admpanelActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    
+    $last_login = $this->getUser()->getGuarduser()->getLastLogin();
+    $this->show_welcome = time() - strtotime($last_login) <= 5;
   }
 }
