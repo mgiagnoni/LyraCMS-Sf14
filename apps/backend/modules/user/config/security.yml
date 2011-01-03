@@ -1,0 +1,11 @@
+all:
+  is_secure: true
+
+index:
+  credentials: [[user_administer,user_list]]
+new:
+  credentials: [[user_administer,user_create]]
+edit:
+  credentials: [[user_administer,user_edit]]
+delete:
+  credentials: [[user_administer,user_delete]]

@@ -57,9 +57,11 @@
             <li <?php echo ($module == 'region' ? 'class="active"' : ''); ?>>
               <?php echo link_to(__('MENU_REGIONS'), '@lyra_region') ?>
             </li>
+            <?php if($sf_user->hasCredential(array('user_administer', 'user_list'),false)):?>
             <li <?php echo ($module == 'sfGuardUser' ? 'class="active"' : ''); ?>>
               <?php echo link_to(__('MENU_USERS'), '@lyra_user') ?>
             </li>
+            <?php endif; ?>
             <li <?php echo ($module == 'sfGuardGroup' ? 'class="active"' : ''); ?>>
               <?php echo link_to(__('MENU_GROUPS'), '@sf_guard_group') ?>
             </li>

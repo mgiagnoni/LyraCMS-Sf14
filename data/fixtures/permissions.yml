@@ -1,3 +1,15 @@
 sfGuardPermission:
   access_backend:
     name: access_backend
+  user_administer:
+    name: user_administer
+  user_list:
+    name: user_list
+  user_create:
+    name: user_create
+  user_edit:
+    name: user_edit
+  user_delete:
+    name: user_delete
+  user_permissions:
+    name: user_permissions

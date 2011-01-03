@@ -21,12 +21,23 @@ generator:
         permissions_list: {label: PERMISSIONS}
       list:
         title: TITLE_USERS
-        display: [=username, created_at, updated_at, last_login]
+        display: [_username, created_at, updated_at, last_login]
         fields:
           username: {label: TH_USERNAME}
           created_at: {label: TH_CREATED_AT, date_format: dd.MM.yy hh:ss}
           updated_at: {label: TH_UPDATED_AT, date_format: dd.MM.yy hh:ss}
           last_login: {label: TH_LAST_LOGIN, date_format: dd.MM.yy hh:ss}
+        object_actions:
+          _edit:
+            credentials: [[user_administer,user_edit]]
+          _delete:
+            credentials: [[user_administer,user_delete]]
+        actions:
+          _new:
+            credentials: [[user_administer,user_create]]
+        batch_actions:
+          _delete:
+            credentials: [[user_administer,user_delete]]
       filter:
         display: [username,is_active]
 

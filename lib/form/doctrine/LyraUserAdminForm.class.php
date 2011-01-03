@@ -25,6 +25,14 @@ class LyraUserAdminForm extends sfGuardUserAdminForm
 
     $profileForm = new LyraUserProfileForm($this->object->Profile);
     unset($profileForm['id'], $profileForm['user_id']);
+    if(!$this->getOption('user')->hasCredential('user_permissions'))
+    {
+      unset($this['permissions_list']);
+    }
+    if(!$this->getOption('user')->isSuperAdmin())
+    {
+      unset($this['is_super_admin']);
+    }
     $this->embedForm('user_profile', $profileForm);
     $this->widgetSchema['user_profile']->setLabel(false);
     $this->widgetSchema['password']->setAttribute('autocomplete', 'off');
