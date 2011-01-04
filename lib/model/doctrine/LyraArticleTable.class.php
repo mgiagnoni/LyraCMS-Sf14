@@ -223,4 +223,17 @@ class LyraArticleTable extends Doctrine_Table
       $item->publish($on);
     }
   }
+
+  /**
+   * Counts unpublished items.
+   * 
+   * @return int
+   */
+  public function countUnpublishedItems($ctype)
+  {
+    return $this->createQuery()
+      ->where('is_active = ?', false)
+      ->andWhere('ctype_id = ?', $ctype)
+      ->count();
+  }
 }

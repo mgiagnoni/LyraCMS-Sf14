@@ -55,6 +55,10 @@ class commentActions extends autoCommentActions
     if($request->getParameter('id')) {
       $this->setFilters(array('article_id'=>$request->getParameter('id')));
     }
+    if($request->getParameter('unpublished'))
+    {
+      $this->setFilters(array('is_active' => 0));
+    }
     parent::executeIndex($request);
     
   }

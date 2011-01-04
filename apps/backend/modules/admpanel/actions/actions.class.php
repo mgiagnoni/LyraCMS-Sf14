@@ -23,5 +23,18 @@ class admpanelActions extends sfActions
   {
     $last_login = $this->getUser()->getGuarduser()->getLastLogin();
     $this->show_welcome = time() - strtotime($last_login) <= 5;
+    $this->infos = null;
+    $ctypes = LyraContentTypeTable::getInstance()->findAll();
+    foreach($ctypes as $ctype)
+    {
+      if($ct = Doctrine_Core::getTable($ctype->getModel())->countUnpublishedItems($ctype->getId()))
+      {
+        $this->infos['unpub'][$ctype->getName()] = array('count' => $ct, 'ctype' => $ctype);
+      }
+    }
+    if($ct = LyraCommentTable::getInstance()->countUnpublishedItems())
+    {
+      $this->infos['comment'] = $ct;
+    }
   }
 }

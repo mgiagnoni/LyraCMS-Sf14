@@ -44,6 +44,14 @@ class articleActions extends autoArticleActions
 
     return $result;
   }
+  public function executeIndex(sfwebRequest $request)
+  {
+    if($request->getParameter('unpublished'))
+    {
+      $this->setFilters(array('is_active' => 0));
+    }
+    parent::executeIndex($request);
+  }
   public function executePublish(sfwebRequest $request)
   {
     $this->lyra_article = $this->getRoute()->getObject();

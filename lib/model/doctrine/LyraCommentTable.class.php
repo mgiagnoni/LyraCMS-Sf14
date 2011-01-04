@@ -33,4 +33,10 @@ class LyraCommentTable extends Doctrine_Table
 
     return $q;
   }
+  public function countUnpublishedItems()
+  {
+    return $this->createQuery()
+      ->where('is_active = ?', false)
+      ->count();
+  }
 }

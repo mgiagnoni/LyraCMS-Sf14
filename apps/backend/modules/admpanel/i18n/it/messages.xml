@@ -8,6 +8,26 @@
         <source>MSG_WELCOME</source>
         <target>Salve %name%, hai effettuato l'accesso come %user%.</target>
       </trans-unit>
+      <trans-unit id="2">
+        <source>MSG_ARTICLE_UNPUBLISHED</source>
+        <target>[1]C'è un articolo da pubblicare|(1,+Inf]Ci sono %count% articoli da pubblicare.</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>MSG_PAGE_UNPUBLISHED</source>
+        <target>[1]C'è una pagina da pubblicare|(1,+Inf]Ci sono %count% pagine da pubblicare.</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>MSG_COMMENT_UNPUBLISHED</source>
+        <target>[1]C'è un commento da approvare|(1,+Inf]Ci sono %count% commenti da approvare.</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>LINK_SHOW</source>
+        <target>Mostra</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>MSG_NO_REMINDERS</source>
+        <target>Non ci sono avvisi.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

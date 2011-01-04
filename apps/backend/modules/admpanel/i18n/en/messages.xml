@@ -8,6 +8,26 @@
         <source>MSG_WELCOME</source>
         <target>Hello %name%, you are logged in as %user%.</target>
       </trans-unit>
+      <trans-unit id="2">
+        <source>MSG_ARTICLE_UNPUBLISHED</source>
+        <target>[1]There is one article to publish|(1,+Inf]There are %count% articles to publish.</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>MSG_PAGE_UNPUBLISHED</source>
+        <target>[1]There is one page to publish|(1,+Inf]There are %count% pages to publish.</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>MSG_COMMENT_UNPUBLISHED</source>
+        <target>[1]There is one comment to approve|(1,+Inf]There are %count% comments to approve.</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>LINK_SHOW</source>
+        <target>Show</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>MSG_NO_REMINDERS</source>
+        <target>There are no reminders.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
