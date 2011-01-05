@@ -11,6 +11,9 @@ generator:
     with_doctrine_route:     1
 
     config:
+      actions:
+        delete:
+            credentials: [[user_administer,user_delete]]
       fields:
         username: {label: USERNAME}
         password: {label: PASSWORD}
