@@ -5,10 +5,14 @@ class BackendLyraCommentForm extends LyraCommentForm
   public function configure()
   {
       parent::configure();
-      $this->widgetSchema['is_active']->setLabel('IS_ACTIVE');
 
       $this->widgetSchema->setHelp('author_email',false);
-      $this->widgetSchema->moveField('is_active', sfWidgetFormSchema::FIRST);
+
+      if(!$this->getOption('user')->hasCredential(array('comment_administer', 'comment_approve'), false))
+      {
+        $this->widgetSchema['is_active'] = new sfWidgetFormInputHidden();
+        $this->validatorSchema['is_active'] = new sfValidatorChoice(array('choices' => array($this->getObject()->getIsActive()), 'empty_value' => $this->getObject()->getIsActive(), 'required' => false));
+      }
 
   }
   protected function removeFields()

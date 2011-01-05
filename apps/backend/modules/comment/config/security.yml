@@ -1,0 +1,13 @@
+all:
+  is_secure: true
+
+index:
+  credentials: [[comment_administer,comment_list]]
+edit:
+  credentials: [[comment_administer,comment_edit]]
+delete:
+  credentials: [[comment_administer,comment_delete]]
+publish:
+  credentials: [[comment_administer,comment_approve]]
+unpublish:
+  credentials: [[comment_administer,comment_approve]]

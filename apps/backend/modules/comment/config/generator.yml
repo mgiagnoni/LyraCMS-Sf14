@@ -12,6 +12,12 @@ generator:
 
     config:
       actions:
+        delete:
+          credentials: [[comment_administer,comment_delete]]
+        publish:
+          credentials: [[comment_administer,comment_approve]]
+        unpublish:
+          credentials: [[comment_administer,comment_approve]]
       fields:  ~
       list:
         title: TITLE_COMMENTS
@@ -22,13 +28,23 @@ generator:
           author_email: {label: TH_AUTHOR_EMAIL}
           author_url: {label: TH_AUTHOR_URL}
           content: {label: TH_CONTENT}
-          published: {label: TH_PUBLISHED}
+          published: {label: TH_PUBLISHED, credentials: [[comment_administer,comment_approve]]}
           created_at: {label: TH_CREATED_AT, date_format: dd.MM.yy hh:ss}
           updated_at: {label: TH_UPDATED_AT, date_format: dd.MM.yy hh:ss}
+        object_actions:
+          _edit:
+            credentials: [[comment_administer,comment_edit]]
+          _delete:
+            credentials: [[comment_administer,comment_delete]]
         batch_actions:
-          _delete: ~
-          publish: {label: PUBLISH}
-          unpublish: {label: UNPUBLISH}
+          _delete:
+            credentials: [[comment_administer,comment_delete]]
+          publish:
+            label: PUBLISH
+            credentials: [[comment_administer,comment_approve]]
+          unpublish:
+            label: UNPUBLISH
+            credentials: [[comment_administer,comment_approve]]
         table_method: getBackendItemsQuery
         actions: []
       filter:
@@ -38,5 +54,7 @@ generator:
         display: [article_id, is_active]
       form:
         class: BackendLyraCommentForm
+        display:
+          "NONE": [is_active,author_name,author_email,author_url,content]
       edit:    ~
       new:     ~

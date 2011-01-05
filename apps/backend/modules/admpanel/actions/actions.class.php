@@ -32,9 +32,12 @@ class admpanelActions extends sfActions
         $this->infos['unpub'][$ctype->getName()] = array('count' => $ct, 'ctype' => $ctype);
       }
     }
-    if($ct = LyraCommentTable::getInstance()->countUnpublishedItems())
+    if($this->getuser()->hasCredential(array('comment_administer', 'comment_approve'), false))
     {
-      $this->infos['comment'] = $ct;
+      if($ct = LyraCommentTable::getInstance()->countUnpublishedItems())
+      {
+        $this->infos['comment'] = $ct;
+      }
     }
   }
 }

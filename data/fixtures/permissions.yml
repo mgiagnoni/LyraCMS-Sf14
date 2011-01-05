@@ -13,3 +13,13 @@ sfGuardPermission:
     name: user_delete
   user_permissions:
     name: user_permissions
+  comment_administer:
+    name: comment_administer
+  comment_list:
+    name: comment_list
+  comment_edit:
+    name: comment_edit
+  comment_delete:
+    name: comment_delete
+  comment_approve:
+    name: comment_approve

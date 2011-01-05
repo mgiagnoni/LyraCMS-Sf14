@@ -10,4 +10,10 @@
  */
 class commentGeneratorConfiguration extends BaseCommentGeneratorConfiguration
 {
+  public function getFormOptions()
+  {
+    return array(
+      'user' => sfContext::getInstance()->getUser(),
+    );
+  }
 }

@@ -45,9 +45,11 @@
               </ul>
             </li>
             <!-- end TODO -->
-            <li <?php echo ($module == 'comment' ? 'class="active"' : ''); ?>>
-              <?php echo link_to(__('MENU_COMMENTS'), '@lyra_comment') ?>
-            </li>
+            <?php if($sf_user->hasCredential(array('comment_administer', 'comment_list'),false)):?>
+              <li <?php echo ($module == 'comment' ? 'class="active"' : ''); ?>>
+                <?php echo link_to(__('MENU_COMMENTS'), '@lyra_comment') ?>
+              </li>
+            <?php endif; ?>
             <li <?php echo ($module == 'catalog' || $module == 'label' ? 'class="active"' : ''); ?>>
               <?php echo link_to(__('MENU_CATALOGS'), '@lyra_catalog') ?>
             </li>
