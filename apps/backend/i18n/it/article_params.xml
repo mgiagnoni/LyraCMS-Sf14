@@ -72,6 +72,10 @@
         <source>author_url_comments</source>
         <target>Modulo commenti: campo url</target>
       </trans-unit>
+      <trans-unit id="18">
+        <source>allow_anonymous_comments</source>
+        <target>Consenti commenti anonimi</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

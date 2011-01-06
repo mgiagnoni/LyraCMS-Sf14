@@ -19,6 +19,10 @@ params:
     allow_comments:
       type: boolean
       default: true
+    allow_anonymous_comments:
+      type: boolean
+      default: true
+      levels: [content_type]
     show_comments:
       type: boolean
       default: true

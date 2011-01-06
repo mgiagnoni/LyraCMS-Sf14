@@ -72,6 +72,10 @@
         <source>author_url_comments</source>
         <target>Comment form: url field</target>
       </trans-unit>
+      <trans-unit id="18">
+        <source>allow_anonymous_comments</source>
+        <target>Allow anonymous comments</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

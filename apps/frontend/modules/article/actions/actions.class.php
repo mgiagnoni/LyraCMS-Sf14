@@ -72,11 +72,13 @@ class articleActions extends sfActions
     $this->params = new LyraConfig($this->item);
     $this->item->setMetaTags($this->getResponse());
     $this->form = $this->comments = null;
-    if($this->params->get('show_comments')) {
+    if($this->params->get('show_comments'))
+    {
       //Gets article comments list
       $this->comments = $this->item->getActiveComments();
     }
-    if($this->params->get('allow_comments')) {
+    if($this->allowCommentSubmission())
+    {
       $this->form = new LyraCommentForm(null, array('params' => $this->params));
       $this->form->setDefault('article_id', $this->item->getId());
     }
@@ -134,7 +136,7 @@ class articleActions extends sfActions
       ->find($request->getParameter('id'));
     $this->forward404Unless($this->item);
     $this->params = new LyraConfig($this->item);
-    $this->forward404Unless($this->params->get('allow_comments'));
+    $this->forward404Unless($this->allowCommentSubmission());
     $this->form = new LyraCommentForm(null, array('user'=>$this->getUser(), 'params' => $this->params));
     $this->processCommentForm($request, $this->form);
     $this->comments = $this->item->getActiveComments();
@@ -168,5 +170,13 @@ class articleActions extends sfActions
       $this->getUser()->setFlash('notice', $comment->getIsActive() ? 'MSG_COMMENT_SAVED' : 'MSG_COMMENT_APPROVAL');
       $this->redirect('@article_show?slug='.$comment->getCommentArticle()->getSlug());
     }
+  }
+  protected function allowCommentSubmission()
+  {
+    return
+      $this->params->get('allow_comments') && (
+        $this->getUser()->isAuthenticated() ||
+        $this->params->get('allow_anonymous_comments')
+      );
   }
 }

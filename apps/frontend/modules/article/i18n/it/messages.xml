@@ -212,6 +212,10 @@
         <source>IS_ARCHIVED</source>
         <target>Archiviato</target>
       </trans-unit>
+      <trans-unit id="55">
+        <source>MUST_LOGIN_SUBMIT_COMMENT</source>
+        <target>Devi effettuare l'accesso per inserire un commento.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
