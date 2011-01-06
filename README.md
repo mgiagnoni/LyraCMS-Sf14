@@ -52,6 +52,8 @@ If you are interested to preview and test Lyra, here are simple instructions to 
 
          $ php symfony doctrine:build --all --and-load
 
+    At this stage of development remember to always include the `--and-load` option as some essential application data (native content types, users, permissions) are loaded by fixtures. Dedicated tasks will be created for this purpose.
+
 7.  Final steps
     
     Run the following commands to complete application set up:
