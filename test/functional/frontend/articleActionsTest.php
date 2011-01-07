@@ -133,16 +133,52 @@ $browser->info('2 - Article form')->
   end()
   ;
 
-  $browser->info('4 - Comments')->
+$browser->info('4 - Comments')->
   get('/')->
   click('art1')->
 
   with('request')->begin()->
     isParameter('module', 'article')->
     isParameter('action', 'show')->
-  end();
+  end()
+;
 
-  $browser->info('  4.1 - Submit comment');
+$browser->info('  4.1 - Comment submission form')->
+  with('response')->
+    checkElement('#comment-form')
+;
+
+$ctype = LyraContentTypeTable::getInstance()
+  ->findOneByType('article');
+$ctype->setParams(array_merge($ctype->getParams(),array('allow_anonymous_comments' => false)));
+$ctype->save();
+  
+$browser->get('/')->click('art1')->
+  with('response')->
+    checkElement('#comment-form')->
+  get('/logout')->
+  with('response')->
+    isRedirected()->
+  followRedirect()->
+  with('response')->begin()->
+    checkElement('#comment-form', false)->
+    checkElement('.must-login')->
+  end()
+;
+
+$ctype->setParams(array_merge($ctype->getParams(),array('allow_anonymous_comments' => true)));
+$ctype->save();
+
+$browser->
+  signinOk(array('username'=>'admin','password'=>'admin'))->
+  get('/')->click('art1')
+;
+//
+//  $browser->get('/')->click('art1')->
+//    with('response')->
+//      checkElement('#comment-form');
+
+  $browser->info('  4.2 - Submit comment');
 
   $comment = array(
       'author_name' => 'test',
@@ -156,7 +192,7 @@ $browser->info('2 - Article form')->
     check('LyraComment', array_merge($comment, array('is_active' => false)))->
   end();
  
-  $browser->info('  4.2 - Submit comment (not moderated)');
+  $browser->info('  4.2.1 - Submit comment (not moderated)');
 
   $settings = Doctrine_Query::create()
     ->from('LyraSettings')
@@ -171,7 +207,7 @@ $browser->info('2 - Article form')->
     check('LyraComment', array_merge($comment, array('is_active' => true)))->
   end();
 
-  $browser->info('  4.3 - Submit comment (not moderated user auth)');
+  $browser->info('  4.2.2 - Submit comment (not moderated user auth)');
 
   $settings->setParams(array_merge($settings->getParams(), array('moderate_comments' => 'moderate_no_auth')));
   $settings->save();
@@ -182,7 +218,7 @@ $browser->info('2 - Article form')->
     check('LyraComment', array_merge($comment, array('is_active' => true)))->
   end();
 
-  $browser->info('  4.4 - Submit comment (moderated user not auth)')->
+  $browser->info('  4.2.3 - Submit comment (moderated user not auth)')->
   get('/logout')->
 
   with('response')->
@@ -196,7 +232,7 @@ $browser->info('2 - Article form')->
     check('LyraComment', array_merge($comment, array('is_active' => false)))->
   end();
 
-  $browser->info('  4.5 - Submit comment (required fields empty)');
+  $browser->info('  4.2.4 - Submit comment (required fields empty)');
   unset(
     $comment['author_name'],
     $comment['author_email'],
