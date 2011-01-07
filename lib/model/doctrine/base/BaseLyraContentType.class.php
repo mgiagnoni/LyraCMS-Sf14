@@ -15,7 +15,7 @@
  * @property string $item_slug
  * @property string $format
  * @property boolean $is_active
- * @property clob $params
+ * @property array $params
  * @property Doctrine_Collection $ContentTypeCatalogs
  * @property Doctrine_Collection $Contents
  * @property Doctrine_Collection $ContentTypeRoutes
@@ -34,7 +34,7 @@
  * @method string              getItemSlug()               Returns the current record's "item_slug" value
  * @method string              getFormat()                 Returns the current record's "format" value
  * @method boolean             getIsActive()               Returns the current record's "is_active" value
- * @method clob                getParams()                 Returns the current record's "params" value
+ * @method array               getParams()                 Returns the current record's "params" value
  * @method Doctrine_Collection getContentTypeCatalogs()    Returns the current record's "ContentTypeCatalogs" collection
  * @method Doctrine_Collection getContents()               Returns the current record's "Contents" collection
  * @method Doctrine_Collection getContentTypeRoutes()      Returns the current record's "ContentTypeRoutes" collection
@@ -117,8 +117,8 @@ abstract class BaseLyraContentType extends sfDoctrineRecord
              'notnull' => true,
              'default' => false,
              ));
-        $this->hasColumn('params', 'clob', null, array(
-             'type' => 'clob',
+        $this->hasColumn('params', 'array', null, array(
+             'type' => 'array',
              ));
 
         $this->option('collate', 'utf8_unicode_ci');

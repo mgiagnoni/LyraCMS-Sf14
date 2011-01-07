@@ -47,8 +47,8 @@ LyraArticle:
     is_featured: true
     is_active: true
     is_archived: true
-    params: |
-      a:1:{s:14:"show_read_more";b:0;}
+    params:
+      show_read_more: false
     ArticleLabels: [child_2]
     ArticleUpdatedBy: admin
     ArticleCreatedBy: admin

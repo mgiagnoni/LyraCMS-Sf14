@@ -36,7 +36,7 @@ class LyraRouteForm extends BaseLyraRouteForm
   {
     $item = parent::updateObject($values);
     //Save configuration parameters
-    $item->setParams(serialize($this->config->checkValues($this->getValue('lyra_params'), 'other')));
+    $item->setParams($this->config->checkValues($this->getValue('lyra_params'), 'other'));
   }
   
 }

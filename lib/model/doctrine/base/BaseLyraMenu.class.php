@@ -12,7 +12,7 @@
  * @property integer $object_id
  * @property integer $list_id
  * @property string $name
- * @property clob $params
+ * @property array $params
  * @property LyraMenu $MenuParent
  * @property LyraContentType $MenuContentType
  * @property LyraArticle $MenuItemObject
@@ -26,7 +26,7 @@
  * @method integer             getObjectId()        Returns the current record's "object_id" value
  * @method integer             getListId()          Returns the current record's "list_id" value
  * @method string              getName()            Returns the current record's "name" value
- * @method clob                getParams()          Returns the current record's "params" value
+ * @method array               getParams()          Returns the current record's "params" value
  * @method LyraMenu            getMenuParent()      Returns the current record's "MenuParent" value
  * @method LyraContentType     getMenuContentType() Returns the current record's "MenuContentType" value
  * @method LyraArticle         getMenuItemObject()  Returns the current record's "MenuItemObject" value
@@ -88,8 +88,8 @@ abstract class BaseLyraMenu extends sfDoctrineRecord
              'notnull' => true,
              'length' => 255,
              ));
-        $this->hasColumn('params', 'clob', null, array(
-             'type' => 'clob',
+        $this->hasColumn('params', 'array', null, array(
+             'type' => 'array',
              ));
 
         $this->option('collate', 'utf8_unicode_ci');

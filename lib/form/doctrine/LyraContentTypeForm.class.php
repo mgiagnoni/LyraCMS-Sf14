@@ -69,6 +69,6 @@ class LyraContentTypeForm extends BaseLyraContentTypeForm
       $params = array_merge($params, $this->config->checkValues($this->getValue('lyra_params_' . $section), $section));
     }
     //Save configuration parameters
-    $item->setParams(serialize($params));
+    $item->setParams($params);
   }
 }

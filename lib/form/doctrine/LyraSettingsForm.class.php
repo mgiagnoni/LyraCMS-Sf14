@@ -51,7 +51,7 @@ class LyraSettingsForm extends BaseLyraSettingsForm
       $params = array_merge($params, $this->config->checkValues($this->getValue($section), $section));
     }
     //Save configuration parameters
-    $item->setParams(serialize($params));
+    $item->setParams($params);
     return $item;
   }
 }

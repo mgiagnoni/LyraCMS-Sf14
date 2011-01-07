@@ -32,11 +32,7 @@ function include_region($region_name)
 
   foreach($region->getRefComponents() as $record)
   {
-    $params = array();
-    if($record->getParams())
-    {
-      $params = unserialize($record->getParams());
-    }
+
     $component = $record->getComponent();
     
     $params = new LyraConfig($record);

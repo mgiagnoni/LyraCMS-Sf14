@@ -7,7 +7,7 @@
  * 
  * @property integer $ctype_id
  * @property string $path
- * @property clob $params
+ * @property array $params
  * @property string $meta_title
  * @property string $meta_descr
  * @property string $meta_keys
@@ -16,7 +16,7 @@
  * 
  * @method integer         getCtypeId()     Returns the current record's "ctype_id" value
  * @method string          getPath()        Returns the current record's "path" value
- * @method clob            getParams()      Returns the current record's "params" value
+ * @method array           getParams()      Returns the current record's "params" value
  * @method string          getMetaTitle()   Returns the current record's "meta_title" value
  * @method string          getMetaDescr()   Returns the current record's "meta_descr" value
  * @method string          getMetaKeys()    Returns the current record's "meta_keys" value
@@ -50,8 +50,8 @@ abstract class BaseLyraContent extends sfDoctrineRecord
              'type' => 'string',
              'length' => 255,
              ));
-        $this->hasColumn('params', 'clob', null, array(
-             'type' => 'clob',
+        $this->hasColumn('params', 'array', null, array(
+             'type' => 'array',
              ));
         $this->hasColumn('meta_title', 'string', 255, array(
              'type' => 'string',

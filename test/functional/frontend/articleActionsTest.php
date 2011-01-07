@@ -161,10 +161,8 @@ $browser->info('2 - Article form')->
   $settings = Doctrine_Query::create()
     ->from('LyraSettings')
     ->fetchOne();
-  $params = unserialize($settings->getParams(ESC_RAW));
 
-  $params['moderate_comments'] = 'moderate_none';
-  $settings->setParams(serialize($params));
+  $settings->setParams(array_merge($settings->getParams(), array('moderate_comments' => 'moderate_none')));
   $settings->save();
 
   submit_comment($browser, $comment);
@@ -175,8 +173,7 @@ $browser->info('2 - Article form')->
 
   $browser->info('  4.3 - Submit comment (not moderated user auth)');
 
-  $params['moderate_comments'] = 'moderate_no_auth';
-  $settings->setParams(serialize($params));
+  $settings->setParams(array_merge($settings->getParams(), array('moderate_comments' => 'moderate_no_auth')));
   $settings->save();
   
   submit_comment($browser, $comment);

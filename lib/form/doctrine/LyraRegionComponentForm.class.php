@@ -33,7 +33,7 @@ class LyraRegionComponentForm extends BaseLyraRegionComponentForm
   {
     $item = parent::updateObject($values);
     //Save configuration parameters
-    $item->setParams(serialize($this->config->checkValues($this->getValue('lyra_params'), $item->getComponent()->getAction())));
+    $item->setParams($this->config->checkValues($this->getValue('lyra_params'), $item->getComponent()->getAction()));
 
   }
 }

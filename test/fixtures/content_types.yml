@@ -4,8 +4,9 @@ LyraContentType:
     type: article
     module: article
     model: LyraArticle
-    params: |
-      a:2:{s:12:"linked_title";b:1;s:14:"show_read_more";b:1;}
+    params:
+      linked_title: true
+      show_read_more: true
     item_slug: ':slug'
     format: html
     ContentTypeCatalogs: [catalog1,test]

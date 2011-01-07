@@ -5,7 +5,8 @@ LyraMenu:
       menu_main_1:
         name: Home
         type: route
-        params: a:1:{s:10:"route_name";s:8:"homepage";}
+        params:
+          route_name: homepage
         MenuParent: menu_main
       menu_main_2:
         name: Page

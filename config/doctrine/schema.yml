@@ -6,7 +6,7 @@ LyraContent:
     path:
       type: string(255)
     params:
-      type: clob
+      type: array
     meta_title:
       type: string(255)
     meta_descr:
@@ -41,7 +41,7 @@ LyraRoute:
     action:
       type: string(20)
     params:
-      type: clob
+      type: array
   relations:
     RouteContentType:
       class: LyraContentType
@@ -219,7 +219,7 @@ LyraContentType:
         notnull: true
         default: false
      params:
-        type: clob
+        type: array
    relations:
       ContentTypeCatalogs:
          class: LyraCatalog
@@ -375,7 +375,7 @@ LyraSettings:
       primary: true
       autoincrement: true
     params:
-      type: clob
+      type: array
 
 LyraUserProfile:
   tableName: users
@@ -440,7 +440,7 @@ LyraMenu:
       type: string(255)
       notnull: true
     params:
-      type: clob
+      type: array
   relations:
     MenuParent:
       class: LyraMenu
@@ -568,7 +568,7 @@ LyraRegionComponent:
       type: integer(4)
       primary: true
     params:
-      type: clob
+      type: array
   relations:
     Region:
       class: LyraRegion

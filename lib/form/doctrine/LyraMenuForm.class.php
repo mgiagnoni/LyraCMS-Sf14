@@ -67,10 +67,7 @@ class LyraMenuForm extends BaseLyraMenuForm
       $ctype_id = $this->getObject()->getCtypeId();
       $list_id = $this->getObject()->getListId();
       $type = $this->getObject()->getType();
-      if($params = $this->getObject()->getParams())
-      {
-        $params = unserialize($params);
-      }
+      $params = $this->getObject()->getParams();
     }
 
     if($type == 'root')
@@ -200,13 +197,13 @@ class LyraMenuForm extends BaseLyraMenuForm
     switch($type)
     {
       case 'list':
-        $item->setParams(serialize($this->config->checkValues($this->getValue('lyra_params'), 'route')));
+        $item->setParams($this->config->checkValues($this->getValue('lyra_params'), 'route'));
         break;
       case 'route':
-        $item->setParams(serialize(array('route_name' => $this->getValue('route_name'))));
+        $item->setParams(array('route_name' => $this->getValue('route_name')));
         break;
       case 'external':
-        $item->setParams(serialize(array('url' => $this->getValue('url'))));
+        $item->setParams(array('url' => $this->getValue('url')));
         break;
     }
   }

@@ -16,12 +16,12 @@ abstract class BaseLyraSettingsForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'     => new sfWidgetFormInputHidden(),
-      'params' => new sfWidgetFormTextarea(),
+      'params' => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
       'id'     => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'params' => new sfValidatorString(array('required' => false)),
+      'params' => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('lyra_settings[%s]');

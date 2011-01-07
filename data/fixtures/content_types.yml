@@ -4,8 +4,9 @@ LyraContentType:
     type: article
     module: article
     model: LyraArticle
-    params: |
-      a:2:{s:12:"linked_title";b:1;s:14:"show_read_more";b:1;}
+    params:
+      linked_title: true
+      show_read_more: true
     item_slug: ':slug'
     format: html
     ContentTypeCatalogs: [catalog1]
@@ -16,5 +17,11 @@ LyraContentType:
     model: LyraArticle
     item_slug: ':slug'
     format: html
-    params: |
-      a:6:{s:12:"linked_title";b:0;s:14:"show_read_more";b:0;s:11:"show_author";b:0;s:9:"show_date";b:0;s:14:"allow_comments";b:0;s:13:"show_comments";b:0;}
+    params:
+      linked_title: false
+      show_read_more: false
+      show_author: false
+      show_date: false
+      allow_comments: false
+      show_comments: false
+      

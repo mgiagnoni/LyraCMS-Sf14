@@ -72,7 +72,7 @@ class LyraContentForm extends BaseLyraContentForm
     $item = parent::updateObject($values);
     if($this->show_params) {
       //Save configuration parameters
-      $item->setParams(serialize($this->config->checkValues($this->getValue('lyra_params'), 'item')));
+      $item->setParams($this->config->checkValues($this->getValue('lyra_params'), 'item'));
     }
     return $item;
   }

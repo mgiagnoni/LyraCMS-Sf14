@@ -25,13 +25,13 @@ LyraRegionComponent:
   r1:
     Region: reg1
     Component: comp1
-    params: |
-      a:1:{s:3:"max";s:1:"8";}
+    params:
+      max: 8
   r2:
     Region: reg1
     Component: comp2
-    params: |
-      a:1:{s:7:"catalog";s:8:"catalog1";}
+    params:
+      catalog: catalog1
   r3:
     Region: reg1
     Component: comp5

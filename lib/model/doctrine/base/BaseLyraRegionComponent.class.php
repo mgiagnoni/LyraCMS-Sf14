@@ -7,13 +7,13 @@
  * 
  * @property integer $region_id
  * @property integer $component_id
- * @property clob $params
+ * @property array $params
  * @property LyraRegion $Region
  * @property LyraComponent $Component
  * 
  * @method integer             getRegionId()     Returns the current record's "region_id" value
  * @method integer             getComponentId()  Returns the current record's "component_id" value
- * @method clob                getParams()       Returns the current record's "params" value
+ * @method array               getParams()       Returns the current record's "params" value
  * @method LyraRegion          getRegion()       Returns the current record's "Region" value
  * @method LyraComponent       getComponent()    Returns the current record's "Component" value
  * @method LyraRegionComponent setRegionId()     Sets the current record's "region_id" value
@@ -42,8 +42,8 @@ abstract class BaseLyraRegionComponent extends sfDoctrineRecord
              'primary' => true,
              'length' => 4,
              ));
-        $this->hasColumn('params', 'clob', null, array(
-             'type' => 'clob',
+        $this->hasColumn('params', 'array', null, array(
+             'type' => 'array',
              ));
 
         $this->option('symfony', array(

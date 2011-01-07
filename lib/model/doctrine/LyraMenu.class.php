@@ -40,7 +40,7 @@ class LyraMenu extends BaseLyraMenu
 
         if($item['params'])
         {
-          $items[$i]['params'] = unserialize($item['params']);
+          $items[$i]['params'] = $item['params'];
         }
 
         switch($item['type'])

@@ -19,7 +19,7 @@ abstract class BaseLyraRouteForm extends BaseFormDoctrine
       'ctype_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('RouteContentType'), 'add_empty' => false)),
       'name'     => new sfWidgetFormInputText(),
       'action'   => new sfWidgetFormInputText(),
-      'params'   => new sfWidgetFormTextarea(),
+      'params'   => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -27,7 +27,7 @@ abstract class BaseLyraRouteForm extends BaseFormDoctrine
       'ctype_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('RouteContentType'))),
       'name'     => new sfValidatorString(array('max_length' => 80, 'required' => false)),
       'action'   => new sfValidatorString(array('max_length' => 20, 'required' => false)),
-      'params'   => new sfValidatorString(array('required' => false)),
+      'params'   => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('lyra_route[%s]');

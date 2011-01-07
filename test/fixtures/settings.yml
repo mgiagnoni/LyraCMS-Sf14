@@ -1,4 +1,8 @@
 LyraSettings:
   setting1:
-    params: |
-      a:5:{s:17:"moderate_comments";s:12:"moderate_all";s:19:"enable_registration";b:1;s:16:"require_approval";b:1;s:18:"email_verification";b:0;s:9:"send_with";s:8:"php_mail";}
+    params:
+      moderate_comments: moderate_all
+      enable_registration: true
+      require_approval: true
+      email_verification: false
+      send_with: php_mail

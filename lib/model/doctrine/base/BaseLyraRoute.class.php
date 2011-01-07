@@ -9,7 +9,7 @@
  * @property integer $ctype_id
  * @property string $name
  * @property string $action
- * @property clob $params
+ * @property array $params
  * @property LyraContentType $RouteContentType
  * @property Doctrine_Collection $LyraMenu
  * 
@@ -17,7 +17,7 @@
  * @method integer             getCtypeId()          Returns the current record's "ctype_id" value
  * @method string              getName()             Returns the current record's "name" value
  * @method string              getAction()           Returns the current record's "action" value
- * @method clob                getParams()           Returns the current record's "params" value
+ * @method array               getParams()           Returns the current record's "params" value
  * @method LyraContentType     getRouteContentType() Returns the current record's "RouteContentType" value
  * @method Doctrine_Collection getLyraMenu()         Returns the current record's "LyraMenu" collection
  * @method LyraRoute           setId()               Sets the current record's "id" value
@@ -57,8 +57,8 @@ abstract class BaseLyraRoute extends sfDoctrineRecord
              'type' => 'string',
              'length' => 20,
              ));
-        $this->hasColumn('params', 'clob', null, array(
-             'type' => 'clob',
+        $this->hasColumn('params', 'array', null, array(
+             'type' => 'array',
              ));
 
         $this->option('collate', 'utf8_unicode_ci');

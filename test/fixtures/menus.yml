@@ -17,7 +17,8 @@ LyraMenu:
       menu_main_1:
         name: Home
         type: route
-        params: a:1:{s:10:"route_name";s:8:"homepage";}
+        params:
+          route_name: homepage
         MenuParent: menu_main
       menu_main_2:
         name: Page
@@ -35,6 +36,6 @@ LyraMenu:
       menu_main_3:
         name: External
         type: external
-        params: |
-          a:1:{s:3:"url";s:22:"http://www.example.com";}
+        params:
+          url: http://www.example.com
         MenuParent: menu_main
