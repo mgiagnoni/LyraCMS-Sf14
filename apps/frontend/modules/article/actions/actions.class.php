@@ -79,7 +79,7 @@ class articleActions extends sfActions
     }
     if($this->allowCommentSubmission())
     {
-      $this->form = new LyraCommentForm(null, array('params' => $this->params));
+      $this->form = new LyraCommentForm(null, array('user'=>$this->getUser(), 'params' => $this->params));
       $this->form->setDefault('article_id', $this->item->getId());
     }
   }

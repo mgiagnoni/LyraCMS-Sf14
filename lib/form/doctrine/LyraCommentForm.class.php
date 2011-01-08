@@ -29,7 +29,20 @@ class LyraCommentForm extends BaseLyraCommentForm
     $this->widgetSchema['content']->setAttribute('rows',12);
     $this->widgetSchema['content']->setAttribute('cols',45);
     $this->widgetSchema->setHelp('author_email','AUTHOR_EMAIL_HELP');
-
+    
+    $params = $this->getOption('params');
+    $user = $this->getOption('user');
+    if(null !== $params && null !== $user && $user->isAuthenticated())
+    {
+      if($params->get('capture_email_comments'))
+      {
+        $this->setDefault('author_email', $user->getGuardUser()->getProfile()->getEmail());
+      }
+      if($params->get('capture_name_comments'))
+      {
+        $this->setDefault('author_name', trim($user->getGuardUser()->getProfile()->getFirstName() . ' ' . $user->getGuardUser()->getProfile()->getLastName()));
+      }
+    }
     $this->validatorSchema['author_name']->setMessage('required','AUTHOR_NAME_REQUIRED');
     $this->validatorSchema['content']->setMessage('required','CONTENT_REQUIRED');
     $this->validatorSchema['author_email'] = new sfValidatorEmail(

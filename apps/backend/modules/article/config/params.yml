@@ -38,6 +38,14 @@ params:
       type: boolean
       default: true
       levels: [content_type]
+    capture_email_comments:
+      type: boolean
+      default: true
+      levels: [content_type]
+    capture_name_comments:
+      type: boolean
+      default: true
+      levels: [content_type]
   routes:
     max_items:
       type: text

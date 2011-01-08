@@ -76,6 +76,14 @@
         <source>allow_anonymous_comments</source>
         <target>Allow anonymous comments</target>
       </trans-unit>
+      <trans-unit id="19">
+        <source>capture_email_comments</source>
+        <target>Comment form: capture email</target>
+      </trans-unit>
+      <trans-unit id="20">
+        <source>capture_name_comments</source>
+        <target>Comment form: capture name</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

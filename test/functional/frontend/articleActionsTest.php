@@ -144,8 +144,11 @@ $browser->info('4 - Comments')->
 ;
 
 $browser->info('  4.1 - Comment submission form')->
-  with('response')->
-    checkElement('#comment-form')
+  with('response')->begin()->
+    checkElement('#comment-form')->
+    checkElement('#form-wrapper input[value="John Doe"]')->
+    checkElement('#form-wrapper input[value="lyra@localhost"]')->
+  end()
 ;
 
 $ctype = LyraContentTypeTable::getInstance()
@@ -173,12 +176,8 @@ $browser->
   signinOk(array('username'=>'admin','password'=>'admin'))->
   get('/')->click('art1')
 ;
-//
-//  $browser->get('/')->click('art1')->
-//    with('response')->
-//      checkElement('#comment-form');
 
-  $browser->info('  4.2 - Submit comment');
+$browser->info('  4.2 - Submit comment');
 
   $comment = array(
       'author_name' => 'test',
