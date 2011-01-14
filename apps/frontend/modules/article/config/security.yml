@@ -3,9 +3,9 @@ all:
 
 edit:
   is_secure: true
-  credentials: article_edit
+  credentials: [[content_administer,article_administer,article_edit]]
 new:
   is_secure: true
-  credentials: article_create
+  credentials: [[content_administer,article_administer,article_create]]
 
 

@@ -23,3 +23,13 @@ sfGuardPermission:
     name: comment_delete
   comment_approve:
     name: comment_approve
+  content_administer:
+    name: content_administer
+  content_list:
+    name: content_list
+  content_create:
+    name: content_create
+  content_edit:
+    name: content_edit
+  content_delete:
+    name: content_delete

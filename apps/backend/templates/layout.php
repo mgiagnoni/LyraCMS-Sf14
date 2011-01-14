@@ -30,6 +30,7 @@
             <li>
               <ul class="content-types">
               <?php foreach($ctypes as $ctype):?>
+                <?php if($sf_user->hasCredential(array('content_administer',$ctype->getName().'_administer',$ctype->getName().'_list'),false)): ?>
                 <li><?php echo $ctype->getName();?></li>
                 <li>
                   <ul class="content-items">
@@ -41,6 +42,7 @@
                     </li>
                   </ul>
                 </li>
+                <?php endif;?>
               <?php endforeach; ?>
               </ul>
             </li>
