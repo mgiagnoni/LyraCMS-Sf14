@@ -16,9 +16,9 @@ class LyraRoute extends BaseLyraRoute
   {
     $ctype = $this->getRouteContentType();
     
-    $def_file = sfConfig::get('sf_apps_dir') . '/backend/modules/' . $ctype->getModule() . '/config/' . $this->getAction() . '_params.yml';
+    $def_file = sfConfig::get('sf_apps_dir') . '/backend/modules/' . $ctype->getModule() . '/config/params.yml';
     if(!file_exists($def_file) && $ctype->getPlugin()) {
-      $def_file = sfConfig::get('sf_plugins_dir') . '/' . $ctype->getPlugin() . '/modules/' . $ctype->getModule() . '/config/' . $this->getAction() . '_params.yml';
+      $def_file = sfConfig::get('sf_plugins_dir') . '/' . $ctype->getPlugin() . '/modules/' . $ctype->getModule() . '/config/params.yml';
     }
 
     return $def_file;
@@ -26,8 +26,8 @@ class LyraRoute extends BaseLyraRoute
   public function getParameterLevels()
   {
     return array(
-      array('type' => 'object', 'def_section' => 'other'),
-      array('type' => 'content_type', 'def_section' => 'routes'),
+      array('type' => 'object', 'def_section' => 'lists/' . $this->getAction() . '/other'),
+      array('type' => 'content_type', 'def_section' => 'lists/defaults'),
 
     );
   }

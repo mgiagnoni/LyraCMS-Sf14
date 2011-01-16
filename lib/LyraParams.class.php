@@ -80,14 +80,16 @@ class LyraParams
       $this->loadDefinitions();
     }
 
+    $defs = $this->param_defs['params'];
     if(null !== $section)
     {
-      return $this->param_defs['params'][$section];
+      foreach(explode('/', $section) as $s)
+      {
+        $defs = $defs[$s];
+      }
     }
-    else
-    {
-      return $this->param_defs['params'];
-    }
+
+    return $defs;
   }
   public function getParamDefsSections()
   {

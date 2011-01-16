@@ -49,7 +49,7 @@
         <target>Default items options</target>
       </trans-unit>
       <trans-unit id="12">
-        <source>PANEL_PARAMS_ROUTES</source>
+        <source>PANEL_PARAMS_LISTS</source>
         <target>Default lists options</target>
       </trans-unit>
     </body>

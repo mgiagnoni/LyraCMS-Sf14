@@ -45,7 +45,7 @@ class LyraContentTypeForm extends BaseLyraContentTypeForm
     $this->config = new LyraParams($obj, $obj->getParamDefinitionsPath());
     $this->config->setCatalog(sfInflector::underscore($obj->getModule()) . '_params');
 
-    foreach($this->config->getParamDefsSections() as $section)
+    foreach(array('item','lists/defaults') as $section)
     {
       
       $params_form = new LyraParamsForm(array(), array(
@@ -53,7 +53,7 @@ class LyraContentTypeForm extends BaseLyraContentTypeForm
           'section' => $section,
           'level' => 'content_type',
       ));
-      $k = 'lyra_params_' . $section;
+      $k = 'lyra_params_' . str_replace('/', '_', $section);
       $this->embedForm($k, $params_form);
       $this->widgetSchema[$k]->setLabel(false);
     }
@@ -64,9 +64,9 @@ class LyraContentTypeForm extends BaseLyraContentTypeForm
   {
     $item = parent::updateObject($values);
     $params = array();
-    foreach($this->config->getParamDefsSections() as $section)
+    foreach(array('item','lists/defaults') as $section)
     {
-      $params = array_merge($params, $this->config->checkValues($this->getValue('lyra_params_' . $section), $section));
+      $params = array_merge($params, $this->config->checkValues($this->getValue('lyra_params_' . str_replace('/', '_', $section)), $section));
     }
     //Save configuration parameters
     $item->setParams($params);

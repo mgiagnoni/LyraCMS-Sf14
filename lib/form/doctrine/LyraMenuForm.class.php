@@ -185,7 +185,7 @@ class LyraMenuForm extends BaseLyraMenuForm
     $this->config = new LyraParams($this->isNew() ? null : $this->getObject(), $route->getParamDefinitionsPath());
     $this->config->setCatalog(sfInflector::underscore($ctype->getModule()) . '_params');
 
-    $params_form = new LyraParamsForm(array(), array('config' => $this->config, 'section' => 'route'));
+    $params_form = new LyraParamsForm(array(), array('config' => $this->config, 'section' => 'lists/' . $route->getAction() . '/route'));
     $this->embedForm('lyra_params', $params_form);
     $this->widgetSchema['lyra_params']->setLabel(false);
   }
@@ -197,7 +197,7 @@ class LyraMenuForm extends BaseLyraMenuForm
     switch($type)
     {
       case 'list':
-        $item->setParams($this->config->checkValues($this->getValue('lyra_params'), 'route'));
+        $item->setParams($this->config->checkValues($this->getValue('lyra_params'), 'lists/' . $item->getMenuItemList()->getAction() . '/route'));
         break;
       case 'route':
         $item->setParams(array('route_name' => $this->getValue('route_name')));
