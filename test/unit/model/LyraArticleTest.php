@@ -51,7 +51,7 @@ $t->is(count($labels), 0, '->delete() correctly removes article / label links');
 
 $t->comment('Check configuration parameters');
 $article = LyraArticleTable::getInstance()->findOneByTitle('art4');
-$params = new LyraConfig($article);
+$params = $article->getParamHolder();
 $t->is($params->get('show_read_more'), false, 'show_read_more = false (item level)');
 $t->is($params->get('linked_title'), true, 'linked_title = true (content type level)');
 

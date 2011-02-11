@@ -37,7 +37,11 @@ class articleActions extends sfActions
         if($route)
         {
           $this->route = $route;
-          $this->params = new LyraConfig($route);
+          $content = $route->getRouteContentType();
+          $this->params = new LyraParamHolder($content, 'lists/defaults');
+          $this->params->mergeDefs($route->getParamDefinitionsPath(),'lists/' . $route->getAction() . '/other');
+          $this->params->mergeValues($route);
+          //$this->item_params = new LyraParamHolder($content, 'item');
         }
       }
     }
@@ -69,7 +73,7 @@ class articleActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
     $this->item = $this->getRoute()->getObject();
-    $this->params = new LyraConfig($this->item);
+    $this->params = $this->item->getParamHolder();
     $this->item->setMetaTags($this->getResponse());
     $this->form = $this->comments = null;
     if($this->params->get('show_comments'))
@@ -135,7 +139,7 @@ class articleActions extends sfActions
     $this->item = LyraArticleTable::getInstance()
       ->find($request->getParameter('id'));
     $this->forward404Unless($this->item);
-    $this->params = new LyraConfig($this->item);
+    $this->params = $this->item->getParamHolder();
     $this->forward404Unless($this->allowCommentSubmission());
     $this->form = new LyraCommentForm(null, array('user'=>$this->getUser(), 'params' => $this->params));
     $this->processCommentForm($request, $this->form);

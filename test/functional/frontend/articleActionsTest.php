@@ -150,12 +150,14 @@ $browser->info('  4.1 - Comment submission form')->
     checkElement('#form-wrapper input[value="lyra@localhost"]')->
   end()
 ;
+/*
+ * TODO: find another way to test different content type settings.
 
 $ctype = LyraContentTypeTable::getInstance()
   ->findOneByType('article');
 $ctype->setParams(array_merge($ctype->getParams(),array('allow_anonymous_comments' => false)));
 $ctype->save();
-  
+ 
 $browser->get('/')->click('art1')->
   with('response')->
     checkElement('#comment-form')->
@@ -176,7 +178,7 @@ $browser->
   signinOk(array('username'=>'admin','password'=>'admin'))->
   get('/')->click('art1')
 ;
-
+*/ 
 $browser->info('  4.2 - Submit comment');
 
   $comment = array(

@@ -74,8 +74,8 @@ class LyraCommentForm extends BaseLyraCommentForm
 
     if(!isset($this['is_active']))
     {
-      $params = new LyraConfig('settings');
-      switch($params->get('moderate_comments', 'comments'))
+      $params = LyraSettingsTable::getParamHolder('comments');
+      switch($params->get('moderate_comments'))
       {
         case 'moderate_none':
           $publish = true;

@@ -19,9 +19,9 @@ class LyraUserProfileTable extends Doctrine_Table
       {
         return false;
       }
-      $params = new LyraConfig('settings');
+      $params = LyraSettingsTable::getParamHolder('users');
       $profile->setIsVerified(true);
-      if(false == $params->get('require_approval', 'users'))
+      if(false == $params->get('require_approval'))
       {
         $profile->setIsActive(true);
       }

@@ -44,11 +44,11 @@ class LyraUserRegistrationForm extends PluginsfGuardUserForm
   public function updateObject($values = null)
   {
     $user = parent::updateObject($values);
-    $params = new LyraConfig('settings');
+    $params = LyraSettingsTable::getParamHolder('users');
 
-    $active = (false === $params->get('require_approval', 'users') && false === $params->get('email_verification', 'users'));
+    $active = (false === $params->get('require_approval') && false === $params->get('email_verification'));
     $user->setIsActive($active);
-    if(true === $params->get('email_verification', 'users'))
+    if(true === $params->get('email_verification'))
     {
       $user->Profile->setVtoken(sha1($user->getUsername() . mt_rand()));
     }

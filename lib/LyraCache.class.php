@@ -29,6 +29,11 @@ class LyraCache
   public function save($data)
   {
     $out = "<?php\n\$data=" . $this->build($data) . ";";
+    $dir = dirname($this->file);
+    if(!file_exists($dir))
+    {
+      mkdir($dir);
+    }
     file_put_contents($this->file, $out);
   }
   protected function build($data)

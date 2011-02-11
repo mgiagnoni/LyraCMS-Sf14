@@ -31,6 +31,10 @@ class LyraComponent extends BaseLyraComponent
 
     return $def_file;
   }
+  public function getParamDefinitionsSection()
+  {
+    return $this->getAction();
+  }
   public function getModuleName()
   {
 

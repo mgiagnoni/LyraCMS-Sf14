@@ -23,4 +23,26 @@ class LyraSettingsTable extends Doctrine_Table
   {
     return Doctrine_Core::getTable('LyraSettings');
   }
+  public static function getParamHolder($section)
+  {
+    $defs = sfConfig::get('sf_config_dir') . '/lyra_params.yml';
+    $cache = sfConfig::get('sf_cache_dir') . DIRECTORY_SEPARATOR . 'frontend' . DIRECTORY_SEPARATOR . sfConfig::get('sf_environment') . DIRECTORY_SEPARATOR . 'lyra' . DIRECTORY_SEPARATOR . 'settings.cache.php';
+
+    if(is_readable($cache))
+    {
+      include $cache;
+      if(isset($data))
+      {
+        return new LyraParamHolder($data, $section, $defs);
+      }
+    }
+
+    $r = self::getInstance()->createQuery()->fetchOne();
+    $params = new LyraParamHolder($r, $section, $defs);
+
+    $c = new LyraCache($cache);
+    $c->save($params->getValues());
+
+    return $params;
+  }
 }

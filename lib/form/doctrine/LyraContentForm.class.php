@@ -38,11 +38,11 @@ class LyraContentForm extends BaseLyraContentForm
     //Embed form displaying configuration parameters
     $ctype = LyraContentTypeTable::getInstance()->find($this->ctype_id);
 
-    $this->config = new LyraParams($this->isNew() ? null : $this->getObject(), $ctype->getParamDefinitionsPath());
+    $this->config = new LyraParamHolder($this->isNew() ? null : $this->getObject(), 'item', $ctype->getParamDefinitionsPath());
     $this->config->setCatalog(sfInflector::underscore($ctype->getModule()) . '_params');
 
     if($this->show_params) {
-      $params_form = new LyraParamsForm(array(), array('config' => $this->config, 'section' => 'item'));
+      $params_form = new LyraParamsForm(array(), array('config' => $this->config));
       $this->embedForm('lyra_params', $params_form);
       $this->widgetSchema['lyra_params']->setLabel(false);
     }
@@ -72,7 +72,7 @@ class LyraContentForm extends BaseLyraContentForm
     $item = parent::updateObject($values);
     if($this->show_params) {
       //Save configuration parameters
-      $item->setParams($this->config->checkValues($this->getValue('lyra_params'), 'item'));
+      $item->setParams($this->config->checkValues($this->getValue('lyra_params')));
     }
     return $item;
   }

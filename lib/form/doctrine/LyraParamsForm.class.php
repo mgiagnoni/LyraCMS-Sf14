@@ -31,8 +31,7 @@ class LyraParamsForm extends BaseForm
   {
 
     $config = $this->getOption('config');
-    $section = $this->getOption('section');
-    $defs = $config->getParamDefs($section);
+    $defs = $config->getParamDefs();
     if(null === $defs)
     {
       return;
@@ -67,7 +66,7 @@ class LyraParamsForm extends BaseForm
               'expanded' => true,
               'multiple' => false
           ));
-          $def = $config->get($k, $section);
+          $def = $config->get($k, false);
           if($nd && $def === null && isset($v['default']))
           {
             $def = $v['default'];
@@ -92,7 +91,7 @@ class LyraParamsForm extends BaseForm
             'choices' => $choices,
             'label' => $k
           ));
-          $def = $config->get($k, $section);
+          $def = $config->get($k, false);
           if($nd && $def === null && isset($v['default']))
           {
             $def = $v['default'];
@@ -116,7 +115,7 @@ class LyraParamsForm extends BaseForm
           $this->widgetSchema[$k] = new sfWidgetFormInputText(array(
             'label' => $k
           ), $attrs);
-          $this->setDefault($k, $config->get($k, $section));
+          $this->setDefault($k, $config->get($k, false));
           $this->validatorSchema[$k] = new sfValidatorString(array(
             'max_length' => isset($attrs['maxlength']) ? $attrs['maxlength'] : 255,
             'required' => $v['required']

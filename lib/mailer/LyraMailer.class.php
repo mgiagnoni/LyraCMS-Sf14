@@ -21,18 +21,18 @@ class LyraMailer extends sfMailer
 {
   public function __construct(sfEventDispatcher $dispatcher, $options)
   {
-    $params = new LyraConfig('settings');
-    if('smtp' === $params->get('send_with', 'mailer'))
+    $params = LyraSettingsTable::getParamHolder('mailer');
+    if('smtp' === $params->get('send_with'))
     {
       $options['transport']['class'] = "Swift_SmtpTransport";
-      $options['transport']['param']['host'] = $params->get('smtp_host', 'mailer');
-      $options['transport']['param']['port'] = $params->get('smtp_port', 'mailer');
-      if($enc = $params->get('smtp_encryption', 'mailer'))
+      $options['transport']['param']['host'] = $params->get('smtp_host');
+      $options['transport']['param']['port'] = $params->get('smtp_port');
+      if($enc = $params->get('smtp_encryption'))
       {
         $options['transport']['param']['encryption'] = $enc;
       }
-      $options['transport']['param']['username'] = $params->get('smtp_username', 'mailer');
-      $options['transport']['param']['password'] = $params->get('smtp_password', 'mailer');
+      $options['transport']['param']['username'] = $params->get('smtp_username');
+      $options['transport']['param']['password'] = $params->get('smtp_password');
     }
     else
     {

@@ -22,7 +22,7 @@ class userComponents extends sfComponents
   public function executeLogin(sfWebRequest $request)
   {
     $this->form = new LyraUserSigninForm();
-    $params = new LyraConfig('settings');
-    $this->show_registration_link = $params->get('enable_registration', 'users');
+    $params = LyraSettingsTable::getParamHolder('users');
+    $this->show_registration_link = $params->get('enable_registration');
   }
 }

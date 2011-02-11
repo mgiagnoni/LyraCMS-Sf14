@@ -9,8 +9,7 @@ class sfContentArchiveComponents extends BasesfContentArchiveComponents
     $this->options = $archive->getOptions();
     if(isset($this->params))
     {
-      $this->options = $this->params->mergeConfig($this->options);
-
+      $this->options = array_merge($this->options, $this->params->getValues());
     }
     $this->rows = $archive->getArchiveDates();
   }

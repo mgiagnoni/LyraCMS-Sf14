@@ -22,17 +22,18 @@ include(dirname(__FILE__).'/../../bootstrap/Doctrine.php');
 
 $t = new lime_test(6, new lime_output_color());
 
-$params = new LyraConfig('settings');
+$params = LyraSettingsTable::getParamHolder('users');
+$t->is($params->get('enable_registration'), true, '->get() global param (boolean)');
 
-$t->is($params->get('enable_registration', 'users'), true, '->get() global param (boolean)');
-$t->is($params->get('moderate_comments', 'comments'), 'moderate_all', '->get() global param (list)');
-$t->is($params->get('order_comments', 'comments'), 'date_asc', '->get() global param (default)');
+$params = LyraSettingsTable::getParamHolder('comments');
+$t->is($params->get('moderate_comments'), 'moderate_all', '->get() global param (list)');
+$t->is($params->get('order_comments'), 'date_asc', '->get() global param (default)');
 
 $article = LyraArticleTable::getInstance()
   ->findOneByTitle('art4');
 
-$params = new LyraConfig($article);
+$params = $article->getParamHolder();
 
-$t->is($params->get('show_read_more', 'item'), false, '->get() item param (boolean set on item)');
-$t->is($params->get('show_author', 'item'), true, '->get() item param (boolean default on content type)');
-$t->is($params->get('linked_title', 'item'), true, '->get() item param (boolean set on content type)');
+$t->is($params->get('show_read_more'), false, '->get() item param (boolean set on item)');
+$t->is($params->get('show_author'), true, '->get() item param (boolean default on content type)');
+$t->is($params->get('linked_title'), true, '->get() item param (boolean set on content type)');

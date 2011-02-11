@@ -19,36 +19,35 @@
  */
 class LyraSettingsForm extends BaseLyraSettingsForm
 {
-  protected $config = null;
+  protected $config = array();
+
   public function configure()
   {
     unset($this['params']);
 
-    $config = new LyraParams($this->getObject(), sfConfig::get('sf_config_dir') . '/lyra_params.yml');
-    $config->setCatalog('lyra_params');
-
-    foreach($config->getParamDefsSections() as $section)
+    foreach(array('general','comments','users','mailer') as $section)
     {
+      $config = new LyraParamHolder($this->getObject(), $section);
+      $config->setCatalog('lyra_params');
+
       $params_form = new LyraParamsForm(array(), array(
-          'config' => $config,
-          'section' => $section,
-          'level' => 'settings',
+          'config' => $config
       ));
       $this->embedForm($section, $params_form);
       $this->widgetSchema[$section]->setLabel('PANEL_' . strtoupper($section));
+      $this->config[$section] = $config;
     }
 
     $this->widgetSchema->setNameFormat('settings[%s]');
     $this->widgetSchema->setFormFormatterName('LyraSettings');
-    $this->config = $config;
   }
   public function updateObject($values = null)
   {
     $item = parent::updateObject($values);
     $params = array();
-    foreach($this->config->getParamDefsSections() as $section)
+    foreach($this->config as $section => $config)
     {
-      $params = array_merge($params, $this->config->checkValues($this->getValue($section), $section));
+      $params = array_merge($params, $config->checkValues($this->getValue($section)));
     }
     //Save configuration parameters
     $item->setParams($params);

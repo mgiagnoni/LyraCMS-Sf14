@@ -40,15 +40,15 @@ class LyraLabel extends BaseLyraLabel
   }
   public function setMetaTags(sfWebResponse $response)
   {
-    $params = new LyraConfig('settings');
+    $params = LyraSettingsTable::getParamHolder('general');
     $mt = $this->getMetaTitle();
     if(!$mt) {
       $mt = $this->getTitle();
     }
-    if($t = $params->get('page_title_pfx', 'general')) {
+    if($t = $params->get('page_title_pfx')) {
       $mt = $t . ' ' . $mt;
     }
-    if($t = $params->get('page_title_sfx', 'general')) {
+    if($t = $params->get('page_title_sfx')) {
       $mt .= ' ' . $t;
     }
     if(!$mt) {

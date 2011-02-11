@@ -28,11 +28,12 @@ class LyraContentTypeForm extends BaseLyraContentTypeForm
       $this['module'],
       $this['model'],
       $this['plugin'],
-      $this['params_file'],
       $this['params'],
       $this['created_at'],
       $this['updated_at'],
-      $this['content_type_catalogs_list']
+      $this['content_type_catalogs_list'],
+      $this['format'],
+      $this['item_slug']
     );
 
     $this->widgetSchema['name']->setLabel('NAME');
@@ -42,20 +43,19 @@ class LyraContentTypeForm extends BaseLyraContentTypeForm
     //Embed form displaying configuration options
     $obj = $this->getObject();
     
-    $this->config = new LyraParams($obj, $obj->getParamDefinitionsPath());
-    $this->config->setCatalog(sfInflector::underscore($obj->getModule()) . '_params');
-
+    $i = 0;
     foreach(array('item','lists/defaults') as $section)
     {
-      
+      $config = new LyraParamHolder($obj, $section);
+      $config->setCatalog(sfInflector::underscore($obj->getModule()) . '_params');
       $params_form = new LyraParamsForm(array(), array(
-          'config' => $this->config,
-          'section' => $section,
+          'config' => $config,
           'level' => 'content_type',
       ));
-      $k = 'lyra_params_' . str_replace('/', '_', $section);
+      $k = 'lyra_params_' . $i++;
       $this->embedForm($k, $params_form);
       $this->widgetSchema[$k]->setLabel(false);
+      $this->config[] = $config;
     }
     $this->widgetSchema->setNameFormat('content_type[%s]');
   }
@@ -64,9 +64,10 @@ class LyraContentTypeForm extends BaseLyraContentTypeForm
   {
     $item = parent::updateObject($values);
     $params = array();
-    foreach(array('item','lists/defaults') as $section)
+    $i = 0;
+    foreach($this->config as $config)
     {
-      $params = array_merge($params, $this->config->checkValues($this->getValue('lyra_params_' . str_replace('/', '_', $section)), $section));
+      $params = array_merge($params, $config->checkValues($this->getValue('lyra_params_' . $i++)));
     }
     //Save configuration parameters
     $item->setParams($params);

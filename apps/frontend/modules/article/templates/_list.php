@@ -1,6 +1,6 @@
 <?php use_helper('Date') ?>
 <?php foreach ($items as $item):
-  $params = new LyraConfig($item->getRawValue());
+  $params = $item->getParamHolder();
 ?>
   <h2 class="article-title">
     <?php

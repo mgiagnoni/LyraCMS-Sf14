@@ -21,7 +21,7 @@ class userActions extends sfActions
 {
   public function preExecute()
   {
-    $this->params = new LyraConfig('settings');
+    $this->params = LyraSettingsTable::getParamHolder('users');
   }
   public function executeIndex(sfWebRequest $request)
   {
@@ -49,7 +49,7 @@ class userActions extends sfActions
         return $this->redirect($referer ? $referer : '@homepage');
       }
     }
-    $this->show_registration_link = $this->params->get('enable_registration', 'users');
+    $this->show_registration_link = $this->params->get('enable_registration');
   }
   public function executeSignout(sfWebRequest $request)
   {
@@ -59,14 +59,14 @@ class userActions extends sfActions
   }
   public function executeRegister(sfWebRequest $request)
   {
-    $this->forward404Unless(true == $this->params->get('enable_registration', 'users'));
+    $this->forward404Unless(true == $this->params->get('enable_registration'));
 
     $this->form = new LyraUserRegistrationForm();
     
   }
   public function executeCreate(sfWebRequest $request)
   {
-    $this->forward404Unless($request->isMethod('post') && true == $this->params->get('enable_registration', 'users'));
+    $this->forward404Unless($request->isMethod('post') && true == $this->params->get('enable_registration'));
 
     $this->form = new LyraUserRegistrationForm();
 
@@ -76,7 +76,7 @@ class userActions extends sfActions
   }
   public function executeVerify(sfWebRequest $request)
   {
-    $this->forward404Unless(true == $this->params->get('email_verification', 'users'));
+    $this->forward404Unless(true == $this->params->get('email_verification'));
     
     $this->form = new LyraEmailVerifyForm();
 
@@ -116,10 +116,11 @@ class userActions extends sfActions
   }
   protected function sendVerificationEmail($user)
   {
+    $params = LyraSettingsTable::getParamHolder('mailer');
     $mailer = $this->getMailer();
 
     $message = Swift_Message::newInstance()
-      ->setFrom($this->params->get('system_from', 'mailer'))
+      ->setFrom($params->get('system_from'))
       ->setTo($user->getProfile()->getEmail())
       ->setSubject($this->getContext()->getI18N()->__('EMAIL_VERIFICATION_SUBJECT'))
       ->setBody($this->getPartial('email_verification', array('email' => $user->getProfile()->getEmail(), 'token' => $user->getProfile()->getVtoken())))

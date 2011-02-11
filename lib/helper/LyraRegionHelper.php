@@ -35,7 +35,7 @@ function include_region($region_name)
 
     $component = $record->getComponent();
     
-    $params = new LyraConfig($record);
+    $params = new LyraParamHolder($record, $component->getAction());
     $ctype = null;
     if($component->getCtypeId())
     {

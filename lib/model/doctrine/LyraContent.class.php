@@ -48,17 +48,17 @@ class LyraContent extends BaseLyraContent
   }
   public function setMetaTags(sfWebResponse $response)
   {
-    $params = new LyraConfig('settings');
+    $params = LyraSettingsTable::getParamHolder('general');
     $mt = $this->getMetaTitle();
     if(!$mt)
     {
       $mt = $this->getTitle();
     }
-    if($t = $params->get('page_title_pfx', 'general'))
+    if($t = $params->get('page_title_pfx'))
     {
       $mt = $t . ' ' . $mt;
     }
-    if($t = $params->get('page_title_sfx', 'general'))
+    if($t = $params->get('page_title_sfx'))
     {
       $mt .= ' ' . $t;
     }
@@ -130,12 +130,20 @@ class LyraContent extends BaseLyraContent
   {
     return $this->getContentType()->getParamDefinitionsPath();
   }
-  public function getParameterLevels()
+  public function getParamDefinitionsSection()
   {
-    return array(
-      array('type' => 'object', 'def_section' => 'item'),
-      array('type' => 'content_type', 'def_section' => 'item'),
-      
-    );
+    return 'item';
+  }
+  public function getParamHolder()
+  {
+    static $params;
+
+    if(!isset($params))
+    {
+      $params = new LyraParamHolder($this->getContentType(), 'item');
+    }
+    $params->mergeValues($this->getParams());
+
+    return $params;
   }
 }

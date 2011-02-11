@@ -23,12 +23,8 @@ class LyraRoute extends BaseLyraRoute
 
     return $def_file;
   }
-  public function getParameterLevels()
+  public function getParamDefinitionsSection()
   {
-    return array(
-      array('type' => 'object', 'def_section' => 'lists/' . $this->getAction() . '/other'),
-      array('type' => 'content_type', 'def_section' => 'lists/defaults'),
-
-    );
+    return 'lists/' . $this->getAction() . '/other';
   }
 }

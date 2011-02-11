@@ -31,7 +31,7 @@ generator:
       form:
         display:
           "NONE": [name,description,module,is_active]
-          PANEL_PARAMS: [lyra_params_item]
-          PANEL_PARAMS_LISTS: [lyra_params_lists_defaults]
+          PANEL_PARAMS: [lyra_params_0]
+          PANEL_PARAMS_LISTS: [lyra_params_1]
       edit:    ~
       new:     ~

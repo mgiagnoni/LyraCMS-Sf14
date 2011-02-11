@@ -21,9 +21,9 @@ class LyraRegionComponentForm extends BaseLyraRegionComponentForm
     $obj = $this->getObject();
     $component = $obj->getComponent();
 
-    $this->config = new LyraParams($obj, $component->getParamDefinitionsPath());
+    $this->config = new LyraParamHolder($obj);
     $this->config->setCatalog(sfInflector::underscore($component->getModuleName()) . '_' . $component->getAction());
-    $params_form = new LyraParamsForm(array(), array('config' => $this->config, 'section' => $component->getAction()));
+    $params_form = new LyraParamsForm(array(), array('config' => $this->config));
     $this->embedForm('lyra_params', $params_form);
     $this->widgetSchema['lyra_params']->setLabel(false);
     $this->widgetSchema->setNameFormat('component[%s]');
@@ -33,7 +33,7 @@ class LyraRegionComponentForm extends BaseLyraRegionComponentForm
   {
     $item = parent::updateObject($values);
     //Save configuration parameters
-    $item->setParams($this->config->checkValues($this->getValue('lyra_params'), $item->getComponent()->getAction()));
+    $item->setParams($this->config->checkValues($this->getValue('lyra_params')));
 
   }
 }
