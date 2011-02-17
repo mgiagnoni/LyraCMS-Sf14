@@ -551,6 +551,11 @@ LyraComponent:
       foreign: id
       foreignAlias: Components
       onDelete: CASCADE
+    ComponentVisibility:
+      class: LyraComponentVisibility
+      local: id
+      foreign: component_id
+      type: many
 
 LyraRegionComponent:
   tableName: region_component
@@ -569,6 +574,11 @@ LyraRegionComponent:
       primary: true
     params:
       type: array
+    vis_flag:
+      type: boolean
+      notnull: true
+      default: false
+
   relations:
     Region:
       class: LyraRegion
@@ -580,3 +590,20 @@ LyraRegionComponent:
       local: component_id
       foreign: id
       onDelete: CASCADE
+
+LyraComponentVisibility:
+  tableName: component_visibility
+  options:
+    symfony:
+      filter: false
+      form: false
+  columns:
+    component_id:
+      type: integer(4)
+      notnull: true
+    region_id:
+      type: integer(4)
+      notnull: true
+    content:
+      type: string(120)
+    

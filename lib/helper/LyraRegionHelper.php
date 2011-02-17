@@ -18,36 +18,28 @@
  */
 function include_region($region_name)
 {
-  $region = LyraRegionTable::getInstance()
-    ->createQuery('a')
-    ->innerJoin('a.RefComponents rc')
-    ->innerJoin('rc.Component co')
-    ->where('a.name = ?', $region_name)
-    ->fetchOne();
+  $region = LyraRegionTable::getInstance()->getRegionData($region_name);
+  $request = sfContext::getInstance()->getRequest();
+  $content = $request->getParameter('ctype');
+  $action = $request->getParameter('action');
 
-  if(!$region)
+  foreach($region['components'] as $component)
   {
-    throw new sfException("Region '$region_name' does not exist.");
-  }
-
-  foreach($region->getRefComponents() as $record)
-  {
-
-    $component = $record->getComponent();
-    
-    $params = new LyraParamHolder($record, $component->getAction());
-    $ctype = null;
-    if($component->getCtypeId())
+    if($content && isset($component['visibility']['content']))
     {
-      $ctype = $component->getComponentContentType();
-      $module = $ctype->getModule();
+      $v = $component['visibility']['content'];
+      $keys = array($content . '.all');
+      if(!empty($action))
+      {
+        $keys[] = $content . '.' . $action;
+      }
+      $f = count(array_intersect($keys, $v)) > 0;
+      if(($component['vis_flag'] && !$f) || (!$component['vis_flag'] && $f) )
+      {
+        continue;
+      }
     }
-
-    if($component->getModule())
-    {
-      $module = $component->getModule();
-    }
-    
-    include_component($module, $component->getAction(), array('ctype' => $ctype, 'params' => $params));
+    $params = new LyraParamHolder($component['params'], $component['action'], $component['param_defs']);
+    include_component($component['module'], $component['action'], array( 'ctype' => $component['ctype'], 'params' => $params));
   }
 }

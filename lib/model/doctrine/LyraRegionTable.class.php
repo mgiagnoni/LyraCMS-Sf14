@@ -14,7 +14,7 @@ class LyraRegionTable extends Doctrine_Table
      */
     public static function getInstance()
     {
-        return Doctrine_Core::getTable('LyraRegion');
+      return Doctrine_Core::getTable('LyraRegion');
     }
     public function getBackendItemsQuery(Doctrine_Query $q)
     {
@@ -23,5 +23,63 @@ class LyraRegionTable extends Doctrine_Table
         ->leftJoin('rc.Component co')
         ->orderBy($rootAlias . '.id', 'rc.position');
       return $q;
+    }
+    public function getRegionData($region_name)
+    {
+      $cache = new LyraCache('region_' . $region_name);
+      if($data = $cache->load())
+      {
+        return $data;
+      }
+      
+      $region = $this->createQuery('a')
+        ->innerJoin('a.RefComponents rc')
+        ->innerJoin('rc.Component co')
+        ->leftJoin('co.ComponentVisibility v WITH v.region_id = rc.region_id')
+        ->where('a.name = ?', $region_name)
+        ->fetchOne();
+
+      if(!$region)
+      {
+        throw new sfException("Region '$region_name' does not exist.");
+      }
+
+      $data = array();
+
+      foreach($region->getRefComponents() as $record)
+      {
+        $component = $record->getComponent();
+
+        $ctype = '';
+        if($component->getCtypeId())
+        {
+          $ctype = $component->getComponentContentType();
+          $module = $ctype->getModule();
+          $ctype = $ctype->getType();
+        }
+
+        if($component->getModule())
+        {
+          $module = $component->getModule();
+        }
+        $vrules = array();
+        foreach($component->getComponentVisibility() as $vr)
+        {
+          $vrules['content'][] = $vr->getContent();
+        }
+        $data['components'][] = array(
+          'module' => $module,
+          'action' => $component->getAction(),
+          'ctype' => $ctype,
+          'param_defs' => $component->getParamDefinitionsPath(),
+          'params' => $record->getParams(),
+          'vis_flag' => $record->getVisFlag(),
+          'visibility' => $vrules
+        );
+      }
+
+      $cache->save($data);
+
+      return $data;
     }
 }

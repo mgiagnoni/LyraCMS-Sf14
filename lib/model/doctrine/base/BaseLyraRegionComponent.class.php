@@ -8,17 +8,20 @@
  * @property integer $region_id
  * @property integer $component_id
  * @property array $params
+ * @property boolean $vis_flag
  * @property LyraRegion $Region
  * @property LyraComponent $Component
  * 
  * @method integer             getRegionId()     Returns the current record's "region_id" value
  * @method integer             getComponentId()  Returns the current record's "component_id" value
  * @method array               getParams()       Returns the current record's "params" value
+ * @method boolean             getVisFlag()      Returns the current record's "vis_flag" value
  * @method LyraRegion          getRegion()       Returns the current record's "Region" value
  * @method LyraComponent       getComponent()    Returns the current record's "Component" value
  * @method LyraRegionComponent setRegionId()     Sets the current record's "region_id" value
  * @method LyraRegionComponent setComponentId()  Sets the current record's "component_id" value
  * @method LyraRegionComponent setParams()       Sets the current record's "params" value
+ * @method LyraRegionComponent setVisFlag()      Sets the current record's "vis_flag" value
  * @method LyraRegionComponent setRegion()       Sets the current record's "Region" value
  * @method LyraRegionComponent setComponent()    Sets the current record's "Component" value
  * 
@@ -44,6 +47,11 @@ abstract class BaseLyraRegionComponent extends sfDoctrineRecord
              ));
         $this->hasColumn('params', 'array', null, array(
              'type' => 'array',
+             ));
+        $this->hasColumn('vis_flag', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => true,
+             'default' => false,
              ));
 
         $this->option('symfony', array(

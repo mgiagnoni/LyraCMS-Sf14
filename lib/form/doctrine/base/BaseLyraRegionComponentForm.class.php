@@ -18,6 +18,7 @@ abstract class BaseLyraRegionComponentForm extends BaseFormDoctrine
       'region_id'    => new sfWidgetFormInputHidden(),
       'component_id' => new sfWidgetFormInputHidden(),
       'params'       => new sfWidgetFormInputText(),
+      'vis_flag'     => new sfWidgetFormInputCheckbox(),
       'position'     => new sfWidgetFormInputText(),
     ));
 
@@ -25,6 +26,7 @@ abstract class BaseLyraRegionComponentForm extends BaseFormDoctrine
       'region_id'    => new sfValidatorChoice(array('choices' => array($this->getObject()->get('region_id')), 'empty_value' => $this->getObject()->get('region_id'), 'required' => false)),
       'component_id' => new sfValidatorChoice(array('choices' => array($this->getObject()->get('component_id')), 'empty_value' => $this->getObject()->get('component_id'), 'required' => false)),
       'params'       => new sfValidatorPass(array('required' => false)),
+      'vis_flag'     => new sfValidatorBoolean(array('required' => false)),
       'position'     => new sfValidatorInteger(array('required' => false)),
     ));
 

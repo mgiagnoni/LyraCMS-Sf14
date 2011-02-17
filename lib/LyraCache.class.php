@@ -22,9 +22,24 @@ class LyraCache
 {
   protected $file;
 
-  public function __construct($file)
+  public function __construct($name)
   {
-    $this->file = $file;
+    $this->file = sfConfig::get('sf_cache_dir') . DIRECTORY_SEPARATOR . 'frontend' . DIRECTORY_SEPARATOR . sfConfig::get('sf_environment') . DIRECTORY_SEPARATOR . 'lyra' . DIRECTORY_SEPARATOR . $name . '.cache.php';
+  }
+  public function load()
+  {
+    if(is_readable($this->file))
+    {
+      include $this->file;
+    }
+    return isset($data) ? $data : false;
+  }
+  public function delete()
+  {
+    if(file_exists($this->file))
+    {
+      unlink($this->file);
+    }
   }
   public function save($data)
   {
@@ -54,9 +69,17 @@ class LyraCache
       {
         $out .= $v ? 'true' : 'false';
       }
+      else if(is_array($v))
+      {
+        $out .= $this->build($v);
+      }
+      else if($v === null)
+      {
+        $out .= 'null';
+      }
       $out .= ',';
     }
-    $out .= ")";
+    $out = rtrim($out, ',') . ")";
     return $out;
   }
 }

@@ -40,7 +40,7 @@ class componentActions extends sfActions
        $this->form_params->save();
        $this->getUser()->setFlash('notice', 'Component parameters successfully updated.');
        $this->redirect('@lyra_region');
-       $this->setTemplate('params');
     }
+    $this->setTemplate('params');
   }
 }

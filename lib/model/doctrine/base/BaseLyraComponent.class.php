@@ -10,6 +10,7 @@
  * @property string $module
  * @property string $action
  * @property LyraContentType $ComponentContentType
+ * @property Doctrine_Collection $ComponentVisibility
  * @property Doctrine_Collection $ComponentRegions
  * @property Doctrine_Collection $LyraRegionComponent
  * 
@@ -18,6 +19,7 @@
  * @method string              getModule()               Returns the current record's "module" value
  * @method string              getAction()               Returns the current record's "action" value
  * @method LyraContentType     getComponentContentType() Returns the current record's "ComponentContentType" value
+ * @method Doctrine_Collection getComponentVisibility()  Returns the current record's "ComponentVisibility" collection
  * @method Doctrine_Collection getComponentRegions()     Returns the current record's "ComponentRegions" collection
  * @method Doctrine_Collection getLyraRegionComponent()  Returns the current record's "LyraRegionComponent" collection
  * @method LyraComponent       setId()                   Sets the current record's "id" value
@@ -25,6 +27,7 @@
  * @method LyraComponent       setModule()               Sets the current record's "module" value
  * @method LyraComponent       setAction()               Sets the current record's "action" value
  * @method LyraComponent       setComponentContentType() Sets the current record's "ComponentContentType" value
+ * @method LyraComponent       setComponentVisibility()  Sets the current record's "ComponentVisibility" collection
  * @method LyraComponent       setComponentRegions()     Sets the current record's "ComponentRegions" collection
  * @method LyraComponent       setLyraRegionComponent()  Sets the current record's "LyraRegionComponent" collection
  * 
@@ -69,6 +72,10 @@ abstract class BaseLyraComponent extends sfDoctrineRecord
              'local' => 'ctype_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
+
+        $this->hasMany('LyraComponentVisibility as ComponentVisibility', array(
+             'local' => 'id',
+             'foreign' => 'component_id'));
 
         $this->hasMany('LyraRegion as ComponentRegions', array(
              'refClass' => 'LyraRegionComponent',

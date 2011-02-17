@@ -26,22 +26,17 @@ class LyraSettingsTable extends Doctrine_Table
   public static function getParamHolder($section)
   {
     $defs = sfConfig::get('sf_config_dir') . '/lyra_params.yml';
-    $cache = sfConfig::get('sf_cache_dir') . DIRECTORY_SEPARATOR . 'frontend' . DIRECTORY_SEPARATOR . sfConfig::get('sf_environment') . DIRECTORY_SEPARATOR . 'lyra' . DIRECTORY_SEPARATOR . 'settings.cache.php';
+    $cache = new LyraCache('settings');
 
-    if(is_readable($cache))
+    if($data = $cache->load())
     {
-      include $cache;
-      if(isset($data))
-      {
-        return new LyraParamHolder($data, $section, $defs);
-      }
+      return new LyraParamHolder($data, $section, $defs);
     }
-
+    
     $r = self::getInstance()->createQuery()->fetchOne();
     $params = new LyraParamHolder($r, $section, $defs);
 
-    $c = new LyraCache($cache);
-    $c->save($params->getValues());
+    $cache->save($params->getValues());
 
     return $params;
   }

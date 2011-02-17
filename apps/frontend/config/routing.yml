@@ -8,6 +8,7 @@ page_show:
   param:
     module: article
     action: show
+    ctype: page
   requirements:
     sf_method: [get]
 
@@ -34,6 +35,7 @@ article_show:
   param:
     module: article
     action: show
+    ctype: article
   requirements:
     sf_method: [get]
 
@@ -64,6 +66,7 @@ article_label:
   param:
     module: article
     action: label
+    ctype: article
   requirements:
     sf_method: [get]
 
@@ -76,6 +79,7 @@ article_archive:
   param:
     module: sfContentArchive
     action: archive
+    ctype: article
   requirements:
     year: \d+
     month: \d+

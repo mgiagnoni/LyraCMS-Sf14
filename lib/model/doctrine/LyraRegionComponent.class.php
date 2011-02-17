@@ -20,4 +20,9 @@ class LyraRegionComponent extends BaseLyraRegionComponent
   {
     return $this->getComponent()->getParamDefinitionsSection();
   }
+  public function postSave($event)
+  {
+    $cache = new LyraCache('region_' . $this->getRegion()->getName());
+    $cache->delete();
+  }
 }
