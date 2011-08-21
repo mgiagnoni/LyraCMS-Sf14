@@ -1,3 +1,9 @@
+IMPORTANT
+=========
+
+This is the old experimental version of LyraCMS developed with Symfony 1.4 and **no longer maintained**.
+See https://github.com/mgiagnoni/LyraCMS for the new version developed with Symfony2 and Doctrine2.
+
 Lyra CMS
 ========
 
